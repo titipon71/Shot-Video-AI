@@ -1,0 +1,9 @@
+node_modules/
+.hyperframes/
+
+# Regenerable by scripts/bake-all.mjs (PNG frames ~4 GB, basemap MP4s ~320 MB)
+asia-regions-demo/assets/maps/frames-*/
+asia-regions-demo/assets/maps/*.mp4
+
+# Renders (over GitHub's 100 MB file limit)
+*.mp4

@@ -1,37 +1,61 @@
-// Bake every scene's basemap, one at a time: node scripts/bake-all.mjs [sceneId...]
+// Bake each scene's basemap for one video config, one at a time. A scene whose camera, size and
+// countries are unchanged since its last bake is skipped (force re-bakes everything).
 import { spawnSync } from "node:child_process";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
-import { REGIONS, SCENES } from "./scenes.mjs";
+import { mapsDir } from "./lib/config.mjs";
 
 const here = dirname(fileURLToPath(import.meta.url));
-const out = join(here, "..", "assets", "maps");
-const only = process.argv.slice(2);
-const countries = Object.values(REGIONS)
-  .flatMap((r) => r.countries.map((c) => `${c}:${r.color}`))
-  .join(",");
 
-for (const s of SCENES) {
-  if (only.length && !only.includes(s.id)) continue;
+export function bakeParams(cfg, s) {
+  const countries = Object.values(cfg.regions)
+    .flatMap((r) => r.countries.map((c) => `${c}:${r.color}`))
+    .join(",");
+  const cam = s.camera;
   const env = {
-    ...process.env,
     NAME: s.id,
-    STYLE: "satellite",
-    W: "1080",
-    H: "1920",
-    FPS: "30",
+    STYLE: cfg.style,
+    W: String(cfg.width),
+    H: String(cfg.height),
+    FPS: String(cfg.fps),
     DUR: String(s.dur),
     HOLD: String(s.hold),
-    CENTER: s.center.join(","),
-    ZSTART: String(s.zstart),
-    ZEND: String(s.zend),
+    CENTER: cam.center.join(","),
+    ZSTART: String(cam.zstart),
+    ZEND: String(cam.zoom),
     COUNTRIES: countries,
-    OUT: out,
   };
-  if (s.from) {
-    env.FROM = s.from.join(",");
-    env.PAN = String(s.hold * 0.9);
+  if (cam.from) {
+    env.FROM = cam.from.join(",");
+    env.PAN = String(+(s.hold * 0.9).toFixed(4));
   }
-  const r = spawnSync(process.execPath, [join(here, "bake-basemap.mjs")], { env, stdio: "inherit" });
-  if (r.status !== 0) console.error(`[${s.id}] bake exited ${r.status}`);
+  return env;
+}
+
+export function bakeAll(root, cfg, { force = false, only = [] } = {}) {
+  const out = mapsDir(root, cfg);
+  mkdirSync(out, { recursive: true });
+  const failed = [];
+  for (const s of cfg.scenes) {
+    if (only.length && !only.includes(s.id)) continue;
+    const params = bakeParams(cfg, s);
+    const stamp = join(out, `${s.id}-params.json`);
+    const fresh =
+      existsSync(join(out, `${s.id}.mp4`)) &&
+      existsSync(join(out, `${s.id}-coords.json`)) &&
+      existsSync(stamp) &&
+      readFileSync(stamp, "utf8") === JSON.stringify(params);
+    if (fresh && !force) {
+      console.log(`[${s.id}] unchanged, skipping bake`);
+      continue;
+    }
+    const r = spawnSync(process.execPath, [join(here, "bake-basemap.mjs")], {
+      env: { ...process.env, ...params, OUT: out },
+      stdio: "inherit",
+    });
+    if (r.status === 0) writeFileSync(stamp, JSON.stringify(params));
+    else failed.push(s.id);
+  }
+  if (failed.length) throw new Error(`bake failed for: ${failed.join(", ")}`);
 }

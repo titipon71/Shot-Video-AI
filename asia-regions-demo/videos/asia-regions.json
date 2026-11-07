@@ -1,0 +1,31 @@
+{
+  "id": "asia-regions",
+  "title": "The Difference Between Asia's Regions",
+  "width": 1080,
+  "height": 1920,
+  "style": "satellite",
+  "regions": {
+    "west": { "label": "Middle East", "color": "#F5A623", "countries": ["Turkey", "Syria", "Lebanon", "Israel", "Palestine", "Jordan", "Iraq", "Iran", "Saudi Arabia", "Kuwait", "Qatar", "United Arab Emirates", "Oman", "Yemen", "Cyprus", "Georgia", "Armenia", "Azerbaijan"] },
+    "south": { "label": "South Asia", "color": "#5CC93A", "countries": ["India", "Pakistan", "Bangladesh", "Nepal", "Bhutan", "Sri Lanka", "Afghanistan"] },
+    "east": { "label": "East Asia", "color": "#E8D93A", "countries": ["China", "Mongolia", "Japan", "South Korea", "North Korea", "Taiwan"] },
+    "southeast": { "label": "Southeast Asia", "color": "#4FC3E8", "countries": ["Myanmar", "Thailand", "Laos", "Cambodia", "Vietnam", "Malaysia", "Indonesia", "Philippines", "Brunei", "Timor-Leste"] },
+    "central": { "label": "Central Asia", "color": "#E5452B", "countries": ["Kazakhstan", "Uzbekistan", "Turkmenistan", "Kyrgyzstan", "Tajikistan"] },
+    "north": { "label": "Northern Asia", "color": "#2F5BEA", "countries": ["Russia"] }
+  },
+  "scenes": [
+    { "id": "hook", "type": "intro", "dur": 5, "hero": "48 COUNTRIES", "lines": ["Asia is home to 48 countries", "split into six regions"],
+      "camera": { "center": [92, 24], "zoom": 2.55, "zstart": 2.3, "move": 1.4 } },
+    { "id": "west", "reveal": "west", "dur": 5.5, "lines": ["This is the Middle East", "where Asia meets Africa"],
+      "camera": { "center": [45, 22], "zoom": 3.85, "move": 1.485 } },
+    { "id": "south", "reveal": "south", "dur": 5.5, "lines": ["South Asia", "almost 2 billion people"],
+      "camera": { "center": [78, 16], "zoom": 3.9, "move": 1.485 } },
+    { "id": "east", "reveal": "east", "dur": 5.5, "lines": ["East Asia", "China, Japan and the Koreas"],
+      "camera": { "center": [112, 28], "zoom": 3.15, "move": 1.485 } },
+    { "id": "southeast", "reveal": "southeast", "dur": 5.5, "lines": ["Southeast Asia", "thousands of islands"],
+      "camera": { "center": [116, 0], "zoom": 3.55, "move": 1.485 } },
+    { "id": "central", "reveal": "central", "dur": 5.5, "lines": ["Central Asia", "the five “stans”"],
+      "camera": { "center": [66, 37], "zoom": 3.85, "move": 1.485 } },
+    { "id": "outro", "type": "outro", "reveal": "north", "dur": 6.5, "lines": ["and Northern Asia is just Russia", "now you know"],
+      "camera": { "center": [92, 30], "zoom": 2.45, "move": 1.82 } }
+  ]
+}

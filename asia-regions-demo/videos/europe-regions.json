@@ -1,0 +1,18 @@
+{
+  "id": "europe-regions",
+  "title": "Europe's Four Regions",
+  "regions": {
+    "north": { "label": "Northern Europe", "color": "#4FC3E8", "countries": ["Iceland", "Norway", "Sweden", "Finland", "Denmark", "United Kingdom", "Ireland", "Estonia", "Latvia", "Lithuania"] },
+    "west": { "label": "Western Europe", "color": "#F5A623", "countries": ["France", "Belgium", "Netherlands", "Luxembourg", "Germany", "Switzerland", "Austria"] },
+    "south": { "label": "Southern Europe", "color": "#5CC93A", "countries": ["Portugal", "Spain", "Italy", "Slovenia", "Croatia", "Bosnia and Herz.", "Serbia", "Montenegro", "Kosovo", "Albania", "Macedonia", "Greece"] },
+    "east": { "label": "Eastern Europe", "color": "#E5452B", "countries": ["Poland", "Czechia", "Slovakia", "Hungary", "Romania", "Bulgaria", "Moldova", "Ukraine", "Belarus"] }
+  },
+  "scenes": [
+    { "id": "intro", "dur": 5, "hero": "4 REGIONS", "lines": ["Europe has 44 countries", "but only four regions"] },
+    { "id": "north", "reveal": "north", "dur": 5.5, "lines": ["Northern Europe", "the Nordics, the UK and the Baltics"] },
+    { "id": "west", "reveal": "west", "dur": 5.5, "lines": ["Western Europe", "France, Germany and the Alps"] },
+    { "id": "south", "reveal": "south", "dur": 5.5, "lines": ["Southern Europe", "the Mediterranean side"] },
+    { "id": "east", "reveal": "east", "dur": 5.5, "lines": ["Eastern Europe", "from Poland to Ukraine"] },
+    { "id": "outro", "dur": 6, "lines": ["four regions, one continent", "now you know"] }
+  ]
+}

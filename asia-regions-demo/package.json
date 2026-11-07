@@ -3,6 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "video": "node scripts/make.mjs",
+    "countries": "node scripts/list-countries.mjs",
     "dev": "npx --yes hyperframes@0.8.226 preview",
     "check": "npx --yes hyperframes@0.8.226 check",
     "render": "npx --yes hyperframes@0.8.226 render",
@@ -10,5 +12,8 @@
   },
   "devDependencies": {
     "puppeteer-core": "^24.43.1"
+  },
+  "dependencies": {
+    "topojson-client": "^3.1.0"
   }
 }

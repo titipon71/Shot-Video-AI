@@ -7,3 +7,7 @@ asia-regions-demo/assets/maps/**/frames-*/
 
 # Renders (over GitHub's 100 MB file limit)
 *.mp4
+asia-regions-demo/assets/maps/**/*-hold.jpg
+asia-regions-demo/assets/voice/*.wav
+asia-regions-demo/assets/voice/*.mp3
+asia-regions-demo/assets/voice/*.m4a

@@ -77,7 +77,7 @@ export async function loadConfig(root, path) {
 
 // Mercator framing: fit the box inside the frame's text-safe band and place it a little above centre,
 // leaving the lower part of the band for captions.
-function frame(b, cfg, fill = 0.78) {
+export function frame(b, cfg, fill = 0.78) {
   const W = cfg.width, H = cfg.height;
   const my = (lat) => (1 - Math.log(Math.tan(Math.PI / 4 + (lat * Math.PI) / 360)) / Math.PI) / 2; // 0..1, north = 0
   const lonSpan = Math.max(b.east - b.west, 1);

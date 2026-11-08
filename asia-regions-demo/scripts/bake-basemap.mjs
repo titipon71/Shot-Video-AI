@@ -21,7 +21,7 @@
 // It encodes frames-<NAME>/f%04d.png → <NAME>.mp4 (all-intra: -g 1) and writes <NAME>-coords.json
 // for the HF composition. One bake at a time: several headless Chromes on a small machine stall.
 import { join } from "node:path";
-import { mkdirSync, writeFileSync, readdirSync, existsSync } from "node:fs";
+import { mkdirSync, writeFileSync, readdirSync, existsSync, rmSync } from "node:fs";
 import { homedir } from "node:os";
 import { spawnSync } from "node:child_process";
 
@@ -98,6 +98,20 @@ const COUNTRIES = (process.env.COUNTRIES || "")
     const [name, color] = s.split(":");
     return { name, color: color || "#38bdf8" };
   });
+// POINTS="id@lng,lat;id@lng,lat" — places to project to screen at the held view (pins, route waypoints)
+const POINTS = (process.env.POINTS || "")
+  .split(";")
+  .map((s) => s.trim())
+  .filter(Boolean)
+  .map((s) => {
+    const [id, ll] = s.split("@");
+    const [lng, lat] = ll.split(",").map(Number);
+    if (!Number.isFinite(lng) || !Number.isFinite(lat)) throw new Error(`bad POINTS entry: ${s}`);
+    return { id, ll: [lng, lat] };
+  });
+// CAMPATH=fly moves FROM -> CENTER along a zoom-out-and-in path (van Wijk & Nuij, as d3.interpolateZoom),
+// so long pans at high zoom don't smear. Mercator only.
+const FLY = process.env.CAMPATH === "fly";
 
 // fail fast on bad numeric env — otherwise NaN silently bakes zero/garbage frames and still prints "done"
 for (const [k, v] of Object.entries({
@@ -132,6 +146,7 @@ const TILES =
 const W = +(process.env.W || 1920), H = +(process.env.H || 1080);
 const OUT = process.env.OUT || process.cwd(); // artifacts → workspace (cwd), NOT the installed skill dir
 const framesDir = join(OUT, "frames-" + NAME);
+rmSync(framesDir, { recursive: true, force: true }); // a shorter re-bake must not keep the old run's extra frames
 mkdirSync(framesDir, { recursive: true });
 
 // A seeded star field behind the globe, so every bake of the same move is identical.
@@ -154,8 +169,8 @@ const PAGE = `<!doctype html><html><head>
 </head><body>${PROJECTION === "globe" ? STARS : ""}<div id="map"></div><script>
 var CENTER=${JSON.stringify(CENTER)}, ZSTART=${ZSTART}, ZEND=${ZEND}, PITCH=${PITCH}, BEARING=${BEARING}, HOLD=${HOLD};
 var FROM=${JSON.stringify(FROM)}, PAN=${PAN};
-var MARGIN=${JSON.stringify(MARGIN)}, WANT=${JSON.stringify(COUNTRIES)};
-var GLOBE=${PROJECTION === "globe"};
+var MARGIN=${JSON.stringify(MARGIN)}, WANT=${JSON.stringify(COUNTRIES)}, POINTS=${JSON.stringify(POINTS)};
+var GLOBE=${PROJECTION === "globe"}, FLY=${FLY}, VW=${W};
 // On the globe the page behind the map shows through (stars), and the atmosphere fades out as the camera nears the ground.
 var map=new maplibregl.Map({container:"map",style:{version:8,projection:{type:GLOBE?"globe":"mercator"},
   sky:GLOBE?{"atmosphere-blend":["interpolate",["linear"],["zoom"],0,1,5,1,7,0]}:undefined,
@@ -167,7 +182,24 @@ function ease(x){return x<0.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;} // easeInOutCubic
 function sine(x){return -(Math.cos(Math.PI*x)-1)/2;}
 function seg(p,a,b){return b<=a?1:Math.min(1,Math.max(0,(p-a)/(b-a)));}
 // With FROM, the camera turns to CENTER over [0,PAN] while the zoom runs over [PAN/2,HOLD]; without it, the zoom runs over [0,HOLD].
+function mx(lon){return (lon+180)/360;} function my(lat){return (1-Math.log(Math.tan(Math.PI/4+lat*Math.PI/360))/Math.PI)/2;}
+function lonOf(x){return x*360-180;} function latOf(y){return Math.atan(Math.sinh(Math.PI*(1-2*y)))*180/Math.PI;}
+// Optimal zoom-and-pan path between two views in Mercator world units (w = visible width).
+var FLYF=null;
+if(FLY&&FROM&&!GLOBE){ (function(){
+  var rho=Math.SQRT2, rho2=2, rho4=4;
+  var ux0=mx(FROM[0]), uy0=my(FROM[1]), w0=VW/(512*Math.pow(2,ZSTART));
+  var ux1=mx(CENTER[0]), uy1=my(CENTER[1]), w1=VW/(512*Math.pow(2,ZEND));
+  var dx=ux1-ux0, dy=uy1-uy0, d2=dx*dx+dy*dy;
+  if(d2<1e-12){ var S0=Math.log(w1/w0)/rho; FLYF=function(t){return [ux0+t*dx, uy0+t*dy, w0*Math.exp(rho*t*S0)];}; return; }
+  var d1=Math.sqrt(d2), b0=(w1*w1-w0*w0+rho4*d2)/(2*w0*rho2*d1), b1=(w1*w1-w0*w0-rho4*d2)/(2*w1*rho2*d1);
+  var r0=Math.log(Math.sqrt(b0*b0+1)-b0), r1=Math.log(Math.sqrt(b1*b1+1)-b1), S=(r1-r0)/rho;
+  FLYF=function(t){ var s=t*S, c=Math.cosh(r0), u=w0/(rho2*d1)*(c*Math.tanh(rho*s+r0)-Math.sinh(r0));
+    return [ux0+u*dx, uy0+u*dy, w0*c/Math.cosh(rho*s+r0)]; };
+})(); }
 function camAt(p){
+  if(FLYF){ var q=FLYF(ease(seg(p,0,HOLD))); if(p>=HOLD) return {center:CENTER, zoom:ZEND, pitch:0, bearing:0};
+    return {center:[lonOf(q[0]),latOf(q[1])], zoom:Math.log2(VW/(512*q[2])), pitch:0, bearing:0}; }
   var s=FROM?sine(seg(p,0,PAN)):1, t=ease(seg(p,FROM?PAN/2:0,HOLD));
   var c=FROM?[FROM[0]+(CENTER[0]-FROM[0])*s, FROM[1]+(CENTER[1]-FROM[1])*s]:CENTER;
   return {center:c, zoom:ZSTART+(ZEND-ZSTART)*t, pitch:PITCH*t, bearing:BEARING*t}; }
@@ -224,6 +256,7 @@ window.__project=function(){ return {
   view:{center:CENTER, zoom:ZEND, pitch:PITCH, bearing:BEARING},
   countries: FEATS.map(function(e){ var lc=ringCentroid(e.f.__anchorRing); var lp=map.project(lc);
     return { name:e.name, color:e.color, d:featurePath(e.f), bbox:bboxOf(e.f), label:{x:+lp.x.toFixed(1),y:+lp.y.toFixed(1)} }; }),
+  points: POINTS.map(function(q){ var pp=map.project(q.ll); return {id:q.id, x:+pp.x.toFixed(1), y:+pp.y.toFixed(1)}; }),
 }; };
 </script></body></html>`;
 
@@ -266,7 +299,7 @@ try {
       clip: { x: 0, y: 0, width: W, height: H },
       optimizeForSpeed: true,
     });
-    if (p >= HOLD && !coords && COUNTRIES.length)
+    if (p >= HOLD && !coords && (COUNTRIES.length || POINTS.length))
       coords = await page.evaluate(() => window.__project()); // capture at first hold frame
     if (i % 20 === 0 || i === N - 1) {
       const per = (Date.now() - t0) / 1000 / (i + 1);

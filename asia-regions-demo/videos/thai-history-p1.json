@@ -1,0 +1,181 @@
+{
+  "id": "thai-history-p1",
+  "kind": "story",
+  "cps": 13,
+  "voice": { "audio": "assets/voice/thai-history-p1.wav", "transcript": "assets/voice/thai-history-p1.words.json" },
+  "places": {
+    "sukhothai": { "name": "สุโขทัย", "at": [99.70, 17.02] },
+    "ayutthaya": { "name": "กรุงศรีอยุธยา", "at": [100.57, 14.36] },
+    "venice": { "name": "เวนิส", "at": [12.34, 45.44] },
+    "khanbaliq": { "name": "ข่านบาลิก (ปักกิ่ง)", "at": [116.39, 39.91] },
+    "hakata": { "name": "ฮากาตะ", "at": [130.40, 33.59] },
+    "masan": { "name": "ฮัปโพ (เกาหลี)", "at": [128.57, 35.18] },
+    "tsushima": { "name": "สึชิมะ", "at": [129.30, 34.40] },
+    "iki": { "name": "อิกิ", "at": [129.72, 33.79] },
+    "takashima": { "name": "ทากาชิมะ", "at": [129.75, 33.36] },
+    "ningbo": { "name": "หนิงปัว (จีน)", "at": [121.85, 29.95] },
+    "eastsea": { "at": [125.8, 31.6] },
+    "acre": { "at": [35.07, 32.92] },
+    "tabriz": { "at": [46.29, 38.08] },
+    "hormuz": { "at": [56.46, 27.10] },
+    "balkh": { "at": [66.90, 36.76] },
+    "kashgar": { "at": [75.99, 39.47] },
+    "dunhuang": { "at": [94.66, 40.14] },
+    "quanzhou": { "name": "เฉวียนโจว", "at": [118.59, 24.91] },
+    "champa": { "at": [109.3, 13.0] },
+    "strait": { "at": [104.6, 1.2] },
+    "samudra": { "at": [97.2, 5.2] },
+    "srilanka": { "at": [80.3, 5.6] },
+    "malabar": { "at": [74.5, 11.5] },
+    "arabsea": { "at": [62.0, 21.0] },
+    "trebizond": { "at": [39.72, 41.00] },
+    "constantinople": { "at": [28.98, 41.01] },
+    "aegean": { "at": [23.5, 36.0] },
+    "otranto": { "at": [18.8, 40.0] }
+  },
+  "scenes": [
+    {
+      "id": "s1-hook",
+      "say": "ลองจินตนาการย้อนกลับไปสักเจ็ดร้อยถึงแปดร้อยปีที่แล้ว ตั้งแต่สมัยสุโขทัย จนถึงอยุธยาตอนต้น...",
+      "camera": { "center": [101.0, 7.5], "zoom": 4.5, "zstart": 2.0, "move": 2.8 },
+      "year": "700–800 ปีที่แล้ว",
+      "fills": [{ "countries": ["Thailand"], "color": "#5CC93A", "opacity": 0.4, "cue": "สุโขทัย" }],
+      "pins": [
+        { "place": "sukhothai", "cue": "สุโขทัย", "color": "#5CC93A" },
+        { "place": "ayutthaya", "cue": "อยุธยา", "color": "#5CC93A" }
+      ],
+      "texts": [{ "text": "สุโขทัย → อยุธยาตอนต้น", "style": "hero", "cue": "ตั้งแต่สมัย" }]
+    },
+    {
+      "id": "s2-slowlife",
+      "say": "เวลาเรานึกถึงสุโขทัย ภาพในหัวเราคืออะไร? ในน้ำมีปลา ในนามีข้าว ใช่ปะ? ดูสงบสงบ สโลว์ไลฟ์ ใส่ชุดไทยเดินตลาดทำบุญ...",
+      "camera": { "center": [100.0, 15.5], "zoom": 6.6, "move": 1.6 },
+      "pins": [{ "place": "sukhothai", "color": "#5CC93A" }],
+      "images": [
+        { "src": "assets/images/thai-history-p1/02-sukhothai-rice-farming.jpg", "cue": "ในน้ำ", "outCue": "ดูสงบ", "credit": "ภาพ: Ninaras / CC BY 4.0" },
+        { "src": "assets/images/thai-history-p1/01-sukhothai-wat-mahathat.jpg", "cue": "ดูสงบ", "dur": 4.6, "credit": "ภาพ: Vyacheslav Argenberg / CC BY 4.0" }
+      ],
+      "texts": [
+        { "text": "ในน้ำมีปลา ในนามีข้าว", "style": "hero", "cue": "ในน้ำ", "outCue": "ดูสงบ" },
+        { "text": "สโลว์ไลฟ์ 😌", "style": "hero", "cue": "ดูสงบ" }
+      ]
+    },
+    {
+      "id": "s3-world",
+      "say": "แต่เชื่อปะว่า ในช่วงเวลาเดียวกันนั้น โลกภายนอกกำลังเดือดเป็นไฟเลยเว้ย! เดี๋ยวจะไล่ให้ฟังทีละจุด",
+      "camera": { "center": [68.0, 24.0], "zoom": 2.5, "move": 2.2 },
+      "pins": [
+        { "place": "sukhothai", "color": "#5CC93A" },
+        { "place": "venice", "label": "ยุโรป", "color": "#E5452B", "cue": "เดือด" },
+        { "place": "khanbaliq", "label": "มองโกล", "color": "#E5452B", "cue": "เป็นไฟ" },
+        { "place": "hakata", "label": "ญี่ปุ่น", "color": "#E5452B", "cue": "เลยเว้ย" }
+      ],
+      "texts": [{ "text": "โลกกำลังเดือด! 🔥", "style": "hero", "color": "#FF6B4A", "cue": "โลกภายนอก" }]
+    },
+    {
+      "id": "s4-script",
+      "say": "ความพีคคือ ในปี พ.ศ. 1826 หรือ ค.ศ. 1283 ตามที่จารึกหลักที่ 1 อ้างว่าเป็นปีที่พ่อขุนรามคำแหงประดิษฐ์อักษรไทย และปี พ.ศ. 1835 หรือ ค.ศ. 1292 ก็เป็นปีที่จารึกพ่อขุนรามคำแหงถูกสร้างขึ้น",
+      "camera": { "center": [99.75, 16.3], "zoom": 7.2, "move": 2.2 },
+      "year": [{ "ad": 1283, "cue": "พ.ศ. 1826" }, { "ad": 1292, "cue": "พ.ศ. 1835" }],
+      "pins": [{ "place": "sukhothai", "color": "#5CC93A" }],
+      "images": [
+        { "src": "assets/images/thai-history-p1/04-ramkhamhaeng-inscription-detail.jpg", "cue": "ประดิษฐ์", "outCue": "หรือ ค.ศ. 1292", "credit": "ภาพ: Ohbendy / CC BY-SA 4.0" },
+        { "src": "assets/images/thai-history-p1/03-ramkhamhaeng-inscription-stele.jpg", "cue": "ก็เป็นปีที่", "dur": 4, "credit": "ภาพ: Ohbendy / CC BY-SA 4.0" }
+      ],
+      "texts": [
+        { "text": "พ่อขุนรามคำแหงประดิษฐ์อักษรไทย", "style": "tag", "color": "#5CC93A", "y": 320, "cue": "ประดิษฐ์", "outCue": "หรือ ค.ศ. 1292" },
+        { "text": "จารึกหลักที่ 1 ถูกสร้าง", "style": "hero", "cue": "จารึกพ่อขุน" }
+      ]
+    },
+    {
+      "id": "s5-mongol",
+      "say": "นั่นคือช่วงเดียวกับที่กุบไลข่านแห่งจักรวรรดิมองโกลกำลังส่งกองทัพเรือมหึมาบุกญี่ปุ่นถึงสองครั้ง",
+      "camera": { "center": [114.0, 29.0], "zoom": 3.35, "move": 2.4 },
+      "year": { "text": "ค.ศ. 1274–1281 · พ.ศ. 1817–1824" },
+      "fills": [
+        { "countries": ["Mongolia", "China", "North Korea", "South Korea"], "color": "#E5452B", "opacity": 0.5, "cue": "กุบไลข่าน", "label": "จักรวรรดิมองโกล (หยวน)", "labelAt": "khanbaliq" },
+        { "countries": ["Japan"], "color": "#F4F1EA", "opacity": 0.55, "cue": "บุกญี่ปุ่น", "label": "ญี่ปุ่น" }
+      ],
+      "images": [
+        { "src": "assets/images/thai-history-p1/05-kublai-khan-portrait.jpg", "cue": "กุบไลข่าน", "outCue": "กองทัพเรือ" },
+        { "src": "assets/images/thai-history-p1/06-moko-shurai-ekotoba-battle.jpg", "cue": "กองทัพเรือ", "dur": 4 }
+      ],
+      "texts": [{ "text": "กุบไลข่าน", "style": "hero", "color": "#FF6B4A", "cue": "กุบไลข่าน" }]
+    },
+    {
+      "id": "s6-fleets",
+      "say": "ในปี ค.ศ. 1274 และ ค.ศ. 1281 โดยกองเรือครั้งหลังมีราว 4,000 ลำ แต่ถูกพายุไต้ฝุ่นพัดจนเสียหายอย่างหนัก",
+      "camera": { "fit": ["ningbo", "masan", "hakata", "tsushima"], "fill": 0.72, "move": 2.0 },
+      "year": [{ "ad": 1274, "cue": "ค.ศ. 1274" }, { "ad": 1281, "cue": "ค.ศ. 1281" }],
+      "fills": [
+        { "countries": ["China", "North Korea", "South Korea"], "color": "#E5452B", "opacity": 0.45 },
+        { "countries": ["Japan"], "color": "#F4F1EA", "opacity": 0.5 }
+      ],
+      "pins": [{ "place": "hakata", "color": "#ffffff", "label": "" }],
+      "routes": [
+        { "via": ["masan", "tsushima", "iki", "hakata"], "color": "#E5452B", "label": "1274", "cue": "ค.ศ. 1274", "draw": 1.2 },
+        { "via": ["masan", "tsushima", "takashima"], "color": "#FF9F43", "cue": "ค.ศ. 1281", "draw": 1.2, "arrow": false },
+        { "via": ["ningbo", "eastsea", "takashima"], "color": "#FF9F43", "label": "1281", "cue": "ค.ศ. 1281", "draw": 1.6 }
+      ],
+      "icons": [{ "place": "takashima", "cue": "พายุไต้ฝุ่น" }],
+      "images": [
+        { "src": "assets/images/thai-history-p1/07-moko-shurai-ekotoba-boarding.jpg", "cue": "โดยกองเรือ", "outCue": "แต่ถูก" }
+      ],
+      "texts": [
+        { "text": "กองเรือ ~4,000 ลำ", "style": "tag", "color": "#FF9F43", "y": 300, "cue": "4,000", "outCue": "พายุไต้ฝุ่น" },
+        { "text": "พายุไต้ฝุ่น! 🌀", "style": "hero", "cue": "พายุไต้ฝุ่น" }
+      ]
+    },
+    {
+      "id": "s7-kamikaze",
+      "say": "คนญี่ปุ่นเรียกพายุนั้นว่า \"กามิกาเซ่\" หรือ \"ลมเทพเจ้า\" นั่นแหละคือที่มาของคำนี้ ที่เกิดขึ้นในยุคเดียวกับพ่อขุนรามคำแหง",
+      "camera": { "center": [130.0, 33.6], "zoom": 7.2, "move": 1.6 },
+      "icons": [{ "place": "takashima", "at": 0, "size": 1.8 }],
+      "images": [
+        { "src": "assets/images/thai-history-p1/08-kikuchi-yosai-kamikaze-typhoon.jpg", "cue": "กามิกาเซ่", "outCue": "นั่นแหละ", "top": 665 }
+      ],
+      "texts": [
+        { "text": "神風", "style": "kanji", "y": 250, "cue": "กามิกาเซ่" },
+        { "text": "กามิกาเซ่ = \"ลมเทพเจ้า\"", "style": "sub", "y": 570, "cue": "ลมเทพเจ้า" },
+        { "text": "ยุคเดียวกับพ่อขุนรามคำแหง!", "style": "tag", "color": "#5CC93A", "y": 680, "cue": "ยุคเดียวกับ" }
+      ]
+    },
+    {
+      "id": "s8-marco",
+      "say": "อ้อ แล้วถ้าถามว่าตอนนั้นฝรั่งทำอะไรอยู่? ตอนนั้นมีหนุ่มอิตาลีคนหนึ่งชื่อ มาร์โค โปโล กำลังเดินทางข้ามเอเชีย และอยู่ทำงานในราชสำนักของกุบไลข่านที่จีน เขาเดินทางไปถึงราชสำนักหยวนในปี ค.ศ. 1275 และอยู่ที่นั่นราว 17 ปี ก่อนจะออกเดินทางกลับยุโรปในปี ค.ศ. 1292 พอดีกับปีที่จารึกพ่อขุนรามคำแหงถูกสร้าง",
+      "camera": { "center": [64.4, 12.0], "zoom": 2.72, "move": 2.6 },
+      "year": [{ "ad": 1271, "at": 0 }, { "ad": 1275, "cue": "ค.ศ. 1275" }, { "ad": 1292, "cue": "ค.ศ. 1292" }],
+      "fills": [{ "countries": ["Mongolia", "China"], "color": "#E5452B", "opacity": 0.4, "cue": "ราชสำนักของกุบไลข่าน" }],
+      "pins": [
+        { "place": "venice", "color": "#F5A623", "cue": "หนุ่มอิตาลี" },
+        { "place": "khanbaliq", "color": "#E5452B", "cue": "ราชสำนักของกุบไลข่าน", "side": "top" },
+        { "place": "sukhothai", "label": "สุโขทัย: จารึกหลักที่ 1", "color": "#5CC93A", "cue": "พอดีกับ", "side": "bottom", "pulse": 4 }
+      ],
+      "routes": [
+        { "via": ["venice", "otranto", "aegean", "acre", "tabriz", "hormuz", "balkh", "kashgar", "dunhuang", "khanbaliq"], "color": "#F5A623", "label": "ขาไป 1271–1275", "labelAt": "tabriz", "cue": "กำลังเดินทาง", "draw": 3.2 },
+        { "via": ["khanbaliq", "quanzhou", "champa", "strait", "samudra", "srilanka", "malabar", "arabsea", "hormuz", "tabriz", "trebizond", "constantinople", "aegean", "otranto", "venice"], "color": "#4FC3E8", "dashed": true, "label": "ขากลับ 1292–1295", "labelAt": "arabsea", "cue": "ออกเดินทางกลับ", "draw": 3.4 }
+      ],
+      "images": [
+        { "src": "assets/images/thai-history-p1/09-marco-polo-mosaic.jpg", "cue": "หนุ่มอิตาลี", "outCue": "กำลังเดินทาง" },
+        { "src": "assets/images/thai-history-p1/10-polo-brothers-meet-kublai.png", "cue": "เขาเดินทาง", "outCue": "และอยู่ที่นั่น" }
+      ],
+      "texts": [
+        { "text": "มาร์โค โปโล", "style": "hero", "cue": "มาร์โค", "outCue": "เขาเดินทาง" },
+        { "text": "อยู่จีนราว 17 ปี", "style": "tag", "color": "#F5A623", "y": 300, "cue": "17 ปี", "outCue": "ค.ศ. 1292" },
+        { "text": "ปีเดียวกับจารึกหลักที่ 1!", "style": "tag", "color": "#5CC93A", "y": 300, "cue": "พอดีกับ" }
+      ]
+    },
+    {
+      "id": "s9-next",
+      "say": "แต่นี่แค่เริ่มต้นนะ... คลิปหน้า กรุงศรีอยุธยาถือกำเนิด ในขณะที่ยุโรปกำลังเจอโรคระบาดครั้งใหญ่ ติดตามตอนต่อไป!",
+      "camera": { "center": [45.0, 30.0], "zoom": 2.6, "move": 2.0 },
+      "year": [{ "text": "ตอนต่อไป: ค.ศ. 1350", "cue": "คลิปหน้า" }],
+      "fills": [{ "countries": ["France", "Spain", "Portugal", "Italy", "Germany", "United Kingdom", "Ireland", "Belgium", "Netherlands", "Switzerland", "Austria", "Poland", "Czechia", "Denmark", "Hungary"], "color": "#8E1B1B", "opacity": 0.6, "cue": "ยุโรป", "label": "กาฬโรค ☠", "labelAt": "venice" }],
+      "pins": [{ "place": "ayutthaya", "color": "#5CC93A", "cue": "กรุงศรี" }],
+      "texts": [
+        { "text": "EP.2 อยุธยา vs กาฬโรค", "style": "hero", "cue": "คลิปหน้า" },
+        { "text": "ติดตามตอนต่อไป!", "style": "tag", "color": "#F5A623", "cue": "ติดตาม" }
+      ]
+    }
+  ]
+}

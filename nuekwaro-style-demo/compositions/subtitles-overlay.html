@@ -1,0 +1,187 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    }
+    .clip {
+      position: absolute;
+      inset: 0;
+    }
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.94);
+      border: 3.5px solid #0f172a;
+      border-radius: 9999px;
+      padding: 8px 24px;
+      font-size: 26px;
+      font-weight: 800;
+      color: #0f172a;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+      margin-bottom: 12px;
+    }
+    .pill-series {
+      background: #0f172a;
+      color: #ffffff;
+      border: none;
+      font-size: 24px;
+      padding: 6px 20px;
+    }
+    #top-badges {
+      position: absolute;
+      top: 60px;
+      left: 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      z-index: 50;
+    }
+    #subtitles-container {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 220px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 0 40px;
+      z-index: 50;
+    }
+    .thai-sub-pill {
+      background: rgba(15, 23, 42, 0.92);
+      border: 3px solid rgba(255, 255, 255, 0.2);
+      border-radius: 24px;
+      padding: 12px 32px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      margin-bottom: 12px;
+    }
+    .thai-sub {
+      font-size: 46px;
+      font-weight: 900;
+      color: #ffffff;
+      letter-spacing: 0.5px;
+    }
+    .highlight-word {
+      background: #fde047;
+      color: #0f172a;
+      padding: 2px 12px;
+      border-radius: 10px;
+      text-shadow: none;
+    }
+    .eng-sub-card {
+      background: rgba(15, 23, 42, 0.85);
+      border-radius: 14px;
+      padding: 8px 26px;
+      font-size: 28px;
+      font-weight: 600;
+      color: #f1f5f9;
+      letter-spacing: 0.2px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+    }
+  </style>
+  <div
+    data-hf-id="hf-sub-root"
+    id="root"
+    data-composition-id="subtitles-overlay"
+    data-width="1080"
+    data-height="1920"
+  >
+    <div
+      data-hf-id="hf-sub-clip"
+      id="sub-stage"
+      class="clip"
+      data-start="0"
+      data-duration="12"
+      data-track-index="0"
+    >
+      <!-- Top Badges Section -->
+      <div id="top-badges">
+        <div class="badge-pill pill-series">นึกว่ารอด · EP.2</div>
+        <div id="badge-location" class="badge-pill">📍 บ้านแม่ · ไทย 22:44 · คืนนั้น</div>
+      </div>
+
+      <!-- Bottom Subtitles Section -->
+      <div id="subtitles-container">
+        <div class="thai-sub-pill">
+          <div id="thai-sub-text" class="thai-sub">
+            แม่บอกไปหมด.. <span class="highlight-word">ทั้งชื่อ ทั้งเบอร์</span>
+          </div>
+        </div>
+        <div id="eng-sub-text" class="eng-sub-card">
+          Your daughter's full name and number, please.
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    window.__timelines = window.__timelines || {};
+    const tl = gsap.timeline({ paused: true });
+
+    const thaiSub = document.getElementById("thai-sub-text");
+    const engSub = document.getElementById("eng-sub-text");
+    const locBadge = document.getElementById("badge-location");
+
+    // Beat 1 (0.0s - 2.2s): Mom giving out info
+    tl.call(() => {
+      if (locBadge) locBadge.innerHTML = "📍 บ้านแม่ · ไทย 22:44 · คืนนั้น";
+      if (thaiSub) thaiSub.innerHTML = "แม่บอกไปหมด.. <span class='highlight-word'>ทั้งชื่อ ทั้งเบอร์</span>";
+      if (engSub) engSub.innerText = "Your daughter's full name and number, please.";
+    }, null, 0);
+
+    // Beat 2 (2.2s - 4.0s): Police Osaka scam call
+    tl.call(() => {
+      if (locBadge) locBadge.innerHTML = "สายเดิม · โทรมาอีกครั้ง";
+      if (thaiSub) thaiSub.innerHTML = "\"ตำรวจ\" บอกว่าลูก <span class='highlight-word'>โดนจับที่โอซาก้า</span>";
+      if (engSub) engSub.innerText = "That night, 'police' said she'd been arrested in Osaka.";
+    }, null, 2.2);
+
+    // Beat 3 (4.0s - 6.2s): Check number on card back
+    tl.call(() => {
+      if (locBadge) locBadge.innerHTML = "📱 บัญชีปลอดภัยปลอม";
+      if (thaiSub) thaiSub.innerHTML = "คุณเช็กเบอร์กับ <span class='highlight-word'>หลังบัตรก่อน</span>";
+      if (engSub) engSub.innerText = "You check it against your card. Every digit matches.";
+    }, null, 4.0);
+
+    // Beat 4 (6.2s - 8.0s): Same name as mom transferred!
+    tl.call(() => {
+      if (locBadge) locBadge.innerHTML = "⚠️ สลิปเงินโอนเข้าบัญชีม้า";
+      if (thaiSub) thaiSub.innerHTML = "คือบัญชีเดียวกัน <span class='highlight-word'>ที่แม่โอน!</span>";
+      if (engSub) engSub.innerText = "It is the exact same scam account your mom paid.";
+    }, null, 6.2);
+
+    // Beat 5 (8.0s - 10.2s): How the number is spoofed
+    tl.call(() => {
+      if (locBadge) locBadge.innerHTML = "🔍 ผ่ากลโกง Caller ID Spoofing";
+      if (thaiSub) thaiSub.innerHTML = "เบอร์ที่ขึ้นบนจอ... <span class='highlight-word'>ส่งมาเอง</span>";
+      if (engSub) engSub.innerText = "The number on your screen doesn't come from the bank.";
+    }, null, 8.0);
+
+    // Beat 6 (10.2s - 12.0s): Action rule
+    tl.call(() => {
+      if (locBadge) locBadge.innerHTML = "🛡️ วิธีเอาตัวรอด";
+      if (thaiSub) thaiSub.innerHTML = "<span class='highlight-word'>วางสาย</span> แล้วโทรออกเอง!";
+      if (engSub) engSub.innerText = "If 'the bank' calls, hang up immediately.";
+    }, null, 10.2);
+
+    // Bouncy bump on each subtitle change using tl.to keyframes
+    [2.2, 4.0, 6.2, 8.0, 10.2].forEach((cue) => {
+      tl.to(
+        "#subtitles-container",
+        {
+          keyframes: [
+            { y: 8, scale: 0.96, duration: 0.08 },
+            { y: 0, scale: 1.0, duration: 0.24, ease: "back.out(2)" }
+          ]
+        },
+        cue
+      );
+    });
+
+    window.__timelines["subtitles-overlay"] = tl;
+  </script>
+</template>

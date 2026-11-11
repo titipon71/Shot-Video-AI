@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #141316;
+        font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      data-hf-id="hf-root"
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="12"
+      data-width="1080"
+      data-height="1920"
+    >
+      <!-- Scene 1: Drama / Living Room with Mom, Daughter & Pet Dog (0-4s) -->
+      <div
+        data-hf-id="hf-sc1"
+        id="scene-drama"
+        data-composition-id="scene-drama"
+        data-composition-src="compositions/scene-drama.html"
+        data-start="0"
+        data-duration="4"
+        data-track-index="1"
+        data-track-kind="graphics"
+        data-width="1080"
+        data-height="1920"
+      ></div>
+
+      <!-- Scene 2: 1st-Person Smartphone POV + Banking Slip + Twist (4-8s) -->
+      <div
+        data-hf-id="hf-sc2"
+        id="scene-phone-pov"
+        data-composition-id="scene-phone-pov"
+        data-composition-src="compositions/scene-phone-pov.html"
+        data-start="4"
+        data-duration="4"
+        data-track-index="1"
+        data-track-kind="graphics"
+        data-width="1080"
+        data-height="1920"
+      ></div>
+
+      <!-- Scene 3: Clean Infographic Explainer Diagram (8-12s) -->
+      <div
+        data-hf-id="hf-sc3"
+        id="scene-infographic"
+        data-composition-id="scene-infographic"
+        data-composition-src="compositions/scene-infographic.html"
+        data-start="8"
+        data-duration="4"
+        data-track-index="1"
+        data-track-kind="graphics"
+        data-width="1080"
+        data-height="1920"
+      ></div>
+
+      <!-- Floating Subtitles & Karaoke Highlight Bar (0-12s) -->
+      <div
+        data-hf-id="hf-sub"
+        id="subtitles-overlay"
+        data-composition-id="subtitles-overlay"
+        data-composition-src="compositions/subtitles-overlay.html"
+        data-start="0"
+        data-duration="12"
+        data-track-index="2"
+        data-track-kind="graphics"
+        data-width="1080"
+        data-height="1920"
+      ></div>
+
+      <!-- Synchronized SFX & Ambient Audio -->
+      <audio
+        data-hf-id="hf-sfx"
+        id="sfx"
+        src="assets/scam-explainer-sfx.wav"
+        data-start="0"
+        data-duration="12"
+        data-track-index="10"
+        data-volume="0.95"
+      ></audio>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+    </script>
+  </body>
+</html>

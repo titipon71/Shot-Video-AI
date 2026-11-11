@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #120c0a;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      data-hf-id="hf-root"
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="12"
+      data-width="1080"
+      data-height="1920"
+    >
+      <div
+        data-hf-id="hf-sc1"
+        id="scene-queue"
+        data-composition-id="scene-queue"
+        data-composition-src="compositions/scene-queue.html"
+        data-start="0"
+        data-duration="4"
+        data-track-index="1"
+        data-track-kind="graphics"
+        data-width="1080"
+        data-height="1920"
+      ></div>
+      <div
+        data-hf-id="hf-sc2"
+        id="scene-hotpot"
+        data-composition-id="scene-hotpot"
+        data-composition-src="compositions/scene-hotpot.html"
+        data-start="4"
+        data-duration="4"
+        data-track-index="1"
+        data-track-kind="graphics"
+        data-width="1080"
+        data-height="1920"
+      ></div>
+      <div
+        data-hf-id="hf-sc3"
+        id="scene-desk"
+        data-composition-id="scene-desk"
+        data-composition-src="compositions/scene-desk.html"
+        data-start="8"
+        data-duration="4"
+        data-track-index="1"
+        data-track-kind="graphics"
+        data-width="1080"
+        data-height="1920"
+      ></div>
+      <div
+        data-hf-id="hf-atmo"
+        id="atmosphere-overlay"
+        data-composition-id="atmosphere-overlay"
+        data-composition-src="compositions/atmosphere-overlay.html"
+        data-start="0"
+        data-duration="12"
+        data-track-index="2"
+        data-track-kind="graphics"
+        data-width="1080"
+        data-height="1920"
+      ></div>
+      <audio
+        data-hf-id="hf-sfx"
+        id="sfx"
+        src="assets/moody-ambience.wav"
+        data-start="0"
+        data-duration="12"
+        data-track-index="10"
+        data-volume="0.9"
+      ></audio>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+    </script>
+  </body>
+</html>

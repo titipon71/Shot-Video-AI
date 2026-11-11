@@ -1,0 +1,403 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #161414;
+    }
+    .clip {
+      position: absolute;
+      inset: 0;
+    }
+    #desk-stage {
+      position: absolute;
+      left: -60px;
+      top: -40px;
+      width: 1200px;
+      height: 2000px;
+      transform-origin: 600px 1100px;
+    }
+  </style>
+  <div
+    data-hf-id="hf-sd-root"
+    id="root"
+    data-composition-id="scene-desk"
+    data-width="1080"
+    data-height="1920"
+    data-layout-allow-overflow
+  >
+    <div
+      data-hf-id="hf-sd-clip"
+      id="desk-stage"
+      class="clip"
+      data-start="0"
+      data-duration="4"
+      data-track-index="0"
+    >
+      <svg
+        data-hf-id="hf-sd-svg"
+        width="1200"
+        height="2000"
+        viewBox="0 0 1200 2000"
+        style="position: absolute; left: 0; top: 0"
+        data-layout-ignore
+      >
+        <defs data-hf-id="hf-sd-defs">
+          <filter data-hf-id="hf-sd-blur" id="shelf-dof" x="-15%" y="-15%" width="130%" height="130%">
+            <feGaussianBlur stdDeviation="5" />
+          </filter>
+          <filter data-hf-id="hf-sd-glow" id="lamp-soft" x="-30%" y="-20%" width="160%" height="140%">
+            <feGaussianBlur stdDeviation="20" />
+          </filter>
+          <radialGradient data-hf-id="hf-sd-skin" id="desk-skin" cx="45%" cy="38%" r="60%">
+            <stop offset="0%" stop-color="#e3b18e" />
+            <stop offset="70%" stop-color="#cb9672" />
+            <stop offset="100%" stop-color="#996849" />
+          </radialGradient>
+          <linearGradient data-hf-id="hf-jar-gold" id="gold-liquid" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#fef08a" stop-opacity="0.88" />
+            <stop offset="50%" stop-color="#eab308" stop-opacity="0.78" />
+            <stop offset="100%" stop-color="#ca8a04" stop-opacity="0.88" />
+          </linearGradient>
+          <linearGradient data-hf-id="hf-jar-green" id="green-liquid" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#a3e635" stop-opacity="0.65" />
+            <stop offset="50%" stop-color="#65a30d" stop-opacity="0.62" />
+            <stop offset="100%" stop-color="#3f6212" stop-opacity="0.75" />
+          </linearGradient>
+          <linearGradient data-hf-id="hf-desk-beam" id="desk-lamp-cone" x1="50%" y1="0%" x2="35%" y2="100%">
+            <stop offset="0%" stop-color="#fef08a" stop-opacity="0.68" />
+            <stop offset="45%" stop-color="#f59e0b" stop-opacity="0.28" />
+            <stop offset="100%" stop-color="#78350f" stop-opacity="0" />
+          </linearGradient>
+        </defs>
+
+        <!-- Dark Study / Office Background -->
+        <rect x="0" y="0" width="1200" height="2000" fill="#181617" />
+
+        <!-- Top Bookshelf & Wall Clock (Soft DOF) -->
+        <g filter="url(#shelf-dof)" opacity="0.82">
+          <rect x="60" y="190" width="900" height="195" fill="#121011" />
+          <!-- Row of Books -->
+          <rect x="95" y="220" width="38" height="150" rx="3" fill="#334155" />
+          <rect x="140" y="210" width="42" height="160" rx="3" fill="#7c2d12" />
+          <rect x="190" y="230" width="36" height="140" rx="3" fill="#475569" />
+          <rect x="234" y="215" width="44" height="155" rx="3" fill="#78350f" />
+          <rect x="286" y="205" width="40" height="165" rx="3" fill="#1e293b" />
+          <rect x="334" y="225" width="45" height="145" rx="3" fill="#9a3412" />
+          <rect x="388" y="215" width="38" height="155" rx="3" fill="#cbd5e1" />
+          <rect x="434" y="220" width="44" height="150" rx="3" fill="#334155" />
+          <rect x="486" y="210" width="42" height="160" rx="3" fill="#7c2d12" />
+          <rect x="536" y="225" width="38" height="145" rx="3" fill="#cbd5e1" />
+          <rect x="582" y="215" width="44" height="155" rx="3" fill="#1e3a8a" />
+          <rect x="634" y="222" width="40" height="148" rx="3" fill="#78350f" />
+          <rect x="682" y="212" width="42" height="158" rx="3" fill="#334155" />
+          <rect x="732" y="228" width="38" height="142" rx="3" fill="#9a3412" />
+          <rect x="778" y="215" width="44" height="155" rx="3" fill="#1e293b" />
+          <rect x="830" y="220" width="42" height="150" rx="3" fill="#7c2d12" />
+          <rect x="880" y="210" width="44" height="160" rx="3" fill="#475569" />
+          <rect x="40" y="370" width="940" height="22" fill="#3b2618" />
+
+          <!-- Wall Clock on Upper Right -->
+          <g transform="translate(1065, 195)">
+            <circle cx="0" cy="0" r="56" fill="#d6d3d1" stroke="#292524" stroke-width="8" />
+            <line x1="0" y1="0" x2="-18" y2="-22" stroke="#1c1917" stroke-width="5" stroke-linecap="round" />
+            <line id="desk-clock-min" x1="0" y1="0" x2="26" y2="-18" stroke="#1c1917" stroke-width="4" stroke-linecap="round" />
+          </g>
+        </g>
+
+        <!-- =============================================================== -->
+        <!-- GIANT GLASS JARS FILLED WITH COINS (Middle Shelf)               -->
+        <!-- =============================================================== -->
+
+        <!-- LEFT JAR (Golden Coins) -->
+        <g id="jar-left" transform="translate(135, 560)">
+          <!-- Jar Neck & Rim -->
+          <rect x="30" y="0" width="360" height="36" rx="8" fill="#3f3f46" opacity="0.65" />
+          <rect x="42" y="36" width="336" height="24" fill="#27272a" opacity="0.55" />
+          <!-- Glass Body -->
+          <rect
+            x="0"
+            y="60"
+            width="420"
+            height="475"
+            rx="24"
+            fill="#ffffff"
+            fill-opacity="0.08"
+            stroke="#71717a"
+            stroke-width="4"
+            stroke-opacity="0.45"
+          />
+          <!-- Glowing Golden Coin Fill -->
+          <rect x="8" y="155" width="404" height="372" rx="18" fill="url(#gold-liquid)" />
+          <ellipse cx="210" cy="155" rx="202" ry="12" fill="#fef9c3" opacity="0.85" />
+
+          <!-- Layered Flat Stylized Coins Inside Left Jar -->
+          <g fill="#b45309" opacity="0.55">
+            <ellipse cx="75" cy="480" rx="34" ry="18" />
+            <ellipse cx="155" cy="495" rx="36" ry="19" />
+            <ellipse cx="245" cy="475" rx="35" ry="18" />
+            <ellipse cx="335" cy="490" rx="34" ry="18" />
+            <ellipse cx="110" cy="420" rx="35" ry="18" />
+            <ellipse cx="205" cy="430" rx="38" ry="20" />
+            <ellipse cx="305" cy="415" rx="34" ry="18" />
+            <ellipse cx="65" cy="355" rx="32" ry="17" />
+            <ellipse cx="165" cy="365" rx="36" ry="19" />
+            <ellipse cx="265" cy="350" rx="35" ry="18" />
+            <ellipse cx="350" cy="365" rx="33" ry="17" />
+            <ellipse cx="95" cy="285" rx="34" ry="18" />
+            <ellipse cx="195" cy="295" rx="36" ry="19" />
+            <ellipse cx="290" cy="280" rx="35" ry="18" />
+            <ellipse cx="135" cy="220" rx="34" ry="18" />
+            <ellipse cx="235" cy="230" rx="36" ry="19" />
+            <ellipse cx="335" cy="215" rx="32" ry="17" />
+          </g>
+          <g fill="#fde047" opacity="0.85">
+            <ellipse cx="95" cy="455" rx="32" ry="16" />
+            <ellipse cx="185" cy="465" rx="34" ry="17" />
+            <ellipse cx="280" cy="450" rx="32" ry="16" />
+            <ellipse cx="355" cy="440" rx="30" ry="15" />
+            <ellipse cx="75" cy="390" rx="32" ry="16" />
+            <ellipse cx="155" cy="330" rx="34" ry="17" />
+            <ellipse cx="240" cy="385" rx="33" ry="16" />
+            <ellipse cx="325" cy="320" rx="32" ry="16" />
+            <ellipse cx="80" cy="245" rx="31" ry="15" />
+            <ellipse cx="180" cy="255" rx="34" ry="17" />
+            <ellipse cx="275" cy="245" rx="32" ry="16" />
+            <ellipse cx="215" cy="190" rx="34" ry="16" />
+            <ellipse cx="115" cy="185" rx="30" ry="15" />
+            <ellipse cx="315" cy="185" rx="30" ry="15" />
+          </g>
+
+          <!-- Falling Coin 1 into Left Jar -->
+          <ellipse id="fall-coin-1" cx="225" cy="-120" rx="26" ry="12" fill="#fef08a" opacity="0" />
+          <ellipse id="fall-coin-2" cx="170" cy="-240" rx="26" ry="12" fill="#fde047" opacity="0" />
+
+          <!-- Blank Minimalist Label Plate on Jar -->
+          <rect x="48" y="388" width="324" height="82" rx="14" fill="#f5f5f4" />
+          <rect x="115" y="420" width="190" height="18" rx="9" fill="#44403c" opacity="0.75" />
+        </g>
+
+        <!-- RIGHT JAR (Green & Gold Coins) -->
+        <g id="jar-right" transform="translate(665, 560)">
+          <rect x="30" y="0" width="360" height="36" rx="8" fill="#3f3f46" opacity="0.65" />
+          <rect x="42" y="36" width="336" height="24" fill="#27272a" opacity="0.55" />
+          <rect
+            x="0"
+            y="60"
+            width="420"
+            height="475"
+            rx="24"
+            fill="#ffffff"
+            fill-opacity="0.08"
+            stroke="#71717a"
+            stroke-width="4"
+            stroke-opacity="0.45"
+          />
+          <rect x="8" y="155" width="404" height="372" rx="18" fill="url(#green-liquid)" />
+          <ellipse cx="210" cy="155" rx="202" ry="12" fill="#bef264" opacity="0.7" />
+
+          <!-- Layered Coins Inside Right Jar -->
+          <g fill="#15803d" opacity="0.65">
+            <ellipse cx="80" cy="480" rx="34" ry="18" />
+            <ellipse cx="175" cy="490" rx="36" ry="19" />
+            <ellipse cx="275" cy="475" rx="35" ry="18" />
+            <ellipse cx="350" cy="485" rx="32" ry="17" />
+            <ellipse cx="120" cy="415" rx="35" ry="18" />
+            <ellipse cx="220" cy="425" rx="36" ry="19" />
+            <ellipse cx="320" cy="410" rx="34" ry="18" />
+            <ellipse cx="75" cy="345" rx="32" ry="17" />
+            <ellipse cx="185" cy="355" rx="36" ry="19" />
+            <ellipse cx="285" cy="340" rx="35" ry="18" />
+            <ellipse cx="110" cy="275" rx="34" ry="18" />
+            <ellipse cx="210" cy="285" rx="36" ry="19" />
+            <ellipse cx="310" cy="270" rx="35" ry="18" />
+            <ellipse cx="150" cy="210" rx="34" ry="18" />
+            <ellipse cx="260" cy="215" rx="35" ry="18" />
+          </g>
+          <g fill="#eab308" opacity="0.78">
+            <ellipse cx="105" cy="450" rx="32" ry="16" />
+            <ellipse cx="205" cy="460" rx="34" ry="17" />
+            <ellipse cx="305" cy="445" rx="32" ry="16" />
+            <ellipse cx="85" cy="380" rx="32" ry="16" />
+            <ellipse cx="165" cy="320" rx="34" ry="17" />
+            <ellipse cx="255" cy="375" rx="33" ry="16" />
+            <ellipse cx="340" cy="315" rx="32" ry="16" />
+            <ellipse cx="90" cy="240" rx="31" ry="15" />
+            <ellipse cx="195" cy="250" rx="34" ry="17" />
+            <ellipse cx="295" cy="235" rx="32" ry="16" />
+            <ellipse cx="225" cy="185" rx="34" ry="16" />
+            <ellipse cx="120" cy="180" rx="30" ry="15" />
+            <ellipse cx="325" cy="185" rx="30" ry="15" />
+          </g>
+
+          <!-- Blank Minimalist Label Plate on Right Jar -->
+          <rect x="48" y="388" width="324" height="82" rx="14" fill="#d6d3d1" />
+          <rect x="135" y="420" width="150" height="18" rx="9" fill="#44403c" opacity="0.75" />
+        </g>
+
+        <!-- Middle Wooden Shelf Under Jars -->
+        <rect x="0" y="1095" width="1200" height="32" fill="#4a321f" />
+        <rect x="0" y="1120" width="1200" height="12" fill="#291b10" />
+
+        <!-- =============================================================== -->
+        <!-- BOTTOM SCENE: TIRED WORKER AT DESK WITH LAMP & STEAMING MUG     -->
+        <!-- =============================================================== -->
+
+        <!-- Warm Desk Lamp Spotlight Beam -->
+        <polygon
+          id="desk-cone"
+          points="900,1132 1000,1165 720,1750 380,1750"
+          fill="url(#desk-lamp-cone)"
+          filter="url(#lamp-soft)"
+        />
+        <!-- Glowing Coin / Light Disc under Lamp -->
+        <g transform="translate(885, 1185)">
+          <ellipse
+            id="floating-coin"
+            cx="0"
+            cy="0"
+            rx="38"
+            ry="11"
+            transform="rotate(-18)"
+            fill="#fef08a"
+          />
+        </g>
+
+        <!-- Back desk edge (drawn behind the worker so it never crosses his head) -->
+        <line x1="260" y1="1385" x2="1200" y2="1385" stroke="#3d2c20" stroke-width="8" />
+
+        <!-- Dark Office Chair Backrest -->
+        <rect x="125" y="1395" width="135" height="380" rx="42" fill="#0f1115" />
+
+        <!-- Desk Worker Character (Side Profile Facing Right, Head Bowed) -->
+        <g id="char-desk-worker" transform="translate(275, 1380)">
+          <!-- Slate-Blue Shirt Torso -->
+          <path d="M -38,110 C -34,88 26,88 32,110 L 42,320 L -46,320 Z" fill="#475569" />
+          <!-- Neck -->
+          <rect x="-8" y="75" width="20" height="42" rx="8" fill="url(#desk-skin)" />
+
+          <!-- Head Bowed Slightly Forward (Side Profile Facing Right) -->
+          <g transform="translate(10, 38)">
+            <g id="worker-head">
+              <rect x="-42" y="-52" width="86" height="106" rx="42" fill="url(#desk-skin)" />
+              <!-- Sculpted Dark Hair -->
+              <path d="M -42,16 C -48,-30 -32,-60 14,-60 C 38,-60 48,-42 42,-22 C 18,-26 -12,-14 -20,16 Z" fill="#1c1917" />
+              <!-- Tired Downcast Eye & Brow -->
+              <path d="M 16,-8 Q 26,-12 34,-7" stroke="#1c1412" stroke-width="2.8" fill="none" stroke-linecap="round" />
+              <path d="M 17,4 Q 25,8 33,3" stroke="#1c1412" stroke-width="3.2" fill="none" stroke-linecap="round" />
+              <path d="M 18,30 Q 25,28 31,31" stroke="#573b28" stroke-width="2.5" fill="none" stroke-linecap="round" />
+            </g>
+          </g>
+
+          <!-- Arm Reaching Forward to Desk -->
+          <g id="worker-arm" transform="translate(8, 132)">
+            <path
+              d="M 0,0 L 45,95 L 145,115"
+              stroke="#64748b"
+              stroke-width="20"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              fill="none"
+            />
+            <circle cx="148" cy="116" r="10" fill="url(#desk-skin)" />
+          </g>
+        </g>
+
+        <!-- Foreground Wooden Desk & Steaming Amber Mug -->
+        <rect x="0" y="1645" width="1200" height="355" fill="#231a14" />
+        <rect x="0" y="1645" width="1200" height="22" fill="#3d2c20" />
+
+        <!-- Amber Coffee / Tea Mug on Desk -->
+        <g id="desk-mug" transform="translate(535, 1565)">
+          <path d="M 28,16 C 48,16 48,56 28,56" stroke="#78716c" stroke-width="6" fill="none" />
+          <rect x="-26" y="0" width="56" height="76" rx="6" fill="#b45309" opacity="0.88" />
+          <rect x="-26" y="0" width="56" height="12" rx="3" fill="#d6d3d1" opacity="0.65" />
+          <!-- Steam rising from mug -->
+          <path
+            id="mug-steam-1"
+            d="M -6,-12 Q -18,-42 2,-72 Q 18,-102 -4,-132"
+            stroke="#fde68a"
+            stroke-width="4"
+            stroke-linecap="round"
+            fill="none"
+            opacity="0.35"
+          />
+          <path
+            id="mug-steam-2"
+            d="M 14,-8 Q 26,-38 8,-68 Q -8,-98 12,-126"
+            stroke="#fef3c7"
+            stroke-width="3.5"
+            stroke-linecap="round"
+            fill="none"
+            opacity="0.3"
+          />
+        </g>
+      </svg>
+    </div>
+  </div>
+  <script>
+    window.__timelines = window.__timelines || {};
+    const tl = gsap.timeline({ paused: true });
+
+    // Slow camera pull-back & vertical drift revealing the giant coin jars above the lone worker
+    tl.fromTo(
+      "#desk-stage",
+      { scale: 1.06, y: -18 },
+      { scale: 1.0, y: 10, duration: 4.0, ease: "sine.inOut" },
+      0
+    );
+
+    // Coins dropping into the left jar and bouncing on the surface
+    // Coins stay hidden until the moment they drop (no coin parked on the bookshelf)
+    tl.set("#fall-coin-1, #fall-coin-2", { y: 0, opacity: 0 }, 0);
+
+    tl.set("#fall-coin-1", { opacity: 1 }, 0.35);
+    tl.to("#fall-coin-1", { y: 275, duration: 0.65, ease: "bounce.out" }, 0.35);
+    tl.to("#fall-coin-1", { opacity: 0, duration: 0.25 }, 1.15);
+
+    tl.set("#fall-coin-2", { opacity: 1 }, 1.65);
+    tl.to("#fall-coin-2", { y: 395, duration: 0.75, ease: "bounce.out" }, 1.65);
+    tl.to("#fall-coin-2", { opacity: 0, duration: 0.25 }, 2.55);
+
+    // Floating coin under lamp glinting & drifting (pivot = coin's own centre)
+    tl.fromTo(
+      "#floating-coin",
+      { y: -15, rotation: -22, transformOrigin: "50% 50%" },
+      { y: 18, rotation: -12, duration: 1.3, yoyo: true, repeat: 2, ease: "sine.inOut" },
+      0
+    );
+
+    // Worker at desk nodding head tiredly & typing/moving arm
+    tl.fromTo(
+      "#worker-head",
+      { rotation: 10, transformOrigin: "0px 42px" },
+      { rotation: 18, duration: 1.5, yoyo: true, repeat: 2, ease: "sine.inOut" },
+      0
+    );
+    tl.fromTo(
+      "#worker-arm",
+      { rotation: -2, transformOrigin: "0px 0px" },
+      { rotation: 3, duration: 0.45, yoyo: true, repeat: 7, ease: "sine.inOut" },
+      0
+    );
+
+    // Mug steam rising
+    tl.fromTo(
+      "#mug-steam-1, #mug-steam-2",
+      { y: 10, opacity: 0.15 },
+      { y: -22, opacity: 0.48, duration: 1.3, yoyo: true, repeat: 2, ease: "sine.inOut" },
+      0
+    );
+
+    // Wall clock spinning
+    tl.fromTo(
+      "#desk-clock-min",
+      { rotation: 0, transformOrigin: "0px 0px" },
+      { rotation: 720, duration: 4.0, ease: "none" },
+      0
+    );
+
+    window.__timelines["scene-desk"] = tl;
+  </script>
+</template>

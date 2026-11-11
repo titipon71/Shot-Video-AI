@@ -1,0 +1,13 @@
+{
+  "name": "promptkup-style-demo",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "sfx": "node scripts/make-sfx.mjs",
+    "build": "node scripts/make-sfx.mjs && npx --yes hyperframes@0.8.226 lint && npx --yes hyperframes@0.8.226 render -o renders/promptkup-style.mp4",
+    "dev": "npx --yes hyperframes@0.8.226 preview",
+    "check": "npx --yes hyperframes@0.8.226 check",
+    "lint": "npx --yes hyperframes@0.8.226 lint",
+    "render": "npx --yes hyperframes@0.8.226 render -o renders/promptkup-style.mp4"
+  }
+}

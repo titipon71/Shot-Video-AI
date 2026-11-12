@@ -1,0 +1,14 @@
+{
+  "name": "octopus-mood-demo",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "cutout": "node scripts/cutout.mjs",
+    "sfx": "node scripts/make-sfx.mjs",
+    "build": "node scripts/cutout.mjs && npx --yes hyperframes@0.8.226 lint && npx --yes hyperframes@0.8.226 render -o renders/octopus-mood.mp4",
+    "dev": "npx --yes hyperframes@0.8.226 preview",
+    "check": "npx --yes hyperframes@0.8.226 check",
+    "lint": "npx --yes hyperframes@0.8.226 lint",
+    "render": "npx --yes hyperframes@0.8.226 render -o renders/octopus-mood.mp4"
+  }
+}

@@ -1,0 +1,179 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+    .clip {
+      position: absolute;
+      inset: 0;
+    }
+    #actor-stage {
+      position: absolute;
+      left: -30px;
+      top: -30px;
+      width: 1140px;
+      height: 1980px;
+      transform-origin: 570px 990px;
+    }
+    /* Center octopus within 15% top/bottom UI safe zone (288px..1632px) */
+    #octo-anchor {
+      position: absolute;
+      left: 570px;
+      top: 990px;
+      width: 0;
+      height: 0;
+      perspective: 1400px;
+    }
+    #octo-blur-wrap {
+      position: absolute;
+      left: -300px;
+      top: -300px;
+      width: 600px;
+      height: 600px;
+      filter: url(#flip-blur);
+    }
+    #octo-card {
+      position: relative;
+      width: 600px;
+      height: 600px;
+      transform-origin: 50% 50%;
+    }
+    #octo-card img {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 600px;
+      height: 600px;
+      object-fit: contain;
+      filter:
+        drop-shadow(4px 0 0 rgba(255, 255, 255, 0.96))
+        drop-shadow(-4px 0 0 rgba(255, 255, 255, 0.96))
+        drop-shadow(0 4px 0 rgba(255, 255, 255, 0.96))
+        drop-shadow(0 -4px 0 rgba(255, 255, 255, 0.96))
+        drop-shadow(3px 3px 0 rgba(255, 255, 255, 0.96))
+        drop-shadow(-3px 3px 0 rgba(255, 255, 255, 0.96))
+        drop-shadow(3px -3px 0 rgba(255, 255, 255, 0.96))
+        drop-shadow(-3px -3px 0 rgba(255, 255, 255, 0.96))
+        drop-shadow(0 0 8px rgba(255, 255, 255, 0.55))
+        drop-shadow(0 24px 36px rgba(0, 0, 0, 0.45));
+    }
+    #octo-angry {
+      opacity: 0;
+    }
+  </style>
+  <div data-hf-id="hf-fwbt" id="root" data-composition-id="octopus-actor" data-width="1080" data-height="1920" data-layout-allow-overflow>
+    <div data-hf-id="hf-424j" id="actor-stage" class="clip" data-start="0" data-duration="10" data-track-index="0">
+      <div data-hf-id="hf-3nca" id="octo-anchor">
+        <div data-hf-id="hf-d8n3" id="octo-blur-wrap">
+          <div data-hf-id="hf-4fbn" id="octo-card">
+            <img data-hf-id="hf-x892" id="octo-happy" src="assets/octopus-happy.png" alt="Happy Octopus" />
+            <img data-hf-id="hf-xjk3" id="octo-angry" src="assets/octopus-angry.png" alt="Angry Octopus" />
+          </div>
+        </div>
+      </div>
+
+      <svg data-hf-id="hf-jp7o"
+        id="fg-fish-svg"
+        width="1140"
+        height="1980"
+        viewBox="0 0 1140 1980"
+        style="position: absolute; left: 0; top: 0; pointer-events: none"
+        data-layout-ignore
+      >
+        <defs data-hf-id="hf-mh0t">
+          <filter data-hf-id="hf-krcu" id="flip-blur" x="-45%" y="-15%" width="190%" height="130%">
+            <feGaussianBlur data-hf-id="hf-2fjw" id="flip-blur-fe" in="SourceGraphic" stdDeviation="0 0" />
+          </filter>
+          <g data-hf-id="hf-5631" id="fish-shape">
+            <path data-hf-id="hf-kbvf"
+              d="M -38,0 C -22,-18 12,-18 32,0 C 42,-10 52,-16 56,-18 C 52,-5 52,5 56,18 C 52,16 42,10 32,0 C 12,18 -22,18 -38,0 Z"
+              fill="#e0f2fe"
+              fill-opacity="0.88"
+            />
+            <path data-hf-id="hf-icbc" d="M -38,0 C -22,-18 12,-18 32,0 C 12,-6 -18,-6 -38,0 Z" fill="#0284c7" fill-opacity="0.55" />
+            <circle data-hf-id="hf-sbck" cx="-22" cy="-3" r="3.2" fill="#0f172a" />
+          </g>
+        </defs>
+
+        <g data-hf-id="hf-xmz7" id="fish-left-group">
+          <use data-hf-id="hf-wytx" href="#fish-shape" transform="translate(1260, 790) scale(1.15)" />
+          <use data-hf-id="hf-qiwf" href="#fish-shape" transform="translate(1350, 855) scale(0.92)" />
+          <use data-hf-id="hf-mjdq" href="#fish-shape" transform="translate(1290, 935) scale(1.05)" />
+          <use data-hf-id="hf-4t8z" href="#fish-shape" transform="translate(1410, 1020) scale(0.85)" />
+          <use data-hf-id="hf-omwo" href="#fish-shape" transform="translate(1320, 1110) scale(1.1)" />
+        </g>
+        <g data-hf-id="hf-vasi" id="fish-right-group">
+          <g data-hf-id="hf-bx4w" transform="translate(1380, 740)"><g data-hf-id="hf-pwlw" class="fish-flip"><use data-hf-id="hf-5wb9" href="#fish-shape" transform="scale(1.0)" /></g></g>
+          <g data-hf-id="hf-gtby" transform="translate(1460, 895)"><g data-hf-id="hf-zhws" class="fish-flip"><use data-hf-id="hf-gqwj" href="#fish-shape" transform="scale(1.2)" /></g></g>
+          <g data-hf-id="hf-e7ub" transform="translate(1395, 985)"><g data-hf-id="hf-yazp" class="fish-flip"><use data-hf-id="hf-uwmm" href="#fish-shape" transform="scale(0.95)" /></g></g>
+          <g data-hf-id="hf-u54o" transform="translate(1490, 1075)"><g data-hf-id="hf-ypaq" class="fish-flip"><use data-hf-id="hf-kh8d" href="#fish-shape" transform="scale(1.08)" /></g></g>
+          <g data-hf-id="hf-hb5c" transform="translate(1430, 1165)"><g data-hf-id="hf-0otv" class="fish-flip"><use data-hf-id="hf-5uc8" href="#fish-shape" transform="scale(0.88)" /></g></g>
+        </g>
+      </svg>
+    </div>
+  </div>
+  <script>
+    window.__timelines = window.__timelines || {};
+    const tl = gsap.timeline({ paused: true });
+
+    // 0-2s: Gentle floating (starts & ends at y:0, rot:0, scale:1)
+    tl.set("#octo-anchor", { y: 0, x: 0 }, 0);
+    tl.set("#octo-card", { rotationY: 0, rotationZ: 0, scaleX: 1, scaleY: 1 }, 0);
+    tl.set("#octo-happy", { opacity: 1 }, 0);
+    tl.set("#octo-angry", { opacity: 0 }, 0);
+
+    tl.to("#octo-anchor", { y: -24, duration: 0.65, ease: "sine.out" }, 0);
+    tl.to("#octo-card", { rotationZ: 2.2, scaleX: 1.02, scaleY: 0.98, duration: 0.65, ease: "sine.inOut" }, 0);
+    tl.to("#octo-anchor", { y: 18, duration: 0.75, ease: "sine.inOut" }, 0.65);
+    tl.to("#octo-card", { rotationZ: -2.0, scaleX: 0.98, scaleY: 1.02, duration: 0.75, ease: "sine.inOut" }, 0.65);
+    tl.to("#octo-anchor", { y: 0, duration: 0.6, ease: "sine.inOut" }, 1.4);
+    tl.to("#octo-card", { rotationZ: 0, scaleX: 1, scaleY: 1, duration: 0.6, ease: "sine.inOut" }, 1.4);
+
+    // 2-4s: Fish swim across in front, octopus stops still
+    tl.set("#fish-left-group, #fish-right-group", { x: 0, y: 0, opacity: 1 }, 0);
+    tl.set(".fish-flip", { scaleX: 1 }, 0);
+    tl.to("#fish-left-group", { x: -860, y: -25, duration: 2.0, ease: "power1.out" }, 2.0);
+    tl.to("#fish-right-group", { x: -790, y: 20, duration: 2.0, ease: "power1.out" }, 2.0);
+    tl.to("#fish-left-group", { x: -940, duration: 1.5, ease: "none" }, 4.0);
+    tl.to("#fish-right-group", { x: -850, duration: 1.5, ease: "none" }, 4.0);
+
+    // 4-5.5s: 3D Flip 180° around Y-axis (Happy -> Angry) with visible horizontal motion blur at midpoint
+    tl.to("#octo-card", { rotationY: -18, scaleX: 0.96, scaleY: 0.96, duration: 0.3, ease: "power2.out" }, 4.0);
+    tl.to("#octo-card", { rotationY: 74, scaleX: 0.85, scaleY: 1.06, duration: 0.45, ease: "power2.in" }, 4.3);
+    tl.to("#flip-blur-fe", { attr: { stdDeviation: "34 0" }, duration: 0.22, ease: "power2.in" }, 4.53);
+    tl.to("#flip-blur-fe", { attr: { stdDeviation: "0 0" }, duration: 0.28, ease: "power2.out" }, 4.75);
+    tl.set("#octo-happy", { opacity: 0 }, 4.75);
+    tl.set("#octo-angry", { opacity: 1 }, 4.75);
+    tl.fromTo("#octo-card", { rotationY: -74, scaleX: 0.85, scaleY: 1.06 }, { rotationY: 0, scaleX: 1.08, scaleY: 1.08, duration: 0.75, ease: "back.out(1.7)" }, 4.75);
+
+    // 5.5-8s: Fish flee, camera shakes, angry octopus pulses
+    tl.to("#fish-left-group", { x: -1680, y: -140, duration: 0.75, ease: "power3.in" }, 5.5);
+    tl.set(".fish-flip", { scaleX: -1 }, 5.5);
+    tl.to("#fish-right-group", { x: 260, y: 130, duration: 0.8, ease: "power3.in" }, 5.5);
+
+    const shakePts = [[-14, 10, -1.1], [15, -12, 1.2], [-12, -9, -0.9], [13, 11, 1.0], [-16, 8, -1.2], [11, -13, 0.9], [-10, 12, -0.8], [14, -8, 1.1], [-13, -10, -1.0], [12, 9, 0.8]];
+    for (let s = 0; s < 25; s++) {
+      const [sx, sy, sr] = shakePts[s % shakePts.length];
+      const atten = s > 20 ? (25 - s) / 5 : 1;
+      tl.to("#actor-stage", { x: sx * atten, y: sy * atten, rotation: sr * atten, duration: 0.095, ease: "none" }, 5.5 + s * 0.098);
+    }
+    tl.set("#actor-stage", { x: 0, y: 0, rotation: 0 }, 8.0);
+    tl.to("#octo-card", { scaleX: 1.13, scaleY: 1.05, duration: 0.3, yoyo: true, repeat: 7, ease: "sine.inOut" }, 5.55);
+
+    // 8-10s: Stare still 1s (8-9s), then flip back to happy & seamless loop at 10s
+    tl.to("#octo-card", { scaleX: 1.08, scaleY: 1.08, rotationZ: 0, rotationY: 0, duration: 0.15 }, 8.0);
+    tl.to("#octo-card", { rotationY: 74, scaleX: 0.85, scaleY: 1.04, duration: 0.42, ease: "power2.in" }, 9.0);
+    tl.to("#flip-blur-fe", { attr: { stdDeviation: "32 0" }, duration: 0.2, ease: "power2.in" }, 9.22);
+    tl.to("#flip-blur-fe", { attr: { stdDeviation: "0 0" }, duration: 0.24, ease: "power2.out" }, 9.42);
+    tl.set("#octo-angry", { opacity: 0 }, 9.42);
+    tl.set("#octo-happy", { opacity: 1 }, 9.42);
+    tl.fromTo("#octo-card", { rotationY: -74, scaleX: 0.85, scaleY: 1.04 }, { rotationY: 0, rotationZ: 0, scaleX: 1, scaleY: 1, duration: 0.58, ease: "back.out(1.4)" }, 9.42);
+
+    tl.set("#fish-left-group, #fish-right-group", { x: 0, y: 0 }, 10.0);
+    tl.set(".fish-flip", { scaleX: 1 }, 10.0);
+
+    window.__timelines["octopus-actor"] = tl;
+  </script>
+</template>

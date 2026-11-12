@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #042f4b;
+      }
+    </style>
+  </head>
+  <body>
+    <div data-hf-id="hf-txxr" id="root" data-composition-id="main" data-start="0" data-duration="10" data-width="1080" data-height="1920">
+      <div data-hf-id="hf-62fw"
+        id="ocean-bg"
+        data-composition-id="ocean-bg"
+        data-composition-src="compositions/ocean-bg.html"
+        data-start="0"
+        data-duration="10"
+        data-track-index="1"
+        data-track-kind="graphics"
+        data-width="1080"
+        data-height="1920"
+      ></div>
+      <div data-hf-id="hf-3xpc"
+        id="octopus-actor"
+        data-composition-id="octopus-actor"
+        data-composition-src="compositions/octopus-actor.html"
+        data-start="0"
+        data-duration="10"
+        data-track-index="2"
+        data-track-kind="graphics"
+        data-width="1080"
+        data-height="1920"
+      ></div>
+      <audio data-hf-id="hf-namq"
+        id="sfx"
+        src="assets/underwater-sfx.wav"
+        data-start="0"
+        data-duration="10"
+        data-track-index="10"
+        data-volume="0.9"
+      ></audio>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+    </script>
+  </body>
+</html>

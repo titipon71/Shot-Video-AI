@@ -1,0 +1,163 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #042f4b;
+    }
+    .clip {
+      position: absolute;
+      inset: 0;
+    }
+    #stage {
+      position: absolute;
+      left: -30px;
+      top: -30px;
+      width: 1140px;
+      height: 1980px;
+      transform-origin: 570px 990px;
+    }
+    #bg-turquoise {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 18%, #22d3ee 0%, #0891b2 38%, #0e4f70 72%, #04263b 100%);
+    }
+    #bg-dark {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 45%, rgba(6, 22, 38, 0.72) 0%, rgba(2, 8, 16, 0.92) 100%);
+      opacity: 0;
+    }
+    #bg-rage {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 48%, #fb923c 0%, #ea580c 30%, #b91c1c 65%, #3b0707 100%);
+      opacity: 0;
+    }
+    #red-vignette {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 50%, rgba(0, 0, 0, 0) 36%, rgba(185, 28, 28, 0.65) 74%, rgba(69, 10, 10, 0.95) 100%);
+      opacity: 0;
+      pointer-events: none;
+    }
+  </style>
+  <div data-hf-id="hf-tyzg" id="root" data-composition-id="ocean-bg" data-width="1080" data-height="1920" data-layout-allow-overflow>
+    <div data-hf-id="hf-cyer" id="stage" class="clip" data-start="0" data-duration="10" data-track-index="0">
+      <div data-hf-id="hf-191o" id="bg-turquoise"></div>
+      <div data-hf-id="hf-j74d" id="bg-dark"></div>
+      <div data-hf-id="hf-pd7e" id="bg-rage"></div>
+      <svg data-hf-id="hf-iljs"
+        id="underwater-svg"
+        width="1140"
+        height="1980"
+        viewBox="0 0 1140 1980"
+        style="position: absolute; left: 0; top: 0; overflow: visible"
+        data-layout-ignore
+      >
+        <defs data-hf-id="hf-mh0t">
+          <linearGradient data-hf-id="hf-74kz" id="ray-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop data-hf-id="hf-gemd" offset="0%" stop-color="#a5f3fc" stop-opacity="0.52" />
+            <stop data-hf-id="hf-2ohq" offset="55%" stop-color="#38bdf8" stop-opacity="0.18" />
+            <stop data-hf-id="hf-nf0z" offset="100%" stop-color="#0284c7" stop-opacity="0" />
+          </linearGradient>
+          <radialGradient data-hf-id="hf-vyvq" id="bub-grad" cx="35%" cy="30%" r="65%">
+            <stop data-hf-id="hf-9ycr" offset="0%" stop-color="#ffffff" stop-opacity="0.85" />
+            <stop data-hf-id="hf-48s1" offset="45%" stop-color="#bae6fd" stop-opacity="0.28" />
+            <stop data-hf-id="hf-4357" offset="85%" stop-color="#38bdf8" stop-opacity="0.12" />
+            <stop data-hf-id="hf-qufl" offset="100%" stop-color="#ffffff" stop-opacity="0.55" />
+          </radialGradient>
+          <radialGradient data-hf-id="hf-jqnk" id="rage-bub-grad" cx="35%" cy="30%" r="65%">
+            <stop data-hf-id="hf-rd18" offset="0%" stop-color="#fef08a" stop-opacity="0.95" />
+            <stop data-hf-id="hf-qtb8" offset="50%" stop-color="#fb923c" stop-opacity="0.55" />
+            <stop data-hf-id="hf-9pny" offset="100%" stop-color="#ef4444" stop-opacity="0.8" />
+          </radialGradient>
+        </defs>
+
+        <g data-hf-id="hf-5ple" id="god-rays" opacity="0.85">
+          <polygon data-hf-id="hf-as80" id="ray-1" points="180,-40 340,-40 520,1750 210,1750" fill="url(#ray-grad)" />
+          <polygon data-hf-id="hf-2lkl" id="ray-2" points="420,-40 620,-40 760,1850 430,1850" fill="url(#ray-grad)" />
+          <polygon data-hf-id="hf-d6b3" id="ray-3" points="690,-40 860,-40 990,1720 710,1720" fill="url(#ray-grad)" />
+          <polygon data-hf-id="hf-f96x" id="ray-4" points="900,-40 1030,-40 1120,1550 890,1550" fill="url(#ray-grad)" />
+        </g>
+
+        <g data-hf-id="hf-bjm0" id="calm-bubbles">
+          <g data-hf-id="hf-h6i3" class="cbub" data-travel="360"><circle data-hf-id="hf-kq8r" cx="180" cy="1480" r="18" fill="url(#bub-grad)" stroke="#e0f2fe" stroke-opacity="0.6" stroke-width="1.5" /></g>
+          <g data-hf-id="hf-p1dj" class="cbub" data-travel="320"><circle data-hf-id="hf-ivkp" cx="255" cy="1180" r="12" fill="url(#bub-grad)" stroke="#e0f2fe" stroke-opacity="0.6" stroke-width="1.5" /></g>
+          <g data-hf-id="hf-27ol" class="cbub" data-travel="380"><circle data-hf-id="hf-reu6" cx="145" cy="860" r="24" fill="url(#bub-grad)" stroke="#e0f2fe" stroke-opacity="0.6" stroke-width="1.5" /></g>
+          <g data-hf-id="hf-6bwt" class="cbub" data-travel="300"><circle data-hf-id="hf-hbtf" cx="310" cy="620" r="14" fill="url(#bub-grad)" stroke="#e0f2fe" stroke-opacity="0.6" stroke-width="1.5" /></g>
+          <g data-hf-id="hf-0xaq" class="cbub" data-travel="400"><circle data-hf-id="hf-qf1p" cx="885" cy="1520" r="22" fill="url(#bub-grad)" stroke="#e0f2fe" stroke-opacity="0.6" stroke-width="1.5" /></g>
+          <g data-hf-id="hf-4mn5" class="cbub" data-travel="340"><circle data-hf-id="hf-l2p2" cx="960" cy="1220" r="15" fill="url(#bub-grad)" stroke="#e0f2fe" stroke-opacity="0.6" stroke-width="1.5" /></g>
+          <g data-hf-id="hf-seqn" class="cbub" data-travel="290"><circle data-hf-id="hf-v3qi" cx="835" cy="910" r="11" fill="url(#bub-grad)" stroke="#e0f2fe" stroke-opacity="0.6" stroke-width="1.5" /></g>
+          <g data-hf-id="hf-0wsr" class="cbub" data-travel="360"><circle data-hf-id="hf-pc7t" cx="940" cy="680" r="20" fill="url(#bub-grad)" stroke="#e0f2fe" stroke-opacity="0.6" stroke-width="1.5" /></g>
+          <g data-hf-id="hf-f645" class="cbub" data-travel="340"><circle data-hf-id="hf-kqkb" cx="480" cy="1560" r="16" fill="url(#bub-grad)" stroke="#e0f2fe" stroke-opacity="0.6" stroke-width="1.5" /></g>
+          <g data-hf-id="hf-j7sn" class="cbub" data-travel="320"><circle data-hf-id="hf-wwoq" cx="690" cy="1440" r="13" fill="url(#bub-grad)" stroke="#e0f2fe" stroke-opacity="0.6" stroke-width="1.5" /></g>
+        </g>
+
+        <g data-hf-id="hf-t9aq" id="rage-bubbles" opacity="0">
+          <circle data-hf-id="hf-avy9" class="rbub" cx="140" cy="1780" r="16" fill="url(#rage-bub-grad)" />
+          <circle data-hf-id="hf-1ghp" class="rbub" cx="220" cy="1850" r="26" fill="url(#rage-bub-grad)" />
+          <circle data-hf-id="hf-mkyq" class="rbub" cx="310" cy="1740" r="14" fill="url(#rage-bub-grad)" />
+          <circle data-hf-id="hf-65b4" class="rbub" cx="395" cy="1890" r="22" fill="url(#rage-bub-grad)" />
+          <circle data-hf-id="hf-ug1x" class="rbub" cx="490" cy="1810" r="18" fill="url(#rage-bub-grad)" />
+          <circle data-hf-id="hf-jy0o" class="rbub" cx="585" cy="1880" r="28" fill="url(#rage-bub-grad)" />
+          <circle data-hf-id="hf-6af2" class="rbub" cx="670" cy="1760" r="15" fill="url(#rage-bub-grad)" />
+          <circle data-hf-id="hf-3bo9" class="rbub" cx="760" cy="1840" r="24" fill="url(#rage-bub-grad)" />
+          <circle data-hf-id="hf-st0m" class="rbub" cx="855" cy="1790" r="19" fill="url(#rage-bub-grad)" />
+          <circle data-hf-id="hf-splg" class="rbub" cx="945" cy="1870" r="25" fill="url(#rage-bub-grad)" />
+          <circle data-hf-id="hf-m585" class="rbub" cx="190" cy="1920" r="20" fill="url(#rage-bub-grad)" />
+          <circle data-hf-id="hf-xyam" class="rbub" cx="810" cy="1930" r="21" fill="url(#rage-bub-grad)" />
+        </g>
+      </svg>
+      <div data-hf-id="hf-20ph" id="red-vignette"></div>
+    </div>
+  </div>
+  <script>
+    window.__timelines = window.__timelines || {};
+    const tl = gsap.timeline({ paused: true });
+
+    tl.set("#god-rays", { opacity: 0.85 }, 0);
+    tl.fromTo("#ray-1, #ray-3", { skewX: -2, x: -12 }, { skewX: 2, x: 12, duration: 2.5, yoyo: true, repeat: 3, ease: "sine.inOut" }, 0);
+    tl.fromTo("#ray-2, #ray-4", { skewX: 2, x: 14 }, { skewX: -2, x: -14, duration: 2.5, yoyo: true, repeat: 3, ease: "sine.inOut" }, 0);
+
+    document.querySelectorAll(".cbub").forEach((b, idx) => {
+      const travel = Number(b.getAttribute("data-travel") || 320);
+      const sway = (idx % 2 === 0 ? 1 : -1) * 18;
+      tl.set(b, { y: 0, x: 0, opacity: 0.85 }, 0);
+      tl.to(b, { y: -travel * 0.55, x: sway, duration: 2.0, ease: "sine.inOut" }, 0);
+      tl.to(b, { y: -travel, x: 0, opacity: 0, duration: 2.0, ease: "sine.in" }, 2.0);
+      tl.fromTo(b, { y: travel * 0.35, x: -sway * 0.5, opacity: 0 }, { y: 0, x: 0, opacity: 0.85, duration: 1.0, ease: "sine.out" }, 9.0);
+    });
+
+    tl.to("#bg-dark", { opacity: 0.78, duration: 1.8, ease: "power2.inOut" }, 2.0);
+    tl.to("#god-rays", { opacity: 0.12, duration: 1.8, ease: "power2.inOut" }, 2.0);
+
+    tl.to("#bg-rage", { opacity: 1, duration: 0.28, ease: "power3.out" }, 5.45);
+    tl.to("#red-vignette", { opacity: 0.92, duration: 0.3, ease: "power2.out" }, 5.45);
+    tl.to("#red-vignette", { opacity: 0.65, duration: 0.35, yoyo: true, repeat: 5, ease: "sine.inOut" }, 5.8);
+
+    tl.set("#rage-bubbles", { opacity: 1 }, 5.5);
+    document.querySelectorAll(".rbub").forEach((rb, i) => {
+      const speed = 0.65 + (i % 4) * 0.12;
+      const offset = (i % 5) * 0.08;
+      tl.fromTo(rb, { y: 0, scaleY: 1.8, scaleX: 0.85 }, { y: -1850, scaleY: 2.2, scaleX: 0.8, duration: speed, repeat: Math.floor(2.3 / speed), ease: "none" }, 5.5 + offset);
+    });
+    tl.to("#rage-bubbles", { opacity: 0, duration: 0.25, ease: "power1.out" }, 7.85);
+
+    const shakePts = [[-14, 10, -1.1], [15, -12, 1.2], [-12, -9, -0.9], [13, 11, 1.0], [-16, 8, -1.2], [11, -13, 0.9], [-10, 12, -0.8], [14, -8, 1.1], [-13, -10, -1.0], [12, 9, 0.8]];
+    for (let s = 0; s < 25; s++) {
+      const [sx, sy, sr] = shakePts[s % shakePts.length];
+      const atten = s > 20 ? (25 - s) / 5 : 1;
+      tl.to("#stage", { x: sx * atten, y: sy * atten, rotation: sr * atten, duration: 0.095, ease: "none" }, 5.5 + s * 0.098);
+    }
+    tl.set("#stage", { x: 0, y: 0, rotation: 0 }, 8.0);
+
+    tl.to("#bg-rage", { opacity: 0, duration: 0.7, ease: "power2.inOut" }, 9.1);
+    tl.to("#red-vignette", { opacity: 0, duration: 0.65, ease: "power2.inOut" }, 9.1);
+    tl.to("#bg-dark", { opacity: 0, duration: 0.75, ease: "power2.inOut" }, 9.15);
+    tl.to("#god-rays", { opacity: 0.85, duration: 0.75, ease: "power2.inOut" }, 9.15);
+
+    window.__timelines["ocean-bg"] = tl;
+  </script>
+</template>

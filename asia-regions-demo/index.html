@@ -11,8 +11,13 @@
       @font-face { font-family: Kanit; font-weight: 800; font-display: block; src: url("assets/fonts/kanit-latin-800-normal.woff2") format("woff2"); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
       * { margin: 0; padding: 0; box-sizing: border-box; }
       html, body { width: 1080px; height: 1920px; overflow: hidden; background: #05070d; }
-      #credit { position: absolute; left: 0; top: 1500px; width: 1080px; text-align: center; z-index: 50; }
+      #credit { position: absolute; left: 0; top: 1740px; width: 1080px; text-align: center; z-index: 50; }
       #credit span { font-family: Kanit, sans-serif; font-weight: 600; font-size: 20px; color: rgba(255,255,255,.85); background: rgba(0,0,0,.55); padding: 3px 10px; border-radius: 6px; }
+      #disclaimer { position: absolute; left: 0; top: 1785px; width: 1080px; text-align: center; z-index: 50; }
+      #disclaimer span { font-family: Kanit, sans-serif; font-weight: 500; font-size: 18px; color: rgba(255,255,255,.75); background: rgba(0,0,0,.45); padding: 2px 10px; border-radius: 6px; }
+      #logo { position: absolute; left: 60px; top: 145px; width: 90px; height: 90px; border-radius: 50%; background-image: url("assets/images/logo.jpg"); background-size: cover; background-position: center; border: 2.5px solid rgba(255, 215, 0, 0.85); box-shadow: 0 4px 16px rgba(0,0,0,0.7); z-index: 60; }
+      #watermark { position: absolute; left: 0; top: 880px; width: 1080px; text-align: center; pointer-events: none; z-index: 40; }
+      #watermark span { display: inline-block; font-family: Kanit, sans-serif; font-weight: 800; font-size: 76px; color: rgba(255, 255, 255, 0.12); transform: rotate(-15deg); letter-spacing: 6px; text-shadow: 0 0 10px rgba(0,0,0,0.3); }
     </style>
   </head>
   <body>
@@ -26,7 +31,10 @@
       <div id="s7-kamikaze" data-composition-id="s7-kamikaze" data-composition-src="compositions/s7-kamikaze.html" data-start="64.1" data-duration="10.5" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920"></div>
       <div id="s8-marco" data-composition-id="s8-marco" data-composition-src="compositions/s8-marco.html" data-start="74.6" data-duration="27.1" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920"></div>
       <div id="s9-next" data-composition-id="s9-next" data-composition-src="compositions/s9-next.html" data-start="101.7" data-duration="9.167" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920"></div>
-      <div id="credit" class="clip" data-start="0" data-duration="110.867" data-track-index="9" data-layout-ignore><span>Imagery: Esri, Maxar, Earthstar Geographics</span></div>
+      <div id="logo" class="clip" data-start="0" data-duration="110.867" data-track-index="18" data-layout-ignore></div>
+      <div id="watermark" class="clip" data-start="0" data-duration="110.867" data-track-index="19" data-layout-ignore><span>ชวนดู</span></div>
+      <div id="credit" class="clip" data-start="0" data-duration="110.867" data-track-index="16" data-layout-ignore><span>Imagery: Esri, Maxar, Earthstar Geographics</span></div>
+      <div id="disclaimer" class="clip" data-start="0" data-duration="110.867" data-track-index="17" data-layout-ignore><span>ข้อมูลสร้างโดย AI อาจมีความคลาดเคลื่อน โปรดใช้วิจารณญาณ</span></div>
       <audio id="voice" src="assets/voice/thai-history-p1.wav" data-start="0" data-duration="109.96" data-track-index="20" data-volume="1"></audio>
     </div>
     <script>

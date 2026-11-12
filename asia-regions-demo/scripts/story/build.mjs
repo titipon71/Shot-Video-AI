@@ -142,12 +142,13 @@ function scene(cfg, s, i, prevYear) {
     const top = im.top ?? 450, bottom = im.bottom ?? 1240, maxW = im.maxW ?? 880, credH = im.credit ? 54 : 0;
     const k = Math.min(maxW / im.w, (bottom - top - credH) / im.h);
     const cw = Math.round(im.w * k), ch = Math.round(im.h * k);
-    const y0 = Math.round(top + (bottom - top - credH - ch) / 2);
+    const x0 = im.x ?? im.left ?? Math.round((W - cw) / 2);
+    const y0 = im.y ?? Math.round(top + (bottom - top - credH - ch) / 2);
     tw.push(`tl.fromTo("#${p}-im${j} .card", { opacity: 0, scale: 0.84, y: 40 }, { opacity: 1, scale: 1, y: 0, duration: 0.4, ease: "back.out(1.6)" }, ${a});`);
     tw.push(`tl.fromTo("#${p}-im${j} .push", { scale: 1 }, { scale: 1.05, duration: ${r2(b - a)}, ease: "none" }, ${a});`);
     tw.push(`tl.to("#${p}-im${j} .card", { opacity: 0, scale: 0.96, duration: 0.25, ease: "power2.in" }, ${r2(Math.max(b - 0.25, a + 0.4))});`);
     return `<div id="${p}-im${j}" class="clip pic" data-layout-allow-occlusion data-start="${a}" data-duration="${r2(b - a)}" data-track-index="${30 + j}">` +
-      `<div class="push" style="left:${Math.round((W - cw) / 2)}px;top:${y0}px;width:${cw}px"><div class="card">` +
+      `<div class="push" style="left:${x0}px;top:${y0}px;width:${cw}px"><div class="card">` +
       `<img src="${esc(im.src)}" alt="" style="width:${cw}px;height:${ch}px">` +
       (im.credit ? `<div class="icred"><span>${esc(im.credit)}</span></div>` : "") +
       `</div></div></div>`;
@@ -198,7 +199,7 @@ function scene(cfg, s, i, prevYear) {
     .tag span { font-size: 46px; font-weight: 600; padding: 2px 22px 6px; border: 3px solid rgba(255,255,255,.9); border-radius: 10px; }
     .year { position: absolute; left: 0; width: ${W}px; top: 170px; text-align: center; }
     .year span { display: inline-block; font-size: 40px; font-weight: 600; color: #fff; background: rgba(10,12,18,.78); padding: 4px 26px 8px; border: 2px solid rgba(255,255,255,.55); border-radius: 40px; }
-    .cap { position: absolute; left: 70px; width: ${W - 140}px; top: ${Math.round(H * 0.665)}px; text-align: center; }
+    .cap { position: absolute; left: 70px; width: ${W - 140}px; top: ${cfg.captionTop ?? 1420}px; text-align: center; }
     .cap span { display: inline-block; font-size: 58px; font-weight: 800; line-height: 1.45; color: #fff; padding: 0 22px 6px; border-radius: 14px; background: rgba(0,0,0,.42);
       text-shadow: 0 3px 10px rgba(0,0,0,.85), 0 0 3px rgba(0,0,0,.9); }
     .cap b { color: #FFD43B; font-weight: 800; }
@@ -276,14 +277,22 @@ export function buildStory(root, cfg) {
       ${faces.join("\n      ")}
       * { margin: 0; padding: 0; box-sizing: border-box; }
       html, body { width: ${W}px; height: ${H}px; overflow: hidden; background: #05070d; }
-      #credit { position: absolute; left: 0; top: ${Math.round((H * 25) / 32)}px; width: ${W}px; text-align: center; z-index: 50; }
+      #credit { position: absolute; left: 0; top: ${cfg.creditTop ?? 1740}px; width: ${W}px; text-align: center; z-index: 50; }
       #credit span { font-family: Kanit, sans-serif; font-weight: 600; font-size: 20px; color: rgba(255,255,255,.85); background: rgba(0,0,0,.55); padding: 3px 10px; border-radius: 6px; }
+      #disclaimer { position: absolute; left: 0; top: ${cfg.disclaimerTop ?? 1785}px; width: ${W}px; text-align: center; z-index: 50; }
+      #disclaimer span { font-family: Kanit, sans-serif; font-weight: 500; font-size: 18px; color: rgba(255,255,255,.75); background: rgba(0,0,0,.45); padding: 2px 10px; border-radius: 6px; }
+      ${cfg.logo ? `#logo { position: absolute; left: ${cfg.logoLeft ?? 60}px; top: ${cfg.logoTop ?? 145}px; width: ${cfg.logoSize ?? 90}px; height: ${cfg.logoSize ?? 90}px; border-radius: 50%; background-image: url("${esc(cfg.logo)}"); background-size: cover; background-position: center; border: 2.5px solid rgba(255, 215, 0, 0.85); box-shadow: 0 4px 16px rgba(0,0,0,0.7); z-index: 60; }` : ""}
+      ${cfg.watermark ? `#watermark { position: absolute; left: 0; top: ${cfg.watermarkTop ?? 880}px; width: ${W}px; text-align: center; pointer-events: none; z-index: 40; }
+      #watermark span { display: inline-block; font-family: Kanit, sans-serif; font-weight: 800; font-size: ${cfg.watermarkSize ?? 76}px; color: rgba(255, 255, 255, 0.12); transform: rotate(-15deg); letter-spacing: 6px; text-shadow: 0 0 10px rgba(0,0,0,0.3); }` : ""}
     </style>
   </head>
   <body>
     <div id="root" data-composition-id="main" data-start="0" data-duration="${t}" data-width="${W}" data-height="${H}">
 ${hosts.join("\n")}
-      <div id="credit" class="clip" data-start="0" data-duration="${t}" data-track-index="9" data-layout-ignore><span>${esc(cfg.credit)}</span></div>${voice}
+      ${cfg.logo ? `<div id="logo" class="clip" data-start="0" data-duration="${t}" data-track-index="18" data-layout-ignore></div>` : ""}
+      ${cfg.watermark ? `<div id="watermark" class="clip" data-start="0" data-duration="${t}" data-track-index="19" data-layout-ignore><span>${esc(cfg.watermark)}</span></div>` : ""}
+      <div id="credit" class="clip" data-start="0" data-duration="${t}" data-track-index="16" data-layout-ignore><span>${esc(cfg.credit)}</span></div>
+      ${cfg.disclaimer ? `<div id="disclaimer" class="clip" data-start="0" data-duration="${t}" data-track-index="17" data-layout-ignore><span>${esc(cfg.disclaimer)}</span></div>` : ""}${voice}
     </div>
     <script>
       window.__timelines["main"] = gsap.timeline({ paused: true });

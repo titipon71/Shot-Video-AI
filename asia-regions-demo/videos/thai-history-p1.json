@@ -2,6 +2,12 @@
   "id": "thai-history-p1",
   "kind": "story",
   "cps": 13,
+  "captionTop": 1420,
+  "creditTop": 1740,
+  "disclaimer": "ข้อมูลสร้างโดย AI อาจมีความคลาดเคลื่อน โปรดใช้วิจารณญาณ",
+  "disclaimerTop": 1785,
+  "logo": "assets/images/logo.jpg",
+  "watermark": "ชวนดู",
   "voice": { "audio": "assets/voice/thai-history-p1.wav", "transcript": "assets/voice/thai-history-p1.words.json" },
   "places": {
     "sukhothai": { "name": "สุโขทัย", "at": [99.70, 17.02] },
@@ -97,7 +103,7 @@
         { "countries": ["Japan"], "color": "#F4F1EA", "opacity": 0.55, "cue": "บุกญี่ปุ่น", "label": "ญี่ปุ่น" }
       ],
       "images": [
-        { "src": "assets/images/thai-history-p1/05-kublai-khan-portrait.jpg", "cue": "กุบไลข่าน", "outCue": "กองทัพเรือ" },
+        { "src": "assets/images/thai-history-p1/05-kublai-khan-portrait.jpg", "cue": "กุบไลข่าน", "outCue": "กองทัพเรือ", "maxW": 316, "x": 710, "y": 900 },
         { "src": "assets/images/thai-history-p1/06-moko-shurai-ekotoba-battle.jpg", "cue": "กองทัพเรือ", "dur": 4 }
       ],
       "texts": [{ "text": "กุบไลข่าน", "style": "hero", "color": "#FF6B4A", "cue": "กุบไลข่าน" }]

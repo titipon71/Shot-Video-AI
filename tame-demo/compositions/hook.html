@@ -1,0 +1,66 @@
+<template>
+  <style>
+    
+    @font-face { font-family: Kanit; font-weight: 800; font-display: block; src: url("assets/fonts/kanit-thai-800-normal.woff2") format("woff2"); unicode-range: U+02D7, U+0303, U+0331, U+0E01-0E5B, U+200C-200D, U+25CC; }
+    @font-face { font-family: Kanit; font-weight: 800; font-display: block; src: url("assets/fonts/kanit-latin-800-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+    #root { position: absolute; inset: 0; overflow: hidden; background: #0c0908; font-family: Kanit, sans-serif; }
+    .clip { position: absolute; inset: 0; }
+    svg.scene { position: absolute; inset: 0; width: 1080px; height: 1920px; }
+    .stack { position: absolute; left: 80px; width: 920px; text-align: center; }
+    .w { display: block; color: #f4efe6; font-weight: 800; line-height: 1.25; letter-spacing: 0; opacity: 0; }
+    .mark { color: #f4efe6; background: #8e1d24; border-radius: 10px; display: inline-block; line-height: 1.2; padding: 0 18px 10px; }
+
+  </style>
+  <div data-hf-id="hf-h1vr" id="root" data-composition-id="hook" data-width="1080" data-height="1920" data-layout-allow-overflow data-layout-allow-overlap>
+    <div data-hf-id="hf-93v9" id="hook-scene" class="clip" data-start="0" data-duration="3" data-track-index="1" data-hold>
+      
+      <svg data-hf-id="hf-0t6v" class="scene" viewBox="0 0 1080 1920">
+        <rect data-hf-id="hf-lg1h" width="1080" height="1920" fill="#0c0908"/>
+        <polygon data-hf-id="hf-v9ck" id="hook-glow" points="540,180 430,1740 650,1740" fill="#8e1d24" opacity="0.08"/>
+        <defs>
+          <radialGradient id="hook-vig" cx="50%" cy="45%" r="75%">
+            <stop offset="55%" stop-color="#000" stop-opacity="0"/>
+            <stop offset="100%" stop-color="#000" stop-opacity=".65"/>
+          </radialGradient>
+          <filter id="hook-grain" x="0" y="0" width="100%" height="100%">
+            <feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" stitchTiles="stitch"/>
+            <feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .5 0"/>
+          </filter>
+        </defs>
+        <rect width="1080" height="1920" fill="url(#hook-vig)"/>
+        <rect width="1080" height="1920" filter="url(#hook-grain)" opacity=".07"/>
+      </svg>
+      <div data-hf-id="hf-auij" class="stack" style="top:560px">
+        <span data-hf-id="hf-bw6x" class="w" id="h1" style="font-size:64px">ถ้า</span>
+        <span data-hf-id="hf-k7m2" class="w" id="h2" style="font-size:64px">ทั้งชีวิต</span>
+        <span data-hf-id="hf-hcn5" class="w" id="h3" style="font-size:64px">มีแต่คน</span>
+        <span data-hf-id="hf-nlyq" class="w" id="h4" style="font-size:64px">พยายาม</span>
+        <span data-hf-id="hf-gave" class="w" id="h5" style="font-size:104px;margin-top:28px"><span data-hf-id="hf-mk6y" class="mark">ทำให้เชื่อง…</span></span>
+      </div>
+    
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    
+    tl.fromTo("#hook-glow", { opacity: 0.05 }, { opacity: 0.34, duration: 2.4, ease: "power1.inOut" }, 0);
+    ["#h1", "#h2", "#h3", "#h4"].forEach((id, i) => {
+      tl.fromTo(id,
+        { opacity: 0, scale: 1.35, y: 12, transformOrigin: "50% 50%" },
+        { opacity: 1, scale: 1, y: 0, duration: 0.22, ease: "power4.out" },
+        0.18 + i * 0.24);
+    });
+    tl.fromTo("#h5", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.32, ease: "power3.out" }, 1.2);
+    tl.to("#h5", { keyframes: [
+      { x: -14, duration: 0.05 },
+      { x: 12, duration: 0.05 },
+      { x: -8, duration: 0.05 },
+      { x: 5, duration: 0.05 },
+      { x: 0, duration: 0.1 }
+    ], ease: "none" }, 1.55);
+    
+    window.__timelines = window.__timelines || {};
+    window.__timelines["hook"] = tl;
+  </script>
+</template>

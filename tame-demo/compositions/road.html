@@ -1,0 +1,70 @@
+<template>
+  <style>
+    
+    @font-face { font-family: Kanit; font-weight: 800; font-display: block; src: url("assets/fonts/kanit-thai-800-normal.woff2") format("woff2"); unicode-range: U+02D7, U+0303, U+0331, U+0E01-0E5B, U+200C-200D, U+25CC; }
+    @font-face { font-family: Kanit; font-weight: 800; font-display: block; src: url("assets/fonts/kanit-latin-800-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+    #root { position: absolute; inset: 0; overflow: hidden; background: #0c0908; font-family: Kanit, sans-serif; }
+    .clip { position: absolute; inset: 0; }
+    svg.scene { position: absolute; inset: 0; width: 1080px; height: 1920px; }
+    .stack { position: absolute; left: 80px; width: 920px; text-align: center; }
+    .w { display: block; color: #f4efe6; font-weight: 800; line-height: 1.25; letter-spacing: 0; opacity: 0; }
+    .mark { color: #f4efe6; background: #8e1d24; border-radius: 10px; display: inline-block; line-height: 1.2; padding: 0 18px 10px; }
+
+  </style>
+  <div data-hf-id="hf-l044" id="root" data-composition-id="road" data-width="1080" data-height="1920" data-layout-allow-overflow data-layout-allow-overlap>
+    <div data-hf-id="hf-4tkb" id="road-scene" class="clip" data-start="0" data-duration="4" data-track-index="1" data-hold>
+      
+      <svg data-hf-id="hf-0t6v" class="scene" viewBox="0 0 1080 1920">
+        <rect data-hf-id="hf-lg1h" width="1080" height="1920" fill="#0c0908"/>
+        <polygon data-hf-id="hf-8k9j" points="540,680 60,1760 1020,1760" fill="#3d291c"/>
+        <polygon data-hf-id="hf-06kw" points="540,680 390,1760 690,1760" fill="#6b442c"/>
+        <path data-hf-id="hf-2ksy" d="M540 680 L540 1760" fill="none" stroke="#f4efe6" stroke-width="3" opacity="0.35"/>
+        <g data-hf-id="hf-gkp9" id="walker">
+          <g data-hf-id="hf-7prm" transform="translate(400 860) scale(1.05 1.05)"><g data-hf-id="hf-389b" id="road-khwan">
+      <circle data-hf-id="hf-ksvb" cx="100" cy="96" r="20" fill="#f4efe6"/>
+      <ellipse data-hf-id="hf-n3a2" cx="100" cy="128" rx="36" ry="42" fill="#f4efe6"/>
+      <path data-hf-id="hf-xlvp" d="M70 158 C60 196 66 270 80 330 L42 520 L158 520 L120 330 C134 270 140 196 130 158 C114 174 86 174 70 158 Z" fill="#f4efe6"/>
+      <path data-hf-id="hf-a9w3" d="M128 170 C162 190 178 232 164 272 L148 276 C156 238 144 202 120 184 Z" fill="#f4efe6"/>
+    </g></g>
+        </g>
+        <path id="road-rope" d="M-40 1140 Q220 1230 470 1160" fill="none" stroke="#c8282f" stroke-width="7" stroke-linecap="round"/>
+        <defs>
+          <radialGradient id="road-vig" cx="50%" cy="45%" r="75%">
+            <stop offset="55%" stop-color="#000" stop-opacity="0"/>
+            <stop offset="100%" stop-color="#000" stop-opacity=".65"/>
+          </radialGradient>
+          <filter id="road-grain" x="0" y="0" width="100%" height="100%">
+            <feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" stitchTiles="stitch"/>
+            <feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .5 0"/>
+          </filter>
+        </defs>
+        <rect width="1080" height="1920" fill="url(#road-vig)"/>
+        <rect width="1080" height="1920" filter="url(#road-grain)" opacity=".07"/>
+      </svg>
+      <div data-hf-id="hf-ten8" class="stack" style="top:168px">
+        <span data-hf-id="hf-9k2x" class="w" id="d1" style="font-size:72px">น้านารถ</span>
+        <span data-hf-id="hf-phte" class="w" id="d2" style="font-size:60px;margin-top:8px">ไปกับฉันไหม</span>
+      </div>
+      <div data-hf-id="hf-9s7q" class="stack" style="top:430px">
+        <span data-hf-id="hf-j09y" class="w" id="d3" style="font-size:36px;letter-spacing:0.12em">กรุงเทพฯ</span>
+      </div>
+    
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    
+    tl.fromTo("#d1", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.28, ease: "power3.out" }, 0.15);
+    tl.fromTo("#d2", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.28, ease: "power3.out" }, 0.5);
+    tl.fromTo("#d3", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, 0.2);
+    tl.to("#walker", { x: 70, y: -180, scale: 0.65, svgOrigin: "540 1000", duration: 1.5, ease: "power1.inOut" }, 0.7);
+    tl.to("#road-rope", { attr: { d: "M-40 1140 Q250 1020 540 900" }, duration: 1.5, ease: "power1.inOut" }, 0.7);
+    tl.to("#road-rope", { strokeWidth: 9, duration: 0.08, yoyo: true, repeat: 1 }, 2.2);
+    tl.to("#walker", { x: -10, y: 90, scale: 0.8, svgOrigin: "540 1000", duration: 0.22, ease: "power4.in" }, 2.35);
+    tl.to("#road-rope", { attr: { d: "M-40 1140 Q220 1100 460 1170" }, duration: 0.22, ease: "power4.in" }, 2.35);
+    
+    window.__timelines = window.__timelines || {};
+    window.__timelines["road"] = tl;
+  </script>
+</template>

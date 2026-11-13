@@ -1,0 +1,11 @@
+{
+  "name": "tame-demo",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "npx --yes hyperframes@0.8.226 preview",
+    "check": "npx --yes hyperframes@0.8.226 check",
+    "lint": "npx --yes hyperframes@0.8.226 lint",
+    "render": "npx --yes hyperframes@0.8.226 render -o renders/tame-demo.mp4"
+  }
+}

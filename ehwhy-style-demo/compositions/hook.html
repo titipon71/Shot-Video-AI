@@ -1,0 +1,554 @@
+<template>
+  <style>
+    @font-face {
+      font-family: Kanit;
+      font-weight: 600;
+      font-display: block;
+      src: url("assets/fonts/kanit-thai-600-normal.woff2") format("woff2");
+      unicode-range: U+02D7, U+0303, U+0331, U+0E01-0E5B, U+200C-200D, U+25CC;
+    }
+    @font-face {
+      font-family: Kanit;
+      font-weight: 600;
+      font-display: block;
+      src: url("assets/fonts/kanit-latin-600-normal.woff2") format("woff2");
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    @font-face {
+      font-family: Kanit;
+      font-weight: 800;
+      font-display: block;
+      src: url("assets/fonts/kanit-thai-800-normal.woff2") format("woff2");
+      unicode-range: U+02D7, U+0303, U+0331, U+0E01-0E5B, U+200C-200D, U+25CC;
+    }
+    @font-face {
+      font-family: Kanit;
+      font-weight: 800;
+      font-display: block;
+      src: url("assets/fonts/kanit-latin-800-normal.woff2") format("woff2");
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #10182e;
+      font-family: Kanit, sans-serif;
+    }
+    .clip { position: absolute; inset: 0; }
+    #hook-bg { background: #10182e; }
+    #hook-beam {
+      position: absolute;
+      left: 70px;
+      top: 0;
+      width: 940px;
+      height: 1920px;
+      background: linear-gradient(180deg, rgba(255, 248, 230, 0.55) 0%, rgba(255, 244, 214, 0.16) 46%, rgba(255, 244, 214, 0) 78%);
+      clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+      opacity: 0.35;
+    }
+    #hook-floor {
+      position: absolute;
+      left: 180px;
+      top: 1188px;
+      width: 720px;
+      height: 90px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse at center, rgba(255, 236, 190, 0.28), rgba(255, 236, 190, 0) 70%);
+    }
+    .dust {
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.75);
+    }
+    .clone {
+      position: absolute;
+      top: 508px;
+      width: 90px;
+      height: 168px;
+    }
+    .clone-inner { width: 100%; height: 100%; opacity: 0; }
+    #hook-hero {
+      position: absolute;
+      left: 370px;
+      top: 628px;
+      width: 340px;
+      height: 530px;
+    }
+    #hook-hero-inner {
+      width: 100%;
+      height: 100%;
+      transform-origin: 50% 100%;
+    }
+    #hook-badge {
+      position: absolute;
+      left: 400px;
+      top: 196px;
+      width: 280px;
+      background: #f7f1e6;
+      border-radius: 28px;
+      text-align: center;
+      padding: 14px 18px 10px;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
+      opacity: 0;
+      transform-origin: 50% 50%;
+    }
+    #hook-badge .kicker {
+      font-weight: 600;
+      font-size: 28px;
+      color: #3a2a22;
+      line-height: 1.1;
+    }
+    #hook-badge .count {
+      font-weight: 800;
+      font-size: 68px;
+      color: #e23d3d;
+      line-height: 0.95;
+    }
+    #hook-tag {
+      position: absolute;
+      left: 248px;
+      top: 748px;
+      background: #e23d3d;
+      color: #fff;
+      font-weight: 800;
+      font-size: 36px;
+      line-height: 1;
+      padding: 12px 22px;
+      border-radius: 999px;
+      opacity: 0;
+      transform-origin: 100% 50%;
+    }
+    #hook-tag::after {
+      content: "";
+      position: absolute;
+      right: -10px;
+      top: 16px;
+      border-top: 8px solid transparent;
+      border-bottom: 8px solid transparent;
+      border-left: 12px solid #e23d3d;
+    }
+    #hook-count {
+      position: absolute;
+      left: 0;
+      top: 990px;
+      width: 1080px;
+      text-align: center;
+      font-weight: 800;
+      font-size: 64px;
+      color: #f6c445;
+      letter-spacing: 1px;
+      text-shadow: 0 4px 0 rgba(8, 12, 24, 0.85);
+      opacity: 0;
+    }
+    #hook-caption {
+      position: absolute;
+      left: 90px;
+      top: 1168px;
+      width: 900px;
+      text-align: center;
+      font-weight: 800;
+      font-size: 64px;
+      line-height: 1.18;
+      color: #fff;
+      text-shadow:
+        -2px -2px 0 #10182e,
+        2px -2px 0 #10182e,
+        -2px 2px 0 #10182e,
+        2px 2px 0 #10182e,
+        0 6px 16px rgba(0, 0, 0, 0.45);
+      opacity: 0;
+    }
+    #hook-caption .gold { color: #f6c445; }
+    #hook-vignette {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 46%, transparent 28%, rgba(5, 8, 18, 0.55) 100%);
+      pointer-events: none;
+    }
+  </style>
+  <div data-hf-id="hf-h1vr" id="root" data-composition-id="hook" data-width="1080" data-height="1920" data-layout-allow-overflow data-layout-allow-overlap>
+    <svg data-hf-id="hf-6o47" width="0" height="0" style="position: absolute">
+      <defs data-hf-id="hf-mh0t">
+        <radialGradient data-hf-id="hf-58wz" id="hook-skin" cx="40%" cy="35%" r="68%">
+          <stop data-hf-id="hf-n2cm" offset="0%" stop-color="#fbe0cc" />
+          <stop data-hf-id="hf-xswo" offset="68%" stop-color="#f6c7a8" />
+          <stop data-hf-id="hf-vpqx" offset="100%" stop-color="#e3a888" />
+        </radialGradient>
+        <linearGradient data-hf-id="hf-gekw" id="hook-hood" x1="0" y1="0" x2="0" y2="1">
+          <stop data-hf-id="hf-gv3o" offset="0%" stop-color="#ffd24a" />
+          <stop data-hf-id="hf-qlvf" offset="100%" stop-color="#e09a00" />
+        </linearGradient>
+        <linearGradient data-hf-id="hf-ffm4" id="hook-jean" x1="0" y1="0" x2="0" y2="1">
+          <stop data-hf-id="hf-6f85" offset="0%" stop-color="#4e6c9a" />
+          <stop data-hf-id="hf-tqte" offset="100%" stop-color="#2e466c" />
+        </linearGradient>
+      </defs>
+    </svg>
+
+    <div data-hf-id="hf-y9aa" id="hook-scene" class="clip" data-start="0" data-duration="5" data-track-index="1">
+      <div data-hf-id="hf-qdn4" id="hook-bg"></div>
+      <div data-hf-id="hf-xt00" id="hook-beam"></div>
+      <div data-hf-id="hf-92e1" id="hook-floor"></div>
+      <div data-hf-id="hf-1bxo" class="dust" id="hook-d1" style="left: 220px; top: 280px"></div>
+      <div data-hf-id="hf-klun" class="dust" id="hook-d2" style="left: 480px; top: 360px; width: 4px; height: 4px"></div>
+      <div data-hf-id="hf-gojv" class="dust" id="hook-d3" style="left: 760px; top: 240px"></div>
+      <div data-hf-id="hf-kcd8" class="dust" id="hook-d4" style="left: 340px; top: 520px; width: 3px; height: 3px"></div>
+      <div data-hf-id="hf-2g0k" class="dust" id="hook-d5" style="left: 860px; top: 470px; width: 4px; height: 4px"></div>
+      <div data-hf-id="hf-9i0s" class="dust" id="hook-d6" style="left: 160px; top: 640px"></div>
+      <div data-hf-id="hf-3ad2" class="dust" id="hook-d7" style="left: 620px; top: 180px; width: 3px; height: 3px"></div>
+      <div data-hf-id="hf-z7ik" class="dust" id="hook-d8" style="left: 940px; top: 700px; width: 4px; height: 4px"></div>
+
+      <div data-hf-id="hf-p8d1" class="clone" id="hook-c1" style="left: 54px"><div data-hf-id="hf-191k" class="clone-inner"><svg data-hf-id="hf-ffi4" viewBox="0 0 90 168" width="90" height="168">
+              <ellipse data-hf-id="hf-p6qt" cx="45" cy="162" rx="18" ry="4.5" fill="#000" opacity="0.22"/>
+              <path data-hf-id="hf-4zr9" d="M33 108 C30 122 28 140 27 150 L38 152 L40 116 L50 116 L52 152 L63 150 C62 140 60 122 57 108 Q45 114 33 108 Z" fill="url(#hook-jean)"/>
+              <ellipse data-hf-id="hf-hrtp" cx="33" cy="156" rx="10" ry="3.5" fill="#5c3828"/>
+              <ellipse data-hf-id="hf-65ab" cx="57" cy="156" rx="10" ry="3.5" fill="#5c3828"/>
+              <path data-hf-id="hf-ake6" d="M24 150 C24 144 30 142 36 143 L40 146 L39 153 C32 156 24 154 24 150 Z" fill="#8c5a3c"/>
+              <path data-hf-id="hf-a99b" d="M50 146 L56 143 C62 142 68 144 68 150 C68 154 60 156 52 153 Z" fill="#7a4e34"/>
+              <path data-hf-id="hf-x9rx" d="M30 74 C18 80 14 94 16 106 C22 110 28 104 32 94 Z" fill="#f4f1ea"/>
+              <path data-hf-id="hf-jbx8" d="M60 74 C72 80 76 94 74 106 C68 110 62 104 58 94 Z" fill="#f4f1ea"/>
+              <circle data-hf-id="hf-mmt1" cx="18" cy="108" r="4.5" fill="url(#hook-skin)"/>
+              <circle data-hf-id="hf-cv5d" cx="72" cy="108" r="4.5" fill="url(#hook-skin)"/>
+              <path data-hf-id="hf-3qnb" d="M28 70 C24 82 26 100 34 112 C40 118 50 118 56 112 C64 100 66 82 62 70 C56 62 34 62 28 70 Z" fill="#f4f1ea"/>
+              <ellipse data-hf-id="hf-1w4b" cx="40" cy="84" rx="8" ry="6" fill="#fff" opacity="0.28"/>
+              <rect data-hf-id="hf-6jvm" x="33" y="90" width="24" height="14" rx="3.5" fill="#fff"/>
+              <text data-hf-id="hf-mxwd" x="45" y="101" text-anchor="middle" font-family="Kanit" font-weight="800" font-size="12" fill="#7a1414" data-layout-ignore>1</text>
+              <rect data-hf-id="hf-c55o" x="40" y="60" width="10" height="10" rx="3" fill="url(#hook-skin)"/>
+              <ellipse data-hf-id="hf-wwhn" cx="28" cy="48" rx="3" ry="4" fill="#e3a888"/>
+              <ellipse data-hf-id="hf-3gd1" cx="62" cy="48" rx="3" ry="4" fill="#e3a888"/>
+              <ellipse data-hf-id="hf-tq89" cx="44" cy="40" rx="16" ry="14" fill="#2a241f"/>
+              <circle data-hf-id="hf-v6re" cx="45" cy="48" r="14" fill="url(#hook-skin)"/>
+              <path data-hf-id="hf-42ks" d="M32 46 C34 34 42 30 50 32 C44 38 38 42 33 46 Z" fill="#2a241f"/>
+              <ellipse data-hf-id="hf-3lu3" cx="39" cy="49" rx="2.6" ry="3.2" fill="#1a1a1a"/>
+              <ellipse data-hf-id="hf-e8z5" cx="51" cy="49" rx="2.6" ry="3.2" fill="#1a1a1a"/>
+              <circle data-hf-id="hf-ixp7" cx="40" cy="47.8" r="1" fill="#fff"/>
+              <circle data-hf-id="hf-8z72" cx="52" cy="47.8" r="1" fill="#fff"/>
+              <path data-hf-id="hf-2q7e" d="M41 55 Q45 58 49 55" fill="none" stroke="#c47a62" stroke-width="1.2" stroke-linecap="round"/>
+            </svg></div></div>
+      <div data-hf-id="hf-4fkx" class="clone" id="hook-c2" style="left: 152px"><div data-hf-id="hf-kayo" class="clone-inner"><svg data-hf-id="hf-m7qs" viewBox="0 0 90 168" width="90" height="168">
+              <ellipse data-hf-id="hf-8rsp" cx="45" cy="162" rx="18" ry="4.5" fill="#000" opacity="0.22"/>
+              <path data-hf-id="hf-z49l" d="M33 108 C30 122 28 140 27 150 L38 152 L40 116 L50 116 L52 152 L63 150 C62 140 60 122 57 108 Q45 114 33 108 Z" fill="url(#hook-jean)"/>
+              <ellipse data-hf-id="hf-f9rl" cx="33" cy="156" rx="10" ry="3.5" fill="#5c3828"/>
+              <ellipse data-hf-id="hf-x683" cx="57" cy="156" rx="10" ry="3.5" fill="#5c3828"/>
+              <path data-hf-id="hf-qnxe" d="M24 150 C24 144 30 142 36 143 L40 146 L39 153 C32 156 24 154 24 150 Z" fill="#8c5a3c"/>
+              <path data-hf-id="hf-6nkv" d="M50 146 L56 143 C62 142 68 144 68 150 C68 154 60 156 52 153 Z" fill="#7a4e34"/>
+              <path data-hf-id="hf-bqdt" d="M30 74 C18 80 14 94 16 106 C22 110 28 104 32 94 Z" fill="#3ead6b"/>
+              <path data-hf-id="hf-jbj0" d="M60 74 C72 80 76 94 74 106 C68 110 62 104 58 94 Z" fill="#3ead6b"/>
+              <circle data-hf-id="hf-x6p5" cx="18" cy="108" r="4.5" fill="url(#hook-skin)"/>
+              <circle data-hf-id="hf-ey79" cx="72" cy="108" r="4.5" fill="url(#hook-skin)"/>
+              <path data-hf-id="hf-nhlr" d="M28 70 C24 82 26 100 34 112 C40 118 50 118 56 112 C64 100 66 82 62 70 C56 62 34 62 28 70 Z" fill="#3ead6b"/>
+              <ellipse data-hf-id="hf-9ycb" cx="40" cy="84" rx="8" ry="6" fill="#fff" opacity="0.28"/>
+              <rect data-hf-id="hf-86py" x="33" y="90" width="24" height="14" rx="3.5" fill="#fff"/>
+              <text data-hf-id="hf-o4tg" x="45" y="101" text-anchor="middle" font-family="Kanit" font-weight="800" font-size="12" fill="#7a1414" data-layout-ignore>2</text>
+              <rect data-hf-id="hf-mpsk" x="40" y="60" width="10" height="10" rx="3" fill="url(#hook-skin)"/>
+              <ellipse data-hf-id="hf-9oaj" cx="28" cy="48" rx="3" ry="4" fill="#e3a888"/>
+              <ellipse data-hf-id="hf-ohxl" cx="62" cy="48" rx="3" ry="4" fill="#e3a888"/>
+              <ellipse data-hf-id="hf-9ipp" cx="44" cy="40" rx="16" ry="14" fill="#2a241f"/>
+              <circle data-hf-id="hf-2qhq" cx="45" cy="48" r="14" fill="url(#hook-skin)"/>
+              <path data-hf-id="hf-cdno" d="M32 46 C34 34 42 30 50 32 C44 38 38 42 33 46 Z" fill="#2a241f"/>
+              <ellipse data-hf-id="hf-5igb" cx="39" cy="49" rx="2.6" ry="3.2" fill="#1a1a1a"/>
+              <ellipse data-hf-id="hf-v5d1" cx="51" cy="49" rx="2.6" ry="3.2" fill="#1a1a1a"/>
+              <circle data-hf-id="hf-phln" cx="40" cy="47.8" r="1" fill="#fff"/>
+              <circle data-hf-id="hf-crw2" cx="52" cy="47.8" r="1" fill="#fff"/>
+              <path data-hf-id="hf-g4by" d="M41 55 Q45 58 49 55" fill="none" stroke="#c47a62" stroke-width="1.2" stroke-linecap="round"/>
+            </svg></div></div>
+      <div data-hf-id="hf-2hhp" class="clone" id="hook-c3" style="left: 250px"><div data-hf-id="hf-j41l" class="clone-inner"><svg data-hf-id="hf-l0tp" viewBox="0 0 90 168" width="90" height="168">
+              <ellipse data-hf-id="hf-9yps" cx="45" cy="162" rx="18" ry="4.5" fill="#000" opacity="0.22"/>
+              <path data-hf-id="hf-0b6o" d="M33 108 C30 122 28 140 27 150 L38 152 L40 116 L50 116 L52 152 L63 150 C62 140 60 122 57 108 Q45 114 33 108 Z" fill="url(#hook-jean)"/>
+              <ellipse data-hf-id="hf-ggoo" cx="33" cy="156" rx="10" ry="3.5" fill="#5c3828"/>
+              <ellipse data-hf-id="hf-wrx2" cx="57" cy="156" rx="10" ry="3.5" fill="#5c3828"/>
+              <path data-hf-id="hf-r28f" d="M24 150 C24 144 30 142 36 143 L40 146 L39 153 C32 156 24 154 24 150 Z" fill="#8c5a3c"/>
+              <path data-hf-id="hf-699u" d="M50 146 L56 143 C62 142 68 144 68 150 C68 154 60 156 52 153 Z" fill="#7a4e34"/>
+              <path data-hf-id="hf-0e4v" d="M30 74 C18 80 14 94 16 106 C22 110 28 104 32 94 Z" fill="#e23d3d"/>
+              <path data-hf-id="hf-nxxq" d="M60 74 C72 80 76 94 74 106 C68 110 62 104 58 94 Z" fill="#e23d3d"/>
+              <circle data-hf-id="hf-ydm8" cx="18" cy="108" r="4.5" fill="url(#hook-skin)"/>
+              <circle data-hf-id="hf-g54c" cx="72" cy="108" r="4.5" fill="url(#hook-skin)"/>
+              <path data-hf-id="hf-kggt" d="M28 70 C24 82 26 100 34 112 C40 118 50 118 56 112 C64 100 66 82 62 70 C56 62 34 62 28 70 Z" fill="#e23d3d"/>
+              <ellipse data-hf-id="hf-9k1a" cx="40" cy="84" rx="8" ry="6" fill="#fff" opacity="0.28"/>
+              <rect data-hf-id="hf-8l0z" x="33" y="90" width="24" height="14" rx="3.5" fill="#fff"/>
+              <text data-hf-id="hf-nqif" x="45" y="101" text-anchor="middle" font-family="Kanit" font-weight="800" font-size="12" fill="#7a1414" data-layout-ignore>3</text>
+              <rect data-hf-id="hf-livh" x="40" y="60" width="10" height="10" rx="3" fill="url(#hook-skin)"/>
+              <ellipse data-hf-id="hf-99zi" cx="28" cy="48" rx="3" ry="4" fill="#e3a888"/>
+              <ellipse data-hf-id="hf-pouo" cx="62" cy="48" rx="3" ry="4" fill="#e3a888"/>
+              <ellipse data-hf-id="hf-apms" cx="44" cy="40" rx="16" ry="14" fill="#2a241f"/>
+              <circle data-hf-id="hf-34sr" cx="45" cy="48" r="14" fill="url(#hook-skin)"/>
+              <path data-hf-id="hf-b6ql" d="M32 46 C34 34 42 30 50 32 C44 38 38 42 33 46 Z" fill="#2a241f"/>
+              <ellipse data-hf-id="hf-545a" cx="39" cy="49" rx="2.6" ry="3.2" fill="#1a1a1a"/>
+              <ellipse data-hf-id="hf-wca4" cx="51" cy="49" rx="2.6" ry="3.2" fill="#1a1a1a"/>
+              <circle data-hf-id="hf-p3am" cx="40" cy="47.8" r="1" fill="#fff"/>
+              <circle data-hf-id="hf-d673" cx="52" cy="47.8" r="1" fill="#fff"/>
+              <path data-hf-id="hf-gimz" d="M41 55 Q45 58 49 55" fill="none" stroke="#c47a62" stroke-width="1.2" stroke-linecap="round"/>
+            </svg></div></div>
+      <div data-hf-id="hf-ey70" class="clone" id="hook-c4" style="left: 348px"><div data-hf-id="hf-jicm" class="clone-inner"><svg data-hf-id="hf-lf4q" viewBox="0 0 90 168" width="90" height="168">
+              <ellipse data-hf-id="hf-9ker" cx="45" cy="162" rx="18" ry="4.5" fill="#000" opacity="0.22"/>
+              <path data-hf-id="hf-zwvn" d="M33 108 C30 122 28 140 27 150 L38 152 L40 116 L50 116 L52 152 L63 150 C62 140 60 122 57 108 Q45 114 33 108 Z" fill="url(#hook-jean)"/>
+              <ellipse data-hf-id="hf-g2dn" cx="33" cy="156" rx="10" ry="3.5" fill="#5c3828"/>
+              <ellipse data-hf-id="hf-wdm1" cx="57" cy="156" rx="10" ry="3.5" fill="#5c3828"/>
+              <path data-hf-id="hf-rgjg" d="M24 150 C24 144 30 142 36 143 L40 146 L39 153 C32 156 24 154 24 150 Z" fill="#8c5a3c"/>
+              <path data-hf-id="hf-5uyt" d="M50 146 L56 143 C62 142 68 144 68 150 C68 154 60 156 52 153 Z" fill="#7a4e34"/>
+              <path data-hf-id="hf-clxn" d="M30 74 C18 80 14 94 16 106 C22 110 28 104 32 94 Z" fill="#c47a3a"/>
+              <path data-hf-id="hf-lhjq" d="M60 74 C72 80 76 94 74 106 C68 110 62 104 58 94 Z" fill="#c47a3a"/>
+              <circle data-hf-id="hf-xzb7" cx="18" cy="108" r="4.5" fill="url(#hook-skin)"/>
+              <circle data-hf-id="hf-fqtb" cx="72" cy="108" r="4.5" fill="url(#hook-skin)"/>
+              <path data-hf-id="hf-3mjt" d="M28 70 C24 82 26 100 34 112 C40 118 50 118 56 112 C64 100 66 82 62 70 C56 62 34 62 28 70 Z" fill="#c47a3a"/>
+              <ellipse data-hf-id="hf-95q9" cx="40" cy="84" rx="8" ry="6" fill="#fff" opacity="0.28"/>
+              <rect data-hf-id="hf-8zc0" x="33" y="90" width="24" height="14" rx="3.5" fill="#fff"/>
+              <text data-hf-id="hf-oxfi" x="45" y="101" text-anchor="middle" font-family="Kanit" font-weight="800" font-size="12" fill="#7a1414" data-layout-ignore>4</text>
+              <rect data-hf-id="hf-lx6i" x="40" y="60" width="10" height="10" rx="3" fill="url(#hook-skin)"/>
+              <ellipse data-hf-id="hf-8voh" cx="28" cy="48" rx="3" ry="4" fill="#e3a888"/>
+              <ellipse data-hf-id="hf-pajn" cx="62" cy="48" rx="3" ry="4" fill="#e3a888"/>
+              <ellipse data-hf-id="hf-abbr" cx="44" cy="40" rx="16" ry="14" fill="#2a241f"/>
+              <circle data-hf-id="hf-3j3s" cx="45" cy="48" r="14" fill="url(#hook-skin)"/>
+              <path data-hf-id="hf-bl1m" d="M32 46 C34 34 42 30 50 32 C44 38 38 42 33 46 Z" fill="#2a241f"/>
+              <ellipse data-hf-id="hf-4pu9" cx="39" cy="49" rx="2.6" ry="3.2" fill="#1a1a1a"/>
+              <ellipse data-hf-id="hf-vxz3" cx="51" cy="49" rx="2.6" ry="3.2" fill="#1a1a1a"/>
+              <circle data-hf-id="hf-oozl" cx="40" cy="47.8" r="1" fill="#fff"/>
+              <circle data-hf-id="hf-dki4" cx="52" cy="47.8" r="1" fill="#fff"/>
+              <path data-hf-id="hf-gwy0" d="M41 55 Q45 58 49 55" fill="none" stroke="#c47a62" stroke-width="1.2" stroke-linecap="round"/>
+            </svg></div></div>
+      <div data-hf-id="hf-yo5w" class="clone" id="hook-c5" style="left: 446px"><div data-hf-id="hf-ibfj" class="clone-inner"><svg data-hf-id="hf-rgmz" viewBox="0 0 90 168" width="90" height="168">
+              <ellipse data-hf-id="hf-7kvm" cx="45" cy="162" rx="18" ry="4.5" fill="#000" opacity="0.22"/>
+              <path data-hf-id="hf-xxci" d="M33 108 C30 122 28 140 27 150 L38 152 L40 116 L50 116 L52 152 L63 150 C62 140 60 122 57 108 Q45 114 33 108 Z" fill="url(#hook-jean)"/>
+              <ellipse data-hf-id="hf-e2ui" cx="33" cy="156" rx="10" ry="3.5" fill="#5c3828"/>
+              <ellipse data-hf-id="hf-vzb0" cx="57" cy="156" rx="10" ry="3.5" fill="#5c3828"/>
+              <path data-hf-id="hf-ruuh" d="M24 150 C24 144 30 142 36 143 L40 146 L39 153 C32 156 24 154 24 150 Z" fill="#8c5a3c"/>
+              <path data-hf-id="hf-8n40" d="M50 146 L56 143 C62 142 68 144 68 150 C68 154 60 156 52 153 Z" fill="#7a4e34"/>
+              <path data-hf-id="hf-sx0a" d="M30 74 C18 80 14 94 16 106 C22 110 28 104 32 94 Z" fill="#3e6fbf"/>
+              <path data-hf-id="hf-0duv" d="M60 74 C72 80 76 94 74 106 C68 110 62 104 58 94 Z" fill="#3e6fbf"/>
+              <circle data-hf-id="hf-vzs2" cx="18" cy="108" r="4.5" fill="url(#hook-skin)"/>
+              <circle data-hf-id="hf-gxqe" cx="72" cy="108" r="4.5" fill="url(#hook-skin)"/>
+              <path data-hf-id="hf-e268" d="M28 70 C24 82 26 100 34 112 C40 118 50 118 56 112 C64 100 66 82 62 70 C56 62 34 62 28 70 Z" fill="#3e6fbf"/>
+              <ellipse data-hf-id="hf-8rf8" cx="40" cy="84" rx="8" ry="6" fill="#fff" opacity="0.28"/>
+              <rect data-hf-id="hf-676t" x="33" y="90" width="24" height="14" rx="3.5" fill="#fff"/>
+              <text data-hf-id="hf-oj4h" x="45" y="101" text-anchor="middle" font-family="Kanit" font-weight="800" font-size="12" fill="#7a1414" data-layout-ignore>5</text>
+              <rect data-hf-id="hf-nwpn" x="40" y="60" width="10" height="10" rx="3" fill="url(#hook-skin)"/>
+              <ellipse data-hf-id="hf-8hdg" cx="28" cy="48" rx="3" ry="4" fill="#e3a888"/>
+              <ellipse data-hf-id="hf-nb0i" cx="62" cy="48" rx="3" ry="4" fill="#e3a888"/>
+              <ellipse data-hf-id="hf-bi8u" cx="44" cy="40" rx="16" ry="14" fill="#2a241f"/>
+              <circle data-hf-id="hf-0qyl" cx="45" cy="48" r="14" fill="url(#hook-skin)"/>
+              <path data-hf-id="hf-dkkr" d="M32 46 C34 34 42 30 50 32 C44 38 38 42 33 46 Z" fill="#2a241f"/>
+              <ellipse data-hf-id="hf-4bj8" cx="39" cy="49" rx="2.6" ry="3.2" fill="#1a1a1a"/>
+              <ellipse data-hf-id="hf-x4w6" cx="51" cy="49" rx="2.6" ry="3.2" fill="#1a1a1a"/>
+              <circle data-hf-id="hf-oaok" cx="40" cy="47.8" r="1" fill="#fff"/>
+              <circle data-hf-id="hf-dyt5" cx="52" cy="47.8" r="1" fill="#fff"/>
+              <path data-hf-id="hf-e4st" d="M41 55 Q45 58 49 55" fill="none" stroke="#c47a62" stroke-width="1.2" stroke-linecap="round"/>
+            </svg></div></div>
+      <div data-hf-id="hf-tvdg" class="clone" id="hook-c6" style="left: 544px"><div data-hf-id="hf-ipqk" class="clone-inner"><svg data-hf-id="hf-ruy0" viewBox="0 0 90 168" width="90" height="168">
+              <ellipse data-hf-id="hf-76kl" cx="45" cy="162" rx="18" ry="4.5" fill="#000" opacity="0.22"/>
+              <path data-hf-id="hf-xj1h" d="M33 108 C30 122 28 140 27 150 L38 152 L40 116 L50 116 L52 152 L63 150 C62 140 60 122 57 108 Q45 114 33 108 Z" fill="url(#hook-jean)"/>
+              <ellipse data-hf-id="hf-dojh" cx="33" cy="156" rx="10" ry="3.5" fill="#5c3828"/>
+              <ellipse data-hf-id="hf-vkzz" cx="57" cy="156" rx="10" ry="3.5" fill="#5c3828"/>
+              <path data-hf-id="hf-s95i" d="M24 150 C24 144 30 142 36 143 L40 146 L39 153 C32 156 24 154 24 150 Z" fill="#8c5a3c"/>
+              <path data-hf-id="hf-88sz" d="M50 146 L56 143 C62 142 68 144 68 150 C68 154 60 156 52 153 Z" fill="#7a4e34"/>
+              <path data-hf-id="hf-ih43" d="M30 74 C18 80 14 94 16 106 C22 110 28 104 32 94 Z" fill="#7a4ebf"/>
+              <path data-hf-id="hf-75ne" d="M60 74 C72 80 76 94 74 106 C68 110 62 104 58 94 Z" fill="#7a4ebf"/>
+              <circle data-hf-id="hf-vlh1" cx="18" cy="108" r="4.5" fill="url(#hook-skin)"/>
+              <circle data-hf-id="hf-gjfd" cx="72" cy="108" r="4.5" fill="url(#hook-skin)"/>
+              <path data-hf-id="hf-y1i9" d="M28 70 C24 82 26 100 34 112 C40 118 50 118 56 112 C64 100 66 82 62 70 C56 62 34 62 28 70 Z" fill="#7a4ebf"/>
+              <ellipse data-hf-id="hf-8d47" cx="40" cy="84" rx="8" ry="6" fill="#fff" opacity="0.28"/>
+              <rect data-hf-id="hf-6lhu" x="33" y="90" width="24" height="14" rx="3.5" fill="#fff"/>
+              <text data-hf-id="hf-pq1k" x="45" y="101" text-anchor="middle" font-family="Kanit" font-weight="800" font-size="12" fill="#7a1414" data-layout-ignore>6</text>
+              <rect data-hf-id="hf-ob0o" x="40" y="60" width="10" height="10" rx="3" fill="url(#hook-skin)"/>
+              <ellipse data-hf-id="hf-832f" cx="28" cy="48" rx="3" ry="4" fill="#e3a888"/>
+              <ellipse data-hf-id="hf-mwph" cx="62" cy="48" rx="3" ry="4" fill="#e3a888"/>
+              <ellipse data-hf-id="hf-b3xt" cx="44" cy="40" rx="16" ry="14" fill="#2a241f"/>
+              <circle data-hf-id="hf-159m" cx="45" cy="48" r="14" fill="url(#hook-skin)"/>
+              <path data-hf-id="hf-dyvs" d="M32 46 C34 34 42 30 50 32 C44 38 38 42 33 46 Z" fill="#2a241f"/>
+              <ellipse data-hf-id="hf-3x87" cx="39" cy="49" rx="2.6" ry="3.2" fill="#1a1a1a"/>
+              <ellipse data-hf-id="hf-wql5" cx="51" cy="49" rx="2.6" ry="3.2" fill="#1a1a1a"/>
+              <circle data-hf-id="hf-nwdj" cx="40" cy="47.8" r="1" fill="#fff"/>
+              <circle data-hf-id="hf-ed46" cx="52" cy="47.8" r="1" fill="#fff"/>
+              <path data-hf-id="hf-ej3u" d="M41 55 Q45 58 49 55" fill="none" stroke="#c47a62" stroke-width="1.2" stroke-linecap="round"/>
+            </svg></div></div>
+      <div data-hf-id="hf-5k74" class="clone" id="hook-c7" style="left: 642px"><div data-hf-id="hf-hith" class="clone-inner"><svg data-hf-id="hf-mm1t" viewBox="0 0 90 168" width="90" height="168">
+              <ellipse data-hf-id="hf-8dho" cx="45" cy="162" rx="18" ry="4.5" fill="#000" opacity="0.22"/>
+              <path data-hf-id="hf-ypyk" d="M33 108 C30 122 28 140 27 150 L38 152 L40 116 L50 116 L52 152 L63 150 C62 140 60 122 57 108 Q45 114 33 108 Z" fill="url(#hook-jean)"/>
+              <ellipse data-hf-id="hf-evgk" cx="33" cy="156" rx="10" ry="3.5" fill="#5c3828"/>
+              <ellipse data-hf-id="hf-v6oy" cx="57" cy="156" rx="10" ry="3.5" fill="#5c3828"/>
+              <path data-hf-id="hf-sngj" d="M24 150 C24 144 30 142 36 143 L40 146 L39 153 C32 156 24 154 24 150 Z" fill="#8c5a3c"/>
+              <path data-hf-id="hf-7uhy" d="M50 146 L56 143 C62 142 68 144 68 150 C68 154 60 156 52 153 Z" fill="#7a4e34"/>
+              <path data-hf-id="hf-8wwx" d="M30 74 C18 80 14 94 16 106 C22 110 28 104 32 94 Z" fill="#e07a3a"/>
+              <path data-hf-id="hf-5hug" d="M60 74 C72 80 76 94 74 106 C68 110 62 104 58 94 Z" fill="#e07a3a"/>
+              <circle data-hf-id="hf-wse4" cx="18" cy="108" r="4.5" fill="url(#hook-skin)"/>
+              <circle data-hf-id="hf-hqcg" cx="72" cy="108" r="4.5" fill="url(#hook-skin)"/>
+              <path data-hf-id="hf-zp7n" d="M28 70 C24 82 26 100 34 112 C40 118 50 118 56 112 C64 100 66 82 62 70 C56 62 34 62 28 70 Z" fill="#e07a3a"/>
+              <ellipse data-hf-id="hf-7yt6" cx="40" cy="84" rx="8" ry="6" fill="#fff" opacity="0.28"/>
+              <rect data-hf-id="hf-6zsv" x="33" y="90" width="24" height="14" rx="3.5" fill="#fff"/>
+              <text data-hf-id="hf-pbqj" x="45" y="101" text-anchor="middle" font-family="Kanit" font-weight="800" font-size="12" fill="#7a1414" data-layout-ignore>7</text>
+              <rect data-hf-id="hf-n43l" x="40" y="60" width="10" height="10" rx="3" fill="url(#hook-skin)"/>
+              <ellipse data-hf-id="hf-7ore" cx="28" cy="48" rx="3" ry="4" fill="#e3a888"/>
+              <ellipse data-hf-id="hf-o3mk" cx="62" cy="48" rx="3" ry="4" fill="#e3a888"/>
+              <ellipse data-hf-id="hf-cauw" cx="44" cy="40" rx="16" ry="14" fill="#2a241f"/>
+              <circle data-hf-id="hf-1jkn" cx="45" cy="48" r="14" fill="url(#hook-skin)"/>
+              <path data-hf-id="hf-cryp" d="M32 46 C34 34 42 30 50 32 C44 38 38 42 33 46 Z" fill="#2a241f"/>
+              <ellipse data-hf-id="hf-3ix6" cx="39" cy="49" rx="2.6" ry="3.2" fill="#1a1a1a"/>
+              <ellipse data-hf-id="hf-xxi8" cx="51" cy="49" rx="2.6" ry="3.2" fill="#1a1a1a"/>
+              <circle data-hf-id="hf-ni2i" cx="40" cy="47.8" r="1" fill="#fff"/>
+              <circle data-hf-id="hf-erf7" cx="52" cy="47.8" r="1" fill="#fff"/>
+              <path data-hf-id="hf-exev" d="M41 55 Q45 58 49 55" fill="none" stroke="#c47a62" stroke-width="1.2" stroke-linecap="round"/>
+            </svg></div></div>
+      <div data-hf-id="hf-wsmk" class="clone" id="hook-c8" style="left: 740px"><div data-hf-id="hf-hx4i" class="clone-inner"><svg data-hf-id="hf-n0cu" viewBox="0 0 90 168" width="90" height="168">
+              <ellipse data-hf-id="hf-7z6n" cx="45" cy="162" rx="18" ry="4.5" fill="#000" opacity="0.22"/>
+              <path data-hf-id="hf-ybnj" d="M33 108 C30 122 28 140 27 150 L38 152 L40 116 L50 116 L52 152 L63 150 C62 140 60 122 57 108 Q45 114 33 108 Z" fill="url(#hook-jean)"/>
+              <ellipse data-hf-id="hf-eh5j" cx="33" cy="156" rx="10" ry="3.5" fill="#5c3828"/>
+              <ellipse data-hf-id="hf-usdx" cx="57" cy="156" rx="10" ry="3.5" fill="#5c3828"/>
+              <path data-hf-id="hf-t1rk" d="M24 150 C24 144 30 142 36 143 L40 146 L39 153 C32 156 24 154 24 150 Z" fill="#8c5a3c"/>
+              <path data-hf-id="hf-7g6x" d="M50 146 L56 143 C62 142 68 144 68 150 C68 154 60 156 52 153 Z" fill="#7a4e34"/>
+              <path data-hf-id="hf-92au" d="M30 74 C18 80 14 94 16 106 C22 110 28 104 32 94 Z" fill="#2fa3a3"/>
+              <path data-hf-id="hf-4xin" d="M60 74 C72 80 76 94 74 106 C68 110 62 104 58 94 Z" fill="#2fa3a3"/>
+              <circle data-hf-id="hf-we33" cx="18" cy="108" r="4.5" fill="url(#hook-skin)"/>
+              <circle data-hf-id="hf-hc1f" cx="72" cy="108" r="4.5" fill="url(#hook-skin)"/>
+              <path data-hf-id="hf-63yw" d="M28 70 C24 82 26 100 34 112 C40 118 50 118 56 112 C64 100 66 82 62 70 C56 62 34 62 28 70 Z" fill="#2fa3a3"/>
+              <ellipse data-hf-id="hf-7ki5" cx="40" cy="84" rx="8" ry="6" fill="#fff" opacity="0.28"/>
+              <rect data-hf-id="hf-7e3w" x="33" y="90" width="24" height="14" rx="3.5" fill="#fff"/>
+              <text data-hf-id="hf-qinm" x="45" y="101" text-anchor="middle" font-family="Kanit" font-weight="800" font-size="12" fill="#7a1414" data-layout-ignore>8</text>
+              <rect data-hf-id="hf-niem" x="40" y="60" width="10" height="10" rx="3" fill="url(#hook-skin)"/>
+              <ellipse data-hf-id="hf-7agd" cx="28" cy="48" rx="3" ry="4" fill="#e3a888"/>
+              <ellipse data-hf-id="hf-npbj" cx="62" cy="48" rx="3" ry="4" fill="#e3a888"/>
+              <ellipse data-hf-id="hf-bwjv" cx="44" cy="40" rx="16" ry="14" fill="#2a241f"/>
+              <circle data-hf-id="hf-1xvo" cx="45" cy="48" r="14" fill="url(#hook-skin)"/>
+              <path data-hf-id="hf-d69q" d="M32 46 C34 34 42 30 50 32 C44 38 38 42 33 46 Z" fill="#2a241f"/>
+              <ellipse data-hf-id="hf-34m5" cx="39" cy="49" rx="2.6" ry="3.2" fill="#1a1a1a"/>
+              <ellipse data-hf-id="hf-xj77" cx="51" cy="49" rx="2.6" ry="3.2" fill="#1a1a1a"/>
+              <circle data-hf-id="hf-n3rh" cx="40" cy="47.8" r="1" fill="#fff"/>
+              <circle data-hf-id="hf-f5q8" cx="52" cy="47.8" r="1" fill="#fff"/>
+              <path data-hf-id="hf-fbpw" d="M41 55 Q45 58 49 55" fill="none" stroke="#c47a62" stroke-width="1.2" stroke-linecap="round"/>
+            </svg></div></div>
+      <div data-hf-id="hf-ktkz" class="clone" id="hook-c9" style="left: 838px"><div data-hf-id="hf-gq7f" class="clone-inner"><svg data-hf-id="hf-t1v3" viewBox="0 0 90 168" width="90" height="168">
+              <ellipse data-hf-id="hf-5zni" cx="45" cy="162" rx="18" ry="4.5" fill="#000" opacity="0.22"/>
+              <path data-hf-id="hf-wc4e" d="M33 108 C30 122 28 140 27 150 L38 152 L40 116 L50 116 L52 152 L63 150 C62 140 60 122 57 108 Q45 114 33 108 Z" fill="url(#hook-jean)"/>
+              <ellipse data-hf-id="hf-mwhy" cx="33" cy="156" rx="10" ry="3.5" fill="#5c3828"/>
+              <ellipse data-hf-id="hf-ue2w" cx="57" cy="156" rx="10" ry="3.5" fill="#5c3828"/>
+              <path data-hf-id="hf-n365" d="M24 150 C24 144 30 142 36 143 L40 146 L39 153 C32 156 24 154 24 150 Z" fill="#8c5a3c"/>
+              <path data-hf-id="hf-3vfo" d="M50 146 L56 143 C62 142 68 144 68 150 C68 154 60 156 52 153 Z" fill="#7a4e34"/>
+              <path data-hf-id="hf-ssuh" d="M30 74 C18 80 14 94 16 106 C22 110 28 104 32 94 Z" fill="#e45b8a"/>
+              <path data-hf-id="hf-j0nw" d="M60 74 C72 80 76 94 74 106 C68 110 62 104 58 94 Z" fill="#e45b8a"/>
+              <circle data-hf-id="hf-uejy" cx="18" cy="108" r="4.5" fill="url(#hook-skin)"/>
+              <circle data-hf-id="hf-c622" cx="72" cy="108" r="4.5" fill="url(#hook-skin)"/>
+              <path data-hf-id="hf-lxbj" d="M28 70 C24 82 26 100 34 112 C40 118 50 118 56 112 C64 100 66 82 62 70 C56 62 34 62 28 70 Z" fill="#e45b8a"/>
+              <ellipse data-hf-id="hf-dj3k" cx="40" cy="84" rx="8" ry="6" fill="#fff" opacity="0.28"/>
+              <rect data-hf-id="hf-4lyp" x="33" y="90" width="24" height="14" rx="3.5" fill="#fff"/>
+              <text data-hf-id="hf-q4cl" x="45" y="101" text-anchor="middle" font-family="Kanit" font-weight="800" font-size="12" fill="#7a1414" data-layout-ignore>9</text>
+              <rect data-hf-id="hf-phxr" x="40" y="60" width="10" height="10" rx="3" fill="url(#hook-skin)"/>
+              <ellipse data-hf-id="hf-d91s" cx="28" cy="48" rx="3" ry="4" fill="#e3a888"/>
+              <ellipse data-hf-id="hf-lpse" cx="62" cy="48" rx="3" ry="4" fill="#e3a888"/>
+              <ellipse data-hf-id="hf-d3gy" cx="44" cy="40" rx="16" ry="14" fill="#2a241f"/>
+              <circle data-hf-id="hf-5imx" cx="45" cy="48" r="14" fill="url(#hook-skin)"/>
+              <path data-hf-id="hf-f5sv" d="M32 46 C34 34 42 30 50 32 C44 38 38 42 33 46 Z" fill="#2a241f"/>
+              <ellipse data-hf-id="hf-937k" cx="39" cy="49" rx="2.6" ry="3.2" fill="#1a1a1a"/>
+              <ellipse data-hf-id="hf-sd7u" cx="51" cy="49" rx="2.6" ry="3.2" fill="#1a1a1a"/>
+              <circle data-hf-id="hf-t2cw" cx="40" cy="47.8" r="1" fill="#fff"/>
+              <circle data-hf-id="hf-974t" cx="52" cy="47.8" r="1" fill="#fff"/>
+              <path data-hf-id="hf-iwh5" d="M41 55 Q45 58 49 55" fill="none" stroke="#c47a62" stroke-width="1.2" stroke-linecap="round"/>
+            </svg></div></div>
+      <div data-hf-id="hf-1b5m" class="clone" id="hook-c10" style="left: 936px"><div data-hf-id="hf-h4ig" class="clone-inner"><svg data-hf-id="hf-tg64" viewBox="0 0 90 168" width="90" height="168">
+              <ellipse data-hf-id="hf-5lch" cx="45" cy="162" rx="18" ry="4.5" fill="#000" opacity="0.22"/>
+              <path data-hf-id="hf-vxtd" d="M33 108 C30 122 28 140 27 150 L38 152 L40 116 L50 116 L52 152 L63 150 C62 140 60 122 57 108 Q45 114 33 108 Z" fill="url(#hook-jean)"/>
+              <ellipse data-hf-id="hf-mi6x" cx="33" cy="156" rx="10" ry="3.5" fill="#5c3828"/>
+              <ellipse data-hf-id="hf-tzrv" cx="57" cy="156" rx="10" ry="3.5" fill="#5c3828"/>
+              <path data-hf-id="hf-nhh6" d="M24 150 C24 144 30 142 36 143 L40 146 L39 153 C32 156 24 154 24 150 Z" fill="#8c5a3c"/>
+              <path data-hf-id="hf-3h4n" d="M50 146 L56 143 C62 142 68 144 68 150 C68 154 60 156 52 153 Z" fill="#7a4e34"/>
+              <path data-hf-id="hf-6hvj" d="M30 74 C18 80 14 94 16 106 C22 110 28 104 32 94 Z" fill="#f5b400"/>
+              <path data-hf-id="hf-r84q" d="M60 74 C72 80 76 94 74 106 C68 110 62 104 58 94 Z" fill="#f5b400"/>
+              <circle data-hf-id="hf-u08x" cx="18" cy="108" r="4.5" fill="url(#hook-skin)"/>
+              <circle data-hf-id="hf-brr1" cx="72" cy="108" r="4.5" fill="url(#hook-skin)"/>
+              <path data-hf-id="hf-j9qx" d="M28 70 C24 82 26 100 34 112 C40 118 50 118 56 112 C64 100 66 82 62 70 C56 62 34 62 28 70 Z" fill="#f5b400"/>
+              <ellipse data-hf-id="hf-d4sj" cx="40" cy="84" rx="8" ry="6" fill="#fff" opacity="0.28"/>
+              <rect data-hf-id="hf-ofkk" x="30" y="90" width="30" height="14" rx="3.5" fill="#fff"/>
+              <text data-hf-id="hf-8ywd" x="45" y="101" text-anchor="middle" font-family="Kanit" font-weight="800" font-size="10" fill="#7a1414" data-layout-ignore>10</text>
+              <rect data-hf-id="hf-pw8s" x="40" y="60" width="10" height="10" rx="3" fill="url(#hook-skin)"/>
+              <ellipse data-hf-id="hf-cuqr" cx="28" cy="48" rx="3" ry="4" fill="#e3a888"/>
+              <ellipse data-hf-id="hf-lbhd" cx="62" cy="48" rx="3" ry="4" fill="#e3a888"/>
+              <ellipse data-hf-id="hf-cp5x" cx="44" cy="40" rx="16" ry="14" fill="#2a241f"/>
+              <circle data-hf-id="hf-5wxy" cx="45" cy="48" r="14" fill="url(#hook-skin)"/>
+              <path data-hf-id="hf-fk3w" d="M32 46 C34 34 42 30 50 32 C44 38 38 42 33 46 Z" fill="#2a241f"/>
+              <ellipse data-hf-id="hf-8owj" cx="39" cy="49" rx="2.6" ry="3.2" fill="#1a1a1a"/>
+              <ellipse data-hf-id="hf-rywt" cx="51" cy="49" rx="2.6" ry="3.2" fill="#1a1a1a"/>
+              <circle data-hf-id="hf-so1v" cx="40" cy="47.8" r="1" fill="#fff"/>
+              <circle data-hf-id="hf-9lfu" cx="52" cy="47.8" r="1" fill="#fff"/>
+              <path data-hf-id="hf-jas6" d="M41 55 Q45 58 49 55" fill="none" stroke="#c47a62" stroke-width="1.2" stroke-linecap="round"/>
+            </svg></div></div>
+
+      <div data-hf-id="hf-qacp" id="hook-hero">
+        <div data-hf-id="hf-4iny" id="hook-hero-inner">
+          <svg data-hf-id="hf-odhy" viewBox="0 0 340 530" width="340" height="530">
+            <ellipse data-hf-id="hf-5z80" cx="170" cy="516" rx="74" ry="11" fill="#000" opacity="0.26"/>
+            <path data-hf-id="hf-etpm" d="M124 348 C118 392 112 450 108 482 Q106 500 128 502 L154 500 Q162 496 158 474 L162 362 L178 362 L182 474 Q178 496 186 500 L214 502 Q234 500 232 482 C228 450 222 392 216 348 Q170 364 124 348 Z" fill="url(#hook-jean)"/>
+            <ellipse data-hf-id="hf-wklm" cx="132" cy="504" rx="28" ry="9" fill="#5c3828"/>
+            <path data-hf-id="hf-sai0" d="M106 488 C104 474 120 466 140 468 L160 474 C166 480 162 496 146 500 L116 502 C106 500 104 494 106 488 Z" fill="#8c5a3c"/>
+            <ellipse data-hf-id="hf-vjwy" cx="208" cy="504" rx="28" ry="9" fill="#5c3828"/>
+            <path data-hf-id="hf-1yi0" d="M182 488 C180 474 196 466 216 468 L236 474 C242 480 238 496 222 500 L192 502 C182 500 180 494 182 488 Z" fill="#7a4e34"/>
+            <path data-hf-id="hf-7b8g" d="M126 246 C118 206 146 184 170 182 C194 184 222 206 214 246 C198 228 142 228 126 246 Z" fill="#d89a12"/>
+            <path data-hf-id="hf-wavz" d="M112 248 C72 262 46 304 40 334 C38 350 54 358 68 348 L82 332 C96 300 114 276 136 262 Z" fill="url(#hook-hood)"/>
+            <path data-hf-id="hf-exgy" d="M228 248 C268 262 294 304 300 334 C302 350 286 358 272 348 L258 332 C244 300 226 276 204 262 Z" fill="url(#hook-hood)"/>
+            <ellipse data-hf-id="hf-yl2x" cx="58" cy="346" rx="16" ry="12" fill="#c98400"/>
+            <ellipse data-hf-id="hf-mavi" cx="282" cy="346" rx="16" ry="12" fill="#c98400"/>
+            <ellipse data-hf-id="hf-tf6e" cx="42" cy="356" rx="14" ry="12" fill="url(#hook-skin)"/>
+            <ellipse data-hf-id="hf-ztr5" cx="298" cy="356" rx="14" ry="12" fill="url(#hook-skin)"/>
+            <path data-hf-id="hf-a2bd" d="M112 252 C98 270 102 312 116 344 C128 366 148 376 170 378 C192 376 212 366 224 344 C238 312 242 270 228 252 C210 230 130 230 112 252 Z" fill="url(#hook-hood)"/>
+            <ellipse data-hf-id="hf-d1b4" cx="148" cy="286" rx="32" ry="24" fill="#fff3c4" opacity="0.38"/>
+            <path data-hf-id="hf-jfbu" d="M170 248 L170 356" fill="none" stroke="#b87a00" stroke-width="2.5" stroke-linecap="round"/>
+            <circle data-hf-id="hf-oioh" cx="170" cy="250" r="3.2" fill="#b87a00"/>
+            <path data-hf-id="hf-09u6" d="M122 352 Q170 368 218 352" fill="none" stroke="#c98400" stroke-width="7" stroke-linecap="round" opacity="0.75"/>
+            <rect data-hf-id="hf-1s3w" x="154" y="196" width="32" height="28" rx="11" fill="url(#hook-skin)"/>
+            <path data-hf-id="hf-p6nb" d="M156 224 L170 242 L184 224" fill="none" stroke="#fff6e8" stroke-width="4" stroke-linecap="round"/>
+            <ellipse data-hf-id="hf-5tym" cx="104" cy="146" rx="10" ry="14" fill="#e3a888"/>
+            <ellipse data-hf-id="hf-6diy" cx="236" cy="146" rx="10" ry="14" fill="#e3a888"/>
+            <ellipse data-hf-id="hf-lc99" cx="166" cy="124" rx="70" ry="56" fill="#2a241f"/>
+            <circle data-hf-id="hf-5u93" cx="170" cy="146" r="60" fill="url(#hook-skin)"/>
+            <path data-hf-id="hf-dadt" d="M112 142 C116 96 150 74 192 84 C170 102 148 116 124 130 C116 136 112 142 112 142 Z" fill="#2a241f"/>
+            <ellipse data-hf-id="hf-2mpt" cx="186" cy="132" rx="20" ry="14" fill="#fff" opacity="0.2"/>
+            <path data-hf-id="hf-1qm0" d="M132 128 Q148 118 164 126" fill="none" stroke="#3a2e28" stroke-width="3" stroke-linecap="round"/>
+            <path data-hf-id="hf-oea4" d="M176 126 Q192 118 208 128" fill="none" stroke="#3a2e28" stroke-width="3" stroke-linecap="round"/>
+            <ellipse data-hf-id="hf-7v3n" cx="148" cy="150" rx="12" ry="15" fill="#1a1a1a"/>
+            <ellipse data-hf-id="hf-lgaq" cx="192" cy="150" rx="12" ry="15" fill="#1a1a1a"/>
+            <circle data-hf-id="hf-sg3c" cx="152" cy="144" r="4.2" fill="#fff"/>
+            <circle data-hf-id="hf-axqo" cx="196" cy="144" r="4.2" fill="#fff"/>
+            <circle data-hf-id="hf-bpkm" cx="145" cy="154" r="2" fill="#fff" opacity="0.9"/>
+            <circle data-hf-id="hf-31em" cx="189" cy="154" r="2" fill="#fff" opacity="0.9"/>
+            <path data-hf-id="hf-qcz3" d="M158 172 Q170 182 182 172" fill="none" stroke="#c47a62" stroke-width="3.5" stroke-linecap="round"/>
+            <ellipse data-hf-id="hf-676n" cx="122" cy="164" rx="12" ry="7" fill="#f0a090" opacity="0.4"/>
+            <ellipse data-hf-id="hf-18wj" cx="218" cy="164" rx="12" ry="7" fill="#f0a090" opacity="0.4"/>
+          </svg>
+        </div>
+      </div>
+
+      <div data-hf-id="hf-stij" id="hook-vignette"></div>
+      <div data-hf-id="hf-vw9m" id="hook-badge"><div data-hf-id="hf-lefu" class="kicker">แยกร่างได้</div><div data-hf-id="hf-m703" class="count">× 10</div></div>
+      <div data-hf-id="hf-vkoc" id="hook-tag">บอส</div>
+      <div data-hf-id="hf-lovu" id="hook-count">10 คน</div>
+      <div data-hf-id="hf-0y7h" id="hook-caption"><div data-hf-id="hf-a7ui">ถ้าคุณ<span data-hf-id="hf-4m6r" class="gold">แยกร่าง</span></div><div data-hf-id="hf-nt64">ตัวเองได้</div></div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#hook-beam", { opacity: 0.3 }, { opacity: 1, duration: 0.7, ease: "power2.out" }, 0);
+    tl.fromTo("#hook-hero-inner", { scale: 0.94, y: 18 }, { scale: 1, y: 0, duration: 0.55, ease: "power3.out" }, 0);
+    for (let i = 1; i <= 10; i++) {
+      tl.fromTo(
+        "#hook-c" + i + " .clone-inner",
+        { opacity: 0, y: 28 },
+        { opacity: 1, y: 0, duration: 0.36, ease: "power2.out" },
+        0.25 + (i - 1) * 0.07
+      );
+    }
+    tl.fromTo("#hook-badge", { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.42, ease: "back.out(1.7)" }, 0.85);
+    tl.fromTo("#hook-tag", { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.32, ease: "back.out(1.6)" }, 1.15);
+    tl.fromTo("#hook-count", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, 1.45);
+    tl.fromTo("#hook-caption", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, 1.8);
+    tl.fromTo("#hook-d1", { y: 0 }, { y: -22, duration: 4.6, ease: "none" }, 0);
+    tl.fromTo("#hook-d2", { y: 0 }, { y: -30, duration: 4.6, ease: "none" }, 0);
+    tl.fromTo("#hook-d3", { y: 0 }, { y: -16, duration: 4.6, ease: "none" }, 0);
+    tl.fromTo("#hook-d4", { y: 0 }, { y: -26, duration: 4.6, ease: "none" }, 0);
+    tl.fromTo("#hook-d5", { y: 0 }, { y: -18, duration: 4.6, ease: "none" }, 0);
+    tl.fromTo("#hook-d6", { y: 0 }, { y: -24, duration: 4.6, ease: "none" }, 0);
+    tl.fromTo("#hook-d7", { y: 0 }, { y: -14, duration: 4.6, ease: "none" }, 0);
+    tl.fromTo("#hook-d8", { y: 0 }, { y: -20, duration: 4.6, ease: "none" }, 0);
+    window.__timelines = window.__timelines || {};
+    window.__timelines["hook"] = tl;
+  </script>
+</template>

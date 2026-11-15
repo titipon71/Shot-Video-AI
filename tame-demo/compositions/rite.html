@@ -1,104 +1,221 @@
 <template>
   <style>
-    
     @font-face { font-family: Kanit; font-weight: 800; font-display: block; src: url("assets/fonts/kanit-thai-800-normal.woff2") format("woff2"); unicode-range: U+02D7, U+0303, U+0331, U+0E01-0E5B, U+200C-200D, U+25CC; }
     @font-face { font-family: Kanit; font-weight: 800; font-display: block; src: url("assets/fonts/kanit-latin-800-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+    @font-face { font-family: Kanit; font-weight: 600; font-display: block; src: url("assets/fonts/kanit-thai-600-normal.woff2") format("woff2"); unicode-range: U+02D7, U+0303, U+0331, U+0E01-0E5B, U+200C-200D, U+25CC; }
+    @font-face { font-family: Kanit; font-weight: 600; font-display: block; src: url("assets/fonts/kanit-latin-600-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
 
-    #root { position: absolute; inset: 0; overflow: hidden; background: #0c0908; font-family: Kanit, sans-serif; }
+    #root { position: absolute; inset: 0; overflow: hidden; background: #0b0807; font-family: Kanit, sans-serif; }
     .clip { position: absolute; inset: 0; }
-    svg.scene { position: absolute; inset: 0; width: 1080px; height: 1920px; }
+    .wrap, .world, .txt { position: absolute; inset: 0; }
+    .world { transform-origin: 50% 50%; }
+    svg.scene { position: absolute; inset: 0; width: 1080px; height: 1920px; overflow: visible; }
     .stack { position: absolute; left: 80px; width: 920px; text-align: center; }
-    .w { display: block; color: #f4efe6; font-weight: 800; line-height: 1.25; letter-spacing: 0; opacity: 0; }
-    .mark { color: #f4efe6; background: #8e1d24; border-radius: 10px; display: inline-block; line-height: 1.2; padding: 0 18px 10px; }
+    /* lines are visible containers; words (.wd) are revealed one Thai word at a time, never per character */
+    .w { display: block; color: #f4efe6; font-weight: 800; line-height: 1.3; letter-spacing: 0;
+         text-shadow: 0 6px 28px rgba(0,0,0,.75), 0 2px 6px rgba(0,0,0,.55); }
+    .wd { display: inline-block; opacity: 0; }
+    .mark { position: relative; display: inline-block; line-height: 1.2; padding: 4px 26px 14px; }
+    .mbg { position: absolute; inset: 0; border-radius: 12px; transform-origin: 0% 50%;
+           background: linear-gradient(100deg, #5a0e14 0%, #9e2129 45%, #c8343b 62%, #7a151c 100%);
+           box-shadow: 0 16px 48px rgba(170, 32, 40, .45), inset 0 1px 0 rgba(255, 214, 196, .28), inset 0 -3px 0 rgba(40, 0, 0, .35); }
+    .mark .wd, .mark .mtx { position: relative; text-shadow: 0 2px 12px rgba(50, 0, 0, .55); }
+    .stampm { opacity: 0; }
+    .rule { position: absolute; height: 3px; border-radius: 2px; transform-origin: 50% 50%; transform: scaleX(0);
+            background: linear-gradient(90deg, rgba(200,40,47,0), #e0464c 30%, #f4efe6 50%, #e0464c 70%, rgba(200,40,47,0)); }
 
   </style>
   <div data-hf-id="hf-zzv4" id="root" data-composition-id="rite" data-width="1080" data-height="1920" data-layout-allow-overflow data-layout-allow-overlap>
     <div data-hf-id="hf-vcc3" id="rite-scene" class="clip" data-start="0" data-duration="4" data-track-index="1" data-hold>
-      
-      <svg data-hf-id="hf-0t6v" class="scene" viewBox="0 0 1080 1920">
-        <rect data-hf-id="hf-lg1h" width="1080" height="1920" fill="#0c0908"/>
-        <ellipse data-hf-id="hf-6r6o" id="rite-glow" cx="780" cy="720" rx="160" ry="180" fill="#8e1d24" opacity="0.12"/>
-        
-      <path data-hf-id="hf-gcpf" d="M0 1020 C260 930 820 930 1080 1020 L1080 1920 L0 1920 Z" fill="#3d291c"/>
-      <path data-hf-id="hf-bxa4" d="M0 1240 C300 1160 780 1180 1080 1260 L1080 1920 L0 1920 Z" fill="#6b442c"/>
-    
-        <circle class="ring" id="rite-ring-a" cx="780" cy="720" r="40" fill="none" stroke="#c8282f" stroke-width="4" opacity="0"/>
-        <circle class="ring" id="rite-ring-b" cx="780" cy="720" r="40" fill="none" stroke="#c8282f" stroke-width="4" opacity="0"/>
-        <circle class="ring" id="rite-ring-c" cx="780" cy="720" r="40" fill="none" stroke="#c8282f" stroke-width="4" opacity="0"/>
-        <g data-hf-id="hf-3r2e" transform="translate(700 560) scale(1.55 1.55)"><g data-hf-id="hf-gtvv" id="rite-shrine">
-      <ellipse data-hf-id="hf-koiq" cx="96" cy="70" rx="70" ry="28" fill="#8e1d24" opacity="0.35"/>
-      <rect data-hf-id="hf-5q98" x="84" y="132" width="24" height="150" rx="3" fill="#6b442c"/>
-      <path data-hf-id="hf-w3e3" d="M16 146 L96 36 L176 146 Z" fill="#8e1d24"/>
-      <path data-hf-id="hf-dd31" d="M40 146 L96 68 L152 146 Z" fill="#5c1218"/>
-      <path data-hf-id="hf-ss2f" d="M18 146 L6 214 L40 198 L32 146 Z" fill="#8e1d24"/>
-      <rect data-hf-id="hf-8jof" x="78" y="156" width="36" height="28" fill="#1a100c"/>
-    </g></g>
-        <g data-hf-id="hf-vaf1" transform="translate(80 780) scale(2.05 2.05)"><g data-hf-id="hf-5hi9" id="rite-bull">
-      <path data-hf-id="hf-jjii" d="M40 156 C26 120 54 90 104 82 C142 50 198 46 230 74 C254 58 282 76 292 108 C308 128 300 164 258 176 C190 200 86 196 52 168 C34 160 30 164 40 156 Z" fill="#1a100c"/>
-      <path data-hf-id="hf-3lci" d="M268 96 L304 18 L318 92 Z" fill="#f4efe6"/>
-      <path data-hf-id="hf-7zmb" d="M220 88 L196 12 L246 84 Z" fill="#f4efe6"/>
-      <path data-hf-id="hf-v5sq" d="M72 164 L62 236 L88 236 L94 166 Z" fill="#1a100c"/>
-      <path data-hf-id="hf-f866" d="M116 168 L112 240 L138 240 L138 168 Z" fill="#1a100c"/>
-      <path data-hf-id="hf-134b" d="M176 166 L180 240 L206 240 L198 164 Z" fill="#1a100c"/>
-      <path data-hf-id="hf-d6r4" d="M224 158 L240 234 L266 234 L246 152 Z" fill="#1a100c"/>
-      <path data-hf-id="hf-g5io" d="M46 136 C10 116 6 156 36 150" fill="none" stroke="#1a100c" stroke-width="8" stroke-linecap="round"/>
-      <circle id="rite-eye" cx="282" cy="110" r="4" fill="#c8282f"/>
-    </g></g>
-        <g id="rite-dust" fill="#e4d2b0">
-          <circle id="rite-dust-0" cx="260" cy="1230" r="10" opacity="0"/>
-          <circle id="rite-dust-1" cx="330" cy="1250" r="10" opacity="0"/>
-          <circle id="rite-dust-2" cx="400" cy="1225" r="10" opacity="0"/>
-          <circle id="rite-dust-3" cx="470" cy="1245" r="10" opacity="0"/>
-          <circle id="rite-dust-4" cx="540" cy="1230" r="10" opacity="0"/>
-          <circle id="rite-dust-5" cx="610" cy="1250" r="10" opacity="0"/>
-        </g>
-        <defs>
-          <radialGradient id="rite-vig" cx="50%" cy="45%" r="75%">
-            <stop offset="55%" stop-color="#000" stop-opacity="0"/>
-            <stop offset="100%" stop-color="#000" stop-opacity=".65"/>
-          </radialGradient>
-          <filter id="rite-grain" x="0" y="0" width="100%" height="100%">
-            <feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" stitchTiles="stitch"/>
-            <feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .5 0"/>
-          </filter>
-        </defs>
-        <rect width="1080" height="1920" fill="url(#rite-vig)"/>
-        <rect width="1080" height="1920" filter="url(#rite-grain)" opacity=".07"/>
-      </svg>
-      <div data-hf-id="hf-ezlr" class="stack" style="top:180px">
-        <span data-hf-id="hf-0k9r" class="w" id="r1" style="font-size:80px">วัวพยศ</span>
-        <span data-hf-id="hf-h9m4" class="w" id="r2" style="font-size:64px;margin-top:10px">ทำพิธี</span>
-        <span data-hf-id="hf-ned3" class="w" id="r3" style="font-size:92px;margin-top:36px"><span data-hf-id="hf-gmhv" class="mark">เชื่อง</span></span>
+      <div class="wrap" id="rt-wrap">
+        <div class="world" id="rt-world">
+          <svg data-hf-id="hf-0t6v" class="scene" viewBox="0 0 1080 1920">
+            <defs>
+              <radialGradient id="rt-bg" gradientUnits="userSpaceOnUse" cx="780" cy="760" r="1100">
+                <stop offset="0" stop-color="#5a1316"/><stop offset=".35" stop-color="#25090b"/><stop offset="1" stop-color="#070505"/>
+              </radialGradient>
+              <radialGradient id="rt-halo" cx="50%" cy="50%" r="50%">
+                <stop offset="0" stop-color="#ff9a5a" stop-opacity=".7"/><stop offset=".35" stop-color="#d8353a" stop-opacity=".35"/><stop offset="1" stop-color="#8e1d24" stop-opacity="0"/>
+              </radialGradient>
+              <radialGradient id="rt-flame" cx="50%" cy="70%" r="60%">
+                <stop offset="0" stop-color="#fff7d6"/><stop offset=".45" stop-color="#ffcf5a"/><stop offset="1" stop-color="#ff7a2a"/>
+              </radialGradient>
+              <linearGradient id="rt-g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3d241a"/><stop offset="1" stop-color="#1c100b"/></linearGradient>
+              <linearGradient id="rt-g2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5e3a26"/><stop offset="1" stop-color="#21130c"/></linearGradient>
+              <linearGradient id="rt-ring-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff6a5a"/><stop offset="1" stop-color="#8e1d24"/></linearGradient>
+              <filter id="rt-blur" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="22"/></filter>
+              <filter id="rt-smoke" x="-50%" y="-20%" width="200%" height="140%"><feGaussianBlur stdDeviation="7"/></filter>
+            </defs>
+            <rect data-hf-id="hf-lg1h" width="1080" height="1920" fill="url(#rt-bg)"/>
+            <g id="rt-garlands"></g>
+            <ellipse data-hf-id="hf-6r6o" id="rite-glow" cx="780" cy="720" rx="340" ry="380" fill="url(#rt-halo)"/>
+            <path data-hf-id="hf-gcpf" d="M-40 1020 C260 930 820 930 1120 1020 L1120 1960 L-40 1960 Z" fill="url(#rt-g1)"/>
+            <path data-hf-id="hf-bxa4" d="M-40 1240 C300 1160 780 1180 1120 1260 L1120 1960 L-40 1960 Z" fill="url(#rt-g2)"/>
+            <ellipse id="rt-pool" cx="800" cy="1030" rx="330" ry="60" fill="#ff8a4a" opacity=".22" filter="url(#rt-blur)"/>
+            <circle class="ring" id="rite-ring-a" cx="780" cy="720" r="40" fill="none" stroke="url(#rt-ring-g)" stroke-width="3" opacity="0"/>
+            <circle class="ring" id="rite-ring-b" cx="780" cy="720" r="40" fill="none" stroke="url(#rt-ring-g)" stroke-width="3" opacity="0"/>
+            <circle class="ring" id="rite-ring-c" cx="780" cy="720" r="40" fill="none" stroke="url(#rt-ring-g)" stroke-width="3" opacity="0"/>
+            <circle id="rt-burst" cx="780" cy="720" r="40" fill="none" stroke="#ffd2b0" stroke-width="6" opacity="0"/>
+            <g data-hf-id="hf-3r2e" transform="translate(700 560) scale(1.55 1.55)"><g data-hf-id="hf-gtvv" id="rite-shrine">
+              <ellipse data-hf-id="hf-koiq" cx="96" cy="70" rx="70" ry="28" fill="#c8282f" opacity="0.35"/>
+              <rect data-hf-id="hf-5q98" x="84" y="132" width="24" height="150" rx="3" fill="#6b442c"/>
+              <path data-hf-id="hf-w3e3" d="M16 146 L96 36 L176 146 Z" fill="#8e1d24"/>
+              <path d="M96 36 L176 146 L150 146 Z" fill="#5c1218" opacity=".7"/>
+              <path data-hf-id="hf-dd31" d="M40 146 L96 68 L152 146 Z" fill="#5c1218"/>
+              <path data-hf-id="hf-ss2f" d="M18 146 L6 214 L40 198 L32 146 Z" fill="#8e1d24"/>
+              <path d="M96 36 L90 18 L96 4 L102 18 Z" fill="#d8a64a"/>
+              <path d="M16 146 L176 146" stroke="#d8a64a" stroke-width="3" opacity=".8"/>
+              <rect data-hf-id="hf-8jof" x="78" y="156" width="36" height="28" fill="#1a100c"/>
+              <rect x="84" y="162" width="24" height="16" fill="#ffb060" opacity=".55" id="rt-window"/>
+            </g></g>
+            <g id="rt-smokes" filter="url(#rt-smoke)" fill="none" stroke="#e6d6c2" stroke-linecap="round">
+              <path id="rt-sm-0" d="M745 1000 C720 930 770 880 740 810 C715 750 760 690 735 620" stroke-width="7" stroke-dasharray="420" stroke-dashoffset="420" opacity=".22"/>
+              <path id="rt-sm-1" d="M800 995 C830 920 780 860 815 790 C840 730 800 670 830 590" stroke-width="8" stroke-dasharray="440" stroke-dashoffset="440" opacity=".2"/>
+              <path id="rt-sm-2" d="M855 1000 C880 930 840 880 870 820 C895 770 860 720 885 650" stroke-width="6" stroke-dasharray="380" stroke-dashoffset="380" opacity=".18"/>
+            </g>
+            <g id="rt-petals"></g>
+            <ellipse id="rt-circle" cx="400" cy="1300" rx="400" ry="92" fill="none" stroke="#efe2cb" stroke-width="4" stroke-dasharray="1600" stroke-dashoffset="1600" opacity=".75"/>
+            <ellipse id="rt-circle-glow" cx="400" cy="1300" rx="400" ry="92" fill="none" stroke="#ff9a6a" stroke-width="14" opacity="0" filter="url(#rt-smoke)"/>
+            <g id="rt-candles"></g>
+            <g data-hf-id="hf-vaf1" transform="translate(80 780) scale(2.05 2.05)"><g id="rt-bull-anim"><g id="rite-bull">
+      <path d="M40 156 C26 120 54 90 104 82 C142 50 198 46 230 74 C254 58 282 76 292 108 C308 128 300 164 258 176 C190 200 86 196 52 168 C34 160 30 164 40 156 Z" fill="#1a100c"/>
+      <path d="M104 84 C142 52 198 48 230 76 C254 60 282 78 292 110" fill="none" stroke="#ff7a50" stroke-width="3.5" stroke-linecap="round" opacity=".6"/>
+      <path d="M268 96 L304 18 L318 92 Z" fill="#efe2cb"/>
+      <path d="M220 88 L196 12 L246 84 Z" fill="#efe2cb"/>
+      <path d="M268 96 L304 18 L296 94 Z" fill="#b9a68c" opacity=".55"/>
+      <path d="M72 164 L62 236 L88 236 L94 166 Z" fill="#1a100c"/>
+      <path d="M116 168 L112 240 L138 240 L138 168 Z" fill="#1a100c"/>
+      <path d="M176 166 L180 240 L206 240 L198 164 Z" fill="#1a100c"/>
+      <path d="M224 158 L240 234 L266 234 L246 152 Z" fill="#1a100c"/>
+      <path d="M46 136 C10 116 6 156 36 150" fill="none" stroke="#1a100c" stroke-width="8" stroke-linecap="round"/>
+      <circle cx="282" cy="110" r="7" fill="#ff3b3b" opacity=".2" class="eyeglow"/>
+      <circle id="rite-bull-eye" cx="282" cy="110" r="4.5" fill="#ff4a42"/>
+    </g></g></g>
+            <g id="rite-dust" fill="#e4d2b0">
+              <circle id="rite-dust-0" cx="260" cy="1230" r="10" opacity="0"/>
+              <circle id="rite-dust-1" cx="330" cy="1250" r="10" opacity="0"/>
+              <circle id="rite-dust-2" cx="400" cy="1225" r="10" opacity="0"/>
+              <circle id="rite-dust-3" cx="470" cy="1245" r="10" opacity="0"/>
+              <circle id="rite-dust-4" cx="540" cy="1230" r="10" opacity="0"/>
+              <circle id="rite-dust-5" cx="610" cy="1250" r="10" opacity="0"/>
+            </g>
+            <g id="rt-embers"></g>
+          </svg>
+        </div>
+        <div class="txt" id="rt-txt">
+          <div data-hf-id="hf-ezlr" class="stack" style="top:180px">
+            <span data-hf-id="hf-0k9r" class="w" id="r1" style="font-size:80px"><span class="wd">วัว</span><span class="wd">พยศ</span></span>
+            <span data-hf-id="hf-h9m4" class="w" id="r2" style="font-size:64px;margin-top:10px"><span class="wd">ทำ</span><span class="wd">พิธี</span></span>
+            <span data-hf-id="hf-ned3" class="w" id="r3" style="font-size:92px;margin-top:36px"><span data-hf-id="hf-gmhv" class="mark stampm" id="rt-mark"><i class="mbg"></i><span class="mtx">เชื่อง</span></span></span>
+          </div>
+        </div>
       </div>
-    
     </div>
   </div>
   <script>
     const tl = gsap.timeline({ paused: true });
-    
-    tl.fromTo("#rite-shrine", { opacity: 0 }, { opacity: 1, duration: 0.35, ease: "power2.out" }, 0.1);
-    tl.fromTo("#rite-bull", { rotation: -7, transformOrigin: "120px 100px" }, { rotation: 7, duration: 0.07, yoyo: true, repeat: 8, ease: "power1.inOut" }, 0.35);
-    tl.to("#rite-bull", { rotation: 0, duration: 0.05, ease: "none" }, 1.15);
-    tl.fromTo("#rite-glow", { opacity: 0.1 }, { opacity: 0.55, duration: 0.7, ease: "power2.in" }, 0.4);
-    tl.to("#rite-glow", { opacity: 0.22, duration: 0.2, ease: "power2.out" }, 1.15);
-    document.querySelectorAll(".ring").forEach((el, i) => {
-      tl.fromTo(el,
-        { scale: 1, opacity: 0.8, svgOrigin: "780 720" },
-        { scale: 7, opacity: 0, duration: 0.9, ease: "power2.out", immediateRender: false },
-        0.45 + i * 0.22);
+    const SVGNS = "http://www.w3.org/2000/svg";
+    // deterministic PRNG so every render is identical
+    const rng = (s) => () => { s |= 0; s = s + 0x6D2B79F5 | 0; let t = Math.imul(s ^ s >>> 15, 1 | s); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+    const mk = (tag, attrs, parent) => { const e = document.createElementNS(SVGNS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; };
+    const $ = (s) => document.querySelector(s);
+    const $$ = (s) => Array.from(document.querySelectorAll(s));
+    // word-level reveal (whole Thai words, so vowels / tone marks never get separated)
+    const rise = (targets, at, o = {}) => tl.fromTo(targets,
+      { opacity: 0, y: o.y ?? 44, scale: o.sc ?? 1, filter: "blur(" + (o.b ?? 12) + "px)" },
+      { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", duration: o.d ?? 0.75, ease: o.e ?? "expo.out", stagger: o.s ?? 0.1 }, at);
+    const wipeMark = (mark, at) => {
+      tl.fromTo(mark.querySelector(".mbg"), { scaleX: 0 }, { scaleX: 1, duration: 0.55, ease: "expo.inOut" }, at);
+      rise(mark.querySelectorAll(".wd"), at + 0.2, { y: 26, b: 8, d: 0.6, s: 0.08 });
+    };
+    const stamp = (mark, at, shakeEl) => {
+      tl.fromTo(mark, { opacity: 0, scale: 1.7, filter: "blur(16px)" },
+                      { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.in" }, at);
+      tl.fromTo(mark, { scale: 1 }, { scale: 1.035, duration: 0.09, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, at + 0.2);
+      if (shakeEl) shake(shakeEl, at + 0.2, 16);
+    };
+    const shake = (el, at, amp = 12) => tl.to(el, { keyframes: [
+      { x: -amp, y: amp * 0.4, duration: 0.04 }, { x: amp * 0.85, y: -amp * 0.35, duration: 0.04 },
+      { x: -amp * 0.5, y: amp * 0.2, duration: 0.05 }, { x: amp * 0.25, y: 0, duration: 0.05 }, { x: 0, y: 0, duration: 0.07 }
+    ], ease: "none" }, at);
+    // soft scene in/out: no hard cuts between scenes
+    const sceneIO = (wrap, dur, o = {}) => {
+      if (o.in !== false) tl.fromTo(wrap, { opacity: 0, scale: 1.06, filter: "blur(14px)" },
+        { opacity: 1, scale: 1, filter: "blur(0px)", duration: o.inDur ?? 0.5, ease: "power3.out" }, 0);
+      if (o.out !== false) tl.to(wrap, { opacity: 0, scale: 1.04, filter: "blur(10px)", duration: o.outDur ?? 0.34, ease: "power2.in" }, dur - (o.outDur ?? 0.34));
+    };
+    // floating particles (dust motes / embers)
+    const particles = (g, n, seed, box, o = {}) => {
+      const r = rng(seed);
+      for (let i = 0; i < n; i++) {
+        const x = box[0] + r() * box[2], y = box[1] + r() * box[3];
+        const c = mk("circle", { cx: x, cy: y, r: (o.rmin ?? 1.5) + r() * ((o.rmax ?? 4) - (o.rmin ?? 1.5)), fill: o.fill ?? "#f4c9a8", opacity: 0 }, g);
+        const a = (o.amin ?? 0.15) + r() * ((o.amax ?? 0.6) - (o.amin ?? 0.15));
+        const d = o.dur;
+        tl.fromTo(c, { opacity: 0, x: 0, y: 0 }, { keyframes: [
+            { opacity: a, duration: d * 0.25 }, { opacity: a * (0.4 + r() * 0.6), duration: d * 0.5 }, { opacity: 0, duration: d * 0.25 } ],
+          ease: "none" }, 0);
+        tl.fromTo(c, { x: 0, y: 0 }, { x: (r() - 0.5) * (o.dx ?? 60), y: -((o.dymin ?? 30) + r() * ((o.dymax ?? 120) - (o.dymin ?? 30))), duration: d, ease: "sine.inOut", immediateRender: false }, 0);
+      }
+    };
+
+    // hanging jasmine/marigold garlands behind the shrine
+    (() => { const g = $("#rt-garlands"), r = rng(3);
+      [705, 750, 1000, 1045].forEach((x, k) => { const len = 380 + r() * 200;
+        mk("line", { x1: x, y1: 0, x2: x, y2: len, stroke: "#3a1a12", "stroke-width": 2 }, g);
+        for (let y = 20; y < len; y += 22) mk("circle", { cx: x, cy: y, r: 6.5, fill: (Math.floor(y / 22) % 4 === 0) ? "#d8862a" : "#e8dcc4", opacity: .55 + r() * .25 }, g);
+        mk("path", { d: `M${x - 9} ${len} L${x + 9} ${len} L${x} ${len + 34} Z`, fill: "#c8282f", opacity: .8 }, g);
+      }); })();
+    // candles with deterministic flicker
+    (() => { const g = $("#rt-candles"), r = rng(8);
+      [[700, 1010, 1], [745, 1022, .85], [860, 1022, .85], [905, 1010, 1], [960, 1030, .75]].forEach(([x, y, s], i) => {
+        const c = mk("g", { transform: `translate(${x} ${y}) scale(${s})` }, g);
+        mk("circle", { cx: 0, cy: -70, r: 46, fill: "#ffb060", opacity: .22, filter: "url(#rt-blur)", class: "rt-cglow" }, c);
+        mk("rect", { x: -9, y: -56, width: 18, height: 56, rx: 3, fill: "#efe2cb" }, c);
+        mk("rect", { x: 3, y: -56, width: 6, height: 56, fill: "#b9a68c", opacity: .6 }, c);
+        const f = mk("path", { d: "M0 -98 C10 -80 11 -66 0 -58 C-11 -66 -10 -80 0 -98 Z", fill: "url(#rt-flame)" }, c);
+        const kf = []; for (let k = 0; k < 24; k++) kf.push({ scaleY: .82 + r() * .36, scaleX: .9 + r() * .2, rotation: (r() - .5) * 10, duration: 1 / 6 });
+        tl.fromTo(f, { scaleY: 1, transformOrigin: "50% 100%" }, { keyframes: kf, ease: "sine.inOut" }, 0);
+      }); })();
+    (() => { const g = $("#rt-petals"), r = rng(15);
+      for (let i = 0; i < 60; i++) { const y = 1120 + r() * 760, s = 0.5 + (y - 1100) / 700;
+        const x = r() * 1080; mk("ellipse", { cx: x, cy: y, rx: 6 * s, ry: 3 * s, fill: r() > .4 ? "#d8862a" : "#e8dcc4", opacity: .35 + r() * .3, transform: `rotate(${(r() * 180 - 90).toFixed(1)} ${x.toFixed(1)} ${y.toFixed(1)})` }, g); } })();
+    tl.fromTo("#rt-circle", { strokeDashoffset: 1600 }, { strokeDashoffset: 0, duration: 1.2, ease: "expo.inOut" }, 0.9);
+    tl.fromTo("#rt-circle-glow", { opacity: 0 }, { keyframes: [{ opacity: .7, duration: .15 }, { opacity: .25, duration: .8 }], immediateRender: false }, 1.55);
+    particles($("#rt-embers"), 34, 44, [560, 700, 480, 420], { dur: 4, rmin: 1.5, rmax: 3.5, amin: .4, amax: .9, dx: 80, dymin: 160, dymax: 420, fill: "#ffb070" });
+
+    sceneIO("#rt-wrap", 4);
+    tl.fromTo("#rt-world", { scale: 1.05 }, { scale: 1.0, duration: 4, ease: "power2.out" }, 0);
+    tl.fromTo("#rite-shrine", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 0.1);
+    tl.fromTo("#rt-garlands", { opacity: 0, y: -40 }, { opacity: 1, y: 0, duration: 1.0, ease: "power3.out" }, 0.05);
+    $$("#rt-smokes path").forEach((p, i) => {
+      tl.fromTo(p, { strokeDashoffset: +p.getAttribute("stroke-dasharray") }, { strokeDashoffset: 0, duration: 2.6, ease: "sine.out" }, 0.2 + i * 0.25);
+      tl.fromTo(p, { y: 0 }, { y: -90, duration: 3.8, ease: "none" }, 0.2);
     });
-    const dustPts = [[260,1230],[330,1250],[400,1225],[470,1245],[540,1230],[610,1250]];
-    dustPts.forEach(([x, y], i) => {
-      const c = document.getElementById("rite-dust-" + i);
-      tl.fromTo(c,
-        { opacity: 0.6, y: 0, scale: 0.6, svgOrigin: x + " " + y },
-        { opacity: 0, y: -50 - i * 6, scale: 2.4, duration: 0.7, ease: "power2.out", immediateRender: false },
-        0.5 + i * 0.07);
+    // bucking bull: violent shake that settles as the rite takes hold
+    tl.fromTo("#rt-bull-anim", { rotation: -7, y: 0, transformOrigin: "120px 160px" }, { rotation: 7, duration: 0.08, yoyo: true, repeat: 8, ease: "sine.inOut" }, 0.35);
+    tl.fromTo("#rt-bull-anim", { y: 0 }, { keyframes: [{ y: -16, duration: .14, ease: "power2.out" }, { y: 0, duration: .14, ease: "power2.in" }, { y: -10, duration: .13, ease: "power2.out" }, { y: 0, duration: .13, ease: "power2.in" }, { y: -6, duration: .1 }, { y: 0, duration: .1 }], immediateRender: false }, 0.4);
+    tl.to("#rt-bull-anim", { rotation: 4, duration: 0.9, ease: "power3.out" }, 1.15);
+    tl.to("#rite-bull-eye", { fill: "#8a1a1a", duration: 0.8, ease: "power2.out" }, 1.6);
+    tl.to("#rite-bull .eyeglow", { opacity: 0, duration: 0.8 }, 1.6);
+    tl.fromTo("#rite-bull .eyeglow", { opacity: 0.2, scale: 1, transformOrigin: "50% 50%" }, { opacity: 0.55, scale: 1.4, duration: 0.2, yoyo: true, repeat: 3, ease: "sine.inOut" }, 0.35);
+    tl.fromTo("#rt-world", { x: 0 }, { keyframes: [{ x: -6, duration: .06 }, { x: 6, duration: .06 }, { x: -4, duration: .06 }, { x: 4, duration: .06 }, { x: -3, duration: .06 }, { x: 3, duration: .06 }, { x: 0, duration: .1 }], immediateRender: false }, 0.4);
+    tl.fromTo("#rite-glow", { opacity: 0.35 }, { opacity: 1, duration: 0.9, ease: "power2.in" }, 0.3);
+    tl.to("#rite-glow", { opacity: 0.6, duration: 0.5, ease: "power2.out" }, 1.25);
+    tl.fromTo("#rite-glow", { scale: 1, svgOrigin: "780 720" }, { scale: 1.08, duration: 0.5, yoyo: true, repeat: 3, ease: "sine.inOut", immediateRender: false }, 1.8);
+    tl.fromTo("#rt-window", { opacity: 0.3 }, { opacity: 0.9, duration: 0.6, ease: "power2.out" }, 1.4);
+    $$(".ring").forEach((el, i) => tl.fromTo(el, { scale: 1, opacity: 0.8, svgOrigin: "780 720" },
+      { scale: 7.5, opacity: 0, duration: 1.1, ease: "expo.out", immediateRender: false }, 0.45 + i * 0.22));
+    tl.fromTo("#rt-burst", { scale: 1, opacity: 0.9, svgOrigin: "780 720" }, { scale: 11, opacity: 0, duration: 0.9, ease: "expo.out", immediateRender: false }, 1.55);
+    [[260,1230],[330,1250],[400,1225],[470,1245],[540,1230],[610,1250]].forEach(([x, y], i) => {
+      tl.fromTo("#rite-dust-" + i, { opacity: 0.55, y: 0, scale: 0.6, svgOrigin: x + " " + y },
+        { opacity: 0, y: -60 - i * 8, x: (i - 2.5) * 18, scale: 3.2, duration: 1.0, ease: "power2.out", immediateRender: false }, 0.45 + i * 0.07);
     });
-    tl.fromTo("#r1", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.28, ease: "power3.out" }, 0.25);
-    tl.fromTo("#r2", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.28, ease: "power3.out" }, 0.85);
-    tl.fromTo("#r3", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.3, ease: "power3.out" }, 1.35);
-    
+    rise("#r1 .wd", 0.25, { y: 50, sc: 1.1, b: 14, s: 0.12 });
+    tl.fromTo("#r1", { x: 0 }, { keyframes: [{ x: -6, duration: .07 }, { x: 6, duration: .07 }, { x: -3, duration: .07 }, { x: 0, duration: .07 }], immediateRender: false }, 0.5);
+    rise("#r2 .wd", 0.85, { y: 30, b: 10, s: 0.12, d: 0.8 });
+    stamp("#rt-mark", 1.35, "#rt-txt");
+    tl.fromTo("#rt-txt", { y: 0 }, { y: -12, duration: 4, ease: "sine.inOut" }, 0);
     window.__timelines = window.__timelines || {};
     window.__timelines["rite"] = tl;
   </script>

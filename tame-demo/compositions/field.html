@@ -1,97 +1,242 @@
 <template>
   <style>
-    
     @font-face { font-family: Kanit; font-weight: 800; font-display: block; src: url("assets/fonts/kanit-thai-800-normal.woff2") format("woff2"); unicode-range: U+02D7, U+0303, U+0331, U+0E01-0E5B, U+200C-200D, U+25CC; }
     @font-face { font-family: Kanit; font-weight: 800; font-display: block; src: url("assets/fonts/kanit-latin-800-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+    @font-face { font-family: Kanit; font-weight: 600; font-display: block; src: url("assets/fonts/kanit-thai-600-normal.woff2") format("woff2"); unicode-range: U+02D7, U+0303, U+0331, U+0E01-0E5B, U+200C-200D, U+25CC; }
+    @font-face { font-family: Kanit; font-weight: 600; font-display: block; src: url("assets/fonts/kanit-latin-600-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
 
-    #root { position: absolute; inset: 0; overflow: hidden; background: #0c0908; font-family: Kanit, sans-serif; }
+    #root { position: absolute; inset: 0; overflow: hidden; background: #0b0807; font-family: Kanit, sans-serif; }
     .clip { position: absolute; inset: 0; }
-    svg.scene { position: absolute; inset: 0; width: 1080px; height: 1920px; }
+    .wrap, .world, .txt { position: absolute; inset: 0; }
+    .world { transform-origin: 50% 50%; }
+    svg.scene { position: absolute; inset: 0; width: 1080px; height: 1920px; overflow: visible; }
     .stack { position: absolute; left: 80px; width: 920px; text-align: center; }
-    .w { display: block; color: #f4efe6; font-weight: 800; line-height: 1.25; letter-spacing: 0; opacity: 0; }
-    .mark { color: #f4efe6; background: #8e1d24; border-radius: 10px; display: inline-block; line-height: 1.2; padding: 0 18px 10px; }
+    /* lines are visible containers; words (.wd) are revealed one Thai word at a time, never per character */
+    .w { display: block; color: #f4efe6; font-weight: 800; line-height: 1.3; letter-spacing: 0;
+         text-shadow: 0 6px 28px rgba(0,0,0,.75), 0 2px 6px rgba(0,0,0,.55); }
+    .wd { display: inline-block; opacity: 0; }
+    .mark { position: relative; display: inline-block; line-height: 1.2; padding: 4px 26px 14px; }
+    .mbg { position: absolute; inset: 0; border-radius: 12px; transform-origin: 0% 50%;
+           background: linear-gradient(100deg, #5a0e14 0%, #9e2129 45%, #c8343b 62%, #7a151c 100%);
+           box-shadow: 0 16px 48px rgba(170, 32, 40, .45), inset 0 1px 0 rgba(255, 214, 196, .28), inset 0 -3px 0 rgba(40, 0, 0, .35); }
+    .mark .wd, .mark .mtx { position: relative; text-shadow: 0 2px 12px rgba(50, 0, 0, .55); }
+    .stampm { opacity: 0; }
+    .rule { position: absolute; height: 3px; border-radius: 2px; transform-origin: 50% 50%; transform: scaleX(0);
+            background: linear-gradient(90deg, rgba(200,40,47,0), #e0464c 30%, #f4efe6 50%, #e0464c 70%, rgba(200,40,47,0)); }
 
   </style>
   <div data-hf-id="hf-y3d4" id="root" data-composition-id="field" data-width="1080" data-height="1920" data-layout-allow-overflow data-layout-allow-overlap>
     <div data-hf-id="hf-fac9" id="field-scene" class="clip" data-start="0" data-duration="4" data-track-index="1" data-hold>
-      
-      <svg data-hf-id="hf-0t6v" class="scene" viewBox="0 0 1080 1920">
-        <defs>
-          <linearGradient id="field-sky" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="#0c0908"/>
-            <stop offset="1" stop-color="#3a1214"/>
-          </linearGradient>
-          <mask id="field-mask" maskUnits="userSpaceOnUse" x="-180" y="0" width="1440" height="1920">
-            <path id="field-draw" d="M-60 1040 C80 980 220 1000 360 990"
-                  fill="none" stroke="#fff" stroke-width="14" stroke-linecap="round"
-                  stroke-dasharray="700" stroke-dashoffset="700"/>
-          </mask>
-        </defs>
-        <g data-hf-id="hf-j1zj" id="field-cam">
-          <rect data-hf-id="hf-j1dq" x="-180" y="0" width="1440" height="1920" fill="url(#field-sky)"/>
-          <g id="field-far">
-            <path d="M-180 900 L-180 800 C-60 740 60 790 160 760 C300 710 420 780 540 750 C700 700 820 770 960 740 C1100 710 1180 760 1260 740 L1260 900 Z" fill="#4a2826"/>
-          </g>
-          <path data-hf-id="hf-hrno" d="M-180 900 C200 820 900 800 1260 900 L1260 1920 L-180 1920 Z" fill="#3d291c"/>
-          <path data-hf-id="hf-b9tr" d="M-180 1120 C240 1040 980 1060 1260 1140 L1260 1920 L-180 1920 Z" fill="#6b442c"/>
-          <g data-hf-id="hf-xl0d" transform="translate(-20 820) scale(1.4 1.4)"><g data-hf-id="hf-qnzn" id="field-bull-a">
-      <path data-hf-id="hf-jjii" d="M40 156 C26 120 54 90 104 82 C142 50 198 46 230 74 C254 58 282 76 292 108 C308 128 300 164 258 176 C190 200 86 196 52 168 C34 160 30 164 40 156 Z" fill="#1a100c"/>
-      <path data-hf-id="hf-3lci" d="M268 96 L304 18 L318 92 Z" fill="#f4efe6"/>
-      <path data-hf-id="hf-7zmb" d="M220 88 L196 12 L246 84 Z" fill="#f4efe6"/>
-      <path data-hf-id="hf-v5sq" d="M72 164 L62 236 L88 236 L94 166 Z" fill="#1a100c"/>
-      <path data-hf-id="hf-f866" d="M116 168 L112 240 L138 240 L138 168 Z" fill="#1a100c"/>
-      <path data-hf-id="hf-134b" d="M176 166 L180 240 L206 240 L198 164 Z" fill="#1a100c"/>
-      <path data-hf-id="hf-d6r4" d="M224 158 L240 234 L266 234 L246 152 Z" fill="#1a100c"/>
-      <path data-hf-id="hf-g5io" d="M46 136 C10 116 6 156 36 150" fill="none" stroke="#1a100c" stroke-width="8" stroke-linecap="round"/>
-      <circle id="field-eye-a" cx="282" cy="110" r="4" fill="#c8282f"/>
-    </g></g>
-          <g data-hf-id="hf-hp6a" transform="translate(1120 830) scale(-1.35 1.35)"><g data-hf-id="hf-i03s" id="field-bull-b">
-      <path data-hf-id="hf-p3ym" d="M40 156 C26 120 54 90 104 82 C142 50 198 46 230 74 C254 58 282 76 292 108 C308 128 300 164 258 176 C190 200 86 196 52 168 C34 160 30 164 40 156 Z" fill="#241512"/>
-      <path data-hf-id="hf-5252" d="M268 96 L304 18 L318 92 Z" fill="#f4efe6"/>
-      <path data-hf-id="hf-i44z" d="M220 88 L196 12 L246 84 Z" fill="#f4efe6"/>
-      <path data-hf-id="hf-4kse" d="M72 164 L62 236 L88 236 L94 166 Z" fill="#241512"/>
-      <path data-hf-id="hf-srgi" d="M116 168 L112 240 L138 240 L138 168 Z" fill="#241512"/>
-      <path data-hf-id="hf-1obv" d="M176 166 L180 240 L206 240 L198 164 Z" fill="#241512"/>
-      <path data-hf-id="hf-ude0" d="M224 158 L240 234 L266 234 L246 152 Z" fill="#241512"/>
-      <path data-hf-id="hf-vpvs" d="M46 136 C10 116 6 156 36 150" fill="none" stroke="#241512" stroke-width="8" stroke-linecap="round"/>
-      <circle id="field-eye-b" cx="282" cy="110" r="4" fill="#c8282f"/>
-    </g></g>
-          <g mask="url(#field-mask)">
-            <path id="field-rope" d="M-60 1040 C80 980 220 1000 360 990" fill="none" stroke="#c8282f" stroke-width="9" stroke-linecap="round"/>
-            <path id="field-braid" d="M-60 1040 C80 980 220 1000 360 990" fill="none" stroke="#1a0808" stroke-width="4" stroke-dasharray="5 6" opacity=".9"/>
-          </g>
-        </g>
-        <defs>
-          <radialGradient id="field-vig" cx="50%" cy="45%" r="75%">
-            <stop offset="55%" stop-color="#000" stop-opacity="0"/>
-            <stop offset="100%" stop-color="#000" stop-opacity=".65"/>
-          </radialGradient>
-          <filter id="field-grain" x="0" y="0" width="100%" height="100%">
-            <feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" stitchTiles="stitch"/>
-            <feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .5 0"/>
-          </filter>
-        </defs>
-        <rect width="1080" height="1920" fill="url(#field-vig)"/>
-        <rect width="1080" height="1920" filter="url(#field-grain)" opacity=".07"/>
-      </svg>
-      <div data-hf-id="hf-sny1" class="stack" style="top:240px">
-        <span data-hf-id="hf-rqn1" class="w" id="f1" style="font-size:64px">หมู่บ้านวัวชน</span>
-        <span data-hf-id="hf-z767" class="w" id="f2" style="font-size:72px;margin-top:8px"><span data-hf-id="hf-4qga" class="mark">สุโขทัย</span></span>
+      <div class="wrap" id="fd-wrap">
+        <div class="world" id="fd-world">
+          <svg data-hf-id="hf-0t6v" class="scene" viewBox="0 0 1080 1920">
+            <defs>
+              <linearGradient id="field-sky" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#0c0708"/><stop offset=".28" stop-color="#2a0f10"/>
+                <stop offset=".40" stop-color="#6e2a1c"/><stop offset=".47" stop-color="#c25a2c"/><stop offset=".52" stop-color="#e88a44"/>
+              </linearGradient>
+              <radialGradient id="fd-sun-g" cx="50%" cy="50%" r="50%">
+                <stop offset="0" stop-color="#fff1c4"/><stop offset=".55" stop-color="#ffc06a"/><stop offset="1" stop-color="#f08a3e"/>
+              </radialGradient>
+              <radialGradient id="fd-glow-g" cx="50%" cy="50%" r="50%">
+                <stop offset="0" stop-color="#ffb060" stop-opacity=".75"/><stop offset=".4" stop-color="#e2602c" stop-opacity=".32"/><stop offset="1" stop-color="#8e1d24" stop-opacity="0"/>
+              </radialGradient>
+              <linearGradient id="fd-haze" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#f0a060" stop-opacity="0"/><stop offset=".5" stop-color="#e48a52" stop-opacity=".45"/><stop offset="1" stop-color="#b85a34" stop-opacity="0"/>
+              </linearGradient>
+              <linearGradient id="fd-g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a2c1c"/><stop offset="1" stop-color="#2a180f"/></linearGradient>
+              <linearGradient id="fd-g2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7a4c30"/><stop offset=".5" stop-color="#5a3721"/><stop offset="1" stop-color="#2c1a10"/></linearGradient>
+              <filter id="fd-soft" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="14"/></filter>
+              <filter id="fd-fgblur" x="-10%" y="-50%" width="120%" height="200%"><feGaussianBlur stdDeviation="5"/></filter>
+              <mask id="field-mask" maskUnits="userSpaceOnUse" x="-180" y="0" width="1440" height="1920">
+                <path id="field-draw" d="M150 1080 C330 1000 560 1060 800 1060" fill="none" stroke="#fff" stroke-width="16" stroke-linecap="round" stroke-dasharray="700" stroke-dashoffset="700"/>
+              </mask>
+            </defs>
+            <g data-hf-id="hf-j1zj" id="field-cam">
+              <rect data-hf-id="hf-j1dq" x="-260" y="-100" width="1600" height="2020" fill="url(#field-sky)"/>
+              <g id="fd-sun">
+                <circle cx="700" cy="800" r="420" fill="url(#fd-glow-g)"/>
+                <circle id="fd-sun-disk" cx="700" cy="800" r="118" fill="url(#fd-sun-g)"/>
+              </g>
+              <g id="field-far">
+                <path d="M-260 920 L-260 790 C-120 730 40 800 160 760 C300 700 420 790 540 750 C700 690 820 780 960 735 C1100 700 1200 770 1340 735 L1340 920 Z" fill="#6a2c22" opacity=".85"/>
+                <path d="M-260 940 L-260 845 C-80 800 120 860 300 825 C470 795 600 860 760 830 C900 805 1060 860 1340 820 L1340 940 Z" fill="#46201a"/>
+              </g>
+              <g id="fd-mid" fill="#22110e"></g>
+              <rect x="-260" y="800" width="1600" height="200" fill="url(#fd-haze)"/>
+              <g id="fd-crowd" fill="#150a08"></g>
+              <path data-hf-id="hf-hrno" d="M-260 960 C200 900 900 890 1340 960 L1340 1920 L-260 1920 Z" fill="url(#fd-g1)"/>
+              <path data-hf-id="hf-b9tr" d="M-260 1150 C240 1070 980 1090 1340 1170 L1340 1920 L-260 1920 Z" fill="url(#fd-g2)"/>
+              <ellipse cx="540" cy="1180" rx="520" ry="70" fill="#f0a060" opacity=".10" filter="url(#fd-soft)"/>
+              <linearGradient id="fd-shadow" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0a0504" stop-opacity=".55"/><stop offset="1" stop-color="#0a0504" stop-opacity="0"/></linearGradient>
+              <g id="fd-ground"></g>
+              <g id="fd-near">
+                <ellipse cx="215" cy="1192" rx="170" ry="16" fill="#0a0504" opacity=".55"/>
+                <ellipse cx="880" cy="1192" rx="165" ry="16" fill="#0a0504" opacity=".55"/>
+                <g id="fd-dust-a" fill="#d9a77a"></g>
+                <g data-hf-id="hf-xl0d" transform="translate(-20 860) scale(1.4 1.4)"><g id="fd-bull-a-anim"><g id="field-bull-a">
+      <path d="M40 156 C26 120 54 90 104 82 C142 50 198 46 230 74 C254 58 282 76 292 108 C308 128 300 164 258 176 C190 200 86 196 52 168 C34 160 30 164 40 156 Z" fill="#1a100c"/>
+      <path d="M104 84 C142 52 198 48 230 76 C254 60 282 78 292 110" fill="none" stroke="#ffb070" stroke-width="3.5" stroke-linecap="round" opacity=".6"/>
+      <path d="M268 96 L304 18 L318 92 Z" fill="#efe2cb"/>
+      <path d="M220 88 L196 12 L246 84 Z" fill="#efe2cb"/>
+      <path d="M268 96 L304 18 L296 94 Z" fill="#b9a68c" opacity=".55"/>
+      <path d="M72 164 L62 236 L88 236 L94 166 Z" fill="#1a100c"/>
+      <path d="M116 168 L112 240 L138 240 L138 168 Z" fill="#1a100c"/>
+      <path d="M176 166 L180 240 L206 240 L198 164 Z" fill="#1a100c"/>
+      <path d="M224 158 L240 234 L266 234 L246 152 Z" fill="#1a100c"/>
+      <path d="M46 136 C10 116 6 156 36 150" fill="none" stroke="#1a100c" stroke-width="8" stroke-linecap="round"/>
+      <circle cx="282" cy="110" r="7" fill="#ff3b3b" opacity=".2" class="eyeglow"/>
+      <circle id="field-bull-a-eye" cx="282" cy="110" r="4.5" fill="#ff4a42"/>
+    </g></g></g>
+                <g data-hf-id="hf-hp6a" transform="translate(1100 870) scale(-1.35 1.35)"><g id="fd-bull-b-anim"><g id="field-bull-b">
+      <path d="M40 156 C26 120 54 90 104 82 C142 50 198 46 230 74 C254 58 282 76 292 108 C308 128 300 164 258 176 C190 200 86 196 52 168 C34 160 30 164 40 156 Z" fill="#241512"/>
+      <path d="M104 84 C142 52 198 48 230 76 C254 60 282 78 292 110" fill="none" stroke="#ffb070" stroke-width="3.5" stroke-linecap="round" opacity=".6"/>
+      <path d="M268 96 L304 18 L318 92 Z" fill="#efe2cb"/>
+      <path d="M220 88 L196 12 L246 84 Z" fill="#efe2cb"/>
+      <path d="M268 96 L304 18 L296 94 Z" fill="#b9a68c" opacity=".55"/>
+      <path d="M72 164 L62 236 L88 236 L94 166 Z" fill="#241512"/>
+      <path d="M116 168 L112 240 L138 240 L138 168 Z" fill="#241512"/>
+      <path d="M176 166 L180 240 L206 240 L198 164 Z" fill="#241512"/>
+      <path d="M224 158 L240 234 L266 234 L246 152 Z" fill="#241512"/>
+      <path d="M46 136 C10 116 6 156 36 150" fill="none" stroke="#241512" stroke-width="8" stroke-linecap="round"/>
+      <circle cx="282" cy="110" r="7" fill="#ff3b3b" opacity=".2" class="eyeglow"/>
+      <circle id="field-bull-b-eye" cx="282" cy="110" r="4.5" fill="#ff4a42"/>
+    </g></g></g>
+                <g mask="url(#field-mask)">
+                  <path id="field-rope" d="M150 1080 C330 1000 560 1060 800 1060" fill="none" stroke="#c8282f" stroke-width="9" stroke-linecap="round"/>
+                  <path id="field-braid" d="M150 1080 C330 1000 560 1060 800 1060" fill="none" stroke="#1a0808" stroke-width="4" stroke-dasharray="5 6" opacity=".9"/>
+                </g>
+              </g>
+              <g id="fd-fg" fill="#0d0705" filter="url(#fd-fgblur)"></g>
+            </g>
+          </svg>
+        </div>
+        <div class="txt" id="fd-txt">
+          <div data-hf-id="hf-sny1" class="stack" style="top:240px">
+            <span data-hf-id="hf-rqn1" class="w" id="f1" style="font-size:64px"><span class="wd">หมู่บ้าน</span><span class="wd">วัวชน</span></span>
+            <span data-hf-id="hf-z767" class="w" id="f2" style="font-size:72px;margin-top:8px"><span data-hf-id="hf-4qga" class="mark" id="fd-mark"><i class="mbg"></i><span class="wd">สุโขทัย</span></span></span>
+          </div>
+          <div class="rule" id="fd-rule" style="left:390px;width:300px;top:478px"></div>
+        </div>
       </div>
-    
     </div>
   </div>
   <script>
     const tl = gsap.timeline({ paused: true });
-    
-    tl.fromTo("#field-cam", { x: 36 }, { x: -48, duration: 3.6, ease: "power1.inOut" }, 0.2);
-    tl.fromTo("#field-far", { x: -20 }, { x: 30, duration: 3.6, ease: "power1.inOut" }, 0.2);
-    tl.fromTo("#field-draw", { strokeDashoffset: 700 }, { strokeDashoffset: 0, duration: 1.3, ease: "power1.inOut" }, 0.45);
-    tl.fromTo("#f1", { opacity: 1, clipPath: "inset(0 100% 0 0)" },
-                     { opacity: 1, clipPath: "inset(0 0% 0 0)", duration: 0.5, ease: "power3.out" }, 0.35);
-    tl.fromTo("#f2", { opacity: 1, clipPath: "inset(0 100% 0 0)" },
-                     { opacity: 1, clipPath: "inset(0 0% 0 0)", duration: 0.5, ease: "power3.out" }, 0.85);
-    
+    const SVGNS = "http://www.w3.org/2000/svg";
+    // deterministic PRNG so every render is identical
+    const rng = (s) => () => { s |= 0; s = s + 0x6D2B79F5 | 0; let t = Math.imul(s ^ s >>> 15, 1 | s); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+    const mk = (tag, attrs, parent) => { const e = document.createElementNS(SVGNS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; };
+    const $ = (s) => document.querySelector(s);
+    const $$ = (s) => Array.from(document.querySelectorAll(s));
+    // word-level reveal (whole Thai words, so vowels / tone marks never get separated)
+    const rise = (targets, at, o = {}) => tl.fromTo(targets,
+      { opacity: 0, y: o.y ?? 44, scale: o.sc ?? 1, filter: "blur(" + (o.b ?? 12) + "px)" },
+      { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", duration: o.d ?? 0.75, ease: o.e ?? "expo.out", stagger: o.s ?? 0.1 }, at);
+    const wipeMark = (mark, at) => {
+      tl.fromTo(mark.querySelector(".mbg"), { scaleX: 0 }, { scaleX: 1, duration: 0.55, ease: "expo.inOut" }, at);
+      rise(mark.querySelectorAll(".wd"), at + 0.2, { y: 26, b: 8, d: 0.6, s: 0.08 });
+    };
+    const stamp = (mark, at, shakeEl) => {
+      tl.fromTo(mark, { opacity: 0, scale: 1.7, filter: "blur(16px)" },
+                      { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.in" }, at);
+      tl.fromTo(mark, { scale: 1 }, { scale: 1.035, duration: 0.09, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, at + 0.2);
+      if (shakeEl) shake(shakeEl, at + 0.2, 16);
+    };
+    const shake = (el, at, amp = 12) => tl.to(el, { keyframes: [
+      { x: -amp, y: amp * 0.4, duration: 0.04 }, { x: amp * 0.85, y: -amp * 0.35, duration: 0.04 },
+      { x: -amp * 0.5, y: amp * 0.2, duration: 0.05 }, { x: amp * 0.25, y: 0, duration: 0.05 }, { x: 0, y: 0, duration: 0.07 }
+    ], ease: "none" }, at);
+    // soft scene in/out: no hard cuts between scenes
+    const sceneIO = (wrap, dur, o = {}) => {
+      if (o.in !== false) tl.fromTo(wrap, { opacity: 0, scale: 1.06, filter: "blur(14px)" },
+        { opacity: 1, scale: 1, filter: "blur(0px)", duration: o.inDur ?? 0.5, ease: "power3.out" }, 0);
+      if (o.out !== false) tl.to(wrap, { opacity: 0, scale: 1.04, filter: "blur(10px)", duration: o.outDur ?? 0.34, ease: "power2.in" }, dur - (o.outDur ?? 0.34));
+    };
+    // floating particles (dust motes / embers)
+    const particles = (g, n, seed, box, o = {}) => {
+      const r = rng(seed);
+      for (let i = 0; i < n; i++) {
+        const x = box[0] + r() * box[2], y = box[1] + r() * box[3];
+        const c = mk("circle", { cx: x, cy: y, r: (o.rmin ?? 1.5) + r() * ((o.rmax ?? 4) - (o.rmin ?? 1.5)), fill: o.fill ?? "#f4c9a8", opacity: 0 }, g);
+        const a = (o.amin ?? 0.15) + r() * ((o.amax ?? 0.6) - (o.amin ?? 0.15));
+        const d = o.dur;
+        tl.fromTo(c, { opacity: 0, x: 0, y: 0 }, { keyframes: [
+            { opacity: a, duration: d * 0.25 }, { opacity: a * (0.4 + r() * 0.6), duration: d * 0.5 }, { opacity: 0, duration: d * 0.25 } ],
+          ease: "none" }, 0);
+        tl.fromTo(c, { x: 0, y: 0 }, { x: (r() - 0.5) * (o.dx ?? 60), y: -((o.dymin ?? 30) + r() * ((o.dymax ?? 120) - (o.dymin ?? 30))), duration: d, ease: "sine.inOut", immediateRender: false }, 0);
+      }
+    };
+
+    // village silhouettes: stilt houses + sugar palms on the far ridge
+    (() => {
+      const mid = $("#fd-mid"), r = rng(5);
+      const house = (x, y, s) => {
+        const g = mk("g", { transform: `translate(${x} ${y}) scale(${s})` }, mid);
+        mk("path", { d: "M-62 -40 L0 -112 L62 -40 L50 -40 L50 0 L-50 0 L-50 -40 Z" }, g);
+        mk("path", { d: "M-74 -36 L-58 -52 L-46 -40 Z M74 -36 L58 -52 L46 -40 Z" }, g);
+        mk("path", { d: "M0 -112 L-6 -124 L6 -124 Z" }, g);
+        for (const px of [-44, -14, 16, 44]) mk("rect", { x: px - 3, y: 0, width: 6, height: 40 }, g);
+      };
+      const palm = (x, y, s) => {
+        const g = mk("g", { transform: `translate(${x} ${y}) scale(${s})` }, mid);
+        mk("path", { d: "M-4 0 C-2 -80 6 -160 2 -230 L8 -230 C12 -160 6 -80 5 0 Z" }, g);
+        for (let i = 0; i < 11; i++) {
+          const a = -Math.PI * (0.05 + 0.9 * i / 10), len = 56 + r() * 18;
+          const ex = 5 + Math.cos(a) * len, ey = -230 + Math.sin(a) * len * 0.75 + 10;
+          mk("path", { d: `M5 -230 Q${5 + Math.cos(a) * len * 0.5} ${-238 + Math.sin(a) * len * 0.5} ${ex} ${ey}`, fill: "none", stroke: "#22110e", "stroke-width": 7, "stroke-linecap": "round" }, g);
+        }
+      };
+      [[-150, 905, .9], [40, 912, .75], [250, 900, .65], [840, 900, .7], [1010, 908, .85], [1230, 905, .8]].forEach(a => house(...a));
+      [[140, 915, .9], [370, 900, .7], [560, 905, .55], [930, 905, 1.0], [1120, 915, .8], [-60, 915, .8]].forEach(a => palm(...a));
+      mk("rect", { x: -260, y: 896, width: 1600, height: 60 }, mid);
+      // arena: crowd heads behind a wooden fence
+      const crowd = $("#fd-crowd"), rc = rng(9);
+      for (let x = -240; x < 1340; x += 26 + rc() * 14) {
+        const h = 34 + rc() * 22;
+        mk("circle", { cx: x, cy: 962 - h, r: 11 + rc() * 3 }, crowd);
+        mk("rect", { x: x - 16, y: 962 - h + 8, width: 32, height: h, rx: 12 }, crowd);
+      }
+      for (let x = -240; x < 1340; x += 70) mk("rect", { x, y: 930, width: 10, height: 70, fill: "#1f120c" }, crowd);
+      mk("rect", { x: -260, y: 944, width: 1600, height: 7, fill: "#2a180f" }, crowd);
+      mk("rect", { x: -260, y: 972, width: 1600, height: 7, fill: "#2a180f" }, crowd);
+      // foreground grass tufts (closest layer, blurred)
+      const fg = $("#fd-fg"), rf = rng(21);
+      for (let x = -260; x < 1360; x += 30 + rf() * 40) {
+        const edge = Math.min(Math.abs(x - 540) / 540, 1.4); const h = 50 + rf() * 90 + edge * edge * 160, w = 10 + rf() * 10;
+        mk("path", { d: `M${x} 1930 Q${x + w * 0.3} ${1930 - h * 0.6} ${x + w * (rf() > .5 ? 1.6 : -1.2)} ${1930 - h} Q${x + w * 0.6} ${1930 - h * 0.5} ${x + w} 1930 Z` }, fg);
+      }
+    })();
+    (() => { const g = $("#fd-ground"), r = rng(77);
+      for (let i = 0; i < 70; i++) { const y = 1230 + r() * 640, s = (y - 1100) / 800;
+        if (r() > .45) mk("ellipse", { cx: -200 + r() * 1480, cy: y, rx: 14 * s + 6, ry: 4 * s + 2, fill: "#2e1c11", opacity: .5 }, g);
+        else { const x = -200 + r() * 1480, a = (r() - .5) * 1.2, l = 20 + 30 * s; mk("path", { d: `M${x} ${y} l${Math.cos(a) * l} ${Math.sin(a) * l * .3}`, stroke: "#b58552", "stroke-width": 2 + 2 * s, "stroke-linecap": "round", opacity: .28 }, g); } } })();
+    particles($("#fd-dust-a"), 28, 31, [60, 1060, 960, 140], { dur: 4, rmin: 6, rmax: 18, amin: .05, amax: .18, dx: 120, dymin: 20, dymax: 90, fill: "#d9a77a" });
+
+    sceneIO("#fd-wrap", 4);
+    // parallax: each depth layer drifts at its own speed while the camera pushes in
+    tl.fromTo("#fd-world", { scale: 1.0 }, { scale: 1.07, duration: 4, ease: "sine.inOut" }, 0);
+    tl.fromTo("#fd-sun", { x: 0, y: 0 }, { x: -8, y: 26, duration: 4, ease: "sine.inOut" }, 0);
+    tl.fromTo("#field-far", { x: -20 }, { x: 16, duration: 4, ease: "sine.inOut" }, 0);
+    tl.fromTo("#fd-mid", { x: 30 }, { x: -12, duration: 4, ease: "sine.inOut" }, 0);
+    tl.fromTo("#fd-crowd", { x: 50 }, { x: -30, duration: 4, ease: "sine.inOut" }, 0);
+    tl.fromTo("#fd-ground", { x: 70 }, { x: -70, duration: 4, ease: "sine.inOut" }, 0);
+    tl.fromTo("#fd-near", { x: 56 }, { x: -56, duration: 4, ease: "sine.inOut" }, 0);
+    tl.fromTo("#fd-fg", { x: 160 }, { x: -150, duration: 4, ease: "sine.inOut" }, 0);
+    tl.fromTo("#fd-sun-disk", { scale: 1, svgOrigin: "700 800" }, { scale: 1.06, duration: 2, yoyo: true, repeat: 1, ease: "sine.inOut" }, 0);
+    // bulls: breathing, a stamp-and-lunge face-off, eyes flare
+    tl.fromTo("#fd-bull-a-anim", { scaleY: 1, transformOrigin: "50% 100%" }, { scaleY: 1.02, duration: 0.5, yoyo: true, repeat: 7, ease: "sine.inOut" }, 0);
+    tl.fromTo("#fd-bull-b-anim", { scaleY: 1, transformOrigin: "50% 100%" }, { scaleY: 1.025, duration: 0.45, yoyo: true, repeat: 8, ease: "sine.inOut" }, 0);
+    tl.to("#fd-bull-a-anim", { keyframes: [{ x: -10, rotation: -2, duration: 0.25, ease: "power2.out" }, { x: 26, rotation: 3, duration: 0.18, ease: "power3.in" }, { x: 0, rotation: 0, duration: 0.6, ease: "power2.out" }], transformOrigin: "50% 100%" }, 1.6);
+    tl.to("#fd-bull-b-anim", { keyframes: [{ x: -8, rotation: -2, duration: 0.25, ease: "power2.out" }, { x: 22, rotation: 3, duration: 0.18, ease: "power3.in" }, { x: 0, rotation: 0, duration: 0.6, ease: "power2.out" }], transformOrigin: "50% 100%" }, 1.75);
+    tl.fromTo(".eyeglow", { opacity: 0.15, scale: 1, transformOrigin: "50% 50%" }, { opacity: 0.55, scale: 1.4, duration: 0.3, yoyo: true, repeat: 3, ease: "sine.inOut" }, 1.9);
+    tl.fromTo("#field-draw", { strokeDashoffset: 700 }, { strokeDashoffset: 0, duration: 1.4, ease: "expo.inOut" }, 0.45);
+    tl.fromTo("#field-rope", { strokeWidth: 9 }, { strokeWidth: 12, duration: 0.1, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, 2.05);
+    // titles
+    rise("#f1 .wd", 0.35, { y: 40, b: 12, s: 0.14 });
+    wipeMark($("#fd-mark"), 0.85);
+    tl.fromTo("#fd-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.8, ease: "expo.out" }, 1.25);
+    tl.fromTo("#fd-txt", { y: 0 }, { y: -14, duration: 4, ease: "sine.inOut" }, 0);
     window.__timelines = window.__timelines || {};
     window.__timelines["field"] = tl;
   </script>

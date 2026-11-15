@@ -1,138 +1,410 @@
 <template>
   <style>
-    
     @font-face { font-family: Kanit; font-weight: 800; font-display: block; src: url("assets/fonts/kanit-thai-800-normal.woff2") format("woff2"); unicode-range: U+02D7, U+0303, U+0331, U+0E01-0E5B, U+200C-200D, U+25CC; }
     @font-face { font-family: Kanit; font-weight: 800; font-display: block; src: url("assets/fonts/kanit-latin-800-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+    @font-face { font-family: Kanit; font-weight: 600; font-display: block; src: url("assets/fonts/kanit-thai-600-normal.woff2") format("woff2"); unicode-range: U+02D7, U+0303, U+0331, U+0E01-0E5B, U+200C-200D, U+25CC; }
+    @font-face { font-family: Kanit; font-weight: 600; font-display: block; src: url("assets/fonts/kanit-latin-600-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
 
-    #root { position: absolute; inset: 0; overflow: hidden; background: #0c0908; font-family: Kanit, sans-serif; }
+    #root { position: absolute; inset: 0; overflow: hidden; background: #0b0807; font-family: Kanit, sans-serif; }
     .clip { position: absolute; inset: 0; }
-    svg.scene { position: absolute; inset: 0; width: 1080px; height: 1920px; }
+    .wrap, .world, .txt { position: absolute; inset: 0; }
+    .world { transform-origin: 50% 50%; }
+    svg.scene { position: absolute; inset: 0; width: 1080px; height: 1920px; overflow: visible; }
     .stack { position: absolute; left: 80px; width: 920px; text-align: center; }
-    .w { display: block; color: #f4efe6; font-weight: 800; line-height: 1.25; letter-spacing: 0; opacity: 0; }
-    .mark { color: #f4efe6; background: #8e1d24; border-radius: 10px; display: inline-block; line-height: 1.2; padding: 0 18px 10px; }
+    /* lines are visible containers; words (.wd) are revealed one Thai word at a time, never per character */
+    .w { display: block; color: #f4efe6; font-weight: 800; line-height: 1.3; letter-spacing: 0;
+         text-shadow: 0 6px 28px rgba(0,0,0,.75), 0 2px 6px rgba(0,0,0,.55); }
+    .wd { display: inline-block; opacity: 0; }
+    .mark { position: relative; display: inline-block; line-height: 1.2; padding: 4px 26px 14px; }
+    .mbg { position: absolute; inset: 0; border-radius: 12px; transform-origin: 0% 50%;
+           background: linear-gradient(100deg, #5a0e14 0%, #9e2129 45%, #c8343b 62%, #7a151c 100%);
+           box-shadow: 0 16px 48px rgba(170, 32, 40, .45), inset 0 1px 0 rgba(255, 214, 196, .28), inset 0 -3px 0 rgba(40, 0, 0, .35); }
+    .mark .wd, .mark .mtx { position: relative; text-shadow: 0 2px 12px rgba(50, 0, 0, .55); }
+    .stampm { opacity: 0; }
+    .rule { position: absolute; height: 3px; border-radius: 2px; transform-origin: 50% 50%; transform: scaleX(0);
+            background: linear-gradient(90deg, rgba(200,40,47,0), #e0464c 30%, #f4efe6 50%, #e0464c 70%, rgba(200,40,47,0)); }
 
   </style>
   <div data-hf-id="hf-x1mv" id="root" data-composition-id="turn" data-width="1080" data-height="1920" data-layout-allow-overflow data-layout-allow-overlap>
     <div data-hf-id="hf-ukgj" id="turn-scene" class="clip" data-start="0" data-duration="5" data-track-index="1" data-hold>
-      
-      <svg data-hf-id="hf-0t6v" class="scene" viewBox="0 0 1080 1920">
-        <defs>
-          <mask id="turn-mask-a" maskUnits="userSpaceOnUse" x="0" y="0" width="1080" height="1920">
-            <path id="turn-draw-a" d="M520 980 C360 1040 220 1080 160 1120"
-                  fill="none" stroke="#fff" stroke-width="14" stroke-linecap="round"
-                  stroke-dasharray="520" stroke-dashoffset="520"/>
-          </mask>
-          <mask id="turn-mask-b" maskUnits="userSpaceOnUse" x="0" y="0" width="1080" height="1920">
-            <path id="turn-draw-b" d="M640 990 C780 1050 900 1100 980 1140"
-                  fill="none" stroke="#fff" stroke-width="14" stroke-linecap="round"
-                  stroke-dasharray="520" stroke-dashoffset="520"/>
-          </mask>
-        </defs>
-        <rect data-hf-id="hf-lg1h" width="1080" height="1920" fill="#0c0908"/>
-        <ellipse data-hf-id="hf-gwt7" cx="540" cy="640" rx="180" ry="150" fill="#8e1d24" opacity="0.22"/>
-        
-      <path data-hf-id="hf-gcpf" d="M0 1020 C260 930 820 930 1080 1020 L1080 1920 L0 1920 Z" fill="#3d291c"/>
-      <path data-hf-id="hf-bxa4" d="M0 1240 C300 1160 780 1180 1080 1260 L1080 1920 L0 1920 Z" fill="#6b442c"/>
-    
-        <g data-hf-id="hf-nd85" transform="translate(450 390) scale(1.15 1.15)"><g data-hf-id="hf-k67i" id="turn-shrine">
-      <ellipse data-hf-id="hf-koiq" cx="96" cy="70" rx="70" ry="28" fill="#8e1d24" opacity="0.35"/>
-      <rect data-hf-id="hf-5q98" x="84" y="132" width="24" height="150" rx="3" fill="#6b442c"/>
-      <path data-hf-id="hf-w3e3" d="M16 146 L96 36 L176 146 Z" fill="#8e1d24"/>
-      <path data-hf-id="hf-dd31" d="M40 146 L96 68 L152 146 Z" fill="#5c1218"/>
-      <path data-hf-id="hf-ss2f" d="M18 146 L6 214 L40 198 L32 146 Z" fill="#8e1d24"/>
-      <rect data-hf-id="hf-8jof" x="78" y="156" width="36" height="28" fill="#1a100c"/>
+      <div class="wrap" id="tn-wrap">
+        <div class="world" id="tn-world">
+          <svg data-hf-id="hf-0t6v" class="scene" viewBox="0 0 1080 1920">
+            <defs>
+              <linearGradient id="turn-khwan-skin" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fffaf1"/><stop offset=".55" stop-color="#efe5d6"/><stop offset="1" stop-color="#b9aa96"/></linearGradient>
+              <mask id="turn-mask-a" maskUnits="userSpaceOnUse" x="0" y="0" width="1080" height="1920">
+                <path id="turn-draw-a" d="M437 1008 C340 1090 210 1110 122 1088" fill="none" stroke="#fff" stroke-width="16" stroke-linecap="round" stroke-dasharray="520" stroke-dashoffset="520"/>
+              </mask>
+              <mask id="turn-mask-b" maskUnits="userSpaceOnUse" x="0" y="0" width="1080" height="1920">
+                <path id="turn-draw-b" d="M633 1008 C730 1090 840 1120 920 1103" fill="none" stroke="#fff" stroke-width="16" stroke-linecap="round" stroke-dasharray="520" stroke-dashoffset="520"/>
+              </mask>
+              <radialGradient id="tn-bg" gradientUnits="userSpaceOnUse" cx="540" cy="700" r="1100">
+                <stop offset="0" stop-color="#3a0d10"/><stop offset=".45" stop-color="#160809"/><stop offset="1" stop-color="#050303"/>
+              </radialGradient>
+              <radialGradient id="tn-pulse-g" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ff4a42" stop-opacity=".6"/><stop offset=".5" stop-color="#c8282f" stop-opacity=".22"/><stop offset="1" stop-color="#8e1d24" stop-opacity="0"/></radialGradient>
+              <linearGradient id="tn-g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#34201a"/><stop offset="1" stop-color="#140c08"/></linearGradient>
+              <linearGradient id="tn-g2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4e2f1d"/><stop offset="1" stop-color="#170d08"/></linearGradient>
+              <filter id="tn-blur" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="16"/></filter>
+              <filter id="tn-glow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="5"/></filter>
+            </defs>
+            <rect data-hf-id="hf-lg1h" width="1080" height="1920" fill="url(#tn-bg)"/>
+            <ellipse id="tn-pulse" cx="540" cy="640" rx="520" ry="560" fill="url(#tn-pulse-g)"/>
+            <g id="tn-rays" opacity=".0"></g>
+            <path data-hf-id="hf-gcpf" d="M-40 1020 C260 930 820 930 1120 1020 L1120 1960 L-40 1960 Z" fill="url(#tn-g1)"/>
+            <path data-hf-id="hf-bxa4" d="M-40 1240 C300 1160 780 1180 1120 1260 L1120 1960 L-40 1960 Z" fill="url(#tn-g2)"/>
+            <g id="tn-cracks" fill="none" stroke="#ff4a3a" stroke-linecap="round"></g>
+            <circle id="tn-shrine-halo" cx="560" cy="490" r="150" fill="#ff5a4a" opacity=".18" filter="url(#tn-blur)"/>
+            <g data-hf-id="hf-nd85" transform="translate(450 390) scale(1.15 1.15)"><g data-hf-id="hf-k67i" id="turn-shrine">
+              <ellipse data-hf-id="hf-koiq" cx="96" cy="70" rx="70" ry="28" fill="#c8282f" opacity="0.35"/>
+              <rect data-hf-id="hf-5q98" x="84" y="132" width="24" height="150" rx="3" fill="#6b442c"/>
+              <path data-hf-id="hf-w3e3" d="M16 146 L96 36 L176 146 Z" fill="#8e1d24"/>
+              <path d="M96 36 L176 146 L150 146 Z" fill="#5c1218" opacity=".7"/>
+              <path data-hf-id="hf-dd31" d="M40 146 L96 68 L152 146 Z" fill="#5c1218"/>
+              <path data-hf-id="hf-ss2f" d="M18 146 L6 214 L40 198 L32 146 Z" fill="#8e1d24"/>
+              <path d="M96 36 L90 18 L96 4 L102 18 Z" fill="#d8a64a"/>
+              <rect data-hf-id="hf-8jof" x="78" y="156" width="36" height="28" fill="#1a100c"/>
+              <rect x="84" y="162" width="24" height="16" fill="#ff7a5a" opacity=".7"/>
+            </g></g>
+            <g data-hf-id="hf-ihbp" transform="translate(400 560) scale(1.35 1.35)"><g id="tn-khwan-anim"><g id="turn-khwan">
+<!-- char:turn-khwan:start -->
+<g id="tnk-root" class="fp-person fp-female fp-front" data-fp-id="tnk" data-gender="female" data-view="front" data-blink="on">
+<ellipse class="fp-shadow" cx="100" cy="523" rx="74" ry="11" fill="#000" opacity=".5"/>
+<g id="tnk-legs" class="fp-legs">
+<rect x="72" y="372" width="26" height="136" rx="12" fill="#45364c"/>
+<rect x="102" y="372" width="26" height="136" rx="12" fill="#3a2837"/>
+<path d="M60 508 Q60 498 74 498 L96 498 Q100 498 100 504 L100 520 L62 520 Q58 520 60 508 Z" fill="#602e24"/>
+<path d="M140 508 Q140 498 126 498 L104 498 Q100 498 100 504 L100 520 L138 520 Q142 520 140 508 Z" fill="#50241d"/>
+</g>
+<g id="tnk-armL" class="fp-arm fp-arm-l" data-pivot="56 238">
+<path d="M56 238 L27.6 325.5" stroke="#e4a247" stroke-width="24" stroke-linecap="round" fill="none"/>
+<circle cx="27.6" cy="331.5" r="13.5" fill="#f5b693"/>
+<circle cx="30.6" cy="334.5" r="8" fill="#e09473" opacity=".45"/>
+</g>
+<g id="tnk-armR" class="fp-arm fp-arm-r" data-pivot="144 238">
+<path d="M144 238 L172.4 325.5" stroke="#b27b37" stroke-width="24" stroke-linecap="round" fill="none"/>
+<circle cx="172.4" cy="331.5" r="13.5" fill="#f5b693"/>
+<circle cx="175.4" cy="334.5" r="8" fill="#e09473" opacity=".45"/>
+</g>
+<rect class="fp-neck" x="88" y="200" width="24" height="34" rx="8" fill="#e09473"/>
+<clipPath id="tnk-torso"><rect x="46" y="222" width="108" height="170" rx="24"/></clipPath>
+<g class="fp-torso" clip-path="url(#tnk-torso)">
+<rect x="46" y="222" width="108" height="170" fill="#e4a247"/>
+<rect x="124" y="222" width="30" height="170" fill="#b27b37" opacity=".9"/>
+<path d="M100 236 L100 392" stroke="#9f6b30" stroke-width="2.5"/>
+<circle cx="100" cy="254" r="3.6" fill="#f8d9cd" opacity=".9"/>
+<circle cx="100" cy="284" r="3.6" fill="#f8d9cd" opacity=".9"/>
+<circle cx="100" cy="314" r="3.6" fill="#f8d9cd" opacity=".9"/>
+<circle cx="100" cy="344" r="3.6" fill="#f8d9cd" opacity=".9"/>
+<circle cx="100" cy="374" r="3.6" fill="#f8d9cd" opacity=".9"/>
+<rect x="60" y="222" width="14" height="110" rx="5" fill="#7d4029"/><rect x="126" y="222" width="14" height="110" rx="5" fill="#7d4029"/>
+<rect x="61" y="296" width="12" height="7" rx="2" fill="#cf9763"/><rect x="127" y="296" width="12" height="7" rx="2" fill="#cf9763"/>
+</g>
+<path d="M80 222 L100 248 L92 258 L72 232 Z" fill="#f8d9cd"/><path d="M120 222 L100 248 L108 258 L128 232 Z" fill="#f8d9cd"/>
+<path d="M86 222 L100 240 L114 222 Z" fill="#e09473"/>
+<g id="tnk-headGroup" class="fp-head">
+<circle cx="37" cy="156" r="10" fill="#e09473"/><circle cx="163" cy="156" r="10" fill="#e09473"/>
+<circle cx="100" cy="148" r="64" fill="#f5b693"/>
+<clipPath id="tnk-head"><circle cx="100" cy="148" r="64"/></clipPath>
+<circle cx="7.200000000000003" cy="154" r="64" fill="#e09473" opacity=".38" clip-path="url(#tnk-head)"/>
+<g class="fp-hair" data-hair="bob">
+<path d="M32 204 C24 126 50 80 100 80 C150 80 176 126 168 204 L150 206 C154 170 152 138 142 118 C122 136 86 140 58 116 C50 136 48 170 50 206 Z" fill="#361816"/>
+<path d="M58 116 C86 140 122 136 142 118 C130 100 116 96 100 96 C80 96 66 102 58 116 Z" fill="#361816"/>
+<path d="M60 96 Q96 78 134 92" stroke="#5a3d3b" stroke-width="5" fill="none" stroke-linecap="round" opacity=".8"/>
+<rect x="134" y="108" width="20" height="9" rx="4" fill="#cf2a2f" transform="rotate(-28 144 112)"/>
+</g>
+<g class="fp-face">
+<ellipse cx="66" cy="178" rx="11" ry="6.5" fill="#f28584" opacity=".6"/><ellipse cx="134" cy="178" rx="11" ry="6.5" fill="#f28584" opacity=".6"/>
+<g id="tnk-eyes" class="fp-eyes" data-blink="on"><circle cx="78" cy="160" r="6.5" fill="#2a1b17"/><circle cx="122" cy="160" r="6.5" fill="#2a1b17"/><circle cx="80.2" cy="157.6" r="2.1" fill="#fff"/><circle cx="124.2" cy="157.6" r="2.1" fill="#fff"/></g>
+<g id="tnk-exp-worried" class="tnk-exp fp-exp">
+<path d="M66 141 L88 133" stroke="#2a1b17" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+<path d="M112 133 L134 141" stroke="#2a1b17" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+<path d="M90 190 Q95 184 100 188 Q105 192 110 186" stroke="#8a2c25" stroke-width="4" stroke-linecap="round" fill="none"/>
+</g>
+<g id="tnk-exp-fierce" class="tnk-exp fp-exp" opacity="0">
+<path d="M66 133 L88 141" stroke="#2a1b17" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+<path d="M112 141 L134 133" stroke="#2a1b17" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+<path d="M89 188 Q101 191 112 183" stroke="#8a2c25" stroke-width="4" stroke-linecap="round" fill="none"/>
+</g>
+</g>
+</g>
+<path class="fp-rim" d="M131.3 93.9 A62.5 62.5 0 0 1 140.2 195.9" stroke="#ff7a5a" stroke-width="4" fill="none" stroke-linecap="round" opacity=".6"/>
+<path class="fp-rim" d="M151 246 L151 370" stroke="#ff7a5a" stroke-width="4" stroke-linecap="round" opacity=".55" clip-path="url(#tnk-torso)"/>
+</g>
+<!-- char:turn-khwan:end -->
+    </g></g></g>
+            <g data-hf-id="hf-k5nm" id="turn-people">
+              <g data-hf-id="hf-tt8m" transform="translate(50 916) scale(.72 .72)"><g id="turn-p1" data-hf-id="hf-vera">
+<!-- char:turn-v1:start -->
+<g id="tv1-root" class="fp-person fp-male fp-front" data-fp-id="tv1" data-gender="male" data-view="front" data-blink="on">
+<ellipse class="fp-shadow" cx="100" cy="523" rx="74" ry="11" fill="#000" opacity=".5"/>
+<g id="tv1-legs" class="fp-legs">
+<rect x="72" y="372" width="26" height="136" rx="12" fill="#221716"/>
+<rect x="102" y="372" width="26" height="136" rx="12" fill="#1b1110"/>
+<path d="M60 508 Q60 498 74 498 L96 498 Q100 498 100 504 L100 520 L62 520 Q58 520 60 508 Z" fill="#2a1714"/>
+<path d="M140 508 Q140 498 126 498 L104 498 Q100 498 100 504 L100 520 L138 520 Q142 520 140 508 Z" fill="#231210"/>
+</g>
+<g id="tv1-armL" class="fp-arm fp-arm-l" data-pivot="56 238">
+<path d="M56 238 L43.2 329.1" stroke="#3c3c2b" stroke-width="24" stroke-linecap="round" fill="none"/>
+<circle cx="43.2" cy="335.1" r="13.5" fill="#8f6e5a"/>
+<circle cx="46.2" cy="338.1" r="8" fill="#825946" opacity=".45"/>
+</g>
+<g id="tv1-armR" class="fp-arm fp-arm-r" data-pivot="144 238">
+<path d="M144 238 L156.8 329.1" stroke="#302d21" stroke-width="24" stroke-linecap="round" fill="none"/>
+<circle cx="156.8" cy="335.1" r="13.5" fill="#8f6e5a"/>
+<circle cx="159.8" cy="338.1" r="8" fill="#825946" opacity=".45"/>
+</g>
+<rect class="fp-neck" x="88" y="200" width="24" height="34" rx="8" fill="#825946"/>
+<clipPath id="tv1-torso"><rect x="46" y="222" width="108" height="170" rx="24"/></clipPath>
+<g class="fp-torso" clip-path="url(#tv1-torso)">
+<rect x="46" y="222" width="108" height="170" fill="#3c3c2b"/>
+<rect x="124" y="222" width="30" height="170" fill="#302d21" opacity=".9"/>
+<path d="M100 226 L100 392" stroke="#180d0c" stroke-width="3" opacity=".6"/>
+<rect x="58" y="318" width="30" height="24" rx="6" fill="#302d21"/><rect x="112" y="318" width="30" height="24" rx="6" fill="#302d21"/>
+<path d="M58 324 L88 324 M112 324 L142 324" stroke="#525043" stroke-width="2"/>
+</g>
+<path d="M80 222 L100 248 L92 258 L72 232 Z" fill="#8f847f"/><path d="M120 222 L100 248 L108 258 L128 232 Z" fill="#8f847f"/>
+<path d="M86 222 L100 240 L114 222 Z" fill="#825946"/>
+<path d="M84 226 Q100 244 116 226" fill="none" stroke="#77181c" stroke-width="7" stroke-linecap="round"/><circle cx="100" cy="238" r="6" fill="#77181c"/>
+<g id="tv1-headGroup" class="fp-head">
+<circle cx="37" cy="156" r="10" fill="#825946"/><circle cx="163" cy="156" r="10" fill="#825946"/>
+<circle cx="100" cy="148" r="64" fill="#8f6e5a"/>
+<clipPath id="tv1-head"><circle cx="100" cy="148" r="64"/></clipPath>
+<circle cx="7.200000000000003" cy="154" r="64" fill="#825946" opacity=".38" clip-path="url(#tv1-head)"/>
+<g class="fp-hair" data-hair="short">
+<path d="M36 156 C30 104 60 80 100 80 C142 80 170 104 164 156 C158 134 150 120 140 112 C118 124 82 124 60 110 C50 122 42 136 36 156 Z" fill="#190d0d"/>
+<path d="M62 94 Q98 78 136 92" stroke="#302324" stroke-width="5" fill="none" stroke-linecap="round" opacity=".75"/>
+</g>
+<g class="fp-face">
+<ellipse cx="66" cy="178" rx="11" ry="6.5" fill="#8c5050" opacity=".6"/><ellipse cx="134" cy="178" rx="11" ry="6.5" fill="#8c5050" opacity=".6"/>
+<g id="tv1-eyes" class="fp-eyes" data-blink="on"><circle cx="78" cy="160" r="6.5" fill="#241714"/><circle cx="122" cy="160" r="6.5" fill="#241714"/><circle cx="80.2" cy="157.6" r="2.1" fill="#fff"/><circle cx="124.2" cy="157.6" r="2.1" fill="#fff"/></g>
+<g id="tv1-exp-shocked" class="tv1-exp fp-exp">
+<path d="M66 130 Q77 122 88 128" stroke="#241714" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+<path d="M112 128 Q123 122 134 130" stroke="#241714" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+<ellipse cx="100" cy="190" rx="7" ry="9" fill="#441614"/>
+</g>
+</g>
+</g>
+<path class="fp-rim" d="M131.3 93.9 A62.5 62.5 0 0 1 140.2 195.9" stroke="#ff4a3a" stroke-width="4" fill="none" stroke-linecap="round" opacity=".6"/>
+<path class="fp-rim" d="M151 246 L151 370" stroke="#ff4a3a" stroke-width="4" stroke-linecap="round" opacity=".55" clip-path="url(#tv1-torso)"/>
+</g>
+<!-- char:turn-v1:end -->
+              </g></g>
+              <g data-hf-id="hf-l2e7" transform="translate(850 936) scale(.7 .7)"><g id="turn-p2" data-hf-id="hf-pwpm">
+<!-- char:turn-v2:start -->
+<g id="tv2-root" class="fp-person fp-female fp-front" data-fp-id="tv2" data-gender="female" data-view="front" data-blink="on">
+<ellipse class="fp-shadow" cx="100" cy="523" rx="74" ry="11" fill="#000" opacity=".5"/>
+<g id="tv2-legs" class="fp-legs">
+<rect x="78" y="470" width="18" height="40" rx="8" fill="#825946"/><rect x="104" y="470" width="18" height="40" rx="8" fill="#825946"/>
+<path d="M56 334 L144 334 L150 492 Q100 500 50 492 Z" fill="#321913"/>
+<path d="M120 334 L144 334 L150 492 Q136 495 124 496 Z" fill="#27120e" opacity=".85"/>
+<path d="M52 452 L148 452 L149 470 L51 470 Z" fill="#6e4b23" opacity=".9"/><path d="M53 476 L147 476 L148 482 L52 482 Z" fill="#6e4b23" opacity=".7"/>
+<path d="M55 352 L145 352 L145.5 360 L54.5 360 Z" fill="#6e4b23" opacity=".55"/>
+<path d="M60 508 Q60 498 74 498 L96 498 Q100 498 100 504 L100 520 L62 520 Q58 520 60 508 Z" fill="#2a1714"/>
+<path d="M140 508 Q140 498 126 498 L104 498 Q100 498 100 504 L100 520 L138 520 Q142 520 140 508 Z" fill="#231210"/>
+</g>
+<g id="tv2-armL" class="fp-arm fp-arm-l" data-pivot="56 238">
+<path d="M56 238 L43.2 329.1" stroke="#333538" stroke-width="24" stroke-linecap="round" fill="none"/>
+<circle cx="43.2" cy="335.1" r="13.5" fill="#8f6e5a"/>
+<circle cx="46.2" cy="338.1" r="8" fill="#825946" opacity=".45"/>
+</g>
+<g id="tv2-armR" class="fp-arm fp-arm-r" data-pivot="144 238">
+<path d="M144 238 L156.8 329.1" stroke="#29282b" stroke-width="24" stroke-linecap="round" fill="none"/>
+<circle cx="156.8" cy="335.1" r="13.5" fill="#8f6e5a"/>
+<circle cx="159.8" cy="338.1" r="8" fill="#825946" opacity=".45"/>
+</g>
+<rect class="fp-neck" x="88" y="200" width="24" height="34" rx="8" fill="#825946"/>
+<clipPath id="tv2-torso"><rect x="46" y="222" width="108" height="118" rx="24"/></clipPath>
+<g class="fp-torso" clip-path="url(#tv2-torso)">
+<rect x="46" y="222" width="108" height="118" fill="#333538"/>
+<rect x="124" y="222" width="30" height="118" fill="#29282b" opacity=".9"/>
+<path d="M100 236 L100 340" stroke="#252325" stroke-width="2.5"/>
+<circle cx="100" cy="254" r="3.6" fill="#887970" opacity=".9"/>
+<circle cx="100" cy="284" r="3.6" fill="#887970" opacity=".9"/>
+<circle cx="100" cy="314" r="3.6" fill="#887970" opacity=".9"/>
+</g>
+<path d="M80 222 L100 248 L92 258 L72 232 Z" fill="#887970"/><path d="M120 222 L100 248 L108 258 L128 232 Z" fill="#887970"/>
+<path d="M86 222 L100 240 L114 222 Z" fill="#825946"/>
+<path d="M84 226 Q100 244 116 226" fill="none" stroke="#77181c" stroke-width="7" stroke-linecap="round"/><circle cx="100" cy="238" r="6" fill="#77181c"/>
+<g id="tv2-headGroup" class="fp-head">
+<circle cx="37" cy="156" r="10" fill="#825946"/><circle cx="163" cy="156" r="10" fill="#825946"/>
+<circle cx="100" cy="148" r="64" fill="#8f6e5a"/>
+<clipPath id="tv2-head"><circle cx="100" cy="148" r="64"/></clipPath>
+<circle cx="192.8" cy="154" r="64" fill="#825946" opacity=".38" clip-path="url(#tv2-head)"/>
+<g class="fp-hair" data-hair="pony">
+<path d="M36 156 C30 104 60 80 100 80 C142 80 170 104 164 156 C158 134 150 120 140 112 C118 124 82 124 60 110 C50 122 42 136 36 156 Z" fill="#190d0d"/>
+<path d="M62 94 Q98 78 136 92" stroke="#302324" stroke-width="5" fill="none" stroke-linecap="round" opacity=".75"/>
+<path d="M150 100 Q186 120 172 176 Q166 140 146 120 Z" fill="#190d0d"/><circle cx="152" cy="104" r="7" fill="#77181c"/>
+</g>
+<g class="fp-face">
+<ellipse cx="66" cy="178" rx="11" ry="6.5" fill="#8c5050" opacity=".6"/><ellipse cx="134" cy="178" rx="11" ry="6.5" fill="#8c5050" opacity=".6"/>
+<g id="tv2-eyes" class="fp-eyes" data-blink="on"><circle cx="78" cy="160" r="6.5" fill="#241714"/><circle cx="122" cy="160" r="6.5" fill="#241714"/><circle cx="80.2" cy="157.6" r="2.1" fill="#fff"/><circle cx="124.2" cy="157.6" r="2.1" fill="#fff"/></g>
+<g id="tv2-exp-worried" class="tv2-exp fp-exp">
+<path d="M66 141 L88 133" stroke="#241714" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+<path d="M112 133 L134 141" stroke="#241714" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+<path d="M90 190 Q95 184 100 188 Q105 192 110 186" stroke="#4c1916" stroke-width="4" stroke-linecap="round" fill="none"/>
+</g>
+</g>
+</g>
+<path class="fp-rim" d="M68.8 93.9 A62.5 62.5 0 0 0 59.8 195.9" stroke="#ff4a3a" stroke-width="4" fill="none" stroke-linecap="round" opacity=".6"/>
+<path class="fp-rim" d="M49 246 L49 318" stroke="#ff4a3a" stroke-width="4" stroke-linecap="round" opacity=".55" clip-path="url(#tv2-torso)"/>
+</g>
+<!-- char:turn-v2:end -->
+              </g></g>
+            </g>
+            <g id="tn-smoke" fill="#2a1c18" filter="url(#tn-blur)"></g>
+            <g data-hf-id="hf-lrn3" id="turn-bulls" opacity="0">
+              <g data-hf-id="hf-m7u0" transform="translate(40 1000) scale(0.95 0.95)"><g id="turn-bull-a">
+      <path d="M40 156 C26 120 54 90 104 82 C142 50 198 46 230 74 C254 58 282 76 292 108 C308 128 300 164 258 176 C190 200 86 196 52 168 C34 160 30 164 40 156 Z" fill="#1a100c"/>
+      <path d="M104 84 C142 52 198 48 230 76 C254 60 282 78 292 110" fill="none" stroke="#ff4a3a" stroke-width="3.5" stroke-linecap="round" opacity=".6"/>
+      <path d="M268 96 L304 18 L318 92 Z" fill="#efe2cb"/>
+      <path d="M220 88 L196 12 L246 84 Z" fill="#efe2cb"/>
+      <path d="M268 96 L304 18 L296 94 Z" fill="#b9a68c" opacity=".55"/>
+      <path d="M72 164 L62 236 L88 236 L94 166 Z" fill="#1a100c"/>
+      <path d="M116 168 L112 240 L138 240 L138 168 Z" fill="#1a100c"/>
+      <path d="M176 166 L180 240 L206 240 L198 164 Z" fill="#1a100c"/>
+      <path d="M224 158 L240 234 L266 234 L246 152 Z" fill="#1a100c"/>
+      <path d="M46 136 C10 116 6 156 36 150" fill="none" stroke="#1a100c" stroke-width="8" stroke-linecap="round"/>
+      <circle cx="282" cy="110" r="7" fill="#ff3b3b" opacity=".2" class="eyeglow"/>
+      <circle id="turn-bull-a-eye" cx="282" cy="110" r="4.5" fill="#ff4a42"/>
     </g></g>
-        <g data-hf-id="hf-ihbp" transform="translate(400 560) scale(1.35 1.35)"><g data-hf-id="hf-5n40" id="turn-khwan">
-      <circle data-hf-id="hf-ksvb" cx="100" cy="96" r="20" fill="#f4efe6"/>
-      <ellipse data-hf-id="hf-n3a2" cx="100" cy="128" rx="36" ry="42" fill="#f4efe6"/>
-      <path data-hf-id="hf-xlvp" d="M70 158 C60 196 66 270 80 330 L42 520 L158 520 L120 330 C134 270 140 196 130 158 C114 174 86 174 70 158 Z" fill="#f4efe6"/>
-      <path data-hf-id="hf-a9w3" d="M128 170 C162 190 178 232 164 272 L148 276 C156 238 144 202 120 184 Z" fill="#f4efe6"/>
+              <g data-hf-id="hf-wkib" transform="translate(1030 1040) scale(-0.9 0.9)"><g id="turn-bull-b">
+      <path d="M40 156 C26 120 54 90 104 82 C142 50 198 46 230 74 C254 58 282 76 292 108 C308 128 300 164 258 176 C190 200 86 196 52 168 C34 160 30 164 40 156 Z" fill="#241512"/>
+      <path d="M104 84 C142 52 198 48 230 76 C254 60 282 78 292 110" fill="none" stroke="#ff4a3a" stroke-width="3.5" stroke-linecap="round" opacity=".6"/>
+      <path d="M268 96 L304 18 L318 92 Z" fill="#efe2cb"/>
+      <path d="M220 88 L196 12 L246 84 Z" fill="#efe2cb"/>
+      <path d="M268 96 L304 18 L296 94 Z" fill="#b9a68c" opacity=".55"/>
+      <path d="M72 164 L62 236 L88 236 L94 166 Z" fill="#241512"/>
+      <path d="M116 168 L112 240 L138 240 L138 168 Z" fill="#241512"/>
+      <path d="M176 166 L180 240 L206 240 L198 164 Z" fill="#241512"/>
+      <path d="M224 158 L240 234 L266 234 L246 152 Z" fill="#241512"/>
+      <path d="M46 136 C10 116 6 156 36 150" fill="none" stroke="#241512" stroke-width="8" stroke-linecap="round"/>
+      <circle cx="282" cy="110" r="7" fill="#ff3b3b" opacity=".2" class="eyeglow"/>
+      <circle id="turn-bull-b-eye" cx="282" cy="110" r="4.5" fill="#ff4a42"/>
     </g></g>
-        <g data-hf-id="hf-k5nm" id="turn-people">
-          <g data-hf-id="hf-tt8m" transform="translate(70 980) scale(0.72 0.72)"><g id="turn-p1" data-hf-id="hf-vera">
-      <path data-hf-id="hf-8tn7" d="M70 78 C66 36 104 18 128 40 C150 22 164 58 150 86 C164 104 156 136 128 144 L150 176 C170 210 166 280 150 320 L168 430 L118 430 L112 330 L96 330 L90 430 L40 430 L58 320 C42 280 36 210 58 176 L78 144 C52 132 48 100 70 78 Z" fill="#8c837a"/>
-    </g></g>
-          <g data-hf-id="hf-l2e7" transform="translate(820 1020) scale(0.7 0.7)"><g id="turn-p2" data-hf-id="hf-pwpm">
-      <path data-hf-id="hf-cxr3" d="M62 70 C58 34 96 16 118 36 C140 18 152 50 140 74 C152 90 144 118 120 126 L138 156 C154 186 148 240 134 270 L150 360 L40 360 L58 270 C44 236 38 184 56 156 L74 126 C50 116 46 90 62 70 Z" fill="#6e6560"/>
-    </g></g>
-        </g>
-        <g data-hf-id="hf-lrn3" id="turn-bulls" opacity="0">
-          <g data-hf-id="hf-m7u0" transform="translate(40 1000) scale(0.95 0.95)"><g data-hf-id="hf-qb0n" id="turn-bull-a">
-      <path data-hf-id="hf-jjii" d="M40 156 C26 120 54 90 104 82 C142 50 198 46 230 74 C254 58 282 76 292 108 C308 128 300 164 258 176 C190 200 86 196 52 168 C34 160 30 164 40 156 Z" fill="#1a100c"/>
-      <path data-hf-id="hf-3lci" d="M268 96 L304 18 L318 92 Z" fill="#f4efe6"/>
-      <path data-hf-id="hf-7zmb" d="M220 88 L196 12 L246 84 Z" fill="#f4efe6"/>
-      <path data-hf-id="hf-v5sq" d="M72 164 L62 236 L88 236 L94 166 Z" fill="#1a100c"/>
-      <path data-hf-id="hf-f866" d="M116 168 L112 240 L138 240 L138 168 Z" fill="#1a100c"/>
-      <path data-hf-id="hf-134b" d="M176 166 L180 240 L206 240 L198 164 Z" fill="#1a100c"/>
-      <path data-hf-id="hf-d6r4" d="M224 158 L240 234 L266 234 L246 152 Z" fill="#1a100c"/>
-      <path data-hf-id="hf-g5io" d="M46 136 C10 116 6 156 36 150" fill="none" stroke="#1a100c" stroke-width="8" stroke-linecap="round"/>
-      <circle id="turn-eye-a" cx="282" cy="110" r="4" fill="#c8282f"/>
-    </g></g>
-          <g data-hf-id="hf-wkib" transform="translate(1030 1040) scale(-0.9 0.9)"><g data-hf-id="hf-qpbo" id="turn-bull-b">
-      <path data-hf-id="hf-p3ym" d="M40 156 C26 120 54 90 104 82 C142 50 198 46 230 74 C254 58 282 76 292 108 C308 128 300 164 258 176 C190 200 86 196 52 168 C34 160 30 164 40 156 Z" fill="#241512"/>
-      <path data-hf-id="hf-5252" d="M268 96 L304 18 L318 92 Z" fill="#f4efe6"/>
-      <path data-hf-id="hf-i44z" d="M220 88 L196 12 L246 84 Z" fill="#f4efe6"/>
-      <path data-hf-id="hf-4kse" d="M72 164 L62 236 L88 236 L94 166 Z" fill="#241512"/>
-      <path data-hf-id="hf-srgi" d="M116 168 L112 240 L138 240 L138 168 Z" fill="#241512"/>
-      <path data-hf-id="hf-1obv" d="M176 166 L180 240 L206 240 L198 164 Z" fill="#241512"/>
-      <path data-hf-id="hf-ude0" d="M224 158 L240 234 L266 234 L246 152 Z" fill="#241512"/>
-      <path data-hf-id="hf-vpvs" d="M46 136 C10 116 6 156 36 150" fill="none" stroke="#241512" stroke-width="8" stroke-linecap="round"/>
-      <circle id="turn-eye-b" cx="282" cy="110" r="4" fill="#c8282f"/>
-    </g></g>
-        </g>
-        <g mask="url(#turn-mask-a)">
-          <path id="turn-rope" d="M520 980 C360 1040 220 1080 160 1120" fill="none" stroke="#c8282f" stroke-width="9" stroke-linecap="round"/>
-          <path id="turn-braid-a" d="M520 980 C360 1040 220 1080 160 1120" fill="none" stroke="#1a0808" stroke-width="4" stroke-dasharray="5 6" opacity=".9"/>
-        </g>
-        <g mask="url(#turn-mask-b)">
-          <path id="turn-rope-b" d="M640 990 C780 1050 900 1100 980 1140" fill="none" stroke="#c8282f" stroke-width="9" stroke-linecap="round"/>
-          <path id="turn-braid-b" d="M640 990 C780 1050 900 1100 980 1140" fill="none" stroke="#1a0808" stroke-width="4" stroke-dasharray="5 6" opacity=".9"/>
-        </g>
-        <defs>
-          <radialGradient id="turn-vig" cx="50%" cy="45%" r="75%">
-            <stop offset="55%" stop-color="#000" stop-opacity="0"/>
-            <stop offset="100%" stop-color="#000" stop-opacity=".65"/>
-          </radialGradient>
-          <filter id="turn-grain" x="0" y="0" width="100%" height="100%">
-            <feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" stitchTiles="stitch"/>
-            <feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .5 0"/>
-          </filter>
-        </defs>
-        <rect width="1080" height="1920" fill="url(#turn-vig)"/>
-        <rect width="1080" height="1920" filter="url(#turn-grain)" opacity=".07"/>
-      </svg>
-      <div data-hf-id="hf-lx5h" class="stack" style="top:150px">
-        <span data-hf-id="hf-1fj8" class="w" id="u1" style="font-size:60px">ถ้าหนีไม่พ้น…</span>
-        <span data-hf-id="hf-nxd0" class="w" id="u2" style="font-size:76px;margin-top:28px"><span data-hf-id="hf-5sk8" class="mark">ก็ทำให้เชื่อง</span></span>
+            </g>
+            <g mask="url(#turn-mask-a)">
+              <path id="turn-rope" d="M437 1008 C340 1090 210 1110 122 1088" fill="none" stroke="#c8282f" stroke-width="9" stroke-linecap="round"/>
+              <path id="turn-braid-a" d="M437 1008 C340 1090 210 1110 122 1088" fill="none" stroke="#1a0808" stroke-width="4" stroke-dasharray="5 6" opacity=".9"/>
+            </g>
+            <g mask="url(#turn-mask-b)">
+              <path id="turn-rope-b" d="M633 1008 C730 1090 840 1120 920 1103" fill="none" stroke="#c8282f" stroke-width="9" stroke-linecap="round"/>
+              <path id="turn-braid-b" d="M633 1008 C730 1090 840 1120 920 1103" fill="none" stroke="#1a0808" stroke-width="4" stroke-dasharray="5 6" opacity=".9"/>
+            </g>
+            <ellipse id="tn-shock" cx="540" cy="1262" rx="60" ry="14" fill="none" stroke="#ff8a6a" stroke-width="5" opacity="0"/>
+            <g id="tn-embers"></g>
+            <rect id="tn-flash" width="1080" height="1920" fill="#ff3a32" opacity="0"/>
+          </svg>
+        </div>
+        <div class="txt" id="tn-txt">
+          <div data-hf-id="hf-lx5h" class="stack" style="top:150px">
+            <span data-hf-id="hf-1fj8" class="w" id="u1" style="font-size:60px"><span class="wd">ถ้า</span><span class="wd">หนี</span><span class="wd">ไม่</span><span class="wd">พ้น…</span></span>
+            <span data-hf-id="hf-nxd0" class="w" id="u2" style="font-size:76px;margin-top:28px"><span data-hf-id="hf-5sk8" class="mark stampm" id="tn-mark"><i class="mbg"></i><span class="mtx">ก็ทำให้เชื่อง</span></span></span>
+          </div>
+        </div>
       </div>
-    
     </div>
   </div>
   <script>
     const tl = gsap.timeline({ paused: true });
-    
-    tl.fromTo("#turn-shrine", { opacity: 0 }, { opacity: 1, duration: 0.35, ease: "power2.out" }, 0.05);
-    tl.fromTo("#turn-khwan", { opacity: 0 }, { opacity: 1, duration: 0.35, ease: "power2.out" }, 0.1);
-    tl.fromTo("#u1", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.3, ease: "power3.out" }, 0.35);
-    tl.fromTo("#u2", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.3, ease: "power3.out" }, 0.85);
-    tl.fromTo("#turn-draw-a", { strokeDashoffset: 520 }, { strokeDashoffset: 0, duration: 0.7, ease: "power2.inOut" }, 1.35);
-    tl.fromTo("#turn-draw-b", { strokeDashoffset: 520 }, { strokeDashoffset: 0, duration: 0.7, ease: "power2.inOut" }, 1.5);
-    tl.to(["#turn-p1", "#turn-p2"], {
-      scaleY: 0.55, scaleX: 1.15, transformOrigin: "50% 100%",
-      duration: 0.35, ease: "power3.in"
-    }, 2.2);
-    tl.to("#turn-people", { opacity: 0, duration: 0.2, ease: "none" }, 2.45);
-    tl.fromTo("#turn-bulls",
-      { opacity: 0, y: 40, scaleY: 0.8, transformOrigin: "50% 100%" },
-      { opacity: 1, y: 0, scaleY: 1, duration: 0.5, ease: "back.out(2)" }, 2.5);
-    tl.to(["#turn-draw-a", "#turn-rope", "#turn-braid-a"], {
-      attr: { d: "M520 980 L170 1120" }, duration: 0.4, ease: "power2.in"
-    }, 3.0);
-    tl.to(["#turn-draw-b", "#turn-rope-b", "#turn-braid-b"], {
-      attr: { d: "M640 990 L980 1140" }, duration: 0.4, ease: "power2.in"
-    }, 3.0);
+    const SVGNS = "http://www.w3.org/2000/svg";
+    // deterministic PRNG so every render is identical
+    const rng = (s) => () => { s |= 0; s = s + 0x6D2B79F5 | 0; let t = Math.imul(s ^ s >>> 15, 1 | s); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+    const mk = (tag, attrs, parent) => { const e = document.createElementNS(SVGNS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; };
+    const $ = (s) => document.querySelector(s);
+    const $$ = (s) => Array.from(document.querySelectorAll(s));
+    // word-level reveal (whole Thai words, so vowels / tone marks never get separated)
+    const rise = (targets, at, o = {}) => tl.fromTo(targets,
+      { opacity: 0, y: o.y ?? 44, scale: o.sc ?? 1, filter: "blur(" + (o.b ?? 12) + "px)" },
+      { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", duration: o.d ?? 0.75, ease: o.e ?? "expo.out", stagger: o.s ?? 0.1 }, at);
+    const wipeMark = (mark, at) => {
+      tl.fromTo(mark.querySelector(".mbg"), { scaleX: 0 }, { scaleX: 1, duration: 0.55, ease: "expo.inOut" }, at);
+      rise(mark.querySelectorAll(".wd"), at + 0.2, { y: 26, b: 8, d: 0.6, s: 0.08 });
+    };
+    const stamp = (mark, at, shakeEl) => {
+      tl.fromTo(mark, { opacity: 0, scale: 1.7, filter: "blur(16px)" },
+                      { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.in" }, at);
+      tl.fromTo(mark, { scale: 1 }, { scale: 1.035, duration: 0.09, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, at + 0.2);
+      if (shakeEl) shake(shakeEl, at + 0.2, 16);
+    };
+    const shake = (el, at, amp = 12) => tl.to(el, { keyframes: [
+      { x: -amp, y: amp * 0.4, duration: 0.04 }, { x: amp * 0.85, y: -amp * 0.35, duration: 0.04 },
+      { x: -amp * 0.5, y: amp * 0.2, duration: 0.05 }, { x: amp * 0.25, y: 0, duration: 0.05 }, { x: 0, y: 0, duration: 0.07 }
+    ], ease: "none" }, at);
+    // soft scene in/out: no hard cuts between scenes
+    const sceneIO = (wrap, dur, o = {}) => {
+      if (o.in !== false) tl.fromTo(wrap, { opacity: 0, scale: 1.06, filter: "blur(14px)" },
+        { opacity: 1, scale: 1, filter: "blur(0px)", duration: o.inDur ?? 0.5, ease: "power3.out" }, 0);
+      if (o.out !== false) tl.to(wrap, { opacity: 0, scale: 1.04, filter: "blur(10px)", duration: o.outDur ?? 0.34, ease: "power2.in" }, dur - (o.outDur ?? 0.34));
+    };
+    // floating particles (dust motes / embers)
+    const particles = (g, n, seed, box, o = {}) => {
+      const r = rng(seed);
+      for (let i = 0; i < n; i++) {
+        const x = box[0] + r() * box[2], y = box[1] + r() * box[3];
+        const c = mk("circle", { cx: x, cy: y, r: (o.rmin ?? 1.5) + r() * ((o.rmax ?? 4) - (o.rmin ?? 1.5)), fill: o.fill ?? "#f4c9a8", opacity: 0 }, g);
+        const a = (o.amin ?? 0.15) + r() * ((o.amax ?? 0.6) - (o.amin ?? 0.15));
+        const d = o.dur;
+        tl.fromTo(c, { opacity: 0, x: 0, y: 0 }, { keyframes: [
+            { opacity: a, duration: d * 0.25 }, { opacity: a * (0.4 + r() * 0.6), duration: d * 0.5 }, { opacity: 0, duration: d * 0.25 } ],
+          ease: "none" }, 0);
+        tl.fromTo(c, { x: 0, y: 0 }, { x: (r() - 0.5) * (o.dx ?? 60), y: -((o.dymin ?? 30) + r() * ((o.dymax ?? 120) - (o.dymin ?? 30))), duration: d, ease: "sine.inOut", immediateRender: false }, 0);
+      }
+    };
+
+    (() => { const r = rng(202);
+      // light rays behind the shrine
+      const rays = $("#tn-rays");
+      for (let i = 0; i < 12; i++) { const a = -Math.PI / 2 + (i - 5.5) * 0.2, w = 0.035;
+        const L = 1100, x1 = 560 + Math.cos(a - w) * L, y1 = 520 + Math.sin(a - w) * L, x2 = 560 + Math.cos(a + w) * L, y2 = 520 + Math.sin(a + w) * L;
+        mk("polygon", { points: `560,520 ${x1},${y1} ${x2},${y2}`, fill: "#ff5a4a", opacity: .25 + r() * .2 }, rays); }
+      rays.setAttribute("filter", "url(#tn-blur)");
+      // ground cracks radiating from Khwan's feet
+      const cg = $("#tn-cracks");
+      for (let i = 0; i < 9; i++) { const a = Math.PI * (0.02 + 0.96 * i / 8); let x = 540, y = 1262, d = `M${x} ${y}`;
+        for (let s = 0; s < 5; s++) { x += Math.cos(a) * (40 + r() * 50) * (s < 1 ? .6 : 1) + (r() - .5) * 30; y += Math.sin(a) * (14 + r() * 18) + 6; d += ` L${x.toFixed(1)} ${y.toFixed(1)}`; }
+        const p = mk("path", { d, "stroke-width": 3 + r() * 2, opacity: 0, "stroke-dasharray": 400, "stroke-dashoffset": 400 }, cg);
+        tl.fromTo(p, { strokeDashoffset: 400, opacity: 0 }, { strokeDashoffset: 0, opacity: .85, duration: 0.5, ease: "expo.out" }, 2.42 + r() * .08); }
+      // smoke puffs where the villagers transform
+      const sg = $("#tn-smoke");
+      [[160, 1250], [900, 1230]].forEach(([cx, cy]) => { for (let i = 0; i < 7; i++) {
+        const c = mk("circle", { cx: cx + (r() - .5) * 120, cy: cy - r() * 200, r: 50 + r() * 40, opacity: 0 }, sg);
+        tl.fromTo(c, { opacity: 0, scale: .4, svgOrigin: `${cx} ${cy}` }, { keyframes: [{ opacity: .9, scale: 1.1, duration: .25, ease: "power2.out" }, { opacity: 0, scale: 1.6, duration: .9, ease: "power1.in" }] }, 2.3 + i * .02); } });
+    })();
+    particles($("#tn-embers"), 40, 77, [80, 700, 920, 700], { dur: 5, rmin: 1.5, rmax: 3.5, amin: .35, amax: .9, dx: 100, dymin: 200, dymax: 520, fill: "#ff8a5a" });
+    sceneIO("#tn-wrap", 5);
+    tl.fromTo("#tn-world", { scale: 1.0 }, { scale: 1.08, duration: 5, ease: "sine.inOut" }, 0);
+    tl.fromTo("#turn-shrine", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.out" }, 0.05);
+    tl.fromTo("#tn-khwan-anim", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 0.1);
+    rise("#u1 .wd", 0.35, { y: 40, b: 12, s: 0.11 });
+    stamp("#tn-mark", 0.85, "#tn-txt");
+    tl.fromTo("#turn-draw-a", { strokeDashoffset: 520 }, { strokeDashoffset: 0, duration: 0.7, ease: "expo.inOut" }, 1.35);
+    tl.fromTo("#turn-draw-b", { strokeDashoffset: 520 }, { strokeDashoffset: 0, duration: 0.7, ease: "expo.inOut" }, 1.5);
+    // heartbeat pulse building to the transformation
+    tl.fromTo("#tn-pulse", { opacity: 0.4, scale: 1, svgOrigin: "540 640" }, { opacity: 0.8, scale: 1.06, duration: 0.35, yoyo: true, repeat: 3, ease: "sine.inOut" }, 0.8);
+    // acting: Khwan blinks, then her face hardens on the stamp; villagers flinch
+    const blink = (sel, at) => tl.fromTo(sel, { scaleY: 1 }, { scaleY: 0.12, transformOrigin: "50% 50%", duration: 0.06, yoyo: true, repeat: 1, ease: "power1.inOut", immediateRender: false }, at);
+    blink("#tnk-eyes", 0.5); blink("#tv1-eyes", 0.9); blink("#tv2-eyes", 1.2); blink("#tnk-eyes", 3.7);
+    tl.set(".tnk-exp", { opacity: 0 }, 0.9); tl.set("#tnk-exp-fierce", { opacity: 1 }, 0.9);
+    // halter ropes follow the villagers' necks down as they squash into bulls
+    tl.to(["#turn-draw-a", "#turn-rope", "#turn-braid-a"], { attr: { d: "M437 1008 C340 1100 210 1170 122 1178" }, duration: 0.35, ease: "power3.in" }, 2.1);
+    tl.to(["#turn-draw-b", "#turn-rope-b", "#turn-braid-b"], { attr: { d: "M633 1008 C730 1100 840 1180 920 1192" }, duration: 0.35, ease: "power3.in" }, 2.1);
+    tl.to(["#turn-p1", "#turn-p2"], { scaleY: 0.55, scaleX: 1.15, transformOrigin: "50% 100%", duration: 0.35, ease: "power3.in" }, 2.1);
+    tl.to("#turn-people", { opacity: 0, duration: 0.2, ease: "none" }, 2.4);
+    tl.fromTo("#tn-flash", { opacity: 0 }, { keyframes: [{ opacity: .55, duration: .05 }, { opacity: 0, duration: .5, ease: "power2.out" }], immediateRender: false }, 2.42);
+    tl.fromTo("#tn-shock", { opacity: 1, scale: 1, svgOrigin: "540 1262" }, { opacity: 0, scale: 14, duration: 0.9, ease: "expo.out", immediateRender: false }, 2.42);
+    shake("#tn-world", 2.42, 18);
+    shake("#tn-txt", 2.42, 10);
+    tl.fromTo("#turn-bulls", { opacity: 0, y: 40, scaleY: 0.8, transformOrigin: "50% 100%" }, { opacity: 1, y: 0, scaleY: 1, duration: 0.5, ease: "back.out(2)" }, 2.5);
+    tl.fromTo("#turn-bulls .eyeglow", { opacity: 0.2, scale: 1, transformOrigin: "50% 50%" }, { opacity: 0.7, scale: 1.6, duration: 0.25, yoyo: true, repeat: 5, ease: "sine.inOut" }, 2.6);
+    tl.to("#tn-rays", { opacity: 1, duration: 0.5, ease: "power2.out" }, 2.42);
+    tl.fromTo("#tn-rays", { rotation: 0, svgOrigin: "560 520" }, { rotation: 8, duration: 2.6, ease: "none" }, 2.42);
+    tl.to("#tn-shrine-halo", { opacity: 0.7, scale: 1.4, svgOrigin: "560 490", duration: 0.5, ease: "power2.out" }, 2.42);
+    tl.to(["#turn-draw-a", "#turn-rope", "#turn-braid-a"], { attr: { d: "M437 1008 C360 1050 250 1100 170 1120" }, duration: 0.4, ease: "power2.in" }, 3.0);
+    tl.to(["#turn-draw-b", "#turn-rope-b", "#turn-braid-b"], { attr: { d: "M633 1008 C730 1060 880 1110 980 1140" }, duration: 0.4, ease: "power2.in" }, 3.0);
+    tl.fromTo(["#turn-rope", "#turn-rope-b"], { strokeWidth: 9 }, { strokeWidth: 12, duration: 0.1, yoyo: true, repeat: 1, immediateRender: false }, 3.4);
     tl.to("#turn-shrine", { filter: "drop-shadow(0 0 40px #c8282f)", duration: 0.4 }, 2.5);
-    
+    tl.fromTo("#tn-pulse", { opacity: 0.8 }, { opacity: 1, scale: 1.12, svgOrigin: "540 640", duration: 0.3, yoyo: true, repeat: 3, ease: "sine.inOut", immediateRender: false }, 3.3);
+    tl.fromTo("#tn-txt", { y: 0 }, { y: -10, duration: 5, ease: "sine.inOut" }, 0);
     window.__timelines = window.__timelines || {};
     window.__timelines["turn"] = tl;
   </script>

@@ -1,0 +1,24 @@
+{
+  "name": "@shot-video/flat-people",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Reusable flat-cartoon people (male/female) for HyperFrames, HTML, SVG and GSAP projects. Configurable shirt and pants colours.",
+  "main": "index.mjs",
+  "exports": {
+    ".": "./index.mjs"
+  },
+  "files": [
+    "index.mjs",
+    "README.md",
+    "demo.html",
+    "demo.png"
+  ],
+  "keywords": [
+    "svg",
+    "character",
+    "cartoon",
+    "hyperframes",
+    "gsap"
+  ]
+}

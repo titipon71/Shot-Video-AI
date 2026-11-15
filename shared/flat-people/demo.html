@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>flat-people — demo</title>
+  <style>
+    :root {
+      --paper: #f3ead8;
+      --ink: #2a1b17;
+      --muted: #6a5348;
+      --card: #fffaf1;
+      --line: #e2d3c0;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; background: var(--paper); color: var(--ink); }
+    body {
+      font-family: "Sarabun", "Noto Sans Thai", "IBM Plex Sans Thai", system-ui, sans-serif;
+      padding: 36px 48px 56px;
+      width: 1600px;
+    }
+    h1 { font-size: 34px; font-weight: 750; margin: 0 0 6px; letter-spacing: -0.03em; }
+    .sub { color: var(--muted); font-size: 16px; margin: 0 0 28px; }
+    h2 {
+      font-size: 18px; font-weight: 700; margin: 28px 0 12px;
+      padding-bottom: 6px; border-bottom: 1px solid var(--line);
+    }
+    .grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; }
+    .grid.wide { grid-template-columns: repeat(7, 1fr); }
+    .grid.five { grid-template-columns: repeat(5, 1fr); }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 10px 8px 12px;
+      text-align: center;
+      min-height: 0;
+    }
+    .card svg { display: block; margin: 0 auto; width: 152px; height: 400px; }
+    .card .label { font-size: 13px; font-weight: 650; margin-top: 4px; }
+    .card .meta { font-size: 11px; color: var(--muted); margin-top: 2px; font-family: ui-monospace, "SF Mono", Menlo, monospace; }
+    .swatch { display: inline-block; width: 10px; height: 10px; border-radius: 3px; vertical-align: middle; margin: 0 2px; border: 1px solid rgba(0,0,0,.15); }
+    code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 12px; background: #efe4d4; padding: 1px 5px; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <h1>flat-people</h1>
+  <p class="sub">คอมโพเนนต์ตัวละครการ์ตูนแฟลต — แยกชาย / หญิง และตั้งค่า <code>shirtColor</code> กับ <code>pantsColor</code> (หรือ <code>skirtColor</code>) ได้ · ไม่มี dependency</p>
+
+  <h2>1. ค่าเริ่มต้น — createPerson({ gender })</h2>
+  <div class="grid" id="defaults"></div>
+
+  <h2>2. ผู้หญิง — เปลี่ยนสีเสื้อและกางเกง</h2>
+  <div class="grid" id="female-colors"></div>
+
+  <h2>3. ผู้ชาย — เปลี่ยนสีเสื้อและกางเกง</h2>
+  <div class="grid" id="male-colors"></div>
+
+  <h2>4. ทรงผมและผ้าซิ่น (ผู้หญิง)</h2>
+  <div class="grid" id="hair"></div>
+
+  <h2>5. อุปกรณ์เสริมและชุด (ผู้ชาย)</h2>
+  <div class="grid" id="male-extras"></div>
+
+  <h2>6. ท่าหน้า / expressions</h2>
+  <div class="grid wide" id="faces"></div>
+
+  <h2>7. พรีเซ็ตเรื่อง TAME และมุมมองหลัง</h2>
+  <div class="grid" id="presets"></div>
+
+  <script type="module">
+    import { createPerson, createMale, createFemale, toSvgDocument, presets } from "./index.mjs";
+
+    const mount = (sel, items) => {
+      const root = document.querySelector(sel);
+      root.innerHTML = items.map((it) => {
+        const person = it.fn ? it.fn() : createPerson(it.opts);
+        const svg = toSvgDocument(person, { width: 152, height: 400 });
+        const swatches = (it.swatches || []).map((c) => `<span class="swatch" style="background:${c}"></span>`).join("");
+        return `<div class="card"><div>${svg}</div><div class="label">${it.label}</div><div class="meta">${swatches}${it.meta || ""}</div></div>`;
+      }).join("");
+    };
+
+    mount("#defaults", [
+      { label: "หญิง — ค่าเริ่มต้น", meta: "createPerson({ gender: 'female' })", opts: { gender: "female", id: "df" } },
+      { label: "ชาย — ค่าเริ่มต้น", meta: "createPerson({ gender: 'male' })", opts: { gender: "male", id: "dm" } },
+      { label: "หญิง + ผ้าซิ่น", meta: "skirt: true", opts: { gender: "female", id: "ds", skirt: true, skirtColor: "#6b2a3a", shirtColor: "#f0d4b0" } },
+      { label: "ชาย + หนวด", meta: "mustache: true", opts: { gender: "male", id: "dst", mustache: true, shirtColor: "#3d5a80" } },
+      { label: "หญิงผมยาว + กิ๊บ", meta: "hairStyle: 'long'", opts: { gender: "female", id: "dl", hairStyle: "long", hairClip: true, shirtColor: "#d45d6a", pantsColor: "#2a3048" } },
+      { label: "ชายมุมหลัง + เป้", meta: "view: 'back'", opts: { gender: "male", id: "db", view: "back", backpack: true, shirtColor: "#4a7ab5" } },
+    ]);
+
+    const femalePalettes = [
+      ["#e0b04a", "#2c3550"],
+      ["#e8899a", "#3d3a5c"],
+      ["#f0d4b0", "#5a2340"],
+      ["#3aa394", "#1e2f32"],
+      ["#c45c26", "#2b2622"],
+      ["#6b4aa0", "#1f1a28"],
+    ];
+    mount("#female-colors", femalePalettes.map(([shirt, pants], i) => ({
+      label: `เสื้อ / กางเกง ${i + 1}`,
+      meta: `${shirt}  ${pants}`,
+      swatches: [shirt, pants],
+      opts: { gender: "female", id: "fc" + i, shirtColor: shirt, pantsColor: pants, hairStyle: i % 2 ? "long" : "bob" },
+    })));
+
+    const malePalettes = [
+      ["#4a7ab5", "#2b3142"],
+      ["#33406b", "#1f1a18"],
+      ["#5b6b4a", "#2b2622"],
+      ["#b83a3a", "#241c1c"],
+      ["#d9a441", "#2c3550"],
+      ["#2a2a2a", "#4a3f36"],
+    ];
+    mount("#male-colors", malePalettes.map(([shirt, pants], i) => ({
+      label: `เสื้อ / กางเกง ${i + 1}`,
+      meta: `${shirt}  ${pants}`,
+      swatches: [shirt, pants],
+      opts: { gender: "male", id: "mc" + i, shirtColor: shirt, pantsColor: pants, mustache: i === 1 || i === 4 },
+    })));
+
+    mount("#hair", [
+      { label: "ผมบ็อบ", meta: "hairStyle: 'bob'", opts: { gender: "female", id: "hb", hairStyle: "bob", shirtColor: "#e8899a" } },
+      { label: "ผมยาว", meta: "hairStyle: 'long'", opts: { gender: "female", id: "hl", hairStyle: "long", shirtColor: "#d46b7a" } },
+      { label: "มวยผม", meta: "hairStyle: 'bun'", opts: { gender: "female", id: "hu", hairStyle: "bun", hairColor: "#b9b2ab", shirtColor: "#e9dcc4", wrinkles: true } },
+      { label: "หางม้า", meta: "hairStyle: 'pony'", opts: { gender: "female", id: "hp", hairStyle: "pony", shirtColor: "#4b5d63" } },
+      { label: "ผ้าซิ่น (pha sin)", meta: "skirtColor", opts: { gender: "female", id: "hs", hairStyle: "bun", shirtColor: "#e9dcc4", skirt: true, skirtColor: "#5a2340", skirtBand: "#d8a64a" } },
+      { label: "กางเกง + เป้ + กิ๊บ", meta: "backpack, hairClip", opts: { gender: "female", id: "hk", hairStyle: "bob", hairClip: true, backpack: true, shirtColor: "#e0b04a", pantsColor: "#2c3550" } },
+    ]);
+
+    mount("#male-extras", [
+      { label: "เสื้อเชิ้ต", meta: "outfit: 'shirt'", opts: { gender: "male", id: "ms", outfit: "shirt", shirtColor: "#4a7ab5" } },
+      { label: "เสื้อม่อฮ่อม + ผ้าขาวม้า", meta: "outfit: 'farmer'", opts: { gender: "male", id: "mf", outfit: "farmer", shirtColor: "#33406b", pantsColor: "#1f1a18", sash: "#b8323a", mustache: true, greyTemples: true } },
+      { label: "เสื้อแจ็กเก็ต", meta: "outfit: 'jacket'", opts: { gender: "male", id: "mj", outfit: "jacket", shirtColor: "#5b6b4a", pantsColor: "#2b2622" } },
+      { label: "หนวด + ขมับเทา", meta: "mustache, greyTemples", opts: { gender: "male", id: "mm", mustache: true, greyTemples: true, shirtColor: "#3d5a80" } },
+      { label: "ห่วงเชือกที่คอ", meta: "halter: true", opts: { gender: "male", id: "mh", halter: true, outfit: "jacket", shirtColor: "#5b6b4a", expression: "shocked" } },
+      { label: "เป้มุมหลัง", meta: "view: 'back', backpack", opts: { gender: "male", id: "mb", view: "back", backpack: true, shirtColor: "#4a7ab5", pantsColor: "#2b3142" } },
+    ]);
+
+    const faces = ["neutral", "smile", "worried", "shocked", "fierce", "angry", "smirk"];
+    mount("#faces", faces.map((exp) => ({
+      label: exp,
+      meta: `expression: '${exp}'`,
+      opts: { gender: "female", id: "ex" + exp, expression: exp, shirtColor: "#e8899a", pantsColor: "#3d3a5c" },
+    })));
+
+    mount("#presets", [
+      { label: "ขวัญ", meta: "presets.khwan", fn: () => createPerson({ ...presets.khwan, id: "pk" }) },
+      { label: "น้ายศ", meta: "presets.yot", fn: () => createPerson({ ...presets.yot, id: "py", expression: "angry" }) },
+      { label: "ยายอ่าง", meta: "presets.ang", fn: () => createPerson({ ...presets.ang, id: "pa", expression: "smirk" }) },
+      { label: "ชาวบ้านชาย", meta: "presets.villagerMale", fn: () => createPerson({ ...presets.villagerMale, id: "pvm", expression: "shocked" }) },
+      { label: "ชาวบ้านหญิง", meta: "presets.villagerFemale", fn: () => createPerson({ ...presets.villagerFemale, id: "pvf", expression: "worried" }) },
+      { label: "ขวัญ (มุมหลัง)", meta: "view: 'back'", fn: () => createPerson({ ...presets.khwan, id: "pkb", view: "back" }) },
+    ]);
+  </script>
+</body>
+</html>

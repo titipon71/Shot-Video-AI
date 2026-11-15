@@ -1,92 +1,384 @@
 <template>
   <style>
-    
     @font-face { font-family: Kanit; font-weight: 800; font-display: block; src: url("assets/fonts/kanit-thai-800-normal.woff2") format("woff2"); unicode-range: U+02D7, U+0303, U+0331, U+0E01-0E5B, U+200C-200D, U+25CC; }
     @font-face { font-family: Kanit; font-weight: 800; font-display: block; src: url("assets/fonts/kanit-latin-800-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+    @font-face { font-family: Kanit; font-weight: 600; font-display: block; src: url("assets/fonts/kanit-thai-600-normal.woff2") format("woff2"); unicode-range: U+02D7, U+0303, U+0331, U+0E01-0E5B, U+200C-200D, U+25CC; }
+    @font-face { font-family: Kanit; font-weight: 600; font-display: block; src: url("assets/fonts/kanit-latin-600-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
 
-    #root { position: absolute; inset: 0; overflow: hidden; background: #0c0908; font-family: Kanit, sans-serif; }
+    #root { position: absolute; inset: 0; overflow: hidden; background: #0b0807; font-family: Kanit, sans-serif; }
     .clip { position: absolute; inset: 0; }
-    svg.scene { position: absolute; inset: 0; width: 1080px; height: 1920px; }
+    .wrap, .world, .txt { position: absolute; inset: 0; }
+    .world { transform-origin: 50% 50%; }
+    svg.scene { position: absolute; inset: 0; width: 1080px; height: 1920px; overflow: visible; }
     .stack { position: absolute; left: 80px; width: 920px; text-align: center; }
-    .w { display: block; color: #f4efe6; font-weight: 800; line-height: 1.25; letter-spacing: 0; opacity: 0; }
-    .mark { color: #f4efe6; background: #8e1d24; border-radius: 10px; display: inline-block; line-height: 1.2; padding: 0 18px 10px; }
+    /* lines are visible containers; words (.wd) are revealed one Thai word at a time, never per character */
+    .w { display: block; color: #f4efe6; font-weight: 800; line-height: 1.3; letter-spacing: 0;
+         text-shadow: 0 6px 28px rgba(0,0,0,.75), 0 2px 6px rgba(0,0,0,.55); }
+    .wd { display: inline-block; opacity: 0; }
+    .mark { position: relative; display: inline-block; line-height: 1.2; padding: 4px 26px 14px; }
+    .mbg { position: absolute; inset: 0; border-radius: 12px; transform-origin: 0% 50%;
+           background: linear-gradient(100deg, #5a0e14 0%, #9e2129 45%, #c8343b 62%, #7a151c 100%);
+           box-shadow: 0 16px 48px rgba(170, 32, 40, .45), inset 0 1px 0 rgba(255, 214, 196, .28), inset 0 -3px 0 rgba(40, 0, 0, .35); }
+    .mark .wd, .mark .mtx { position: relative; text-shadow: 0 2px 12px rgba(50, 0, 0, .55); }
+    .stampm { opacity: 0; }
+    .rule { position: absolute; height: 3px; border-radius: 2px; transform-origin: 50% 50%; transform: scaleX(0);
+            background: linear-gradient(90deg, rgba(200,40,47,0), #e0464c 30%, #f4efe6 50%, #e0464c 70%, rgba(200,40,47,0)); }
 
+    .nm { font-size: 72px; }
+    .tick { display: block; width: 64px; height: 6px; border-radius: 3px; background: #c8282f; margin-bottom: 14px; transform-origin: 0 50%; transform: scaleX(0); box-shadow: 0 0 18px rgba(200,40,47,.6); }
+    #bind-name-b .tick { margin-left: auto; transform-origin: 100% 50%; }
   </style>
   <div data-hf-id="hf-qlw3" id="root" data-composition-id="bind" data-width="1080" data-height="1920" data-layout-allow-overflow data-layout-allow-overlap>
     <div data-hf-id="hf-qvfb" id="bind-scene" class="clip" data-start="0" data-duration="5" data-track-index="1" data-hold>
-      
-      <svg data-hf-id="hf-0t6v" class="scene" viewBox="0 0 1080 1920">
-        <defs>
-          <mask id="bind-mask-a" maskUnits="userSpaceOnUse" x="0" y="0" width="1080" height="1920">
-            <path id="bind-draw-a" d="M-20 1080 C180 960 340 1040 470 1000"
-                  fill="none" stroke="#fff" stroke-width="14" stroke-linecap="round"
-                  stroke-dasharray="640" stroke-dashoffset="640"/>
-          </mask>
-          <mask id="bind-mask-b" maskUnits="userSpaceOnUse" x="0" y="0" width="1080" height="1920">
-            <path id="bind-draw-b" d="M1100 1100 C880 980 740 1080 620 1020"
-                  fill="none" stroke="#fff" stroke-width="14" stroke-linecap="round"
-                  stroke-dasharray="640" stroke-dashoffset="640"/>
-          </mask>
-        </defs>
-        <rect data-hf-id="hf-lg1h" width="1080" height="1920" fill="#0c0908"/>
-        
-      <path data-hf-id="hf-gcpf" d="M0 1020 C260 930 820 930 1080 1020 L1080 1920 L0 1920 Z" fill="#3d291c"/>
-      <path data-hf-id="hf-bxa4" d="M0 1240 C300 1160 780 1180 1080 1260 L1080 1920 L0 1920 Z" fill="#6b442c"/>
-    
-        <g data-hf-id="hf-i45k" transform="translate(390 620) scale(1.25 1.25)"><g data-hf-id="hf-5i2s" id="bind-khwan">
-      <circle data-hf-id="hf-ksvb" cx="100" cy="96" r="20" fill="#f4efe6"/>
-      <ellipse data-hf-id="hf-n3a2" cx="100" cy="128" rx="36" ry="42" fill="#f4efe6"/>
-      <path data-hf-id="hf-xlvp" d="M70 158 C60 196 66 270 80 330 L42 520 L158 520 L120 330 C134 270 140 196 130 158 C114 174 86 174 70 158 Z" fill="#f4efe6"/>
-      <path data-hf-id="hf-a9w3" d="M128 170 C162 190 178 232 164 272 L148 276 C156 238 144 202 120 184 Z" fill="#f4efe6"/>
-    </g></g>
-        <g mask="url(#bind-mask-a)">
-          <path id="bind-rope-a" d="M-20 1080 C180 960 340 1040 470 1000" fill="none" stroke="#c8282f" stroke-width="9" stroke-linecap="round"/>
-          <path id="bind-braid-a" d="M-20 1080 C180 960 340 1040 470 1000" fill="none" stroke="#1a0808" stroke-width="4" stroke-dasharray="5 6" opacity=".9"/>
-        </g>
-        <g mask="url(#bind-mask-b)">
-          <path id="bind-rope-b" d="M1100 1100 C880 980 740 1080 620 1020" fill="none" stroke="#c8282f" stroke-width="9" stroke-linecap="round"/>
-          <path id="bind-braid-b" d="M1100 1100 C880 980 740 1080 620 1020" fill="none" stroke="#1a0808" stroke-width="4" stroke-dasharray="5 6" opacity=".9"/>
-        </g>
-        <path id="bind-wrap" d="M430 1000 C470 1050 570 1050 605 995 C570 1030 470 1030 430 1000"
-              fill="none" stroke="#c8282f" stroke-width="9" stroke-linecap="round"
-              stroke-dasharray="420" stroke-dashoffset="420"/>
-        <defs>
-          <radialGradient id="bind-vig" cx="50%" cy="45%" r="75%">
-            <stop offset="55%" stop-color="#000" stop-opacity="0"/>
-            <stop offset="100%" stop-color="#000" stop-opacity=".65"/>
-          </radialGradient>
-          <filter id="bind-grain" x="0" y="0" width="100%" height="100%">
-            <feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" stitchTiles="stitch"/>
-            <feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .5 0"/>
-          </filter>
-        </defs>
-        <rect width="1080" height="1920" fill="url(#bind-vig)"/>
-        <rect width="1080" height="1920" filter="url(#bind-grain)" opacity=".07"/>
-      </svg>
-      <div data-hf-id="hf-ezlr" class="stack" style="top:220px">
-        <span data-hf-id="hf-pv3c" class="w" id="b1" style="font-size:96px">ขวัญ</span>
+      <div class="wrap" id="bd-wrap">
+        <div class="world" id="bd-world">
+          <svg data-hf-id="hf-0t6v" class="scene" viewBox="0 0 1080 1920">
+            <defs>
+              <linearGradient id="bind-khwan-skin" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fffaf1"/><stop offset=".55" stop-color="#efe5d6"/><stop offset="1" stop-color="#b9aa96"/></linearGradient>
+              <radialGradient id="bd-bg" gradientUnits="userSpaceOnUse" cx="540" cy="820" r="1000">
+                <stop offset="0" stop-color="#2a1110"/><stop offset=".5" stop-color="#120909"/><stop offset="1" stop-color="#060404"/>
+              </radialGradient>
+              <linearGradient id="bd-cone" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#fff1dc" stop-opacity=".34"/><stop offset=".7" stop-color="#f4d9b8" stop-opacity=".12"/><stop offset="1" stop-color="#f4d9b8" stop-opacity=".03"/>
+              </linearGradient>
+              <radialGradient id="bd-pool-g" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#f6dcc0" stop-opacity=".5"/><stop offset="1" stop-color="#f6dcc0" stop-opacity="0"/></radialGradient>
+              <radialGradient id="bd-red" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#e0343c" stop-opacity=".55"/><stop offset="1" stop-color="#8e1d24" stop-opacity="0"/></radialGradient>
+              <linearGradient id="bd-g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#36221a"/><stop offset="1" stop-color="#160d09"/></linearGradient>
+              <linearGradient id="bd-g2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#55351f"/><stop offset="1" stop-color="#1a0f09"/></linearGradient>
+              <filter id="bd-blur" x="-50%" y="-10%" width="200%" height="120%"><feGaussianBlur stdDeviation="22"/></filter>
+              <mask id="bind-mask-a" maskUnits="userSpaceOnUse" x="0" y="0" width="1080" height="1920">
+                <path id="bind-draw-a" d="M243 996 C300 960 380 1020 434 995" fill="none" stroke="#fff" stroke-width="16" stroke-linecap="round" stroke-dasharray="640" stroke-dashoffset="640"/>
+              </mask>
+              <mask id="bind-mask-b" maskUnits="userSpaceOnUse" x="0" y="0" width="1080" height="1920">
+                <path id="bind-draw-b" d="M864 1036 C800 990 680 1050 597 1000" fill="none" stroke="#fff" stroke-width="16" stroke-linecap="round" stroke-dasharray="640" stroke-dashoffset="640"/>
+              </mask>
+            </defs>
+            <rect data-hf-id="hf-lg1h" width="1080" height="1920" fill="url(#bd-bg)"/>
+            <path d="M-40 900 C200 870 420 890 560 870 C740 850 900 880 1120 860 L1120 1040 L-40 1040 Z" fill="#1b0f0c"/>
+            <path data-hf-id="hf-gcpf" d="M-40 1020 C260 930 820 930 1120 1020 L1120 1960 L-40 1960 Z" fill="url(#bd-g1)"/>
+            <path data-hf-id="hf-bxa4" d="M-40 1240 C300 1160 780 1180 1120 1260 L1120 1960 L-40 1960 Z" fill="url(#bd-g2)"/>
+            <polygon id="bd-cone-p" points="470,-80 610,-80 800,1290 280,1290" fill="url(#bd-cone)" filter="url(#bd-blur)"/>
+            <ellipse id="bd-pool" cx="540" cy="1280" rx="330" ry="62" fill="url(#bd-pool-g)"/>
+            <ellipse id="bd-redglow" cx="540" cy="1000" rx="260" ry="300" fill="url(#bd-red)" opacity="0"/>
+            <g id="bd-motes"></g>
+            <g transform="translate(40 737) scale(.9 .9)"><g id="bd-p1">
+<!-- char:bind-yot:start -->
+<g id="bdy-root" class="fp-person fp-male fp-front" data-fp-id="bdy" data-gender="male" data-view="front" data-blink="on">
+<ellipse class="fp-shadow" cx="100" cy="523" rx="74" ry="11" fill="#000" opacity=".5"/>
+<g id="bdy-legs" class="fp-legs">
+<rect x="72" y="372" width="26" height="136" rx="12" fill="#17110f"/>
+<rect x="102" y="372" width="26" height="136" rx="12" fill="#120d0c"/>
+<path d="M60 508 Q60 498 74 498 L96 498 Q100 498 100 504 L100 520 L62 520 Q58 520 60 508 Z" fill="#261714"/>
+<path d="M140 508 Q140 498 126 498 L104 498 Q100 498 100 504 L100 520 L138 520 Q142 520 140 508 Z" fill="#1f120f"/>
+</g>
+<g id="bdy-armL" class="fp-arm fp-arm-l" data-pivot="56 238">
+<path d="M56 238 L43.2 329.1" stroke="#22263d" stroke-width="24" stroke-linecap="round" fill="none"/>
+<circle cx="43.2" cy="335.1" r="13.5" fill="#8c6f5a"/>
+<circle cx="46.2" cy="338.1" r="8" fill="#7f5a46" opacity=".45"/>
+</g>
+<g id="bdy-armR" class="fp-arm fp-arm-r" data-pivot="144 238">
+<path d="M144 238 L225.2 281.2" stroke="#1b1d2e" stroke-width="24" stroke-linecap="round" fill="none"/>
+<circle cx="225.2" cy="287.2" r="13.5" fill="#8c6f5a"/>
+<circle cx="228.2" cy="290.2" r="8" fill="#7f5a46" opacity=".45"/>
+</g>
+<rect class="fp-neck" x="88" y="200" width="24" height="34" rx="8" fill="#7f5a46"/>
+<clipPath id="bdy-torso"><rect x="46" y="222" width="108" height="170" rx="24"/></clipPath>
+<g class="fp-torso" clip-path="url(#bdy-torso)">
+<rect x="46" y="222" width="108" height="170" fill="#22263d"/>
+<rect x="124" y="222" width="30" height="170" fill="#1b1d2e" opacity=".9"/>
+<path d="M100 236 L100 392" stroke="#191a29" stroke-width="2.5"/>
+<circle cx="100" cy="254" r="3.6" fill="#8c8580" opacity=".9"/>
+<circle cx="100" cy="284" r="3.6" fill="#8c8580" opacity=".9"/>
+<circle cx="100" cy="314" r="3.6" fill="#8c8580" opacity=".9"/>
+<circle cx="100" cy="344" r="3.6" fill="#8c8580" opacity=".9"/>
+<circle cx="100" cy="374" r="3.6" fill="#8c8580" opacity=".9"/>
+<rect x="46" y="342" width="108" height="20" fill="#6b1e22"/>
+<rect x="50" y="342" width="5" height="20" fill="#8c8072" opacity=".45"/>
+<rect x="62" y="342" width="5" height="20" fill="#8c8072" opacity=".45"/>
+<rect x="74" y="342" width="5" height="20" fill="#8c8072" opacity=".45"/>
+<rect x="86" y="342" width="5" height="20" fill="#8c8072" opacity=".45"/>
+<rect x="98" y="342" width="5" height="20" fill="#8c8072" opacity=".45"/>
+<rect x="110" y="342" width="5" height="20" fill="#8c8072" opacity=".45"/>
+<rect x="122" y="342" width="5" height="20" fill="#8c8072" opacity=".45"/>
+<rect x="134" y="342" width="5" height="20" fill="#8c8072" opacity=".45"/>
+<rect x="146" y="342" width="5" height="20" fill="#8c8072" opacity=".45"/>
+<rect x="46" y="349" width="108" height="5" fill="#8c8072" opacity=".35"/>
+</g>
+<path d="M80 222 L100 248 L92 258 L72 232 Z" fill="#1b1d2e"/><path d="M120 222 L100 248 L108 258 L128 232 Z" fill="#1b1d2e"/>
+<path d="M86 222 L100 240 L114 222 Z" fill="#7f5a46"/>
+<g id="bdy-headGroup" class="fp-head">
+<circle cx="37" cy="156" r="10" fill="#7f5a46"/><circle cx="163" cy="156" r="10" fill="#7f5a46"/>
+<circle cx="100" cy="148" r="64" fill="#8c6f5a"/>
+<clipPath id="bdy-head"><circle cx="100" cy="148" r="64"/></clipPath>
+<circle cx="7.200000000000003" cy="154" r="64" fill="#7f5a46" opacity=".38" clip-path="url(#bdy-head)"/>
+<g class="fp-hair" data-hair="short">
+<path d="M36 156 C30 104 60 80 100 80 C142 80 170 104 164 156 C158 134 150 120 140 112 C118 124 82 124 60 110 C50 122 42 136 36 156 Z" fill="#150d0d"/>
+<path d="M62 94 Q98 78 136 92" stroke="#2b2424" stroke-width="5" fill="none" stroke-linecap="round" opacity=".75"/>
+<path d="M37 150 C36 136 40 126 46 118 L50 128 C44 136 42 144 41 154 Z" fill="#615855"/><path d="M163 150 C164 136 160 126 154 118 L150 128 C156 136 158 144 159 154 Z" fill="#615855"/>
+</g>
+<g class="fp-face">
+<ellipse cx="66" cy="178" rx="11" ry="6.5" fill="#895151" opacity=".6"/><ellipse cx="134" cy="178" rx="11" ry="6.5" fill="#895151" opacity=".6"/>
+<g id="bdy-eyes" class="fp-eyes" data-blink="on"><circle cx="78" cy="160" r="6.5" fill="#241714"/><circle cx="122" cy="160" r="6.5" fill="#241714"/><circle cx="80.2" cy="157.6" r="2.1" fill="#fff"/><circle cx="124.2" cy="157.6" r="2.1" fill="#fff"/></g>
+<path class="fp-mustache" d="M86 178 Q93 172 100 177 Q107 172 114 178 Q107 182 100 180 Q93 182 86 178 Z" fill="#150d0d"/>
+<g id="bdy-exp-angry" class="bdy-exp fp-exp">
+<path d="M68 132 L90 142" stroke="#241714" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+<path d="M110 142 L132 132" stroke="#241714" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+<path d="M90 189 L110 189" stroke="#491a16" stroke-width="4" stroke-linecap="round" fill="none" transform="translate(0 4)"/>
+</g>
+</g>
+</g>
+<path class="fp-rim" d="M131.3 93.9 A62.5 62.5 0 0 1 140.2 195.9" stroke="#e0464c" stroke-width="4" fill="none" stroke-linecap="round" opacity=".6"/>
+<path class="fp-rim" d="M151 246 L151 370" stroke="#e0464c" stroke-width="4" stroke-linecap="round" opacity=".55" clip-path="url(#bdy-torso)"/>
+</g>
+<!-- char:bind-yot:end -->
+            </g></g>
+            <g transform="translate(1040 799) scale(-.8 .8)"><g id="bd-p2">
+<!-- char:bind-ang:start -->
+<g id="bda-root" class="fp-person fp-female fp-front" data-fp-id="bda" data-gender="female" data-view="front" data-blink="on">
+<ellipse class="fp-shadow" cx="100" cy="523" rx="74" ry="11" fill="#000" opacity=".5"/>
+<g id="bda-legs" class="fp-legs">
+<rect x="78" y="470" width="18" height="40" rx="8" fill="#7f5a46"/><rect x="104" y="470" width="18" height="40" rx="8" fill="#7f5a46"/>
+<path d="M56 334 L144 334 L150 492 Q100 500 50 492 Z" fill="#371625"/>
+<path d="M120 334 L144 334 L150 492 Q136 495 124 496 Z" fill="#29101b" opacity=".85"/>
+<path d="M52 452 L148 452 L149 470 L51 470 Z" fill="#7d5d2b" opacity=".9"/><path d="M53 476 L147 476 L148 482 L52 482 Z" fill="#7d5d2b" opacity=".7"/>
+<path d="M55 352 L145 352 L145.5 360 L54.5 360 Z" fill="#7d5d2b" opacity=".55"/>
+<path d="M60 508 Q60 498 74 498 L96 498 Q100 498 100 504 L100 520 L62 520 Q58 520 60 508 Z" fill="#261714"/>
+<path d="M140 508 Q140 498 126 498 L104 498 Q100 498 100 504 L100 520 L138 520 Q142 520 140 508 Z" fill="#1f120f"/>
+</g>
+<g id="bda-armL" class="fp-arm fp-arm-l" data-pivot="56 238">
+<path d="M56 238 L43.2 329.1" stroke="#867b6d" stroke-width="24" stroke-linecap="round" fill="none"/>
+<circle cx="43.2" cy="335.1" r="13.5" fill="#8c6f5a"/>
+<circle cx="46.2" cy="338.1" r="8" fill="#7f5a46" opacity=".45"/>
+</g>
+<g id="bda-armR" class="fp-arm fp-arm-r" data-pivot="144 238">
+<path d="M144 238 L219.4 290.8" stroke="#746758" stroke-width="24" stroke-linecap="round" fill="none"/>
+<circle cx="219.4" cy="296.8" r="13.5" fill="#8c6f5a"/>
+<circle cx="222.4" cy="299.8" r="8" fill="#7f5a46" opacity=".45"/>
+</g>
+<rect class="fp-neck" x="88" y="200" width="24" height="34" rx="8" fill="#7f5a46"/>
+<clipPath id="bda-torso"><rect x="46" y="222" width="108" height="118" rx="24"/></clipPath>
+<g class="fp-torso" clip-path="url(#bda-torso)">
+<rect x="46" y="222" width="108" height="118" fill="#867b6d"/>
+<rect x="124" y="222" width="30" height="118" fill="#746758" opacity=".9"/>
+<path d="M60 222 Q100 262 140 222" fill="#6b1e22" opacity=".9"/>
+<path d="M76 226 Q100 250 124 226" fill="#7f5a46"/>
+<path d="M50 326 L150 326" stroke="#6b1e22" stroke-width="3" opacity=".6"/>
+<circle cx="70" cy="280" r="4" fill="#6b1e22" opacity=".55"/>
+<circle cx="128" cy="300" r="4" fill="#6b1e22" opacity=".55"/>
+<circle cx="86" cy="318" r="4" fill="#6b1e22" opacity=".55"/>
+<circle cx="116" cy="266" r="4" fill="#6b1e22" opacity=".55"/>
+<circle cx="62" cy="312" r="4" fill="#6b1e22" opacity=".55"/>
+</g>
+<g id="bda-headGroup" class="fp-head">
+<circle cx="37" cy="156" r="10" fill="#7f5a46"/><circle cx="163" cy="156" r="10" fill="#7f5a46"/>
+<circle cx="100" cy="148" r="64" fill="#8c6f5a"/>
+<clipPath id="bda-head"><circle cx="100" cy="148" r="64"/></clipPath>
+<circle cx="7.200000000000003" cy="154" r="64" fill="#7f5a46" opacity=".38" clip-path="url(#bda-head)"/>
+<g class="fp-hair" data-hair="bun">
+<circle cx="100" cy="78" r="26" fill="#6c6460"/><path d="M84 70 Q100 60 116 70" stroke="#736c68" stroke-width="4" fill="none" opacity=".7"/>
+<path d="M38 150 C34 104 62 84 100 84 C140 84 166 104 162 150 C156 132 146 118 130 112 C112 118 88 118 70 112 C54 118 44 132 38 150 Z" fill="#6c6460"/>
+<path d="M66 100 Q100 88 134 100" stroke="#736c68" stroke-width="4" fill="none" stroke-linecap="round" opacity=".7"/>
+</g>
+<g class="fp-face">
+<ellipse cx="66" cy="178" rx="11" ry="6.5" fill="#895151" opacity=".6"/><ellipse cx="134" cy="178" rx="11" ry="6.5" fill="#895151" opacity=".6"/>
+<g id="bda-eyes" class="fp-eyes" data-blink="on"><circle cx="78" cy="160" r="6.5" fill="#241714"/><circle cx="122" cy="160" r="6.5" fill="#241714"/><circle cx="80.2" cy="157.6" r="2.1" fill="#fff"/><circle cx="124.2" cy="157.6" r="2.1" fill="#fff"/></g>
+<path d="M68 170 Q74 173 80 170 M120 170 Q126 173 132 170" stroke="#7f5a46" stroke-width="2" fill="none" opacity=".9"/><path d="M80 120 Q100 116 120 120" stroke="#7f5a46" stroke-width="2" fill="none" opacity=".7"/>
+<g id="bda-exp-fierce" class="bda-exp fp-exp">
+<path d="M66 133 L88 141" stroke="#241714" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+<path d="M112 141 L134 133" stroke="#241714" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+<path d="M89 188 Q101 191 112 183" stroke="#491a16" stroke-width="4" stroke-linecap="round" fill="none"/>
+</g>
+</g>
+</g>
+<path class="fp-rim" d="M131.3 93.9 A62.5 62.5 0 0 1 140.2 195.9" stroke="#e0464c" stroke-width="4" fill="none" stroke-linecap="round" opacity=".6"/>
+<path class="fp-rim" d="M151 246 L151 318" stroke="#e0464c" stroke-width="4" stroke-linecap="round" opacity=".55" clip-path="url(#bda-torso)"/>
+</g>
+<!-- char:bind-ang:end -->
+            </g></g>
+            <g data-hf-id="hf-i45k" transform="translate(390 620) scale(1.25 1.25)"><g id="bd-khwan-anim"><g id="bind-khwan">
+<!-- char:bind-khwan:start -->
+<g id="bdk-root" class="fp-person fp-female fp-front" data-fp-id="bdk" data-gender="female" data-view="front" data-blink="on">
+<ellipse class="fp-shadow" cx="100" cy="523" rx="74" ry="11" fill="#000" opacity=".5"/>
+<g id="bdk-legs" class="fp-legs">
+<rect x="72" y="372" width="26" height="136" rx="12" fill="#394057"/>
+<rect x="102" y="372" width="26" height="136" rx="12" fill="#2c3141"/>
+<path d="M60 508 Q60 498 74 498 L96 498 Q100 498 100 504 L100 520 L62 520 Q58 520 60 508 Z" fill="#55372c"/>
+<path d="M140 508 Q140 498 126 498 L104 498 Q100 498 100 504 L100 520 L138 520 Q142 520 140 508 Z" fill="#442d24"/>
+</g>
+<g id="bdk-armL" class="fp-arm fp-arm-l" data-pivot="56 238">
+<path d="M56 238 L46.4 329.5" stroke="#e2b352" stroke-width="24" stroke-linecap="round" fill="none"/>
+<circle cx="46.4" cy="335.5" r="13.5" fill="#f5c9a3"/>
+<circle cx="49.4" cy="338.5" r="8" fill="#dea481" opacity=".45"/>
+</g>
+<g id="bdk-armR" class="fp-arm fp-arm-r" data-pivot="144 238">
+<path d="M144 238 L153.6 329.5" stroke="#ad8a41" stroke-width="24" stroke-linecap="round" fill="none"/>
+<circle cx="153.6" cy="335.5" r="13.5" fill="#f5c9a3"/>
+<circle cx="156.6" cy="338.5" r="8" fill="#dea481" opacity=".45"/>
+</g>
+<rect class="fp-neck" x="88" y="200" width="24" height="34" rx="8" fill="#dea481"/>
+<clipPath id="bdk-torso"><rect x="46" y="222" width="108" height="170" rx="24"/></clipPath>
+<g class="fp-torso" clip-path="url(#bdk-torso)">
+<rect x="46" y="222" width="108" height="170" fill="#e2b352"/>
+<rect x="124" y="222" width="30" height="170" fill="#ad8a41" opacity=".9"/>
+<path d="M100 236 L100 392" stroke="#997939" stroke-width="2.5"/>
+<circle cx="100" cy="254" r="3.6" fill="#f7eee0" opacity=".9"/>
+<circle cx="100" cy="284" r="3.6" fill="#f7eee0" opacity=".9"/>
+<circle cx="100" cy="314" r="3.6" fill="#f7eee0" opacity=".9"/>
+<circle cx="100" cy="344" r="3.6" fill="#f7eee0" opacity=".9"/>
+<circle cx="100" cy="374" r="3.6" fill="#f7eee0" opacity=".9"/>
+<rect x="60" y="222" width="14" height="110" rx="5" fill="#744b32"/><rect x="126" y="222" width="14" height="110" rx="5" fill="#744b32"/>
+<rect x="61" y="296" width="12" height="7" rx="2" fill="#cca770"/><rect x="127" y="296" width="12" height="7" rx="2" fill="#cca770"/>
+</g>
+<path d="M80 222 L100 248 L92 258 L72 232 Z" fill="#f7eee0"/><path d="M120 222 L100 248 L108 258 L128 232 Z" fill="#f7eee0"/>
+<path d="M86 222 L100 240 L114 222 Z" fill="#dea481"/>
+<g id="bdk-headGroup" class="fp-head">
+<circle cx="37" cy="156" r="10" fill="#dea481"/><circle cx="163" cy="156" r="10" fill="#dea481"/>
+<circle cx="100" cy="148" r="64" fill="#f5c9a3"/>
+<clipPath id="bdk-head"><circle cx="100" cy="148" r="64"/></clipPath>
+<circle cx="192.8" cy="154" r="64" fill="#dea481" opacity=".38" clip-path="url(#bdk-head)"/>
+<g class="fp-hair" data-hair="bob">
+<path d="M32 204 C24 126 50 80 100 80 C150 80 176 126 168 204 L150 206 C154 170 152 138 142 118 C122 136 86 140 58 116 C50 136 48 170 50 206 Z" fill="#29201d"/>
+<path d="M58 116 C86 140 122 136 142 118 C130 100 116 96 100 96 C80 96 66 102 58 116 Z" fill="#29201d"/>
+<path d="M60 96 Q96 78 134 92" stroke="#4f4745" stroke-width="5" fill="none" stroke-linecap="round" opacity=".8"/>
+<rect x="134" y="108" width="20" height="9" rx="4" fill="#cb3338" transform="rotate(-28 144 112)"/>
+</g>
+<g class="fp-face">
+<ellipse cx="66" cy="178" rx="11" ry="6.5" fill="#f19492" opacity=".6"/><ellipse cx="134" cy="178" rx="11" ry="6.5" fill="#f19492" opacity=".6"/>
+<g id="bdk-eyes" class="fp-eyes" data-blink="on"><circle cx="78" cy="160" r="6.5" fill="#2a1b17"/><circle cx="122" cy="160" r="6.5" fill="#2a1b17"/><circle cx="80.2" cy="157.6" r="2.1" fill="#fff"/><circle cx="124.2" cy="157.6" r="2.1" fill="#fff"/></g>
+<g id="bdk-exp-neutral" class="bdk-exp fp-exp">
+<path d="M66 138 L88 137" stroke="#2a1b17" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+<path d="M112 137 L134 138" stroke="#2a1b17" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+<path d="M91 186 Q100 191 109 186" stroke="#82352e" stroke-width="4" stroke-linecap="round" fill="none"/>
+</g>
+<g id="bdk-exp-worried" class="bdk-exp fp-exp" opacity="0">
+<path d="M66 141 L88 133" stroke="#2a1b17" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+<path d="M112 133 L134 141" stroke="#2a1b17" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+<path d="M90 190 Q95 184 100 188 Q105 192 110 186" stroke="#82352e" stroke-width="4" stroke-linecap="round" fill="none"/>
+</g>
+<g id="bdk-exp-shocked" class="bdk-exp fp-exp" opacity="0">
+<path d="M66 130 Q77 122 88 128" stroke="#2a1b17" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+<path d="M112 128 Q123 122 134 130" stroke="#2a1b17" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+<ellipse cx="100" cy="190" rx="7" ry="9" fill="#74302a"/>
+</g>
+</g>
+</g>
+<path class="fp-rim" d="M68.8 93.9 A62.5 62.5 0 0 0 59.8 195.9" stroke="#fff1dc" stroke-width="4" fill="none" stroke-linecap="round" opacity=".6"/>
+<path class="fp-rim" d="M49 246 L49 370" stroke="#fff1dc" stroke-width="4" stroke-linecap="round" opacity=".55" clip-path="url(#bdk-torso)"/>
+</g>
+<!-- char:bind-khwan:end -->
+    </g></g></g>
+            <g mask="url(#bind-mask-a)">
+              <path id="bind-rope-a" d="M243 996 C300 960 380 1020 434 995" fill="none" stroke="#c8282f" stroke-width="9" stroke-linecap="round"/>
+              <path id="bind-braid-a" d="M243 996 C300 960 380 1020 434 995" fill="none" stroke="#1a0808" stroke-width="4" stroke-dasharray="5 6" opacity=".9"/>
+            </g>
+            <g mask="url(#bind-mask-b)">
+              <path id="bind-rope-b" d="M864 1036 C800 990 680 1050 597 1000" fill="none" stroke="#c8282f" stroke-width="9" stroke-linecap="round"/>
+              <path id="bind-braid-b" d="M864 1036 C800 990 680 1050 597 1000" fill="none" stroke="#1a0808" stroke-width="4" stroke-dasharray="5 6" opacity=".9"/>
+            </g>
+            <path id="bind-wrap" d="M432 990 C470 1042 560 1046 600 996 C560 1024 470 1022 432 990" fill="none" stroke="#c8282f" stroke-width="9" stroke-linecap="round" stroke-dasharray="420" stroke-dashoffset="420"/>
+            <circle id="bd-hit-a" cx="434" cy="995" r="20" fill="none" stroke="#ff6a5a" stroke-width="4" opacity="0"/>
+            <circle id="bd-hit-b" cx="597" cy="1000" r="20" fill="none" stroke="#ff6a5a" stroke-width="4" opacity="0"/>
+          </svg>
+        </div>
+        <div class="txt" id="bd-txt">
+          <div data-hf-id="hf-ezlr" class="stack" style="top:220px">
+            <span data-hf-id="hf-pv3c" class="w" id="b1" style="font-size:96px"><span class="wd">ขวัญ</span></span>
+          </div>
+          <div class="rule" id="bd-rule" style="left:400px;width:280px;top:370px"></div>
+          <div class="stack" id="bind-name-a" style="top:1300px;left:60px;width:440px;text-align:left">
+            <i class="tick" id="bd-tick-a"></i>
+            <span data-hf-id="hf-vslz" class="w nm" id="b2"><span class="wd">น้ายศ</span></span>
+          </div>
+          <div class="stack" id="bind-name-b" style="top:1300px;left:580px;width:440px;text-align:right">
+            <i class="tick" id="bd-tick-b"></i>
+            <span data-hf-id="hf-fel2" class="w nm" id="b3"><span class="wd">ยายอ่าง</span></span>
+          </div>
+        </div>
       </div>
-      <div class="stack" id="bind-name-a" style="top:1110px;left:40px;width:420px;text-align:left">
-        <span data-hf-id="hf-vslz" class="w" id="b2" style="font-size:72px">น้ายศ</span>
-      </div>
-      <div class="stack" id="bind-name-b" style="top:1130px;left:620px;width:420px;text-align:right">
-        <span data-hf-id="hf-fel2" class="w" id="b3" style="font-size:72px">ยายอ่าง</span>
-      </div>
-    
     </div>
   </div>
   <script>
     const tl = gsap.timeline({ paused: true });
-    
-    tl.fromTo("#bind-khwan", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out" }, 0.1);
-    tl.fromTo("#b1", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.3, ease: "power3.out" }, 0.25);
-    tl.fromTo("#bind-draw-a", { strokeDashoffset: 640 }, { strokeDashoffset: 0, duration: 0.7, ease: "power2.inOut" }, 1.15);
-    tl.fromTo("#b2", { opacity: 0, x: -120 }, { opacity: 1, x: 0, duration: 0.35, ease: "power3.out" }, 1.35);
-    tl.fromTo("#bind-draw-b", { strokeDashoffset: 640 }, { strokeDashoffset: 0, duration: 0.7, ease: "power2.inOut" }, 2.5);
-    tl.fromTo("#b3", { opacity: 0, x: 120 }, { opacity: 1, x: 0, duration: 0.35, ease: "power3.out" }, 2.7);
-    tl.fromTo("#bind-wrap", { strokeDashoffset: 420 }, { strokeDashoffset: 0, duration: 0.6, ease: "power2.inOut" }, 3.3);
-    tl.to("#bind-khwan", { scaleY: 1.012, transformOrigin: "50% 100%", duration: 1.6, yoyo: true, repeat: 1, ease: "sine.inOut" }, 0.6);
-    
+    const SVGNS = "http://www.w3.org/2000/svg";
+    // deterministic PRNG so every render is identical
+    const rng = (s) => () => { s |= 0; s = s + 0x6D2B79F5 | 0; let t = Math.imul(s ^ s >>> 15, 1 | s); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+    const mk = (tag, attrs, parent) => { const e = document.createElementNS(SVGNS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; };
+    const $ = (s) => document.querySelector(s);
+    const $$ = (s) => Array.from(document.querySelectorAll(s));
+    // word-level reveal (whole Thai words, so vowels / tone marks never get separated)
+    const rise = (targets, at, o = {}) => tl.fromTo(targets,
+      { opacity: 0, y: o.y ?? 44, scale: o.sc ?? 1, filter: "blur(" + (o.b ?? 12) + "px)" },
+      { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", duration: o.d ?? 0.75, ease: o.e ?? "expo.out", stagger: o.s ?? 0.1 }, at);
+    const wipeMark = (mark, at) => {
+      tl.fromTo(mark.querySelector(".mbg"), { scaleX: 0 }, { scaleX: 1, duration: 0.55, ease: "expo.inOut" }, at);
+      rise(mark.querySelectorAll(".wd"), at + 0.2, { y: 26, b: 8, d: 0.6, s: 0.08 });
+    };
+    const stamp = (mark, at, shakeEl) => {
+      tl.fromTo(mark, { opacity: 0, scale: 1.7, filter: "blur(16px)" },
+                      { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.in" }, at);
+      tl.fromTo(mark, { scale: 1 }, { scale: 1.035, duration: 0.09, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, at + 0.2);
+      if (shakeEl) shake(shakeEl, at + 0.2, 16);
+    };
+    const shake = (el, at, amp = 12) => tl.to(el, { keyframes: [
+      { x: -amp, y: amp * 0.4, duration: 0.04 }, { x: amp * 0.85, y: -amp * 0.35, duration: 0.04 },
+      { x: -amp * 0.5, y: amp * 0.2, duration: 0.05 }, { x: amp * 0.25, y: 0, duration: 0.05 }, { x: 0, y: 0, duration: 0.07 }
+    ], ease: "none" }, at);
+    // soft scene in/out: no hard cuts between scenes
+    const sceneIO = (wrap, dur, o = {}) => {
+      if (o.in !== false) tl.fromTo(wrap, { opacity: 0, scale: 1.06, filter: "blur(14px)" },
+        { opacity: 1, scale: 1, filter: "blur(0px)", duration: o.inDur ?? 0.5, ease: "power3.out" }, 0);
+      if (o.out !== false) tl.to(wrap, { opacity: 0, scale: 1.04, filter: "blur(10px)", duration: o.outDur ?? 0.34, ease: "power2.in" }, dur - (o.outDur ?? 0.34));
+    };
+    // floating particles (dust motes / embers)
+    const particles = (g, n, seed, box, o = {}) => {
+      const r = rng(seed);
+      for (let i = 0; i < n; i++) {
+        const x = box[0] + r() * box[2], y = box[1] + r() * box[3];
+        const c = mk("circle", { cx: x, cy: y, r: (o.rmin ?? 1.5) + r() * ((o.rmax ?? 4) - (o.rmin ?? 1.5)), fill: o.fill ?? "#f4c9a8", opacity: 0 }, g);
+        const a = (o.amin ?? 0.15) + r() * ((o.amax ?? 0.6) - (o.amin ?? 0.15));
+        const d = o.dur;
+        tl.fromTo(c, { opacity: 0, x: 0, y: 0 }, { keyframes: [
+            { opacity: a, duration: d * 0.25 }, { opacity: a * (0.4 + r() * 0.6), duration: d * 0.5 }, { opacity: 0, duration: d * 0.25 } ],
+          ease: "none" }, 0);
+        tl.fromTo(c, { x: 0, y: 0 }, { x: (r() - 0.5) * (o.dx ?? 60), y: -((o.dymin ?? 30) + r() * ((o.dymax ?? 120) - (o.dymin ?? 30))), duration: d, ease: "sine.inOut", immediateRender: false }, 0);
+      }
+    };
+
+    particles($("#bd-motes"), 40, 61, [300, 80, 480, 1150], { dur: 5, rmin: 1.2, rmax: 3.2, amin: .2, amax: .6, dx: 60, dymin: 20, dymax: 90, fill: "#fff1dc" });
+    sceneIO("#bd-wrap", 5);
+    tl.fromTo("#bd-world", { scale: 1.0 }, { scale: 1.07, duration: 5, ease: "sine.inOut" }, 0);
+    tl.fromTo("#bd-cone-p", { opacity: 0.4 }, { opacity: 1, duration: 0.8, ease: "power2.out" }, 0.05);
+    tl.fromTo("#bd-khwan-anim", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }, 0.1);
+    tl.to("#bd-khwan-anim", { scaleY: 1.012, transformOrigin: "50% 100%", duration: 1.2, yoyo: true, repeat: 1, ease: "sine.inOut" }, 0.9);
+    rise("#b1 .wd", 0.25, { y: 50, sc: 1.15, b: 16, d: 0.9 });
+    tl.fromTo("#bd-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.8, ease: "expo.out" }, 0.6);
+    // น้ายศ: silhouette steps in from the left, rope lashes out
+    tl.fromTo("#bd-p1", { opacity: 0, x: -60 }, { opacity: 1, x: 0, duration: 0.6, ease: "power3.out" }, 0.95);
+    tl.fromTo("#bind-draw-a", { strokeDashoffset: 640 }, { strokeDashoffset: 0, duration: 0.65, ease: "expo.inOut" }, 1.15);
+    tl.fromTo("#bd-hit-a", { opacity: 0.9, scale: 1, svgOrigin: "434 995" }, { opacity: 0, scale: 4, duration: 0.6, ease: "expo.out", immediateRender: false }, 1.75);
+    tl.fromTo("#bd-khwan-anim", { x: 0 }, { keyframes: [{ x: -8, duration: .06 }, { x: 4, duration: .08 }, { x: 0, duration: .14 }], immediateRender: false }, 1.75);
+    tl.fromTo("#bd-tick-a", { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "expo.out" }, 1.3);
+    rise("#b2 .wd", 1.35, { y: 0, b: 12, d: 0.7 });
+    tl.fromTo("#b2 .wd", { x: -120 }, { x: 0, duration: 0.7, ease: "expo.out", immediateRender: false }, 1.35);
+    // ยายอ่าง from the right
+    tl.fromTo("#bd-p2", { opacity: 0, x: -60 }, { opacity: 1, x: 0, duration: 0.6, ease: "power3.out" }, 2.3);
+    tl.fromTo("#bind-draw-b", { strokeDashoffset: 640 }, { strokeDashoffset: 0, duration: 0.65, ease: "expo.inOut" }, 2.5);
+    tl.fromTo("#bd-hit-b", { opacity: 0.9, scale: 1, svgOrigin: "597 1000" }, { opacity: 0, scale: 4, duration: 0.6, ease: "expo.out", immediateRender: false }, 3.1);
+    tl.fromTo("#bd-khwan-anim", { x: 0 }, { keyframes: [{ x: 8, duration: .06 }, { x: -4, duration: .08 }, { x: 0, duration: .14 }], immediateRender: false }, 3.1);
+    tl.fromTo("#bd-tick-b", { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "expo.out" }, 2.65);
+    rise("#b3 .wd", 2.7, { y: 0, b: 12, d: 0.7 });
+    tl.fromTo("#b3 .wd", { x: 120 }, { x: 0, duration: 0.7, ease: "expo.out", immediateRender: false }, 2.7);
+    // character acting: blinks, expression changes (neutral -> worried at the first lash -> shocked at the knot)
+    const blink = (sel, at) => tl.fromTo(sel, { scaleY: 1 }, { scaleY: 0.12, transformOrigin: "50% 50%", duration: 0.06, yoyo: true, repeat: 1, ease: "power1.inOut", immediateRender: false }, at);
+    blink("#bdk-eyes", 0.7); blink("#bdk-eyes", 2.45); blink("#bdk-eyes", 4.35);
+    const face = (pre, name, at) => { tl.set(`.${pre}-exp`, { opacity: 0 }, at); tl.set(`#${pre}-exp-${name}`, { opacity: 1 }, at); };
+    face("bdk", "worried", 1.78); face("bdk", "shocked", 3.32);
+    // the knot: rope wraps around Khwan, light turns red
+    tl.fromTo("#bind-wrap", { strokeDashoffset: 420 }, { strokeDashoffset: 0, duration: 0.6, ease: "expo.inOut" }, 3.3);
+    tl.fromTo(["#bind-rope-a", "#bind-rope-b", "#bind-wrap"], { strokeWidth: 9 }, { strokeWidth: 13, duration: 0.12, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, 3.9);
+    tl.to("#bd-redglow", { opacity: 1, duration: 0.6, ease: "power2.out" }, 3.6);
+    tl.to("#bd-cone-p", { opacity: 0.55, duration: 0.6, ease: "power2.out" }, 3.6);
+    tl.fromTo("#bd-txt", { y: 0 }, { y: -10, duration: 5, ease: "sine.inOut" }, 0);
     window.__timelines = window.__timelines || {};
     window.__timelines["bind"] = tl;
   </script>

@@ -1,69 +1,234 @@
 <template>
   <style>
-    
     @font-face { font-family: Kanit; font-weight: 800; font-display: block; src: url("assets/fonts/kanit-thai-800-normal.woff2") format("woff2"); unicode-range: U+02D7, U+0303, U+0331, U+0E01-0E5B, U+200C-200D, U+25CC; }
     @font-face { font-family: Kanit; font-weight: 800; font-display: block; src: url("assets/fonts/kanit-latin-800-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+    @font-face { font-family: Kanit; font-weight: 600; font-display: block; src: url("assets/fonts/kanit-thai-600-normal.woff2") format("woff2"); unicode-range: U+02D7, U+0303, U+0331, U+0E01-0E5B, U+200C-200D, U+25CC; }
+    @font-face { font-family: Kanit; font-weight: 600; font-display: block; src: url("assets/fonts/kanit-latin-600-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
 
-    #root { position: absolute; inset: 0; overflow: hidden; background: #0c0908; font-family: Kanit, sans-serif; }
+    #root { position: absolute; inset: 0; overflow: hidden; background: #0b0807; font-family: Kanit, sans-serif; }
     .clip { position: absolute; inset: 0; }
-    svg.scene { position: absolute; inset: 0; width: 1080px; height: 1920px; }
+    .wrap, .world, .txt { position: absolute; inset: 0; }
+    .world { transform-origin: 50% 50%; }
+    svg.scene { position: absolute; inset: 0; width: 1080px; height: 1920px; overflow: visible; }
     .stack { position: absolute; left: 80px; width: 920px; text-align: center; }
-    .w { display: block; color: #f4efe6; font-weight: 800; line-height: 1.25; letter-spacing: 0; opacity: 0; }
-    .mark { color: #f4efe6; background: #8e1d24; border-radius: 10px; display: inline-block; line-height: 1.2; padding: 0 18px 10px; }
+    /* lines are visible containers; words (.wd) are revealed one Thai word at a time, never per character */
+    .w { display: block; color: #f4efe6; font-weight: 800; line-height: 1.3; letter-spacing: 0;
+         text-shadow: 0 6px 28px rgba(0,0,0,.75), 0 2px 6px rgba(0,0,0,.55); }
+    .wd { display: inline-block; opacity: 0; }
+    .mark { position: relative; display: inline-block; line-height: 1.2; padding: 4px 26px 14px; }
+    .mbg { position: absolute; inset: 0; border-radius: 12px; transform-origin: 0% 50%;
+           background: linear-gradient(100deg, #5a0e14 0%, #9e2129 45%, #c8343b 62%, #7a151c 100%);
+           box-shadow: 0 16px 48px rgba(170, 32, 40, .45), inset 0 1px 0 rgba(255, 214, 196, .28), inset 0 -3px 0 rgba(40, 0, 0, .35); }
+    .mark .wd, .mark .mtx { position: relative; text-shadow: 0 2px 12px rgba(50, 0, 0, .55); }
+    .stampm { opacity: 0; }
+    .rule { position: absolute; height: 3px; border-radius: 2px; transform-origin: 50% 50%; transform: scaleX(0);
+            background: linear-gradient(90deg, rgba(200,40,47,0), #e0464c 30%, #f4efe6 50%, #e0464c 70%, rgba(200,40,47,0)); }
 
+    .sign { display: inline-flex; align-items: center; gap: 18px; padding: 10px 30px 16px; border-radius: 14px;
+            background: linear-gradient(180deg, #1f4a7a, #163759); border: 4px solid #f4efe6; box-shadow: 0 14px 40px rgba(0,0,0,.55), inset 0 0 0 3px #163759;
+            transform-origin: 50% 0%; opacity: 0; }
+    .sign .wd { opacity: 1; text-shadow: none; }
   </style>
   <div data-hf-id="hf-l044" id="root" data-composition-id="road" data-width="1080" data-height="1920" data-layout-allow-overflow data-layout-allow-overlap>
     <div data-hf-id="hf-4tkb" id="road-scene" class="clip" data-start="0" data-duration="4" data-track-index="1" data-hold>
-      
-      <svg data-hf-id="hf-0t6v" class="scene" viewBox="0 0 1080 1920">
-        <rect data-hf-id="hf-lg1h" width="1080" height="1920" fill="#0c0908"/>
-        <polygon data-hf-id="hf-8k9j" points="540,680 60,1760 1020,1760" fill="#3d291c"/>
-        <polygon data-hf-id="hf-06kw" points="540,680 390,1760 690,1760" fill="#6b442c"/>
-        <path data-hf-id="hf-2ksy" d="M540 680 L540 1760" fill="none" stroke="#f4efe6" stroke-width="3" opacity="0.35"/>
-        <g data-hf-id="hf-gkp9" id="walker">
-          <g data-hf-id="hf-7prm" transform="translate(400 860) scale(1.05 1.05)"><g data-hf-id="hf-389b" id="road-khwan">
-      <circle data-hf-id="hf-ksvb" cx="100" cy="96" r="20" fill="#f4efe6"/>
-      <ellipse data-hf-id="hf-n3a2" cx="100" cy="128" rx="36" ry="42" fill="#f4efe6"/>
-      <path data-hf-id="hf-xlvp" d="M70 158 C60 196 66 270 80 330 L42 520 L158 520 L120 330 C134 270 140 196 130 158 C114 174 86 174 70 158 Z" fill="#f4efe6"/>
-      <path data-hf-id="hf-a9w3" d="M128 170 C162 190 178 232 164 272 L148 276 C156 238 144 202 120 184 Z" fill="#f4efe6"/>
-    </g></g>
-        </g>
-        <path id="road-rope" d="M-40 1140 Q220 1230 470 1160" fill="none" stroke="#c8282f" stroke-width="7" stroke-linecap="round"/>
-        <defs>
-          <radialGradient id="road-vig" cx="50%" cy="45%" r="75%">
-            <stop offset="55%" stop-color="#000" stop-opacity="0"/>
-            <stop offset="100%" stop-color="#000" stop-opacity=".65"/>
-          </radialGradient>
-          <filter id="road-grain" x="0" y="0" width="100%" height="100%">
-            <feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" stitchTiles="stitch"/>
-            <feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .5 0"/>
-          </filter>
-        </defs>
-        <rect width="1080" height="1920" fill="url(#road-vig)"/>
-        <rect width="1080" height="1920" filter="url(#road-grain)" opacity=".07"/>
-      </svg>
-      <div data-hf-id="hf-ten8" class="stack" style="top:168px">
-        <span data-hf-id="hf-9k2x" class="w" id="d1" style="font-size:72px">น้านารถ</span>
-        <span data-hf-id="hf-phte" class="w" id="d2" style="font-size:60px;margin-top:8px">ไปกับฉันไหม</span>
+      <div class="wrap" id="rd-wrap">
+        <div class="world" id="rd-world">
+          <svg data-hf-id="hf-0t6v" class="scene" viewBox="0 0 1080 1920">
+            <defs>
+              <linearGradient id="road-khwan-skin" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fffaf1"/><stop offset=".55" stop-color="#efe5d6"/><stop offset="1" stop-color="#b9aa96"/></linearGradient>
+              <linearGradient id="rd-sky" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#07060c"/><stop offset=".22" stop-color="#1a1124"/><stop offset=".31" stop-color="#4a1d2c"/><stop offset=".36" stop-color="#b4503a"/><stop offset=".37" stop-color="#d77a48"/>
+              </linearGradient>
+              <radialGradient id="rd-cityglow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ffb26a" stop-opacity=".7"/><stop offset=".5" stop-color="#d8603a" stop-opacity=".25"/><stop offset="1" stop-color="#8e1d24" stop-opacity="0"/></radialGradient>
+              <linearGradient id="rd-field" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a1810"/><stop offset="1" stop-color="#140b07"/></linearGradient>
+              <linearGradient id="rd-asph" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6b442c"/><stop offset=".3" stop-color="#4a3022"/><stop offset="1" stop-color="#2a1a12"/></linearGradient>
+              <linearGradient id="rd-shoulder" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a2e1e"/><stop offset="1" stop-color="#22140d"/></linearGradient>
+              <filter id="rd-blur" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="18"/></filter>
+            </defs>
+            <rect data-hf-id="hf-lg1h" x="-100" y="-100" width="1280" height="2120" fill="url(#rd-sky)"/>
+            <g id="rd-stars" fill="#f4efe6"></g>
+            <ellipse cx="540" cy="690" rx="640" ry="190" fill="url(#rd-cityglow)" id="rd-glow"/>
+            <g id="rd-city"><g id="rd-bldg" fill="#160c13"></g><g id="rd-win" fill="#ffcf7a"></g></g>
+            <rect x="-100" y="688" width="1280" height="1300" fill="url(#rd-field)"/>
+            <g id="rd-furrows" stroke="#3a2416" stroke-width="2" opacity=".55"></g>
+            <polygon data-hf-id="hf-8k9j" points="540,690 -40,1960 1120,1960" fill="url(#rd-shoulder)"/>
+            <polygon data-hf-id="hf-06kw" points="540,690 330,1960 750,1960" fill="url(#rd-asph)"/>
+            <path d="M536 690 L300 1960 M544 690 L780 1960" stroke="#f4efe6" stroke-width="3" opacity=".3"/>
+            <g id="rd-dashes" fill="#f4efe6" opacity=".55"></g>
+            <g id="rd-poles" fill="#100808"></g>
+            <ellipse id="rd-trail" cx="540" cy="1380" rx="90" ry="14" fill="#d9a77a" opacity="0" filter="url(#rd-blur)"/>
+            <g data-hf-id="hf-gkp9" id="walker">
+              <g data-hf-id="hf-7prm" transform="translate(400 860) scale(1.05 1.05)"><g id="rd-bob"><g id="road-khwan">
+<!-- char:road-khwan:start -->
+<g id="rdk-root" class="fp-person fp-female fp-back" data-fp-id="rdk" data-gender="female" data-view="back" data-blink="on">
+<ellipse class="fp-shadow" cx="100" cy="523" rx="74" ry="11" fill="#000" opacity=".5"/>
+<g id="rdk-legs" class="fp-legs">
+<rect x="72" y="372" width="26" height="136" rx="12" fill="#2b354f"/>
+<rect x="102" y="372" width="26" height="136" rx="12" fill="#22293e"/>
+<path d="M60 508 Q60 498 74 498 L96 498 Q100 498 100 504 L100 520 L62 520 Q58 520 60 508 Z" fill="#412e2f"/>
+<path d="M140 508 Q140 498 126 498 L104 498 Q100 498 100 504 L100 520 L138 520 Q142 520 140 508 Z" fill="#342628"/>
+</g>
+<g id="rdk-armL" class="fp-arm fp-arm-l" data-pivot="56 238">
+<path d="M56 238 L46.4 329.5" stroke="#856d3e" stroke-width="24" stroke-linecap="round" fill="none"/>
+<circle cx="46.4" cy="335.5" r="13.5" fill="#bb9e8a"/>
+<circle cx="49.4" cy="338.5" r="8" fill="#ab8170" opacity=".45"/>
+</g>
+<g id="rdk-armR" class="fp-arm fp-arm-r" data-pivot="144 238">
+<path d="M144 238 L153.6 329.5" stroke="#ad8e4c" stroke-width="24" stroke-linecap="round" fill="none"/>
+<circle cx="153.6" cy="335.5" r="13.5" fill="#bb9e8a"/>
+<circle cx="156.6" cy="338.5" r="8" fill="#ab8170" opacity=".45"/>
+</g>
+<rect class="fp-neck" x="88" y="200" width="24" height="34" rx="8" fill="#ab8170"/>
+<clipPath id="rdk-torso"><rect x="46" y="222" width="108" height="170" rx="24"/></clipPath>
+<g class="fp-torso" clip-path="url(#rdk-torso)">
+<rect x="46" y="222" width="108" height="170" fill="#ad8e4c"/>
+<rect x="46" y="222" width="30" height="170" fill="#856d3e" opacity=".9"/>
+<rect x="58" y="236" width="84" height="122" rx="22" fill="#593e33"/>
+<rect x="58" y="236" width="84" height="40" rx="18" fill="#42302a"/>
+<rect x="72" y="300" width="56" height="40" rx="10" fill="#42302a"/><rect x="96" y="268" width="8" height="16" rx="3" fill="#9d8463"/>
+</g>
+<g id="rdk-headGroup" class="fp-head">
+<circle cx="100" cy="148" r="64" fill="#bb9e8a"/>
+<clipPath id="rdk-head"><circle cx="100" cy="148" r="64"/></clipPath>
+<circle cx="192.8" cy="154" r="64" fill="#ab8170" opacity=".38" clip-path="url(#rdk-head)"/>
+<g class="fp-hair" data-hair="bob">
+<circle cx="100" cy="146" r="66" fill="#1f1c23"/>
+<path d="M34 150 Q36 214 64 214 L136 214 Q164 214 166 150 Z" fill="#1f1c23"/>
+<rect x="134" y="104" width="20" height="9" rx="4" fill="#9c2b37" transform="rotate(28 144 108)"/>
+<path d="M64 106 Q100 84 136 106" stroke="#3d3a42" stroke-width="5" fill="none" stroke-linecap="round" opacity=".7"/>
+</g>
+</g>
+<path class="fp-rim" d="M68.8 93.9 A62.5 62.5 0 0 0 59.8 195.9" stroke="#ffd9a8" stroke-width="4" fill="none" stroke-linecap="round" opacity=".6"/>
+<path class="fp-rim" d="M49 246 L49 370" stroke="#ffd9a8" stroke-width="4" stroke-linecap="round" opacity=".55" clip-path="url(#rdk-torso)"/>
+</g>
+<!-- char:road-khwan:end -->
+    </g></g></g>
+            </g>
+            <path id="road-rope" d="M-40 1180 Q220 1270 450 1228" fill="none" stroke="#c8282f" stroke-width="7" stroke-linecap="round"/>
+            <circle id="rd-snap" cx="472" cy="1268" r="30" fill="none" stroke="#ff6a5a" stroke-width="5" opacity="0"/>
+          </svg>
+        </div>
+        <div class="txt" id="rd-txt">
+          <div data-hf-id="hf-ten8" class="stack" style="top:168px">
+            <span data-hf-id="hf-9k2x" class="w" id="d1" style="font-size:72px"><span class="wd">น้า</span><span class="wd">นารถ</span></span>
+            <span data-hf-id="hf-phte" class="w" id="d2" style="font-size:60px;margin-top:8px"><span class="wd">ไป</span><span class="wd">กับ</span><span class="wd">ฉัน</span><span class="wd">ไหม</span></span>
+          </div>
+          <div data-hf-id="hf-9s7q" class="stack" style="top:430px">
+            <span data-hf-id="hf-j09y" class="w" id="d3" style="font-size:40px"><span class="sign" id="rd-sign"><svg width="34" height="34" viewBox="0 0 34 34"><path d="M17 3 L30 18 L21 18 L21 31 L13 31 L13 18 L4 18 Z" fill="#f4efe6"/></svg><span class="wd">กรุงเทพฯ</span></span></span>
+          </div>
+        </div>
       </div>
-      <div data-hf-id="hf-9s7q" class="stack" style="top:430px">
-        <span data-hf-id="hf-j09y" class="w" id="d3" style="font-size:36px;letter-spacing:0.12em">กรุงเทพฯ</span>
-      </div>
-    
     </div>
   </div>
   <script>
     const tl = gsap.timeline({ paused: true });
-    
-    tl.fromTo("#d1", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.28, ease: "power3.out" }, 0.15);
-    tl.fromTo("#d2", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.28, ease: "power3.out" }, 0.5);
-    tl.fromTo("#d3", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, 0.2);
+    const SVGNS = "http://www.w3.org/2000/svg";
+    // deterministic PRNG so every render is identical
+    const rng = (s) => () => { s |= 0; s = s + 0x6D2B79F5 | 0; let t = Math.imul(s ^ s >>> 15, 1 | s); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+    const mk = (tag, attrs, parent) => { const e = document.createElementNS(SVGNS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; };
+    const $ = (s) => document.querySelector(s);
+    const $$ = (s) => Array.from(document.querySelectorAll(s));
+    // word-level reveal (whole Thai words, so vowels / tone marks never get separated)
+    const rise = (targets, at, o = {}) => tl.fromTo(targets,
+      { opacity: 0, y: o.y ?? 44, scale: o.sc ?? 1, filter: "blur(" + (o.b ?? 12) + "px)" },
+      { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", duration: o.d ?? 0.75, ease: o.e ?? "expo.out", stagger: o.s ?? 0.1 }, at);
+    const wipeMark = (mark, at) => {
+      tl.fromTo(mark.querySelector(".mbg"), { scaleX: 0 }, { scaleX: 1, duration: 0.55, ease: "expo.inOut" }, at);
+      rise(mark.querySelectorAll(".wd"), at + 0.2, { y: 26, b: 8, d: 0.6, s: 0.08 });
+    };
+    const stamp = (mark, at, shakeEl) => {
+      tl.fromTo(mark, { opacity: 0, scale: 1.7, filter: "blur(16px)" },
+                      { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.in" }, at);
+      tl.fromTo(mark, { scale: 1 }, { scale: 1.035, duration: 0.09, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, at + 0.2);
+      if (shakeEl) shake(shakeEl, at + 0.2, 16);
+    };
+    const shake = (el, at, amp = 12) => tl.to(el, { keyframes: [
+      { x: -amp, y: amp * 0.4, duration: 0.04 }, { x: amp * 0.85, y: -amp * 0.35, duration: 0.04 },
+      { x: -amp * 0.5, y: amp * 0.2, duration: 0.05 }, { x: amp * 0.25, y: 0, duration: 0.05 }, { x: 0, y: 0, duration: 0.07 }
+    ], ease: "none" }, at);
+    // soft scene in/out: no hard cuts between scenes
+    const sceneIO = (wrap, dur, o = {}) => {
+      if (o.in !== false) tl.fromTo(wrap, { opacity: 0, scale: 1.06, filter: "blur(14px)" },
+        { opacity: 1, scale: 1, filter: "blur(0px)", duration: o.inDur ?? 0.5, ease: "power3.out" }, 0);
+      if (o.out !== false) tl.to(wrap, { opacity: 0, scale: 1.04, filter: "blur(10px)", duration: o.outDur ?? 0.34, ease: "power2.in" }, dur - (o.outDur ?? 0.34));
+    };
+    // floating particles (dust motes / embers)
+    const particles = (g, n, seed, box, o = {}) => {
+      const r = rng(seed);
+      for (let i = 0; i < n; i++) {
+        const x = box[0] + r() * box[2], y = box[1] + r() * box[3];
+        const c = mk("circle", { cx: x, cy: y, r: (o.rmin ?? 1.5) + r() * ((o.rmax ?? 4) - (o.rmin ?? 1.5)), fill: o.fill ?? "#f4c9a8", opacity: 0 }, g);
+        const a = (o.amin ?? 0.15) + r() * ((o.amax ?? 0.6) - (o.amin ?? 0.15));
+        const d = o.dur;
+        tl.fromTo(c, { opacity: 0, x: 0, y: 0 }, { keyframes: [
+            { opacity: a, duration: d * 0.25 }, { opacity: a * (0.4 + r() * 0.6), duration: d * 0.5 }, { opacity: 0, duration: d * 0.25 } ],
+          ease: "none" }, 0);
+        tl.fromTo(c, { x: 0, y: 0 }, { x: (r() - 0.5) * (o.dx ?? 60), y: -((o.dymin ?? 30) + r() * ((o.dymax ?? 120) - (o.dymin ?? 30))), duration: d, ease: "sine.inOut", immediateRender: false }, 0);
+      }
+    };
+
+    (() => {
+      const r = rng(101);
+      const st = $("#rd-stars");
+      for (let i = 0; i < 70; i++) { const c = mk("circle", { cx: r() * 1080, cy: 60 + r() * 520, r: .8 + r() * 1.8, opacity: .2 + r() * .6 }, st);
+        if (i % 3 === 0) tl.fromTo(c, { opacity: .15 }, { opacity: .85, duration: .4 + r() * .6, yoyo: true, repeat: 3, ease: "sine.inOut" }, r()); }
+      // Bangkok skyline on the horizon, with lit windows
+      const b = $("#rd-bldg"), w = $("#rd-win");
+      let x = -60;
+      while (x < 1140) {
+        const cw = 26 + r() * 46, center = 1 - Math.min(Math.abs(x - 600) / 560, 1);
+        let h = 24 + r() * 70 + center * center * 190;
+        mk("rect", { x, y: 690 - h, width: cw, height: h + 2 }, b);
+        if (r() > .7) mk("rect", { x: x + cw * .4, y: 690 - h - 26, width: 3, height: 26 }, b);
+        for (let wy = 690 - h + 10; wy < 684; wy += 12) for (let wx = x + 5; wx < x + cw - 6; wx += 9) if (r() > .72) mk("rect", { x: wx, y: wy, width: 4, height: 5, opacity: .3 + r() * .6 }, w);
+        x += cw + 2 + r() * 8;
+      }
+      // a tall stepped tower as the city landmark
+      mk("path", { d: "M610 690 L610 380 L622 380 L622 352 L640 352 L640 330 L646 300 L652 330 L668 352 L668 400 L680 400 L680 690 Z" }, b);
+      for (let wy = 410; wy < 684; wy += 14) for (let wx = 615; wx < 676; wx += 10) if (r() > .6) mk("rect", { x: wx, y: wy, width: 4, height: 6, opacity: .4 + r() * .5 }, w);
+      // rice-field furrows converging on the vanishing point
+      const fu = $("#rd-furrows");
+      for (let i = -14; i <= 14; i++) mk("line", { x1: 540 + i * 18, y1: 692, x2: 540 + i * 190, y2: 1960 }, fu);
+      // perspective centre dashes and utility poles (procedural)
+      const dg = $("#rd-dashes"), pg = $("#rd-poles");
+      const Y = (s) => 690 + 1270 * s;
+      for (let k = 0; k < 9; k++) { const s0 = Math.pow(k / 8, 2.2), s1 = Math.pow((k + .45) / 8, 2.2);
+        if (Y(s0) > 1990) break;
+        const w0 = 2 + 14 * s0, w1 = 2 + 14 * s1;
+        mk("polygon", { points: `${540 - w0},${Y(s0)} ${540 + w0},${Y(s0)} ${540 + w1},${Y(s1)} ${540 - w1},${Y(s1)}` }, dg); }
+      [.035, .07, .12, .19, .29, .44, .66].forEach((s) => { const y = Y(s), h = 12 + 900 * s, ww = 1.5 + 14 * s;
+        for (const side of [-1, 1]) { const xx = 540 + side * (30 + 760 * s);
+          mk("rect", { x: xx - ww / 2, y: y - h, width: ww, height: h }, pg);
+          mk("rect", { x: xx - ww * 4, y: y - h + ww * 2, width: ww * 8, height: Math.max(ww * .8, 1.5) }, pg);
+          mk("rect", { x: xx - ww * 3, y: y - h + ww * 5, width: ww * 6, height: Math.max(ww * .6, 1.2) }, pg); } });
+    })();
+    sceneIO("#rd-wrap", 4);
+    tl.fromTo("#rd-world", { scale: 1.0 }, { scale: 1.05, duration: 2.3, ease: "sine.inOut" }, 0);
+    tl.to("#rd-world", { scale: 1.0, duration: 0.3, ease: "power4.out" }, 2.35);
+    tl.fromTo("#rd-city", { scale: 1, svgOrigin: "540 690" }, { scale: 1.05, duration: 2.2, ease: "sine.inOut" }, 0.2);
+    tl.fromTo("#rd-glow", { opacity: 0.7 }, { opacity: 1, duration: 2, ease: "sine.inOut" }, 0.2);
+    rise("#d1 .wd", 0.15, { y: 40, b: 12, s: 0.12 });
+    rise("#d2 .wd", 0.5, { y: 30, b: 10, s: 0.09, d: 0.7 });
+    tl.fromTo("#rd-sign", { opacity: 0, scaleY: 0.2, y: -20 }, { opacity: 1, scaleY: 1, y: 0, duration: 0.6, ease: "back.out(2.2)" }, 0.25);
+    tl.fromTo("#rd-sign", { rotation: 0 }, { keyframes: [{ rotation: 2.2, duration: .5, ease: "sine.inOut" }, { rotation: -1.2, duration: .6, ease: "sine.inOut" }, { rotation: 0, duration: .6, ease: "sine.inOut" }], transformOrigin: "50% 0%", immediateRender: false }, 0.85);
+    // walk toward the city with a gait bob, then the rope yanks back
     tl.to("#walker", { x: 70, y: -180, scale: 0.65, svgOrigin: "540 1000", duration: 1.5, ease: "power1.inOut" }, 0.7);
-    tl.to("#road-rope", { attr: { d: "M-40 1140 Q250 1020 540 900" }, duration: 1.5, ease: "power1.inOut" }, 0.7);
-    tl.to("#road-rope", { strokeWidth: 9, duration: 0.08, yoyo: true, repeat: 1 }, 2.2);
+    tl.fromTo("#rd-bob", { y: 0 }, { keyframes: [0,1,2,3,4,5].map(() => ({ y: -10, duration: .125, ease: "sine.out" })).flatMap(k => [k, { y: 0, duration: .125, ease: "sine.in" }]) }, 0.7);
+    tl.fromTo("#rd-trail", { opacity: 0, x: 0 }, { opacity: 0.25, x: 40, duration: 1.4, ease: "sine.inOut" }, 0.8);
+    tl.to("#rd-trail", { opacity: 0, duration: 0.5 }, 2.2);
+    // arm swing in step with the walk bob
+    const swing = (a) => [0,1,2].flatMap(() => [{ rotation: a, duration: .25, ease: "sine.inOut" }, { rotation: -a, duration: .25, ease: "sine.inOut" }]).concat([{ rotation: 0, duration: .2, ease: "sine.out" }]);
+    tl.fromTo("#rdk-armL", { rotation: 0 }, { keyframes: swing(12), svgOrigin: "56 238", immediateRender: false }, 0.7);
+    tl.fromTo("#rdk-armR", { rotation: 0 }, { keyframes: swing(-12), svgOrigin: "144 238", immediateRender: false }, 0.7);
+    tl.to("#road-rope", { attr: { d: "M-40 1180 Q260 1060 552 968" }, duration: 1.5, ease: "power1.inOut" }, 0.7);
+    tl.to("#road-rope", { strokeWidth: 10, duration: 0.08, yoyo: true, repeat: 1 }, 2.2);
     tl.to("#walker", { x: -10, y: 90, scale: 0.8, svgOrigin: "540 1000", duration: 0.22, ease: "power4.in" }, 2.35);
-    tl.to("#road-rope", { attr: { d: "M-40 1140 Q220 1100 460 1170" }, duration: 0.22, ease: "power4.in" }, 2.35);
-    
+    tl.to("#road-rope", { attr: { d: "M-40 1180 Q230 1150 472 1268" }, duration: 0.22, ease: "power4.in" }, 2.35);
+    tl.fromTo("#rd-snap", { opacity: 0.9, scale: 1, svgOrigin: "472 1268" }, { opacity: 0, scale: 5, duration: 0.6, ease: "expo.out", immediateRender: false }, 2.57);
+    shake("#rd-world", 2.57, 14);
+    shake("#rd-txt", 2.57, 8);
+    tl.to("#rd-glow", { opacity: 0.35, duration: 0.8, ease: "power2.out" }, 2.6);
+    tl.to("#rd-city", { opacity: 0.6, duration: 0.8, ease: "power2.out" }, 2.6);
     window.__timelines = window.__timelines || {};
     window.__timelines["road"] = tl;
   </script>

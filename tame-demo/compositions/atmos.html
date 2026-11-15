@@ -1,0 +1,71 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+    .clip { position: absolute; inset: 0; }
+    .leak { position: absolute; width: 1500px; height: 1500px; border-radius: 50%; mix-blend-mode: screen; opacity: 0; }
+    #at-leak-a { left: -700px; top: -500px; background: radial-gradient(circle at 50% 50%, rgba(255,150,80,.85) 0%, rgba(230,80,50,.35) 30%, rgba(200,40,47,0) 62%); }
+    #at-leak-b { left: 400px; top: 1100px; background: radial-gradient(circle at 50% 50%, rgba(255,110,70,.75) 0%, rgba(200,40,47,.3) 32%, rgba(200,40,47,0) 62%); }
+    #at-leak-c { left: -200px; top: 200px; background: radial-gradient(circle at 50% 50%, rgba(255,170,100,.9) 0%, rgba(230,80,50,.4) 30%, rgba(200,40,47,0) 62%); }
+    #at-flare { position: absolute; left: -300px; top: 0; width: 1680px; height: 1920px; mix-blend-mode: screen; opacity: 0;
+                background: linear-gradient(100deg, rgba(255,80,50,0) 30%, rgba(255,110,70,.45) 46%, rgba(255,214,180,.85) 50%, rgba(255,100,60,.4) 54%, rgba(255,80,50,0) 70%); }
+    #at-vig { position: absolute; inset: 0; background: radial-gradient(ellipse 75% 62% at 50% 46%, rgba(0,0,0,0) 45%, rgba(4,2,2,.45) 78%, rgba(2,1,1,.88) 100%); }
+    #at-grain { position: absolute; left: -120px; top: -120px; width: 1320px; height: 2160px; opacity: .085; will-change: transform; }
+    #at-dim { position: absolute; inset: 0; background: #000; opacity: 0; }
+    .bar { position: absolute; left: 0; width: 1080px; height: 960px; background: #000; }
+    #at-bar-t { top: 0; transform-origin: 50% 0%; }
+    #at-bar-b { bottom: 0; transform-origin: 50% 100%; }
+    .bar::after { content: ""; position: absolute; left: 0; right: 0; height: 40px; }
+    #at-bar-t::after { bottom: -40px; background: linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,0)); }
+    #at-bar-b::after { top: -40px; background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,.55)); }
+    .scratch { position: absolute; top: 0; width: 2px; height: 1920px; background: rgba(255,240,220,.18); opacity: 0; }
+  </style>
+  <div data-hf-id="hf-atm0" id="root" data-composition-id="atmos" data-width="1080" data-height="1920" data-layout-allow-overflow data-layout-allow-overlap>
+    <div data-hf-id="hf-atm1" id="atmos-stage" class="clip" data-start="0" data-duration="32" data-track-index="0">
+      <div class="leak" id="at-leak-a"></div>
+      <div class="leak" id="at-leak-b"></div>
+      <div id="at-flare"></div>
+      <div class="leak" id="at-leak-c"></div>
+      <div id="at-vig"></div>
+      <div id="at-dim"></div>
+      <div class="scratch" id="at-s0" style="left:230px"></div>
+      <div class="scratch" id="at-s1" style="left:770px"></div>
+      <div class="scratch" id="at-s2" style="left:505px"></div>
+      <svg id="at-grain" width="1320" height="2160" viewBox="0 0 1320 2160" data-layout-ignore>
+        <defs>
+          <filter id="at-noise" x="0" y="0" width="100%" height="100%">
+            <feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="7" stitchTiles="stitch"/>
+            <feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .9 0"/>
+          </filter>
+        </defs>
+        <rect width="1320" height="2160" filter="url(#at-noise)"/>
+      </svg>
+      <div class="bar" id="at-bar-t"></div>
+      <div class="bar" id="at-bar-b"></div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    const rng = (s) => () => { s |= 0; s = s + 0x6D2B79F5 | 0; let t = Math.imul(s ^ s >>> 15, 1 | s); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+    const r = rng(2026);
+    const T = 32, BAR = 70 / 960;
+    // letterbox: shutter opens at the start, closes at the very end
+    tl.fromTo(["#at-bar-t", "#at-bar-b"], { scaleY: 1 }, { scaleY: BAR, duration: 0.9, ease: "expo.inOut" }, 0);
+    tl.to(["#at-bar-t", "#at-bar-b"], { scaleY: 1, duration: 0.8, ease: "expo.inOut" }, T - 0.8);
+    // film grain re-seeded 12x per second by jumping the noise plate around (stepped, no smearing)
+    for (let k = 0; k < T * 12; k++) tl.set("#at-grain", { x: Math.round((r() - .5) * 220), y: Math.round((r() - .5) * 220) }, k / 12);
+    // gate weave flicker + rare scratches
+    for (let k = 0; k < T * 8; k++) tl.set("#at-dim", { opacity: r() * 0.05 }, k / 8);
+    ["#at-s0", "#at-s1", "#at-s2"].forEach((id, i) => { for (let k = 0; k < 7; k++) { const t0 = r() * (T - 1); tl.set(id, { opacity: 1, x: (r() - .5) * 120 }, t0); tl.set(id, { opacity: 0 }, t0 + 1 / 12); } });
+    // slow drifting light leaks
+    tl.fromTo("#at-leak-a", { opacity: .10, x: 0, y: 0 }, { opacity: .2, x: 260, y: 160, duration: 16, yoyo: true, repeat: 1, ease: "sine.inOut" }, 0);
+    tl.fromTo("#at-leak-b", { opacity: .06, x: 0, y: 0 }, { opacity: .16, x: -340, y: -220, duration: 10.67, yoyo: true, repeat: 2, ease: "sine.inOut" }, 0);
+    // transition flares on every scene boundary
+    [3, 7, 11, 16, 20, 25].forEach((b, i) => {
+      const dir = i % 2 ? -1 : 1;
+      tl.fromTo("#at-flare", { opacity: 0, x: -700 * dir }, { keyframes: [{ opacity: .3, x: -120 * dir, duration: .28, ease: "power2.in" }, { opacity: 0, x: 500 * dir, duration: .42, ease: "power2.out" }], immediateRender: false }, b - 0.28);
+      tl.fromTo("#at-leak-c", { opacity: 0, x: 0 }, { keyframes: [{ opacity: .2, x: 120 * dir, duration: .25 }, { opacity: 0, x: 260 * dir, duration: .55 }], immediateRender: false }, b - 0.2);
+    });
+    window.__timelines = window.__timelines || {};
+    window.__timelines["atmos"] = tl;
+  </script>
+</template>

@@ -1,84 +1,166 @@
 <template>
   <style>
-    
     @font-face { font-family: Kanit; font-weight: 800; font-display: block; src: url("assets/fonts/kanit-thai-800-normal.woff2") format("woff2"); unicode-range: U+02D7, U+0303, U+0331, U+0E01-0E5B, U+200C-200D, U+25CC; }
     @font-face { font-family: Kanit; font-weight: 800; font-display: block; src: url("assets/fonts/kanit-latin-800-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+    @font-face { font-family: Kanit; font-weight: 600; font-display: block; src: url("assets/fonts/kanit-thai-600-normal.woff2") format("woff2"); unicode-range: U+02D7, U+0303, U+0331, U+0E01-0E5B, U+200C-200D, U+25CC; }
+    @font-face { font-family: Kanit; font-weight: 600; font-display: block; src: url("assets/fonts/kanit-latin-600-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
 
-    #root { position: absolute; inset: 0; overflow: hidden; background: #0c0908; font-family: Kanit, sans-serif; }
+    #root { position: absolute; inset: 0; overflow: hidden; background: #0b0807; font-family: Kanit, sans-serif; }
     .clip { position: absolute; inset: 0; }
-    svg.scene { position: absolute; inset: 0; width: 1080px; height: 1920px; }
+    .wrap, .world, .txt { position: absolute; inset: 0; }
+    .world { transform-origin: 50% 50%; }
+    svg.scene { position: absolute; inset: 0; width: 1080px; height: 1920px; overflow: visible; }
     .stack { position: absolute; left: 80px; width: 920px; text-align: center; }
-    .w { display: block; color: #f4efe6; font-weight: 800; line-height: 1.25; letter-spacing: 0; opacity: 0; }
-    .mark { color: #f4efe6; background: #8e1d24; border-radius: 10px; display: inline-block; line-height: 1.2; padding: 0 18px 10px; }
+    /* lines are visible containers; words (.wd) are revealed one Thai word at a time, never per character */
+    .w { display: block; color: #f4efe6; font-weight: 800; line-height: 1.3; letter-spacing: 0;
+         text-shadow: 0 6px 28px rgba(0,0,0,.75), 0 2px 6px rgba(0,0,0,.55); }
+    .wd { display: inline-block; opacity: 0; }
+    .mark { position: relative; display: inline-block; line-height: 1.2; padding: 4px 26px 14px; }
+    .mbg { position: absolute; inset: 0; border-radius: 12px; transform-origin: 0% 50%;
+           background: linear-gradient(100deg, #5a0e14 0%, #9e2129 45%, #c8343b 62%, #7a151c 100%);
+           box-shadow: 0 16px 48px rgba(170, 32, 40, .45), inset 0 1px 0 rgba(255, 214, 196, .28), inset 0 -3px 0 rgba(40, 0, 0, .35); }
+    .mark .wd, .mark .mtx { position: relative; text-shadow: 0 2px 12px rgba(50, 0, 0, .55); }
+    .stampm { opacity: 0; }
+    .rule { position: absolute; height: 3px; border-radius: 2px; transform-origin: 50% 50%; transform: scaleX(0);
+            background: linear-gradient(90deg, rgba(200,40,47,0), #e0464c 30%, #f4efe6 50%, #e0464c 70%, rgba(200,40,47,0)); }
 
+    #c-en { color: #e2c7ae; letter-spacing: 18px; font-size: 42px; }
+    #c-en .rl { display: inline-block; vertical-align: middle; width: 120px; height: 2px; margin: 0 26px 6px; background: linear-gradient(90deg, rgba(226,199,174,0), #e2c7ae); transform: scaleX(0); }
+    #c-en .rl.r { background: linear-gradient(270deg, rgba(226,199,174,0), #e2c7ae); }
+    #c-en .wd { letter-spacing: 18px; margin-right: -18px; }
+    #c-th { text-shadow: none; filter: drop-shadow(0 10px 34px rgba(200, 40, 47, .45)) drop-shadow(0 4px 6px rgba(0,0,0,.6)); }
+    /* gradient-filled title; vertical padding keeps Thai upper marks inside the painted box */
+    .gold { display: inline-block; padding: .28em .04em .2em; margin: -.28em 0 -.2em;
+            background-image: linear-gradient(105deg, rgba(255,255,255,0) 42%, rgba(255,255,255,.95) 50%, rgba(255,255,255,0) 58%), linear-gradient(180deg, #fffaf0 0%, #f4e4cc 48%, #c9a07a 100%);
+            background-size: 260% 100%, 100% 100%; background-repeat: no-repeat; background-position: 150% 0, 0 0;
+            -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .gold.red { background-image: linear-gradient(105deg, rgba(255,255,255,0) 42%, rgba(255,235,225,.95) 50%, rgba(255,255,255,0) 58%), linear-gradient(180deg, #ff8a78 0%, #e0343c 50%, #8e1d24 100%); }
+    #c-q { color: #eadccb; }
+    .cast { display: block; font-weight: 600; font-size: 44px; line-height: 1.4; color: #f4efe6; }
+    .cdiv { display: block; width: 46px; height: 2px; margin: 10px auto; background: #c8282f; transform: scaleX(0); }
   </style>
   <div data-hf-id="hf-53a8" id="root" data-composition-id="card" data-width="1080" data-height="1920" data-layout-allow-overflow data-layout-allow-overlap>
     <div data-hf-id="hf-3wbe" id="card-scene" class="clip" data-start="0" data-duration="7" data-track-index="1" data-hold>
-      
-      <svg data-hf-id="hf-0t6v" class="scene" viewBox="0 0 1080 1920">
-        <rect data-hf-id="hf-lg1h" width="1080" height="1920" fill="#0c0908"/>
-        <line data-hf-id="hf-yvef" id="snap" x1="160" y1="690" x2="920" y2="690" stroke="#c8282f" stroke-width="5" stroke-linecap="round"/>
-        <g id="shards" fill="#c8282f">
-          <polygon points="0,0 14,4 6,12" opacity="0"/>
-          <polygon points="0,0 10,-6 16,4" opacity="0"/>
-          <polygon points="0,0 12,8 2,14" opacity="0"/>
-          <polygon points="0,0 16,2 8,-8" opacity="0"/>
-        </g>
-        <defs>
-          <radialGradient id="card-vig" cx="50%" cy="45%" r="75%">
-            <stop offset="55%" stop-color="#000" stop-opacity="0"/>
-            <stop offset="100%" stop-color="#000" stop-opacity=".65"/>
-          </radialGradient>
-          <filter id="card-grain" x="0" y="0" width="100%" height="100%">
-            <feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" stitchTiles="stitch"/>
-            <feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .5 0"/>
-          </filter>
-        </defs>
-        <rect width="1080" height="1920" fill="url(#card-vig)"/>
-        <rect width="1080" height="1920" filter="url(#card-grain)" opacity=".07"/>
-      </svg>
-      <div data-hf-id="hf-40ia" class="stack" style="top:470px">
-        <span data-hf-id="hf-ihn5" class="w" id="c-en" style="font-size:42px;letter-spacing:18px">TAME</span>
-        <span data-hf-id="hf-2ye9" class="w" id="c-th" style="font-size:108px;margin-top:6px">
-          <span data-hf-id="hf-8ujg" id="c1" style="display:inline-block">เลี้ยงไม่</span><span data-hf-id="hf-jg95" id="c2" style="display:inline-block">เชื่อง</span>
-        </span>
-        <span data-hf-id="hf-w0li" class="w" id="c-q" style="font-size:52px;margin-top:72px">ใครกันแน่ที่ถูกเลี้ยง</span>
-        <span data-hf-id="hf-x2mq" class="w" id="c-cast" style="font-size:44px;margin-top:28px;line-height:1.4">พิมมา พิมพ์มาดา<br data-hf-id="hf-x5px">เจษ เจษฎ์พิพัฒ<br data-hf-id="hf-rsrt">แพต ชญานิษฐ์</span>
-        <span data-hf-id="hf-ncxa" class="w" id="c-now" style="font-size:48px;margin-top:22px"><span data-hf-id="hf-u6e1" class="mark">ในโรงภาพยนตร์</span></span>
+      <div class="wrap" id="cd-wrap">
+        <div class="world" id="cd-world">
+          <svg data-hf-id="hf-0t6v" class="scene" viewBox="0 0 1080 1920">
+            <defs>
+              <radialGradient id="cd-bg" gradientUnits="userSpaceOnUse" cx="540" cy="790" r="1100">
+                <stop offset="0" stop-color="#3a0e10"/><stop offset=".4" stop-color="#150809"/><stop offset="1" stop-color="#050303"/>
+              </radialGradient>
+              <linearGradient id="cd-horn" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a1416"/><stop offset="1" stop-color="#1a0909"/></linearGradient>
+              <filter id="cd-blur" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="18"/></filter>
+            </defs>
+            <rect data-hf-id="hf-lg1h" width="1080" height="1920" fill="url(#cd-bg)"/>
+            <g id="cd-rays" filter="url(#cd-blur)"></g>
+            <g transform="translate(0 150)"><g id="cd-horns" opacity="0">
+              <path d="M540 770 C380 780 220 700 160 550 C120 450 105 340 112 240 C150 360 205 470 300 540 C380 598 460 618 540 618 Z" fill="url(#cd-horn)"/>
+              <path d="M540 770 C700 780 860 700 920 550 C960 450 975 340 968 240 C930 360 875 470 780 540 C700 598 620 618 540 618 Z" fill="url(#cd-horn)"/>
+              <path d="M540 770 C380 780 220 700 160 550 C120 450 105 340 112 240" fill="none" stroke="#c8282f" stroke-width="3" opacity=".5"/>
+              <path d="M540 770 C700 780 860 700 920 550 C960 450 975 340 968 240" fill="none" stroke="#c8282f" stroke-width="3" opacity=".5"/>
+            </g></g>
+            <line data-hf-id="hf-yvef" id="snap" x1="160" y1="840" x2="920" y2="840" stroke="#c8282f" stroke-width="5" stroke-linecap="round"/>
+            <g id="shards" fill="#ff4a42">
+              <polygon points="0,0 14,4 6,12" opacity="0"/><polygon points="0,0 10,-6 16,4" opacity="0"/>
+              <polygon points="0,0 12,8 2,14" opacity="0"/><polygon points="0,0 16,2 8,-8" opacity="0"/>
+              <polygon points="0,0 9,3 4,9" opacity="0"/><polygon points="0,0 8,-5 12,3" opacity="0"/>
+            </g>
+            <circle id="cd-spark" cx="540" cy="840" r="10" fill="#ffd2b0" opacity="0" filter="url(#cd-blur)"/>
+            <g id="cd-embers"></g>
+          </svg>
+        </div>
+        <div class="txt" id="cd-txt">
+          <div data-hf-id="hf-40ia" class="stack" style="top:620px">
+            <span data-hf-id="hf-ihn5" class="w" id="c-en"><i class="rl"></i><span class="wd">TAME</span><i class="rl r"></i></span>
+            <span data-hf-id="hf-2ye9" class="w" id="c-th" style="font-size:108px;margin-top:6px"><span data-hf-id="hf-8ujg" id="c1" class="gold" style="display:inline-block">เลี้ยงไม่</span><span data-hf-id="hf-jg95" id="c2" class="gold red" style="display:inline-block">เชื่อง</span></span>
+            <span data-hf-id="hf-w0li" class="w" id="c-q" style="font-size:52px;margin-top:72px"><span class="wd">ใคร</span><span class="wd">กันแน่</span><span class="wd">ที่</span><span class="wd">ถูก</span><span class="wd">เลี้ยง</span></span>
+            <span data-hf-id="hf-x2mq" class="w" id="c-cast" style="margin-top:28px"><span class="cast wd">พิมมา พิมพ์มาดา</span><i class="cdiv"></i><span class="cast wd">เจษ เจษฎ์พิพัฒ</span><i class="cdiv"></i><span class="cast wd">แพต ชญานิษฐ์</span></span>
+            <span data-hf-id="hf-ncxa" class="w" id="c-now" style="font-size:48px;margin-top:30px"><span data-hf-id="hf-u6e1" class="mark" id="cd-mark"><i class="mbg"></i><span class="wd">ในโรงภาพยนตร์</span></span></span>
+          </div>
+        </div>
       </div>
-    
     </div>
   </div>
   <script>
     const tl = gsap.timeline({ paused: true });
-    
-    tl.fromTo("#c-en", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.25, ease: "power3.out" }, 0.12);
-    tl.fromTo("#c-th", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.3, ease: "power3.out" }, 0.32);
+    const SVGNS = "http://www.w3.org/2000/svg";
+    // deterministic PRNG so every render is identical
+    const rng = (s) => () => { s |= 0; s = s + 0x6D2B79F5 | 0; let t = Math.imul(s ^ s >>> 15, 1 | s); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+    const mk = (tag, attrs, parent) => { const e = document.createElementNS(SVGNS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; };
+    const $ = (s) => document.querySelector(s);
+    const $$ = (s) => Array.from(document.querySelectorAll(s));
+    // word-level reveal (whole Thai words, so vowels / tone marks never get separated)
+    const rise = (targets, at, o = {}) => tl.fromTo(targets,
+      { opacity: 0, y: o.y ?? 44, scale: o.sc ?? 1, filter: "blur(" + (o.b ?? 12) + "px)" },
+      { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", duration: o.d ?? 0.75, ease: o.e ?? "expo.out", stagger: o.s ?? 0.1 }, at);
+    const wipeMark = (mark, at) => {
+      tl.fromTo(mark.querySelector(".mbg"), { scaleX: 0 }, { scaleX: 1, duration: 0.55, ease: "expo.inOut" }, at);
+      rise(mark.querySelectorAll(".wd"), at + 0.2, { y: 26, b: 8, d: 0.6, s: 0.08 });
+    };
+    const stamp = (mark, at, shakeEl) => {
+      tl.fromTo(mark, { opacity: 0, scale: 1.7, filter: "blur(16px)" },
+                      { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.in" }, at);
+      tl.fromTo(mark, { scale: 1 }, { scale: 1.035, duration: 0.09, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, at + 0.2);
+      if (shakeEl) shake(shakeEl, at + 0.2, 16);
+    };
+    const shake = (el, at, amp = 12) => tl.to(el, { keyframes: [
+      { x: -amp, y: amp * 0.4, duration: 0.04 }, { x: amp * 0.85, y: -amp * 0.35, duration: 0.04 },
+      { x: -amp * 0.5, y: amp * 0.2, duration: 0.05 }, { x: amp * 0.25, y: 0, duration: 0.05 }, { x: 0, y: 0, duration: 0.07 }
+    ], ease: "none" }, at);
+    // soft scene in/out: no hard cuts between scenes
+    const sceneIO = (wrap, dur, o = {}) => {
+      if (o.in !== false) tl.fromTo(wrap, { opacity: 0, scale: 1.06, filter: "blur(14px)" },
+        { opacity: 1, scale: 1, filter: "blur(0px)", duration: o.inDur ?? 0.5, ease: "power3.out" }, 0);
+      if (o.out !== false) tl.to(wrap, { opacity: 0, scale: 1.04, filter: "blur(10px)", duration: o.outDur ?? 0.34, ease: "power2.in" }, dur - (o.outDur ?? 0.34));
+    };
+    // floating particles (dust motes / embers)
+    const particles = (g, n, seed, box, o = {}) => {
+      const r = rng(seed);
+      for (let i = 0; i < n; i++) {
+        const x = box[0] + r() * box[2], y = box[1] + r() * box[3];
+        const c = mk("circle", { cx: x, cy: y, r: (o.rmin ?? 1.5) + r() * ((o.rmax ?? 4) - (o.rmin ?? 1.5)), fill: o.fill ?? "#f4c9a8", opacity: 0 }, g);
+        const a = (o.amin ?? 0.15) + r() * ((o.amax ?? 0.6) - (o.amin ?? 0.15));
+        const d = o.dur;
+        tl.fromTo(c, { opacity: 0, x: 0, y: 0 }, { keyframes: [
+            { opacity: a, duration: d * 0.25 }, { opacity: a * (0.4 + r() * 0.6), duration: d * 0.5 }, { opacity: 0, duration: d * 0.25 } ],
+          ease: "none" }, 0);
+        tl.fromTo(c, { x: 0, y: 0 }, { x: (r() - 0.5) * (o.dx ?? 60), y: -((o.dymin ?? 30) + r() * ((o.dymax ?? 120) - (o.dymin ?? 30))), duration: d, ease: "sine.inOut", immediateRender: false }, 0);
+      }
+    };
+
+    (() => { const r = rng(303), g = $("#cd-rays");
+      for (let i = 0; i < 18; i++) { const a = (i / 18) * Math.PI * 2 + r() * .1, w = .03 + r() * .03, L = 1300;
+        mk("polygon", { points: `540,790 ${540 + Math.cos(a - w) * L},${790 + Math.sin(a - w) * L} ${540 + Math.cos(a + w) * L},${790 + Math.sin(a + w) * L}`, fill: "#c8282f", opacity: .18 + r() * .14 }, g); } })();
+    particles($("#cd-embers"), 50, 99, [40, 300, 1000, 1500], { dur: 7, rmin: 1.4, rmax: 3.4, amin: .3, amax: .8, dx: 120, dymin: 200, dymax: 600, fill: "#ff9a6a" });
+    sceneIO("#cd-wrap", 7, { out: false });
+    tl.fromTo("#cd-world", { scale: 1.06 }, { scale: 1.0, duration: 7, ease: "power2.out" }, 0);
+    tl.fromTo("#cd-rays", { rotation: 0, svgOrigin: "540 790", opacity: 0 }, { rotation: 14, opacity: 1, duration: 7, ease: "none" }, 0);
+    tl.fromTo("#cd-horns", { opacity: 0, scale: 0.92, svgOrigin: "540 790" }, { opacity: 1, scale: 1, duration: 1.6, ease: "power3.out" }, 0.1);
+    tl.fromTo("#c-en .rl", { scaleX: 0 }, { scaleX: 1, duration: 0.7, ease: "expo.out" }, 0.2);
+    rise("#c-en .wd", 0.12, { y: 0, b: 10, d: 0.6 });
+    tl.fromTo("#c-th", { opacity: 0, scale: 1.18, y: 10 }, { opacity: 1, scale: 1, y: 0, duration: 0.7, ease: "expo.out" }, 0.32);
+    tl.fromTo(["#c1", "#c2"], { filter: "blur(14px)" }, { filter: "blur(0px)", duration: 0.6, ease: "expo.out" }, 0.32);
+    // the rope under the title snaps: words jolt apart, shards fly
     tl.to("#c1", { x: -42, duration: 0.16, ease: "power3.in" }, 1.05);
     tl.to("#c2", { x: 42, duration: 0.16, ease: "power3.in" }, 1.05);
-    tl.fromTo("#snap", { scaleX: 1, transformOrigin: "540px 690px" }, { scaleX: 0, duration: 0.12, ease: "power3.in" }, 1.05);
-    tl.to("#c1", { x: 0, duration: 0.28, ease: "power3.out" }, 1.4);
-    tl.to("#c2", { x: 0, duration: 0.28, ease: "power3.out" }, 1.4);
-    tl.to("#snap", { scaleX: 1, duration: 0.22, ease: "power2.out" }, 1.5);
-    tl.to("#snap", { opacity: 0, duration: 0.2, ease: "power2.out" }, 1.85);
-    tl.fromTo("#c-q", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.3, ease: "power3.out" }, 1.9);
-    tl.fromTo("#c-cast", { opacity: 0 }, { opacity: 1, duration: 0.35, ease: "power2.out" }, 2.9);
-    tl.fromTo("#c-now", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, 3.7);
-    const dirs = [[-220,-90],[210,-70],[-160,110],[190,120]];
-    document.querySelectorAll("#shards polygon").forEach((p, i) => {
-      tl.fromTo(p,
-        { x: 540, y: 690, opacity: 1, rotation: 0 },
-        { x: 540 + dirs[i][0], y: 690 + dirs[i][1], opacity: 0,
-          rotation: 140, duration: 0.5, ease: "power3.out", immediateRender: false },
-        1.05);
-    });
-    tl.to("#root", { keyframes: [
-      { x: -8, y: 4, duration: 0.04 },
-      { x: 7, y: -3, duration: 0.04 },
-      { x: -4, y: 2, duration: 0.04 },
-      { x: 0, y: 0, duration: 0.06 }
-    ], ease: "none" }, 1.05);
-    
+    tl.fromTo("#snap", { scaleX: 1, transformOrigin: "540px 840px" }, { scaleX: 0, duration: 0.12, ease: "power3.in" }, 1.05);
+    tl.fromTo("#cd-spark", { opacity: 0, scale: 1, svgOrigin: "540 840" }, { keyframes: [{ opacity: 1, scale: 8, duration: .08 }, { opacity: 0, scale: 14, duration: .45, ease: "power2.out" }] }, 1.17);
+    tl.to("#c1", { x: 0, duration: 0.5, ease: "expo.out" }, 1.4);
+    tl.to("#c2", { x: 0, duration: 0.5, ease: "expo.out" }, 1.4);
+    tl.to("#snap", { scaleX: 1, duration: 0.3, ease: "expo.out" }, 1.5);
+    tl.to("#snap", { opacity: 0, duration: 0.3, ease: "power2.out" }, 1.85);
+    const dirs = [[-220,-90],[210,-70],[-160,110],[190,120],[-90,-150],[110,160]];
+    $$("#shards polygon").forEach((p, i) => tl.fromTo(p, { x: 540, y: 840, opacity: 1, rotation: 0 },
+      { x: 540 + dirs[i][0], y: 840 + dirs[i][1], opacity: 0, rotation: 140 + i * 30, duration: 0.7, ease: "expo.out", immediateRender: false }, 1.05));
+    shake("#cd-wrap", 1.05, 9);
+    // sheen sweeps across the title twice
+    tl.fromTo(["#c1", "#c2"], { backgroundPosition: "150% 0, 0 0" }, { backgroundPosition: "-60% 0, 0 0", duration: 1.1, ease: "power2.inOut" }, 1.6);
+    tl.fromTo(["#c1", "#c2"], { backgroundPosition: "150% 0, 0 0" }, { backgroundPosition: "-60% 0, 0 0", duration: 1.1, ease: "power2.inOut", immediateRender: false }, 4.6);
+    rise("#c-q .wd", 1.9, { y: 30, b: 10, s: 0.09, d: 0.8 });
+    rise("#c-cast .cast", 2.9, { y: 24, b: 8, s: 0.18, d: 0.8 });
+    tl.fromTo("#c-cast .cdiv", { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "expo.out", stagger: 0.18 }, 3.05);
+    wipeMark($("#cd-mark"), 3.7);
+    tl.fromTo("#cd-txt", { y: 8 }, { y: -8, duration: 7, ease: "sine.inOut" }, 0);
     window.__timelines = window.__timelines || {};
     window.__timelines["card"] = tl;
   </script>

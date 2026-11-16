@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #0a0d2c; }
+    </style>
+  </head>
+  <body>
+    <div data-hf-id="hf-main" id="root" data-composition-id="main" data-start="0" data-duration="20" data-width="1080" data-height="1920">
+      <div data-hf-id="hf-clip-polar" id="polar" data-composition-id="polar" data-composition-src="compositions/polar.html" data-start="0" data-duration="8.5" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:1"></div>
+      <div data-hf-id="hf-clip-space" id="space" data-composition-id="space" data-composition-src="compositions/space.html" data-start="8.4" data-duration="11.6" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:2"></div>
+      <audio data-hf-id="hf-clip-mix" id="mix" class="clip" src="assets/audio/mix.wav" data-start="0" data-duration="20" data-track-index="3"></audio>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+    </script>
+  </body>
+</html>

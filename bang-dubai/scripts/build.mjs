@@ -1,4 +1,5 @@
-// Build HyperFrames compositions + standalone still HTML from scene SVG.
+// Build standalone still HTML (stills/*.html) from scene SVG.
+// The animated video compositions + index.html are built by scripts/build-video.mjs.
 import { writeFileSync, mkdirSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -58,32 +59,8 @@ const clips = [];
 for (const scene of SCENES) {
   const svg = scene.fn();
   writeFileSync(join(root, "stills", `${scene.id}.html`), stillHTML(svg));
-  writeFileSync(join(root, "compositions", `${scene.id}.html`), hfHTML(scene, svg));
   clips.push(`      <div data-hf-id="hf-clip-${scene.id}" id="${scene.id}" data-composition-id="${scene.id}" data-composition-src="compositions/${scene.id}.html" data-start="${scene.start}" data-duration="${scene.duration}" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920"></div>`);
   console.log("wrote", scene.id, "svg bytes", svg.length);
 }
 
-const index = `<!doctype html>
-<html lang="th">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=1080, height=1920" />
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
-    <style>
-      * { margin: 0; padding: 0; box-sizing: border-box; }
-      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #0c0806; }
-    </style>
-  </head>
-  <body>
-    <div data-hf-id="hf-main" id="root" data-composition-id="main" data-start="0" data-duration="75" data-width="1080" data-height="1920">
-${clips.join("\n")}
-    </div>
-    <script>
-      window.__timelines = window.__timelines || {};
-      window.__timelines["main"] = gsap.timeline({ paused: true });
-    </script>
-  </body>
-</html>
-`;
-writeFileSync(join(root, "index.html"), index);
-console.log("index.html written, 8 scenes, 75s");
+console.log("stills written (video: node scripts/build-video.mjs)");

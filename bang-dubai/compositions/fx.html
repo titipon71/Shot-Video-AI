@@ -1,0 +1,29 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+    .clip { position: absolute; inset: 0; }
+    #fx-flare { position: absolute; left: -400px; top: 0; width: 1880px; height: 1920px; opacity: 0; mix-blend-mode: screen;
+      background: linear-gradient(100deg, rgba(255,220,150,0) 32%, rgba(255,210,140,.5) 46%, rgba(255,250,230,.95) 50%, rgba(255,200,120,.45) 54%, rgba(255,220,150,0) 68%); }
+    #fx-burst { position: absolute; inset: 0; opacity: 0; mix-blend-mode: screen; background: radial-gradient(circle at 50% 50%, rgba(255,240,210,.55) 0%, rgba(255,200,140,.18) 40%, rgba(0,0,0,0) 70%); }
+    .streak { position: absolute; height: 6px; border-radius: 3px; background: rgba(255,255,255,.85); opacity: 0; }
+  </style>
+  <div data-hf-id="hf-fx" id="root" data-composition-id="fx" data-width="1080" data-height="1920" data-layout-allow-overflow data-layout-allow-overlap>
+    <div data-hf-id="hf-fx-clip" class="clip" data-start="0" data-duration="98" data-track-index="0">
+      <div id="fx-burst"></div><div id="fx-flare"></div>
+      <div class="streak" id="fx-s0" style="top:180px;left:-600px;width:380px"></div><div class="streak" id="fx-s1" style="top:390px;left:-600px;width:477px"></div><div class="streak" id="fx-s2" style="top:600px;left:-600px;width:574px"></div><div class="streak" id="fx-s3" style="top:810px;left:-600px;width:671px"></div><div class="streak" id="fx-s4" style="top:1020px;left:-600px;width:468px"></div><div class="streak" id="fx-s5" style="top:1230px;left:-600px;width:565px"></div><div class="streak" id="fx-s6" style="top:1440px;left:-600px;width:662px"></div><div class="streak" id="fx-s7" style="top:1650px;left:-600px;width:459px"></div>
+    </div>
+  </div>
+  <script>
+  (() => {
+    const tl = gsap.timeline({ paused: true });
+    [12.017,26.042,39.629,53.937,68.426,83.441,91.143].forEach((b, i) => {
+      const dir = i % 2 ? -1 : 1;
+      tl.fromTo("#fx-flare", { opacity: 0, x: -900 * dir }, { keyframes: [{ opacity: .55, x: -100 * dir, duration: .22, ease: "power2.in" }, { opacity: 0, x: 700 * dir, duration: .32, ease: "power2.out" }], immediateRender: false }, b - 0.22);
+      tl.fromTo("#fx-burst", { opacity: 0 }, { keyframes: [{ opacity: .9, duration: .12 }, { opacity: 0, duration: .3 }], immediateRender: false }, b - 0.08);
+      for (let k = 0; k < 8; k++) tl.fromTo("#fx-s" + k, { opacity: 0, x: dir > 0 ? 0 : 2200 }, { keyframes: [{ opacity: .8, duration: .08 }, { x: dir > 0 ? 2200 : -200, opacity: 0, duration: .3 }], immediateRender: false }, b - 0.2 + (k % 4) * 0.025);
+    });
+    window.__timelines = window.__timelines || {};
+    window.__timelines["fx"] = tl;
+  })();
+  </script>
+</template>

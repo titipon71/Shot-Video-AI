@@ -5,6 +5,7 @@
   "scripts": {
     "build": "node scripts/build.mjs",
     "stills": "node scripts/build.mjs && node scripts/render-stills.mjs",
+    "video": "node scripts/build-video.mjs && python3 scripts/make-audio.py",
     "dev": "npx --yes hyperframes@0.8.226 preview",
     "check": "npx --yes hyperframes@0.8.226 check"
   }

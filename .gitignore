@@ -11,3 +11,7 @@ asia-regions-demo/assets/maps/**/*-hold.jpg
 asia-regions-demo/assets/voice/*.wav
 asia-regions-demo/assets/voice/*.mp3
 asia-regions-demo/assets/voice/*.m4a
+
+bang-dubai/assets/voice/*.wav
+bang-dubai/assets/voice/*.mp3
+bang-dubai/assets/voice/*.m4a

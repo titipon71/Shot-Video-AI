@@ -1,38 +1,47 @@
 <template>
   <style>
     
-@font-face { font-family: Kanit; font-weight: 400; font-style: normal; font-display: block; src: url("assets/fonts/Kanit-Regular.ttf") format("truetype"); }
-@font-face { font-family: Kanit; font-weight: 500; font-style: normal; font-display: block; src: url("assets/fonts/Kanit-Medium.ttf") format("truetype"); }
-@font-face { font-family: Kanit; font-weight: 600; font-style: normal; font-display: block; src: url("assets/fonts/Kanit-SemiBold.ttf") format("truetype"); }
-@font-face { font-family: Kanit; font-weight: 700; font-style: normal; font-display: block; src: url("assets/fonts/Kanit-Bold.ttf") format("truetype"); }
-@font-face { font-family: Kanit; font-weight: 800; font-style: normal; font-display: block; src: url("assets/fonts/Kanit-ExtraBold.ttf") format("truetype"); }
-@font-face { font-family: Kanit; font-weight: 900; font-style: normal; font-display: block; src: url("assets/fonts/Kanit-Black.ttf") format("truetype"); }
-
+@font-face { font-family: Kanit; font-weight: 600; font-display: block; src: url("assets/fonts/Kanit-SemiBold.ttf") format("truetype"); }
+@font-face { font-family: Kanit; font-weight: 700; font-display: block; src: url("assets/fonts/Kanit-Bold.ttf") format("truetype"); }
+@font-face { font-family: Kanit; font-weight: 800; font-display: block; src: url("assets/fonts/Kanit-ExtraBold.ttf") format("truetype"); }
+@font-face { font-family: Kanit; font-weight: 900; font-display: block; src: url("assets/fonts/Kanit-Black.ttf") format("truetype"); }
     #root { position: absolute; inset: 0; overflow: hidden; background: #0c0806; font-family: Kanit, sans-serif; }
-    .clip { position: absolute; inset: 0; }
-    svg.scene { position: absolute; inset: 0; width: 1080px; height: 1920px; }
+    .clip, .io, .cam, .shk { position: absolute; inset: 0; }
+    .io, .cam { transform-origin: 50% 50%; }
+    svg.scene { position: absolute; inset: 0; width: 1080px; height: 1920px; overflow: hidden; }
   </style>
   <div data-hf-id="hf-scene-7" id="root" data-composition-id="scene-7" data-width="1080" data-height="1920" data-layout-allow-overflow data-layout-allow-overlap>
-    <div data-hf-id="hf-scene-7-clip" class="clip" data-start="0" data-duration="7" data-track-index="1" data-hold>
-      <svg class="scene" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1920" width="1080" height="1920">
-  <defs><radialGradient id="vignette" cx="50%" cy="45%" r="72%">
-    <stop offset=".55" stop-color="#000" stop-opacity="0"/>
-    <stop offset="1" stop-color="#000" stop-opacity=".4"/>
-  </radialGradient></defs>
-  
+    <div data-hf-id="hf-scene-7-clip" class="clip" data-start="0" data-duration="6.857" data-track-index="1" data-hold>
+      <div class="io" id="s7-io"><div class="cam" id="s7-cam"><div class="shk" id="s7-shk">
+        <svg class="scene" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1920" width="1080" height="1920">
+          <defs><radialGradient id="s7-vig" cx="50%" cy="45%" r="72%"><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".35"/></radialGradient></defs>
+          
     <defs>
-      <linearGradient id="s7bg" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stop-color="#1a0e08"/><stop offset=".5" stop-color="#0c0806"/><stop offset="1" stop-color="#1a1208"/>
-      </linearGradient>
-      <radialGradient id="s7glow" cx="50%" cy="42%" r="50%">
-        <stop offset="0" stop-color="#c89020" stop-opacity=".45"/>
-        <stop offset="1" stop-color="#c89020" stop-opacity="0"/>
-      </radialGradient>
+      <linearGradient id="s7-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a1a40"/><stop offset=".45" stop-color="#e8885a"/><stop offset="1" stop-color="#ffd08a"/></linearGradient>
+      <radialGradient id="s7-glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#fff0a0" stop-opacity=".9"/><stop offset="1" stop-color="#f0c14a" stop-opacity="0"/></radialGradient>
+      <linearGradient id="s7-glass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9ae0f0"/><stop offset="1" stop-color="#3a7a9a"/></linearGradient>
+      <linearGradient id="s7-card" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1a0e08"/><stop offset=".5" stop-color="#0c0806"/><stop offset="1" stop-color="#2a1a08"/></linearGradient>
     </defs>
-    <rect width="1080" height="1920" fill="url(#s7bg)"/>
-    <path d="M0 620 L40 540 L90 580 L140 480 L200 560 L260 400 L300 520 L360 360 L400 500 L460 320 L500 480 L540 280 L580 480 L640 340 L700 520 L760 400 L820 540 L880 460 L940 560 L1080 500 L1080 700 L0 700 Z" fill="#2a1a0c" opacity=".55"/>
-    <ellipse cx="540" cy="740" rx="360" ry="240" fill="url(#s7glow)"/>
-    <g class="monument" transform="translate(540 920) scale(1.45)">
+    <rect width="1080" height="1920" fill="url(#s7-sky)"/>
+    <path d="M0 700 L60 380 L120 420 L170 200 L230 260 L290 120 L340 700 Z" fill="#c89050" opacity=".7"/>
+    <path d="M760 700 L800 240 L850 300 L900 80 L950 260 L1010 180 L1080 320 L1080 700 Z" fill="#c89050" opacity=".7"/>
+    <g id="s7-mall">
+      <rect x="40" y="520" width="1000" height="700" rx="10" fill="#e8d8c0" stroke="#2a1b17" stroke-width="6"/>
+      <rect x="80" y="660" width="920" height="400" fill="url(#s7-glass)" stroke="#2a1b17" stroke-width="4"/>
+      <rect x="80" y="660" width="6" height="400" fill="#2a1b17" opacity=".5"/><rect x="182" y="660" width="6" height="400" fill="#2a1b17" opacity=".5"/><rect x="284" y="660" width="6" height="400" fill="#2a1b17" opacity=".5"/><rect x="386" y="660" width="6" height="400" fill="#2a1b17" opacity=".5"/><rect x="488" y="660" width="6" height="400" fill="#2a1b17" opacity=".5"/><rect x="590" y="660" width="6" height="400" fill="#2a1b17" opacity=".5"/><rect x="692" y="660" width="6" height="400" fill="#2a1b17" opacity=".5"/><rect x="794" y="660" width="6" height="400" fill="#2a1b17" opacity=".5"/><rect x="896" y="660" width="6" height="400" fill="#2a1b17" opacity=".5"/>
+      <rect x="80" y="855" width="920" height="6" fill="#2a1b17" opacity=".5"/>
+      <path d="M40 520 Q540 430 1040 520 Z" fill="#c8b8a0" stroke="#2a1b17" stroke-width="6"/>
+      <g transform="translate(880 560) rotate(-8)"><path d="M-60 40 L0 -60 L30 -60 L10 40 Z" fill="#c8282f" stroke="#2a1b17" stroke-width="4"/></g>
+      <g id="s7-sign"><rect x="250" y="560" width="580" height="86" rx="12" fill="#1a1208" stroke="#f0c14a" stroke-width="5"/>
+      <text id="s7-signt" x="540" y="620" text-anchor="middle" font-family="Kanit, sans-serif" font-weight="800" font-size="50" fill="#fff0c0">เทอร์มินอล 21</text></g>
+      <rect x="400" y="1060" width="280" height="160" fill="#7edce0" stroke="#2a1b17" stroke-width="5"/>
+      <rect x="40" y="1220" width="1000" height="40" fill="#b8a890"/>
+    </g>
+    <rect x="-20" y="1260" width="1120" height="700" fill="#6a5a48"/>
+    <path d="M-20 1260 L1100 1260" stroke="#3a2a18" stroke-width="6"/>
+    <g id="s7-rays"><path d="M540 980 L1437 908 L1437 1052 Z" fill="#fff0a0" opacity=".22"/><path d="M540 980 L1379 1304 L1317 1434 Z" fill="#fff0a0" opacity=".22"/><path d="M540 980 L1156 1637 L1043 1726 Z" fill="#fff0a0" opacity=".22"/><path d="M540 980 L810 1839 L670 1871 Z" fill="#fff0a0" opacity=".22"/><path d="M540 980 L410 1871 L270 1839 Z" fill="#fff0a0" opacity=".22"/><path d="M540 980 L37 1726 L-76 1637 Z" fill="#fff0a0" opacity=".22"/><path d="M540 980 L-237 1434 L-299 1304 Z" fill="#fff0a0" opacity=".22"/><path d="M540 980 L-357 1052 L-357 908 Z" fill="#fff0a0" opacity=".22"/><path d="M540 980 L-299 656 L-237 526 Z" fill="#fff0a0" opacity=".22"/><path d="M540 980 L-76 323 L37 234 Z" fill="#fff0a0" opacity=".22"/><path d="M540 980 L270 121 L410 89 Z" fill="#fff0a0" opacity=".22"/><path d="M540 980 L670 89 L810 121 Z" fill="#fff0a0" opacity=".22"/><path d="M540 980 L1043 234 L1156 323 Z" fill="#fff0a0" opacity=".22"/><path d="M540 980 L1317 526 L1379 656 Z" fill="#fff0a0" opacity=".22"/></g>
+    <ellipse cx="540" cy="980" rx="360" ry="360" fill="url(#s7-glow)"/>
+    <g id="s7-mon"><g class="monument" transform="translate(540 1360) scale(2)">
     <ellipse cy="24" rx="150" ry="22" fill="#000" opacity=".35"/>
     <path d="M-130 14 L130 14 L100 78 L-100 78 Z" fill="#6a5a48"/>
     <rect x="-88" y="-16" width="176" height="36" fill="#4a3a30"/>
@@ -52,43 +61,417 @@
     <circle cy="-210" r="8" fill="#a87818"/>
     <rect x="-80" y="20" width="160" height="32" rx="4" fill="#1a1208"/>
     <text x="0" y="42" text-anchor="middle" font-family="Kanit, sans-serif" font-weight="700" font-size="15" fill="#f0c14a">จุดเริ่มต้นบางดูไบ</text>
-  </g>
-    <g class="sparkles"><g transform="translate(300 520)">
-      <path d="M0 -8 L1.6 -1.6 L8 0 L1.6 1.6 L0 8 L-1.6 1.6 L-8 0 L-1.6 -1.6 Z" fill="#fff0c0" opacity=".9"/>
-    </g><g transform="translate(740 500)">
-      <path d="M0 -7 L1.4000000000000001 -1.4000000000000001 L7 0 L1.4000000000000001 1.4000000000000001 L0 7 L-1.4000000000000001 1.4000000000000001 L-7 0 L-1.4000000000000001 -1.4000000000000001 Z" fill="#fff0c0" opacity=".9"/>
-    </g><g transform="translate(540 340)">
-      <path d="M0 -12 L2.4000000000000004 -2.4000000000000004 L12 0 L2.4000000000000004 2.4000000000000004 L0 12 L-2.4000000000000004 2.4000000000000004 L-12 0 L-2.4000000000000004 -2.4000000000000004 Z" fill="#fff0c0" opacity=".9"/>
-    </g><g transform="translate(400 420)">
-      <path d="M0 -6 L1.2000000000000002 -1.2000000000000002 L6 0 L1.2000000000000002 1.2000000000000002 L0 6 L-1.2000000000000002 1.2000000000000002 L-6 0 L-1.2000000000000002 -1.2000000000000002 Z" fill="#fff0c0" opacity=".9"/>
-    </g><g transform="translate(700 400)">
-      <path d="M0 -6 L1.2000000000000002 -1.2000000000000002 L6 0 L1.2000000000000002 1.2000000000000002 L0 6 L-1.2000000000000002 1.2000000000000002 L-6 0 L-1.2000000000000002 -1.2000000000000002 Z" fill="#fff0c0" opacity=".9"/>
-    </g><g transform="translate(200 720)">
-      <path d="M0 -5 L1 -1 L5 0 L1 1 L0 5 L-1 1 L-5 0 L-1 -1 Z" fill="#fff0c0" opacity=".9"/>
-    </g><g transform="translate(880 740)">
-      <path d="M0 -5 L1 -1 L5 0 L1 1 L0 5 L-1 1 L-5 0 L-1 -1 Z" fill="#fff0c0" opacity=".9"/>
-    </g><g transform="translate(160 400)">
-      <path d="M0 -5 L1 -1 L5 0 L1 1 L0 5 L-1 1 L-5 0 L-1 -1 Z" fill="#fff0c0" opacity=".9"/>
-    </g><g transform="translate(920 380)">
-      <path d="M0 -6 L1.2000000000000002 -1.2000000000000002 L6 0 L1.2000000000000002 1.2000000000000002 L0 6 L-1.2000000000000002 1.2000000000000002 L-6 0 L-1.2000000000000002 -1.2000000000000002 Z" fill="#fff0c0" opacity=".9"/>
-    </g></g>
-    <line x1="200" y1="1160" x2="880" y2="1160" stroke="#d8a64a" stroke-width="2" opacity=".7"/>
-    <text x="540" y="1240" text-anchor="middle" font-family="Kanit, sans-serif" font-weight="700" font-size="36" fill="#e2c7ae">เมืองที่รถติดที่สุดในโลก…</text>
-    <text x="540" y="1300" text-anchor="middle" font-family="Kanit, sans-serif" font-weight="700" font-size="36" fill="#e2c7ae">เคยพลิกชีวิต</text>
-    <text x="540" y="1360" text-anchor="middle" font-family="Kanit, sans-serif" font-weight="700" font-size="36" fill="#e2c7ae">เพราะบ่อน้ำมันกลางสี่แยก</text>
-    <line x1="200" y1="1420" x2="880" y2="1420" stroke="#d8a64a" stroke-width="2" opacity=".7"/>
-    <text x="540" y="1560" text-anchor="middle" font-family="Kanit, sans-serif" font-weight="900" font-size="110" fill="#f0c14a">บางดูไบ</text>
-    <text x="540" y="1640" text-anchor="middle" font-family="Kanit, sans-serif" font-weight="600" font-size="28" fill="#e2c7ae">BANG-DUBAI</text>
+  </g></g>
+    <g id="s7-sparks"><path transform="translate(360 760) scale(1)" d="M0 -20 L5 -5 L20 0 L5 5 L0 20 L-5 5 L-20 0 L-5 -5 Z" fill="#fff8d0"/><path transform="translate(720 740) scale(1.4)" d="M0 -20 L5 -5 L20 0 L5 5 L0 20 L-5 5 L-20 0 L-5 -5 Z" fill="#fff8d0"/><path transform="translate(540 560) scale(1.8)" d="M0 -20 L5 -5 L20 0 L5 5 L0 20 L-5 5 L-20 0 L-5 -5 Z" fill="#fff8d0"/><path transform="translate(300 1000) scale(1)" d="M0 -20 L5 -5 L20 0 L5 5 L0 20 L-5 5 L-20 0 L-5 -5 Z" fill="#fff8d0"/><path transform="translate(800 1000) scale(1.4)" d="M0 -20 L5 -5 L20 0 L5 5 L0 20 L-5 5 L-20 0 L-5 -5 Z" fill="#fff8d0"/><path transform="translate(440 660) scale(1.8)" d="M0 -20 L5 -5 L20 0 L5 5 L0 20 L-5 5 L-20 0 L-5 -5 Z" fill="#fff8d0"/><path transform="translate(660 880) scale(1)" d="M0 -20 L5 -5 L20 0 L5 5 L0 20 L-5 5 L-20 0 L-5 -5 Z" fill="#fff8d0"/></g>
+    <g id="s7-pin"><g transform="translate(540 560) scale(1.5)">
+    <ellipse cy="6" rx="22" ry="7" fill="#000" opacity=".3"/>
+    <path d="M0 0 C-10 -24 -40 -40 -40 -70 A40 40 0 1 1 40 -70 C40 -40 10 -24 0 0 Z" fill="#e0464c" stroke="#2a1b17" stroke-width="4"/>
+    <circle cy="-70" r="16" fill="#fff"/>
+  </g></g>
+    <g id="s7-star"><g transform="translate(540 450)"><path d="M0 -30 L9 -9 L30 -9 L13 5 L19 28 L0 14 L-19 28 L-13 5 L-30 -9 L-9 -9 Z" fill="#f0c14a" stroke="#2a1b17" stroke-width="3"/></g></g>
+    <g id="s7t1-w"><g id="s7t1-b"><g class="fp-placed" data-id="s7t1" transform="translate(60.0 1180.0)"><g class="fp-scale" transform="translate(100 520) scale(0.86) translate(-100 -520)"><g id="s7t1-root" class="fp-person fp-female fp-front" data-fp-id="s7t1" data-gender="female" data-view="front" data-blink="on">
+<ellipse class="fp-shadow" cx="100" cy="523" rx="74" ry="11" fill="#000" opacity=".5"/>
+<g id="s7t1-legs" class="fp-legs">
+<rect x="72" y="372" width="26" height="136" rx="12" fill="#f4efe6"/>
+<rect x="102" y="372" width="26" height="136" rx="12" fill="#aba7a1"/>
+<path d="M60 508 Q60 498 74 498 L96 498 Q100 498 100 504 L100 520 L62 520 Q58 520 60 508 Z" fill="#e07a9a"/>
+<path d="M140 508 Q140 498 126 498 L104 498 Q100 498 100 504 L100 520 L138 520 Q142 520 140 508 Z" fill="#a85c74"/>
+</g>
+<g id="s7t1-armL" class="fp-arm fp-arm-l" data-pivot="56 238">
+<path d="M56 238 L36.9 328.0" stroke="#5bb3c9" stroke-width="24" stroke-linecap="round" fill="none"/>
+<circle cx="36.9" cy="334.0" r="13.5" fill="#f4c7a1"/>
+<circle cx="39.9" cy="337.0" r="8" fill="#dca07c" opacity=".45"/>
+</g>
+<g id="s7t1-armR" class="fp-arm fp-arm-r" data-pivot="144 238">
+<path d="M144 238 L175.5 324.5" stroke="#448697" stroke-width="24" stroke-linecap="round" fill="none"/>
+<circle cx="175.5" cy="330.5" r="13.5" fill="#f4c7a1"/>
+<circle cx="178.5" cy="333.5" r="8" fill="#dca07c" opacity=".45"/>
+</g>
+<rect class="fp-neck" x="88" y="200" width="24" height="34" rx="8" fill="#dca07c"/>
+<clipPath id="s7t1-torso"><rect x="46" y="222" width="108" height="170" rx="24"/></clipPath>
+<g class="fp-torso" clip-path="url(#s7t1-torso)">
+<rect x="46" y="222" width="108" height="170" fill="#5bb3c9"/>
+<rect x="124" y="222" width="30" height="170" fill="#448697" opacity=".9"/>
+<path d="M100 236 L100 392" stroke="#3b7483" stroke-width="2.5"/>
+<circle cx="100" cy="254" r="3.6" fill="#f7efe2" opacity=".9"/>
+<circle cx="100" cy="284" r="3.6" fill="#f7efe2" opacity=".9"/>
+<circle cx="100" cy="314" r="3.6" fill="#f7efe2" opacity=".9"/>
+<circle cx="100" cy="344" r="3.6" fill="#f7efe2" opacity=".9"/>
+<circle cx="100" cy="374" r="3.6" fill="#f7efe2" opacity=".9"/>
+</g>
+<path d="M80 222 L100 248 L92 258 L72 232 Z" fill="#f7efe2"/><path d="M120 222 L100 248 L108 258 L128 232 Z" fill="#f7efe2"/>
+<path d="M86 222 L100 240 L114 222 Z" fill="#dca07c"/>
+<g id="s7t1-headGroup" class="fp-head">
+<circle cx="37" cy="156" r="10" fill="#dca07c"/><circle cx="163" cy="156" r="10" fill="#dca07c"/>
+<circle cx="100" cy="148" r="64" fill="#f4c7a1"/>
+<clipPath id="s7t1-head"><circle cx="100" cy="148" r="64"/></clipPath>
+<circle cx="192.8" cy="154" r="64" fill="#dca07c" opacity=".38" clip-path="url(#s7t1-head)"/>
+<g class="fp-hair" data-hair="bob">
+<path d="M32 204 C24 126 50 80 100 80 C150 80 176 126 168 204 L150 206 C154 170 152 138 142 118 C122 136 86 140 58 116 C50 136 48 170 50 206 Z" fill="#1b1312"/>
+<path d="M58 116 C86 140 122 136 142 118 C130 100 116 96 100 96 C80 96 66 102 58 116 Z" fill="#1b1312"/>
+<path d="M60 96 Q96 78 134 92" stroke="#443d3d" stroke-width="5" fill="none" stroke-linecap="round" opacity=".8"/>
+</g>
+<g class="fp-face">
+<ellipse cx="66" cy="178" rx="11" ry="6.5" fill="#f08f8f" opacity=".6"/><ellipse cx="134" cy="178" rx="11" ry="6.5" fill="#f08f8f" opacity=".6"/>
+<g id="s7t1-eyes" class="fp-eyes" data-blink="on"><circle cx="78" cy="160" r="6.5" fill="#2a1b17"/><circle cx="122" cy="160" r="6.5" fill="#2a1b17"/><circle cx="80.2" cy="157.6" r="2.1" fill="#fff"/><circle cx="124.2" cy="157.6" r="2.1" fill="#fff"/></g>
+<g id="s7t1-exp-smile" class="s7t1-exp fp-exp">
+<path d="M66 137 Q77 132 88 136" stroke="#2a1b17" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+<path d="M112 136 Q123 132 134 137" stroke="#2a1b17" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+<path d="M86 182 Q100 198 114 182" stroke="#7a2a24" stroke-width="4" stroke-linecap="round" fill="none"/>
+</g>
+</g>
+</g>
+<g id="s7t1-holdR" class="fp-hold fp-hold-phone" data-pivot="144 238">
+<g transform="translate(175.5 328.5) rotate(18)">
+<rect x="-11" y="-28" width="22" height="40" rx="4" fill="#1c1c22"/>
+<rect x="-8" y="-24" width="16" height="30" rx="2" fill="#7ec8ff"/>
+<circle cx="0" cy="10" r="2.2" fill="#666666"/>
+</g>
+</g>
+</g></g></g></g></g>
+    <g id="s7t2-w"><g id="s7t2-b"><g class="fp-placed" data-id="s7t2" transform="translate(820.0 1190.0)"><g class="fp-scale" transform="translate(100 520) scale(0.88) translate(-100 -520)"><g id="s7t2-root" class="fp-person fp-male fp-front" data-fp-id="s7t2" data-gender="male" data-view="front" data-blink="on">
+<ellipse class="fp-shadow" cx="100" cy="523" rx="74" ry="11" fill="#000" opacity=".5"/>
+<g id="s7t2-legs" class="fp-legs">
+<rect x="72" y="372" width="26" height="136" rx="12" fill="#2b4a6a"/>
+<rect x="102" y="372" width="26" height="136" rx="12" fill="#1e344a"/>
+<path d="M60 508 Q60 498 74 498 L96 498 Q100 498 100 504 L100 520 L62 520 Q58 520 60 508 Z" fill="#3a2620"/>
+<path d="M140 508 Q140 498 126 498 L104 498 Q100 498 100 504 L100 520 L138 520 Q142 520 140 508 Z" fill="#2c1d18"/>
+</g>
+<g id="s7t2-armL" class="fp-arm fp-arm-l" data-pivot="56 238">
+<path d="M56 238 L24.5 324.5" stroke="#f0c14a" stroke-width="24" stroke-linecap="round" fill="none"/>
+<circle cx="24.5" cy="330.5" r="13.5" fill="#f4c7a1"/>
+<circle cx="27.5" cy="333.5" r="8" fill="#dca07c" opacity=".45"/>
+</g>
+<g id="s7t2-armR" class="fp-arm fp-arm-r" data-pivot="144 238">
+<path d="M144 238 L175.5 324.5" stroke="#b49138" stroke-width="24" stroke-linecap="round" fill="none"/>
+<circle cx="175.5" cy="330.5" r="13.5" fill="#f4c7a1"/>
+<circle cx="178.5" cy="333.5" r="8" fill="#dca07c" opacity=".45"/>
+</g>
+<rect class="fp-neck" x="88" y="200" width="24" height="34" rx="8" fill="#dca07c"/>
+<clipPath id="s7t2-torso"><rect x="46" y="222" width="108" height="170" rx="24"/></clipPath>
+<g class="fp-torso" clip-path="url(#s7t2-torso)">
+<rect x="46" y="222" width="108" height="170" fill="#f0c14a"/>
+<rect x="124" y="222" width="30" height="170" fill="#b49138" opacity=".9"/>
+<path d="M100 236 L100 392" stroke="#9c7d30" stroke-width="2.5"/>
+<circle cx="100" cy="254" r="3.6" fill="#f7efe2" opacity=".9"/>
+<circle cx="100" cy="284" r="3.6" fill="#f7efe2" opacity=".9"/>
+<circle cx="100" cy="314" r="3.6" fill="#f7efe2" opacity=".9"/>
+<circle cx="100" cy="344" r="3.6" fill="#f7efe2" opacity=".9"/>
+<circle cx="100" cy="374" r="3.6" fill="#f7efe2" opacity=".9"/>
+<rect x="60" y="222" width="14" height="110" rx="5" fill="#4a2c22"/><rect x="126" y="222" width="14" height="110" rx="5" fill="#4a2c22"/>
+<rect x="61" y="296" width="12" height="7" rx="2" fill="#c9a36a"/><rect x="127" y="296" width="12" height="7" rx="2" fill="#c9a36a"/>
+</g>
+<path d="M80 222 L100 248 L92 258 L72 232 Z" fill="#f7efe2"/><path d="M120 222 L100 248 L108 258 L128 232 Z" fill="#f7efe2"/>
+<path d="M86 222 L100 240 L114 222 Z" fill="#dca07c"/>
+<g id="s7t2-headGroup" class="fp-head">
+<circle cx="37" cy="156" r="10" fill="#dca07c"/><circle cx="163" cy="156" r="10" fill="#dca07c"/>
+<circle cx="100" cy="148" r="64" fill="#f4c7a1"/>
+<clipPath id="s7t2-head"><circle cx="100" cy="148" r="64"/></clipPath>
+<circle cx="192.8" cy="154" r="64" fill="#dca07c" opacity=".38" clip-path="url(#s7t2-head)"/>
+<g class="fp-hair" data-hair="short">
+<path d="M36 156 C30 104 60 80 100 80 C142 80 170 104 164 156 C158 134 150 120 140 112 C118 124 82 124 60 110 C50 122 42 136 36 156 Z" fill="#1b1312"/>
+<path d="M62 94 Q98 78 136 92" stroke="#443d3d" stroke-width="5" fill="none" stroke-linecap="round" opacity=".75"/>
+</g>
+<g class="fp-face">
+<ellipse cx="66" cy="178" rx="11" ry="6.5" fill="#f08f8f" opacity=".6"/><ellipse cx="134" cy="178" rx="11" ry="6.5" fill="#f08f8f" opacity=".6"/>
+<g id="s7t2-eyes" class="fp-eyes" data-blink="on"><circle cx="78" cy="160" r="6.5" fill="#2a1b17"/><circle cx="122" cy="160" r="6.5" fill="#2a1b17"/><circle cx="80.2" cy="157.6" r="2.1" fill="#fff"/><circle cx="124.2" cy="157.6" r="2.1" fill="#fff"/></g>
+<g id="s7t2-exp-smile" class="s7t2-exp fp-exp">
+<path d="M66 137 Q77 132 88 136" stroke="#2a1b17" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+<path d="M112 136 Q123 132 134 137" stroke="#2a1b17" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+<path d="M86 182 Q100 198 114 182" stroke="#7a2a24" stroke-width="4" stroke-linecap="round" fill="none"/>
+</g>
+</g>
+</g>
+<g id="s7t2-holdR" class="fp-hold fp-hold-phone" data-pivot="144 238">
+<g transform="translate(175.5 328.5) rotate(18)">
+<rect x="-11" y="-28" width="22" height="40" rx="4" fill="#1c1c22"/>
+<rect x="-8" y="-24" width="16" height="30" rx="2" fill="#7ec8ff"/>
+<circle cx="0" cy="10" r="2.2" fill="#666666"/>
+</g>
+</g>
+</g></g></g></g></g>
+    <g id="s7-f1" opacity="0"><g transform="translate(210 1330)">
+    <circle r="46" fill="#fff" opacity=".55"/><circle r="20" fill="#fff"/>
+    <path d="M0 -70 L6 -10 L70 0 L6 10 L0 70 L-6 10 L-70 0 L-6 -10 Z" fill="#fff" opacity=".9"/>
+  </g></g><g id="s7-f2" opacity="0"><g transform="translate(880 1330)">
+    <circle r="46" fill="#fff" opacity=".55"/><circle r="20" fill="#fff"/>
+    <path d="M0 -70 L6 -10 L70 0 L6 10 L0 70 L-6 10 L-70 0 L-6 -10 Z" fill="#fff" opacity=".9"/>
+  </g></g>
+    <g id="s7-card"><rect width="1080" height="1920" fill="url(#s7-card)"/>
+      <circle cx="540" cy="900" r="420" fill="url(#s7-glow)" opacity=".5"/>
+      <g id="s7-cmon"><g class="monument" transform="translate(540 820) scale(1.3)">
+    <ellipse cy="24" rx="150" ry="22" fill="#000" opacity=".35"/>
+    <path d="M-130 14 L130 14 L100 78 L-100 78 Z" fill="#6a5a48"/>
+    <rect x="-88" y="-16" width="176" height="36" fill="#4a3a30"/>
+    <rect x="-64" y="-46" width="128" height="30" fill="#c8a878"/>
+    <!-- gold tricone bit pointing up: shaft + 3 cones -->
+    <rect x="-18" y="-150" width="36" height="108" rx="4" fill="#d4a017"/>
+    <rect x="-22" y="-70" width="44" height="28" rx="3" fill="#f0c14a"/>
+    <rect x="-14" y="-150" width="6" height="100" fill="#fff0c0" opacity=".35"/>
+    <circle cy="-160" r="26" fill="#e0b04a"/>
+    <path d="M0 -250 L28 -168 L0 -150 L-28 -168 Z" fill="#f0c14a"/>
+    <path d="M0 -250 L22 -200 L0 -180 L-8 -210 Z" fill="#fff0c0" opacity=".5"/>
+    <path d="M-8 -160 L-62 -210 L-20 -130 Z" fill="#c89020"/>
+    <path d="M8 -160 L62 -210 L20 -130 Z" fill="#d4a017"/>
+    <path d="M-18 -200 L-62 -210 L-28 -168 Z" fill="#fff0c0" opacity=".25"/>
+    <circle cx="-36" cy="-186" r="8" fill="#a87818"/>
+    <circle cx="36" cy="-186" r="8" fill="#a87818"/>
+    <circle cy="-210" r="8" fill="#a87818"/>
+    <rect x="-80" y="20" width="160" height="32" rx="4" fill="#1a1208"/>
+    <text x="0" y="42" text-anchor="middle" font-family="Kanit, sans-serif" font-weight="700" font-size="15" fill="#f0c14a">จุดเริ่มต้นบางดูไบ</text>
+  </g></g>
+      <g id="s7-ttl"><text x="540" y="1120" text-anchor="middle" font-family="Kanit, sans-serif" font-weight="900" font-size="190" fill="#f0c14a" stroke="#3a1808" stroke-width="10" paint-order="stroke" stroke-linejoin="round">บางดูไบ</text></g>
+      <g id="s7-en"><text x="540" y="1210" text-anchor="middle" font-family="Kanit, sans-serif" font-weight="700" font-size="46" fill="#e2c7ae">BANG-DUBAI</text></g>
+      <clipPath id="s7-tclip"><text x="540" y="1120" text-anchor="middle" font-family="Kanit, sans-serif" font-weight="900" font-size="190">บางดูไบ</text></clipPath><g clip-path="url(#s7-tclip)"><rect id="s7-sheen" x="-200" y="900" width="110" height="260" fill="#fffbe8" opacity=".75" transform="skewX(-20)"/></g>
+    </g>
   
-  <rect x="0" y="0" width="1080" height="1920" fill="url(#vignette)" pointer-events="none"/>
-</svg>
+          <rect x="0" y="0" width="1080" height="1920" fill="url(#s7-vig)" pointer-events="none"/>
+        </svg>
+      </div></div></div>
     </div>
   </div>
   <script>
+  (() => {
+    const SCENE_DUR = 6.857;
+    // Runtime helpers injected into every bang-dubai video composition.
+// Expects: const SCENE_DUR, and gsap loaded. Defines tl and helpers.
+const tl = gsap.timeline({ paused: true });
+const SVGNS = "http://www.w3.org/2000/svg";
+const rng = (s) => () => { s |= 0; s = s + 0x6D2B79F5 | 0; let t = Math.imul(s ^ s >>> 15, 1 | s); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+const mk = (tag, attrs, parent) => { const e = document.createElementNS(SVGNS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; };
+const $ = (s) => document.querySelector(s);
+const $$ = (s) => Array.from(document.querySelectorAll(s));
+const clamp01 = (v) => Math.max(0, Math.min(1, v));
+const smooth = (v) => { v = clamp01(v); return v * v * (3 - 2 * v); };
+const lerp = (a, b, t) => a + (b - a) * t;
+
+// pop an SVG group in from scale 0 around a scene point
+const pop = (sel, at, ox, oy, o = {}) => tl.fromTo(sel,
+  { scale: o.from ?? 0, opacity: o.op0 ?? 1, rotation: o.rot ?? 0, svgOrigin: `${ox} ${oy}` },
+  { scale: 1, opacity: 1, rotation: 0, svgOrigin: `${ox} ${oy}`, duration: o.d ?? 0.45, ease: o.e ?? "back.out(2.2)" }, at);
+const popOut = (sel, at, ox, oy, o = {}) => tl.to(sel, { scale: 0, opacity: o.fade ? 0 : 1, svgOrigin: `${ox} ${oy}`, duration: o.d ?? 0.3, ease: o.e ?? "back.in(2)" }, at);
+// slide in from an offset
+const slide = (sel, at, dx, dy, o = {}) => tl.fromTo(sel, { x: dx, y: dy, opacity: o.op0 ?? 1 },
+  { x: 0, y: 0, opacity: 1, duration: o.d ?? 0.6, ease: o.e ?? "power3.out" }, at);
+const slideOut = (sel, at, dx, dy, o = {}) => tl.to(sel, { x: dx, y: dy, duration: o.d ?? 0.4, ease: o.e ?? "power2.in" }, at);
+const fadeIn = (sel, at, d = 0.4) => tl.fromTo(sel, { opacity: 0 }, { opacity: 1, duration: d, ease: "power1.out" }, at);
+const fadeOut = (sel, at, d = 0.3) => tl.to(sel, { opacity: 0, duration: d, ease: "power1.in" }, at);
+// idle bob (y), finite repeats so the timeline stays seekable
+const bob = (sel, t0, t1, amp = 6, per = 0.6) => {
+  const n = Math.max(1, Math.floor((t1 - t0) / per));
+  tl.fromTo(sel, { y: 0 }, { y: -amp, duration: per / 2, yoyo: true, repeat: n * 2 - 1, ease: "sine.inOut", immediateRender: false }, t0);
+};
+const sway = (sel, t0, t1, deg = 4, per = 1.2, ox = 0, oy = 0) => {
+  const n = Math.max(1, Math.floor((t1 - t0) / per));
+  tl.fromTo(sel, { rotation: -deg, svgOrigin: `${ox} ${oy}` }, { rotation: deg, svgOrigin: `${ox} ${oy}`, duration: per / 2, yoyo: true, repeat: n * 2 - 1, ease: "sine.inOut", immediateRender: false }, t0);
+};
+const jump = (sel, at, h = 40, d = 0.4) => tl.to(sel, { keyframes: [{ y: -h, duration: d * 0.45, ease: "power2.out" }, { y: 0, duration: d * 0.55, ease: "bounce.out" }] }, at);
+const shake = (sel, at, amp = 12, dur = 0.5) => {
+  const n = Math.max(3, Math.round(dur / 0.045)); const r = rng(Math.round(at * 1000));
+  const kf = []; for (let i = 0; i < n; i++) { const k = 1 - i / n; kf.push({ x: (r() - .5) * 2 * amp * k, y: (r() - .5) * 2 * amp * k * 0.7, duration: dur / (n + 1), ease: "none" }); }
+  kf.push({ x: 0, y: 0, duration: dur / (n + 1) });
+  tl.to(sel, { keyframes: kf }, at);
+};
+const draw = (sel, at, d = 0.6, len = 1200) => tl.fromTo(sel, { strokeDasharray: len, strokeDashoffset: len }, { strokeDashoffset: 0, duration: d, ease: "power2.inOut" }, at);
+const blink = (sel, at) => tl.fromTo(sel, { scaleY: 1 }, { scaleY: 0.12, transformOrigin: "50% 50%", duration: 0.06, yoyo: true, repeat: 1, ease: "power1.inOut", immediateRender: false }, at);
+const blinkAll = (ids, seed = 1) => { const r = rng(seed); ids.forEach((id) => { let t = 0.4 + r() * 1.6; while (t < SCENE_DUR - 0.2) { if (document.getElementById(id + "-eyes")) blink("#" + id + "-eyes", t); t += 2.2 + r() * 2.2; } }); };
+const face = (pre, name, at) => { tl.set(`.${pre}-exp`, { opacity: 0 }, at); tl.set(`#${pre}-exp-${name}`, { opacity: 1 }, at); };
+// arm rotate around its pivot
+const arm = (id, side, at, deg, d = 0.3, o = {}) => {
+  const el = document.getElementById(`${id}-arm${side}`); if (!el) return;
+  const pv = (el.getAttribute("data-pivot") || "100 238");
+  tl.to(el, { rotation: deg, svgOrigin: pv, duration: d, ease: o.e ?? "power2.out" }, at);
+};
+const wave = (id, side, t0, t1, a = 20, b = -10, per = 0.5) => {
+  const el = document.getElementById(`${id}-arm${side}`); if (!el) return;
+  const pv = (el.getAttribute("data-pivot") || "100 238"); const n = Math.max(1, Math.floor((t1 - t0) / per));
+  tl.fromTo(el, { rotation: a, svgOrigin: pv }, { rotation: b, svgOrigin: pv, duration: per / 2, yoyo: true, repeat: n * 2 - 1, ease: "sine.inOut", immediateRender: false }, t0);
+};
+// a getter/setter proxy so procedural drawing follows timeline seeks (no callbacks needed)
+const driver = (fn, t0 = 0, t1 = SCENE_DUR) => {
+  const p = { _v: -1, t(v) { if (v === undefined) return this._v; this._v = v; fn(v); } };
+  tl.fromTo(p, { t: t0 }, { t: t1, duration: t1 - t0, ease: "none" }, t0);
+  fn(t0);
+};
+// counter text
+const counter = (el, at, d, from, to, fmt) => driver((t) => { const k = clamp01((t - at) / d); el.textContent = fmt(lerp(from, to, 1 - Math.pow(1 - k, 3))); }, 0, SCENE_DUR);
+
+// smooth closed/open path through points (quadratic midpoints)
+const smoothPath = (pts, close = false) => {
+  if (pts.length < 2) return "";
+  let d = `M${pts[0][0].toFixed(1)} ${pts[0][1].toFixed(1)}`;
+  for (let i = 1; i < pts.length - 1; i++) {
+    const [x1, y1] = pts[i], [x2, y2] = pts[i + 1];
+    d += ` Q${x1.toFixed(1)} ${y1.toFixed(1)} ${((x1 + x2) / 2).toFixed(1)} ${((y1 + y2) / 2).toFixed(1)}`;
+  }
+  const l = pts[pts.length - 1]; d += ` L${l[0].toFixed(1)} ${l[1].toFixed(1)}`;
+  return close ? d + " Z" : d;
+};
+
+/**
+ * Procedural crude-oil gusher: undulating column, glossy highlight, crown,
+ * rising/falling droplets, base splashes, top spray, spreading puddle.
+ * o: { id, x, y, H, W, t0, rise, seed, sc, puddle:[rx0,rx1,ry0,ry1,pt0,pt1], drops, intensity }
+ */
+function gusher(g, o) {
+  const r = rng(o.seed || 7), sc = o.sc ?? 1, W = o.W ?? 60, H = o.H ?? 700, x = o.x, y = o.y;
+  const t0 = o.t0 ?? 0, rise = o.rise ?? 0.9;
+  const pd = o.puddle || [180, 260, 50, 70, 0, SCENE_DUR];
+  const puddle = mk("path", { fill: `url(#${o.id}-pool)` }, g);
+  const pSheen = mk("path", { fill: "#6a7aa8", opacity: .22 }, g);
+  const pRing = mk("path", { fill: "none", stroke: "#000", "stroke-width": 3 * sc, opacity: .45 }, g);
+  const back = mk("g", {}, g);
+  const col = mk("path", { fill: `url(#${o.id}-col)` }, g);
+  const hl = mk("path", { fill: "none", stroke: "#c8d0e0", "stroke-width": 9 * sc, "stroke-linecap": "round", opacity: .42 }, g);
+  const hl2 = mk("path", { fill: "none", stroke: "#ffffff", "stroke-width": 3.5 * sc, "stroke-linecap": "round", opacity: .55, "stroke-dasharray": `${60 * sc} ${34 * sc}` }, g);
+  const flow = mk("path", { fill: "none", stroke: "#8890a8", "stroke-width": 5 * sc, "stroke-linecap": "round", opacity: .35, "stroke-dasharray": `${26 * sc} ${70 * sc}` }, g);
+  const rimR = mk("path", { fill: "none", stroke: "#5a4a7a", "stroke-width": 5 * sc, "stroke-linecap": "round", opacity: .35 }, g);
+  const crownG = mk("g", {}, g);
+  const crown = []; const CN = 11;
+  for (let i = 0; i < CN; i++) crown.push({ e: mk("ellipse", { fill: i % 4 === 0 ? "#1c1c26" : "#08080b" }, crownG), a: (i / CN) * Math.PI * 2, ph: r() * 6, k: 0.55 + r() * 0.5 });
+  const crownHl = mk("ellipse", { fill: "#9aa4bc", opacity: .35 }, crownG);
+  const front = mk("g", {}, g);
+  const drops = [];
+  const ND = o.drops ?? 46;
+  for (let i = 0; i < ND; i++) {
+    const kind = i < ND * 0.55 ? "top" : (i < ND * 0.8 ? "side" : "base");
+    const e = mk("ellipse", { fill: "#08080b" }, r() < 0.5 ? back : front);
+    const s = kind === "base" ? 0.6 : 1;
+    drops.push({ e, h: mk("ellipse", { fill: "#aab4cc", opacity: .45 }, front), kind,
+      per: kind === "base" ? 0.55 + r() * 0.5 : 0.9 + r() * 0.9, ph: r() * 3,
+      vx: (r() - 0.5) * (kind === "top" ? 520 : kind === "side" ? 380 : 360) * sc,
+      vy: -(kind === "top" ? 220 + r() * 420 : kind === "side" ? 80 + r() * 260 : 160 + r() * 260) * sc,
+      sy: kind === "side" ? 0.25 + r() * 0.6 : 0, rad: (4 + r() * 11) * sc * s, off: (r() - 0.5) });
+  }
+  const spray = [];
+  for (let i = 0; i < 26; i++) spray.push({ e: mk("circle", { fill: "#2a2630", opacity: 0 }, front), per: 0.6 + r() * 0.7, ph: r() * 2, vx: (r() - .5) * 700 * sc, vy: -(120 + r() * 260) * sc, rad: (1.5 + r() * 3.5) * sc });
+  const mist = [];
+  for (let i = 0; i < 5; i++) mist.push({ e: mk("ellipse", { fill: "#1a1612", opacity: 0 }, front), ph: r() * 6, dx: (r() - .5) * 2 });
+  const GR = 1500 * sc;
+  function edge(s, t, side) {
+    const ph = side < 0 ? 0 : 2.1;
+    return Math.sin(s * 10 - t * 9 + ph) * W * 0.2 + Math.sin(s * 23 - t * 15 + ph * 1.7) * W * 0.09 + Math.sin(s * 4.5 - t * 4 + ph) * W * 0.12;
+  }
+  function draw(t) {
+    const k = smooth((t - t0) / rise);
+    const pulse = 1 + 0.06 * Math.sin(t * 5.3) + 0.04 * Math.sin(t * 8.9 + 1);
+    const h = H * (k < 1 ? (1 - Math.pow(1 - k, 3)) : pulse) * (o.intensity ?? 1);
+    // puddle
+    const pk = smooth((t - pd[4]) / (pd[5] - pd[4]));
+    const prx = lerp(pd[0], pd[1], pk), pry = lerp(pd[2], pd[3], pk);
+    if (t < t0 - 0.05) { puddle.setAttribute("d", ""); pSheen.setAttribute("d", ""); pRing.setAttribute("d", ""); }
+    else {
+      const pp = [], N = 26; const gk = smooth((t - t0 + 0.2) / 0.6);
+      for (let i = 0; i <= N; i++) { const a = (i / N) * Math.PI * 2; const w = 1 + 0.05 * Math.sin(a * 5 + t * 2.2) + 0.03 * Math.sin(a * 9 - t * 3);
+        pp.push([x + Math.cos(a) * prx * w * gk, y + 10 * sc + Math.sin(a) * pry * w * gk]); }
+      const dP = smoothPath(pp, true); puddle.setAttribute("d", dP); pRing.setAttribute("d", dP);
+      const sp = []; for (let i = 0; i <= 14; i++) { const a = (i / 14) * Math.PI * 2; sp.push([x - prx * 0.18 + Math.cos(a) * prx * 0.45 * gk, y + Math.sin(a) * pry * 0.35 * gk]); }
+      pSheen.setAttribute("d", smoothPath(sp, true));
+    }
+    if (h < 4) {
+      col.setAttribute("d", ""); hl.setAttribute("d", ""); hl2.setAttribute("d", ""); flow.setAttribute("d", ""); rimR.setAttribute("d", "");
+      crown.forEach((c) => c.e.setAttribute("rx", 0)); crownHl.setAttribute("rx", 0);
+      drops.forEach((d) => { d.e.setAttribute("rx", 0); d.h.setAttribute("rx", 0); });
+      spray.forEach((s) => s.e.setAttribute("opacity", 0)); mist.forEach((m) => m.e.setAttribute("opacity", 0));
+      return;
+    }
+    const N = 28, L = [], R = [], top = y - h;
+    const cxAt = (s) => x + Math.sin(s * 3.2 - t * 2.3) * W * 0.3 * s;
+    for (let i = 0; i <= N; i++) {
+      const s = i / N, yy = y - s * h;
+      const base = W * (1.15 - 0.35 * s) + W * 0.9 * smooth((s - 0.82) / 0.18) + W * 0.5 * smooth((0.08 - s) / 0.08);
+      const c = cxAt(s);
+      L.push([c - base - edge(s, t, -1), yy]); R.push([c + base + edge(s, t, 1), yy]);
+    }
+    const ctop = cxAt(1);
+    const capW = W * 1.5;
+    const pts = [...L, [ctop - capW * 0.6, top - W * 0.55], [ctop, top - W * 0.8], [ctop + capW * 0.6, top - W * 0.55], ...R.reverse()];
+    col.setAttribute("d", smoothPath(pts, true));
+    const hp = [], hp2 = [], rp = [];
+    for (let i = 2; i <= N - 4; i++) { const s = i / N, yy = y - s * h, base = W * (1.15 - 0.35 * s); const c = cxAt(s);
+      hp.push([c - base * 0.55 - edge(s, t, -1) * 0.6, yy]);
+      if (i > 4 && i < N - 8) hp2.push([c - base * 0.42 - edge(s, t, -1) * 0.5 + Math.sin(s * 30 - t * 18) * 2 * sc, yy]);
+      rp.push([c + base * 0.7 + edge(s, t, 1) * 0.7, yy]); }
+    hl.setAttribute("d", smoothPath(hp)); hl2.setAttribute("d", smoothPath(hp2)); rimR.setAttribute("d", smoothPath(rp));
+    const fp = []; for (let i = 1; i <= N - 3; i++) { const s = i / N, yy = y - s * h, base = W * (1.15 - 0.35 * s); fp.push([cxAt(s) + base * 0.15 + edge(s, t, 1) * 0.3, yy]); }
+    flow.setAttribute("d", smoothPath(fp)); flow.setAttribute("stroke-dashoffset", (t * 520 * sc).toFixed(1)); hl2.setAttribute("stroke-dashoffset", (t * 380 * sc).toFixed(1));
+    crown.forEach((c, i) => {
+      const a = c.a + t * 0.8; const rr = W * (0.95 + 0.35 * Math.sin(t * 6 + c.ph)) * c.k;
+      c.e.setAttribute("cx", ctop + Math.cos(a) * W * 1.1); c.e.setAttribute("cy", top - W * 0.25 + Math.sin(a) * W * 0.45);
+      c.e.setAttribute("rx", rr); c.e.setAttribute("ry", rr * 0.8);
+    });
+    crownHl.setAttribute("cx", ctop - W * 0.5); crownHl.setAttribute("cy", top - W * 0.55); crownHl.setAttribute("rx", W * 0.55); crownHl.setAttribute("ry", W * 0.2);
+    const active = t >= t0 + 0.15;
+    drops.forEach((d) => {
+      if (!active) { d.e.setAttribute("rx", 0); d.h.setAttribute("rx", 0); return; }
+      const a = ((t - t0 + d.ph) % d.per + d.per) % d.per;
+      let x0, y0;
+      if (d.kind === "top") { x0 = ctop + d.off * W * 1.6; y0 = top - W * 0.3; }
+      else if (d.kind === "side") { const s = d.sy; x0 = cxAt(s) + Math.sign(d.vx) * W * (1.1 - 0.3 * s); y0 = y - s * h; }
+      else { x0 = x + d.off * W * 2.4; y0 = y; }
+      const px = x0 + d.vx * a, vy = d.vy + GR * a, py = y0 + d.vy * a + 0.5 * GR * a * a;
+      const life = a / d.per; const fade = life > 0.85 ? (1 - life) / 0.15 : 1;
+      const sp = Math.min(2.2, 1 + Math.abs(vy) / (900 * sc));
+      const ang = Math.atan2(vy, d.vx) * 180 / Math.PI - 90;
+      if (d.kind === "base" && py > y + 30 * sc) { d.e.setAttribute("rx", 0); d.h.setAttribute("rx", 0); return; }
+      d.e.setAttribute("cx", px); d.e.setAttribute("cy", py); d.e.setAttribute("rx", d.rad * fade); d.e.setAttribute("ry", d.rad * sp * fade);
+      d.e.setAttribute("transform", `rotate(${ang.toFixed(1)} ${px.toFixed(1)} ${py.toFixed(1)})`);
+      d.h.setAttribute("cx", px - d.rad * 0.3); d.h.setAttribute("cy", py - d.rad * 0.35); d.h.setAttribute("rx", d.rad * 0.28 * fade); d.h.setAttribute("ry", d.rad * 0.4 * fade);
+    });
+    spray.forEach((s) => {
+      if (!active) { s.e.setAttribute("opacity", 0); return; }
+      const a = ((t - t0 + s.ph) % s.per + s.per) % s.per, life = a / s.per;
+      s.e.setAttribute("cx", ctop + s.vx * a); s.e.setAttribute("cy", top - W * 0.6 + s.vy * a + 0.5 * GR * 0.6 * a * a);
+      s.e.setAttribute("r", s.rad); s.e.setAttribute("opacity", (0.7 * (1 - life)).toFixed(2));
+    });
+    mist.forEach((m, i) => {
+      const a = (t * 0.25 + m.ph) % 1;
+      m.e.setAttribute("cx", ctop + m.dx * W * 2 + Math.sin(t + i) * 20); m.e.setAttribute("cy", top - W * 0.4 - a * 120 * sc);
+      m.e.setAttribute("rx", W * (1.6 + a * 2)); m.e.setAttribute("ry", W * (0.7 + a)); m.e.setAttribute("opacity", (active ? 0.22 * (1 - a) : 0).toFixed(2));
+    });
+  }
+  driver(draw);
+}
+
+// zoom-through transitions (no fade to black)
+const sceneIO = (sel, o = {}) => {
+  if (o.in !== false) tl.fromTo(sel, { scale: o.inScale ?? 1.22, filter: "blur(10px)" }, { scale: 1, filter: "blur(0px)", duration: 0.38, ease: "power3.out" }, 0);
+  if (o.out !== false) tl.to(sel, { scale: 1.2, filter: "blur(9px)", duration: 0.28, ease: "power2.in" }, SCENE_DUR - 0.28);
+};
+// camera move on an HTML container: keyframes [{t, s, x, y, d, e}]
+const cam = (sel, moves) => { moves.forEach((m) => { const s = Math.max(1, m.s ?? 1), bx = (s - 1) * 540, by = (s - 1) * 960;
+  const x = Math.max(-bx, Math.min(bx, m.x ?? 0)), y = Math.max(-by, Math.min(by, m.y ?? 0));
+  tl.to(sel, { scale: s, x, y, duration: m.d ?? 1, ease: m.e ?? "power2.inOut" }, m.t); }); };
+
+    
+    const r = rng(81);
+    // monument rises in front of the mall
+    tl.fromTo("#s7-mon", { y: 700 }, { y: 0, duration: 1.1, ease: "back.out(1.3)" }, 0.15);
+    shake("#s7-shk", 0.9, 8, .5);
+    tl.fromTo("#s7-rays", { opacity: 0, rotation: 0, svgOrigin: "540 980" }, { opacity: 1, rotation: 40, svgOrigin: "540 980", duration: 6.86, ease: "none" }, 0.5);
+    tl.fromTo("#s7-sparks path", { scale: 0, transformOrigin: "50% 50%" }, { scale: 1.3, duration: .3, yoyo: true, repeat: 5, stagger: .1 }, 1.0);
+    // pull back to reveal the Terminal-21-style mall sign
+    cam("#s7-cam", [{ t: 0, s: 1.35, y: -260, d: .01 }, { t: 2.18, s: 1.0, y: 0, d: 1.0, e: "power3.inOut" }]);
+    tl.fromTo("#s7-signt", { opacity: .2 }, { opacity: 1, duration: .08, repeat: 5, yoyo: true }, 2.48);
+    tl.set("#s7-signt", { opacity: 1 }, 2.98);
+    // new landmark
+    pop("#s7-pin", 3.72, 540, 560, { d: .45, e: "bounce.out" });
+    pop("#s7-star", 4.12, 540, 450, { rot: -90 });
+    slide("#s7t1-w", 2.58, -400, 0, { d: .5 }); slide("#s7t2-w", 2.68, 400, 0, { d: .5 });
+    arm("s7t1", "R", 3.82, 150, .3); arm("s7t2", "R", 3.92, 150, .3);
+    ["#s7-f1","#s7-f2","#s7-f1","#s7-f2"].forEach((f, i) => tl.fromTo(f, { opacity: 0 }, { opacity: 1, duration: .06, yoyo: true, repeat: 1 }, 4.22 + i * 0.25));
+    // title card
+    tl.fromTo("#s7-card", { clipPath: "circle(0px at 540px 900px)", opacity: 1 }, { clipPath: "circle(1400px at 540px 900px)", duration: .55, ease: "power3.in" }, 4.91);
+    tl.fromTo("#s7-cmon", { y: 200, opacity: 0 }, { y: 0, opacity: 1, duration: .6, ease: "power3.out" }, 5.21);
+    tl.fromTo("#s7-ttl", { scale: 2.2, opacity: 0, svgOrigin: "540 1060" }, { scale: 1, opacity: 1, svgOrigin: "540 1060", duration: .35, ease: "power4.in" }, 5.36);
+    shake("#s7-shk", 5.71, 12, .4);
+    fadeIn("#s7-en", 5.81, .4);
+    tl.fromTo("#s7-sheen", { x: 0 }, { x: 1300, duration: .55, ease: "power2.inOut" }, 5.76);
+  
+    blinkAll(["s7t1","s7t2"], 24);
+    sceneIO("#s7-io", { in: true, out: false });
     window.__timelines = window.__timelines || {};
-    const tl = gsap.timeline({ paused: true });
-    tl.fromTo(".oil-col", { scaleY: 0.92 }, { scaleY: 1.04, transformOrigin: "50% 100%", duration: 1.6, yoyo: true, repeat: 6, ease: "sine.inOut" }, 0);
-    tl.fromTo(".oil-drop", { y: -12 }, { y: 18, duration: 1.4, yoyo: true, repeat: 6, ease: "sine.inOut", stagger: 0.08 }, 0);
     window.__timelines["scene-7"] = tl;
+  })();
   </script>
 </template>

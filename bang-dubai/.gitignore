@@ -4,3 +4,11 @@ renders/
 .hyperframes/
 node_modules/
 stills/
+
+# Voiceover source and derived audio (do not commit)
+assets/voice/*.wav
+assets/voice/*.mp3
+assets/voice/*.m4a
+
+# Generated music/SFX bed (rebuild with scripts/make-audio.py)
+assets/audio/*.wav

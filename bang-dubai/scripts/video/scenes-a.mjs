@@ -67,8 +67,8 @@ export function scene0(L, dur) {
       { t: ${t3.toFixed(2)}, s: 1.08, y: -40, d: ${(dur - t3).toFixed(2)}, e: "sine.inOut" }]);
     // "what happens next": a clock spins forward
     pop("#s0-clock", ${(t3 + 0.9).toFixed(2)}, 870, 560, { d: .5 });
-    tl.fromTo("#s0-mh", { rotation: 0, svgOrigin: "870 560" }, { rotation: 1440, svgOrigin: "870 560", duration: ${(dur - t3 - 1.1).toFixed(2)}, ease: "power2.in" }, ${(t3 + 1.1).toFixed(2)});
-    tl.fromTo("#s0-hh", { rotation: 0, svgOrigin: "870 560" }, { rotation: 120, svgOrigin: "870 560", duration: ${(dur - t3 - 1.1).toFixed(2)}, ease: "power2.in" }, ${(t3 + 1.1).toFixed(2)});
+    tl.fromTo("#s0-mh", { rotation: 0, svgOrigin: "0 0" }, { rotation: 1440, svgOrigin: "0 0", duration: ${(dur - t3 - 1.1).toFixed(2)}, ease: "power2.in" }, ${(t3 + 1.1).toFixed(2)});
+    tl.fromTo("#s0-hh", { rotation: 0, svgOrigin: "0 0" }, { rotation: 120, svgOrigin: "0 0", duration: ${(dur - t3 - 1.1).toFixed(2)}, ease: "power2.in" }, ${(t3 + 1.1).toFixed(2)});
     // influencer pulls out the phone
     arm("s0inf", "R", ${(t3 + 0.3).toFixed(2)}, 150, .35); arm("s0of", "R", ${(t3 + 0.7).toFixed(2)}, 140, .35);
     ["s0om","s0of","s0inf","s0win"].forEach((id, i) => bob("#" + id + "-b", ${(tGush + 0.8).toFixed(2)}, ${dur.toFixed(2)}, 4, 0.5 + i * 0.05));
@@ -96,9 +96,9 @@ export function scene1(L, dur) {
       <rect x="40" y="-10" width="50" height="34" rx="6" fill="#8a8a92" stroke="#2a1b17" stroke-width="4" transform="rotate(18 40 7)"/>
       <path d="M30 -30 Q40 -50 34 -66 M48 -26 Q66 -44 62 -60" fill="none" stroke="#5aa0d8" stroke-width="6" stroke-linecap="round"/>
       <text x="-40" y="-26" text-anchor="middle" font-family="${FONT}" font-weight="900" font-size="54" fill="#c8282f">?</text>`, { rx: 60 })}
-    <g id="s1-live">${liveUI({ x: 790, y: 1020, caption: "น้ำพุโคล่ากลางกรุง!" })}
-      <rect x="610" y="782" width="190" height="34" rx="10" fill="#000" opacity=".55"/>
-      <text id="s1-viewers" x="620" y="807" font-family="${FONT}" font-weight="700" font-size="22" fill="#fff">1,204 กำลังดู</text>
+    <g id="s1-live">${liveUI({ x: 790, y: 1020, caption: "น้ำพุโคล่ากลางกรุง!", viewers: "" })}
+      <rect x="720" y="796" width="170" height="32" rx="8" fill="#000" opacity=".55"/>
+      <text id="s1-viewers" x="730" y="820" font-family="${FONT}" font-weight="700" font-size="20" fill="#fff">1,204 กำลังดู</text>
       <g id="s1-hearts"></g></g>
     <g id="s1-map">
       ${card("s1-mapc", 540, 640, 820, 470, `
@@ -264,15 +264,15 @@ export function scene3(L, dur) {
     <g id="s3-stall">
     ${person(reg, "s3v1", { ...presets.vendorFemale, expressions: ["smile"], armL: 20, armR: 40 }, 470, 1600, 0.62)}
     ${stall(300, 1640, { sign: "", color: "#c8282f", w: 330 }).replace(/<rect x="[^"]+" y="[^"]+" width="[^"]+" height="[^"]+" rx="10" fill="#1a1208"[^>]*>/, "")}
-    <g id="s3-stallA"><g transform="translate(300 1450)"><rect x="-200" y="-56" width="400" height="104" rx="16" fill="#8e1d24" stroke="#f0c14a" stroke-width="6"/>${txt(0, 18, "ก๋วยเตี๋ยวเรือ", { size: 54, weight: 800, fill: "#fff0c0" })}</g></g>
-    <g id="s3-stallB"><g transform="translate(300 1420)"><rect x="-230" y="-100" width="460" height="176" rx="18" fill="#0c0c10" stroke="#f0c14a" stroke-width="6"/>${txt(0, -24, "ก๋วยเตี๋ยวเรือ", { size: 54, weight: 800, fill: "#fff0c0" })}${txt(0, 52, "บ่อน้ำมัน", { size: 62, weight: 900, fill: "#f0c14a" })}<path d="M-190 40 C-200 20 -180 0 -176 -10 C-172 0 -152 20 -162 40 C-166 52 -186 52 -190 40 Z" fill="#2a2a33" stroke="#f0c14a" stroke-width="3"/><path d="M176 40 C166 20 186 0 190 -10 C194 0 214 20 204 40 C200 52 180 52 176 40 Z" fill="#2a2a33" stroke="#f0c14a" stroke-width="3"/></g></g></g>
+    <g id="s3-stallA"><g transform="translate(300 1340)"><rect x="-200" y="-56" width="400" height="104" rx="16" fill="#8e1d24" stroke="#f0c14a" stroke-width="6"/>${txt(0, 18, "ก๋วยเตี๋ยวเรือ", { size: 54, weight: 800, fill: "#fff0c0" })}</g></g>
+    <g id="s3-stallB"><g transform="translate(300 1310)"><rect x="-230" y="-100" width="460" height="176" rx="18" fill="#0c0c10" stroke="#f0c14a" stroke-width="6"/>${txt(0, -24, "ก๋วยเตี๋ยวเรือ", { size: 54, weight: 800, fill: "#fff0c0" })}${txt(0, 52, "บ่อน้ำมัน", { size: 62, weight: 900, fill: "#f0c14a" })}<path d="M-190 40 C-200 20 -180 0 -176 -10 C-172 0 -152 20 -162 40 C-166 52 -186 52 -190 40 Z" fill="#2a2a33" stroke="#f0c14a" stroke-width="3"/><path d="M176 40 C166 20 186 0 190 -10 C194 0 214 20 204 40 C200 52 180 52 176 40 Z" fill="#2a2a33" stroke="#f0c14a" stroke-width="3"/></g></g></g>
         <g id="s3-queue">
       ${person(reg, "s3q1", { ...presets.officeMale, expressions: ["smile"], lanyard: false, necktie: "#2b3a55", armL: 8, armR: 8 }, 620, 1700, 0.66)}
       ${person(reg, "s3q2", { ...presets.officeFemale, expressions: ["smile"], armL: 8, armR: 8 }, 740, 1695, 0.64)}
       ${person(reg, "s3q3", { ...presets.touristFemale, expressions: ["smile"], holdR: "phone", armR: 140 }, 860, 1700, 0.66)}
       ${person(reg, "s3q4", { ...presets.touristMale, expressions: ["smile"], holdR: undefined, armL: 8, armR: 8 }, 980, 1695, 0.66)}
     </g>
-    <g id="s3-spark">${[[90, 1330], [510, 1330], [300, 1250]].map(([x, y]) => `<path transform="translate(${x} ${y})" d="M0 -26 L6 -6 L26 0 L6 6 L0 26 L-6 6 L-26 0 L-6 -6 Z" fill="#fff0c0"/>`).join("")}</g>
+    <g id="s3-spark">${[[90, 1220], [510, 1220], [300, 1140]].map(([x, y]) => `<path transform="translate(${x} ${y})" d="M0 -26 L6 -6 L26 0 L6 6 L0 26 L-6 6 L-26 0 L-6 -6 Z" fill="#fff0c0"/>`).join("")}</g>
     <g id="s3-wn"><g id="s3-wnbar">
       <rect x="0" y="0" width="1080" height="96" fill="#0c1020"/><rect x="0" y="96" width="1080" height="8" fill="#c8282f"/>
       ${txt(28, 44, "WORLD NEWS", { size: 28, weight: 800, fill: "#e2c7ae", anchor: "start" })}${txt(28, 80, "BREAKING", { size: 20, weight: 700, fill: "#e0464c", anchor: "start" })}
@@ -317,8 +317,8 @@ export function scene3(L, dur) {
     cam("#s3-cam", [{ t: 0, s: 1.08, d: .01 }, { t: .05, s: 1, d: 1 }, { t: ${(t23 - 0.15).toFixed(2)}, s: 1.3, x: 150, y: -290, d: .7, e: "power3.inOut" }]);
     tl.set("#s3-stallB", { opacity: 0 }, 0);
     slide("#s3-stall", ${(t23 - 0.2).toFixed(2)}, -700, 0, { d: .5, e: "power3.out" });
-    tl.to("#s3-stallA", { scaleY: 0, svgOrigin: "300 1450", duration: .15, ease: "power2.in" }, ${(t25 - 0.1).toFixed(2)});
-    tl.fromTo("#s3-stallB", { opacity: 1, scaleY: 0, svgOrigin: "300 1450" }, { scaleY: 1, svgOrigin: "300 1450", duration: .3, ease: "back.out(2.5)", immediateRender: false }, ${(t25 + 0.05).toFixed(2)});
+    tl.to("#s3-stallA", { scaleY: 0, svgOrigin: "300 1340", duration: .15, ease: "power2.in" }, ${(t25 - 0.1).toFixed(2)});
+    tl.fromTo("#s3-stallB", { opacity: 1, scaleY: 0, svgOrigin: "300 1340" }, { scaleY: 1, svgOrigin: "300 1340", duration: .3, ease: "back.out(2.5)", immediateRender: false }, ${(t25 + 0.05).toFixed(2)});
     tl.fromTo("#s3-spark path", { scale: 0, opacity: 0 }, { scale: 1.3, opacity: 1, transformOrigin: "50% 50%", duration: .25, yoyo: true, repeat: 3, stagger: .1 }, ${(t25 + 0.2).toFixed(2)});
     slide("#s3-queue", ${(t23 + 0.1).toFixed(2)}, 600, 0, { d: 1.2, e: "power2.out" });
     bob("#s3-queue", ${(t23 + 0.1).toFixed(2)}, ${(t23 + 1.3).toFixed(2)}, 6, .32);

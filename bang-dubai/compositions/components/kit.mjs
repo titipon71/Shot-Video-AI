@@ -685,7 +685,7 @@ export function smellClouds(items) {
   return s;
 }
 
-export function liveUI({ x = 800, y = 1280, caption = "อโศกเดือด! น้ำพุโคล่าผุดกลางกรุง" } = {}) {
+export function liveUI({ x = 800, y = 1280, caption = "อโศกเดือด! น้ำพุโคล่าผุดกลางกรุง", viewers = "12,482 กำลังดู" } = {}) {
   return `<g class="live-ui" transform="translate(${x} ${y})">
     <rect x="-200" y="-260" width="400" height="520" rx="28" fill="#1a1a20" stroke="#3a3a44" stroke-width="6"/>
     <rect x="-184" y="-236" width="368" height="420" rx="16" fill="#2a1a18"/>
@@ -696,7 +696,7 @@ export function liveUI({ x = 800, y = 1280, caption = "อโศกเดือ�
       <rect width="70" height="28" rx="6" fill="#e0464c"/>
       ${txt(35, 20, "LIVE", { size: 16, weight: 800, fill: "#fff" })}
     </g>
-    ${txt(40, -200, "12,482 กำลังดู", { size: 16, weight: 600, fill: "#f4efe6", anchor: "start" })}
+    ${viewers ? txt(40, -200, viewers, { size: 16, weight: 600, fill: "#f4efe6", anchor: "start" }) : ""}
     <!-- hearts -->
     ${[0, 1, 2, 3, 4].map((i) => {
       const hx = 150 + (i % 2) * 12, hy = 80 - i * 36, sc = 0.7 + (i % 3) * 0.15;

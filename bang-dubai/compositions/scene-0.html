@@ -775,8 +775,8 @@ const cam = (sel, moves) => { moves.forEach((m) => { const s = Math.max(1, m.s ?
       { t: 8.20, s: 1.08, y: -40, d: 3.82, e: "sine.inOut" }]);
     // "what happens next": a clock spins forward
     pop("#s0-clock", 9.10, 870, 560, { d: .5 });
-    tl.fromTo("#s0-mh", { rotation: 0, svgOrigin: "870 560" }, { rotation: 1440, svgOrigin: "870 560", duration: 2.72, ease: "power2.in" }, 9.30);
-    tl.fromTo("#s0-hh", { rotation: 0, svgOrigin: "870 560" }, { rotation: 120, svgOrigin: "870 560", duration: 2.72, ease: "power2.in" }, 9.30);
+    tl.fromTo("#s0-mh", { rotation: 0, svgOrigin: "0 0" }, { rotation: 1440, svgOrigin: "0 0", duration: 2.72, ease: "power2.in" }, 9.30);
+    tl.fromTo("#s0-hh", { rotation: 0, svgOrigin: "0 0" }, { rotation: 120, svgOrigin: "0 0", duration: 2.72, ease: "power2.in" }, 9.30);
     // influencer pulls out the phone
     arm("s0inf", "R", 8.50, 150, .35); arm("s0of", "R", 8.90, 140, .35);
     ["s0om","s0of","s0inf","s0win"].forEach((id, i) => bob("#" + id + "-b", 5.78, 12.02, 4, 0.5 + i * 0.05));

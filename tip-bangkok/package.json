@@ -1,0 +1,13 @@
+{
+  "name": "tip-bangkok",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "storyboard": "node scripts/storyboard.mjs",
+    "video": "node scripts/build-video.mjs && python scripts/make-audio.py",
+    "dev": "npx --yes hyperframes@0.8.226 preview",
+    "check": "npx --yes hyperframes@0.8.226 check",
+    "render": "npx --yes hyperframes@0.8.226 render -o renders/tip-bangkok-v1.mp4 -f 30 --quiet",
+    "cover": "node scripts/make-cover.mjs"
+  }
+}

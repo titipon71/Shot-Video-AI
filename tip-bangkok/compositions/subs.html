@@ -1,0 +1,462 @@
+<template>
+  <style>
+    @font-face { font-family: Kanit; font-weight: 600; font-display: block; src: url("assets/fonts/Kanit-SemiBold.ttf") format("truetype"); }
+@font-face { font-family: Kanit; font-weight: 700; font-display: block; src: url("assets/fonts/Kanit-Bold.ttf") format("truetype"); }
+@font-face { font-family: Kanit; font-weight: 800; font-display: block; src: url("assets/fonts/Kanit-ExtraBold.ttf") format("truetype"); }
+@font-face { font-family: Kanit; font-weight: 900; font-display: block; src: url("assets/fonts/Kanit-Black.ttf") format("truetype"); }
+    #root { position: absolute; inset: 0; overflow: hidden; pointer-events: none; font-family: Kanit, sans-serif; }
+    .clip { position: absolute; inset: 0; }
+    /* safe area: bottom edge 330px above frame bottom, right 150px kept clear for app icons */
+    .cue { position: absolute; left: 50px; width: 860px; bottom: 330px; text-align: center; opacity: 0; }
+    .ln { display: inline-block; font-size: 46px; line-height: 1.38; font-weight: 800; color: #fff; padding: 7px 22px 12px; border-radius: 18px;
+          background: rgba(16, 10, 6, .62); text-shadow: 0 3px 0 #1a0e06, 0 0 14px rgba(0,0,0,.6); transform-origin: 50% 100%; }
+    .wg { display: inline-block; opacity: 0; white-space: nowrap; }
+    .sp { display: inline-block; width: .32em; }
+  </style>
+  <div data-hf-id="hf-subs" id="root" data-composition-id="subs" data-width="1080" data-height="1920" data-layout-allow-overflow data-layout-allow-overlap>
+    <div data-hf-id="hf-subs-clip" class="clip" data-start="0" data-duration="81" data-track-index="0">
+      <div class="cue" id="cue-0"><div class="ln"><span class="wg">ถ้าวัน</span><span class="wg">หนึ่ง</span><span class="sp"> </span><span class="wg">กรุงเทพฯ</span><br><span class="wg">ใช้ระบบ</span><span class="wg">ทิปแบบ</span><span class="wg">อเมริกา</span></div></div>
+      <div class="cue" id="cue-1"><div class="ln"><span class="wg">เงินเดือน</span><span class="wg">เท่าเดิม</span><br><span class="wg">แต่ทุก</span><span class="wg">อย่าง</span><span class="wg">ต้องทิป</span></div></div>
+      <div class="cue" id="cue-2"><div class="ln"><span class="wg">และนี่</span><span class="wg">คือสิ่ง</span><span class="wg">ที่จะเกิดขึ้น</span></div></div>
+      <div class="cue" id="cue-3"><div class="ln"><span class="wg">ทิป</span><span class="sp"> </span><span class="wg">10%</span></div></div>
+      <div class="cue" id="cue-4"><div class="ln"><span class="wg">กาแฟ</span><span class="wg">แก้วแรก</span><span class="wg">ของวัน</span></div></div>
+      <div class="cue" id="cue-5"><div class="ln"><span class="wg">อเมริกา</span><span class="wg">โน่</span><span class="sp"> </span><span class="wg">55</span><span class="sp"> </span><span class="wg">บาท</span></div></div>
+      <div class="cue" id="cue-6"><div class="ln"><span class="wg">บาริสต้า</span><span class="wg">หันจอ</span><span class="wg">มาให้</span><span class="wg">เลือกทิป</span></div></div>
+      <div class="cue" id="cue-7"><div class="ln"><span class="wg">คนข้าง</span><span class="wg">หลังจ้อง</span><span class="wg">อยู่…</span></div></div>
+      <div class="cue" id="cue-8"><div class="ln"><span class="wg">สุดท้าย</span><span class="sp"> </span><span class="wg">กด</span><span class="sp"> </span><span class="wg">20%</span></div></div>
+      <div class="cue" id="cue-9"><div class="ln"><span class="wg">ทิป</span><span class="sp"> </span><span class="wg">15%</span></div></div>
+      <div class="cue" id="cue-10"><div class="ln"><span class="wg">พี่วินซิ่ง</span><span class="wg">ตามงบ</span></div></div>
+      <div class="cue" id="cue-11"><div class="ln"><span class="wg">ทิปขั้น</span><span class="wg">ต่ำ</span><span class="sp"> </span><span class="wg">15%</span></div></div>
+      <div class="cue" id="cue-12"><div class="ln"><span class="wg">อยาก</span><span class="wg">ถึงเร็ว</span><span class="sp"> </span><span class="wg">เพิ่มอีก</span><span class="sp"> </span><span class="wg">5</span></div></div>
+      <div class="cue" id="cue-13"><div class="ln"><span class="wg">ทิปน้อย…</span><br><span class="wg">พี่วินพา</span><span class="wg">แวะทุก</span><span class="wg">ไฟแดง</span></div></div>
+      <div class="cue" id="cue-14"><div class="ln"><span class="wg">ทิป</span><span class="sp"> </span><span class="wg">18%</span><span class="sp"> </span><span class="wg">ร้านอาหาร</span><span class="wg">ตามสั่ง</span></div></div>
+      <div class="cue" id="cue-15"><div class="ln"><span class="wg">กะเพรา</span><span class="wg">หมูสับ</span><span class="sp"> </span><span class="wg">50</span><span class="sp"> </span><span class="wg">บาท</span></div></div>
+      <div class="cue" id="cue-16"><div class="ln"><span class="wg">เพิ่มไข่</span><span class="wg">ดาว</span><span class="sp"> </span><span class="wg">บวก</span><span class="sp"> </span><span class="wg">10</span><span class="sp"> </span><span class="wg">บาท</span></div></div>
+      <div class="cue" id="cue-17"><div class="ln"><span class="wg">แล้วก็</span><span class="wg">ทิปอีก</span><span class="sp"> </span><span class="wg">5%</span></div></div>
+      <div class="cue" id="cue-18"><div class="ln"><span class="wg">ถ้าเลือก</span><span class="wg">ความ</span><span class="wg">สุกของ</span><span class="wg">ไข่…</span></div></div>
+      <div class="cue" id="cue-19"><div class="ln"><span class="wg">บวกอีก</span><span class="sp"> </span><span class="wg">5</span></div></div>
+      <div class="cue" id="cue-20"><div class="ln"><span class="wg">ทิป</span><span class="sp"> </span><span class="wg">20%</span><br><span class="wg">น้ำเปล่า</span><span class="wg">ขวดเดียว</span><span class="wg">ก็ไม่รอด</span></div></div>
+      <div class="cue" id="cue-21"><div class="ln"><span class="wg">น้ำ</span><span class="sp"> </span><span class="wg">10</span><span class="sp"> </span><span class="wg">บาท</span><span class="sp"> </span><span class="wg">ทิปอีก</span><span class="sp"> </span><span class="wg">2</span><span class="sp"> </span><span class="wg">บาท</span></div></div>
+      <div class="cue" id="cue-22"><div class="ln"><span class="wg">พนักงาน</span><span class="wg">พูดสวัสดีค่ะ</span></div></div>
+      <div class="cue" id="cue-23"><div class="ln"><span class="wg">บวกอีก</span><span class="sp"> </span><span class="wg">5%</span></div></div>
+      <div class="cue" id="cue-24"><div class="ln"><span class="wg">ทิป</span><span class="sp"> </span><span class="wg">25%</span></div></div>
+      <div class="cue" id="cue-25"><div class="ln"><span class="wg">ทั้งเมือง</span><span class="wg">ขอทิป</span></div></div>
+      <div class="cue" id="cue-26"><div class="ln"><span class="wg">แตะบัตร</span><span class="wg">รถไฟฟ้า</span><span class="sp"> </span><span class="wg">ประตู</span><span class="wg">ขอทิป</span></div></div>
+      <div class="cue" id="cue-27"><div class="ln"><span class="wg">กดเงิน</span><span class="wg">จากตู้</span><span class="sp"> </span><span class="wg">ATM</span><span class="sp"> </span><span class="wg">ก็ขอทิป</span></div></div>
+      <div class="cue" id="cue-28"><div class="ln"><span class="wg">แอปส่ง</span><span class="wg">อาหาร</span><span class="wg">ขอทิป</span></div></div>
+      <div class="cue" id="cue-29"><div class="ln"><span class="wg">ตั้งแต่</span><span class="wg">ยังไม่</span><span class="wg">ได้สั่ง</span></div></div>
+      <div class="cue" id="cue-30"><div class="ln"><span class="wg">ทิป</span><span class="sp"> </span><span class="wg">30%</span></div></div>
+      <div class="cue" id="cue-31"><div class="ln"><span class="wg">ชีวิตเปลี่ยน</span></div></div>
+      <div class="cue" id="cue-32"><div class="ln"><span class="wg">อาชีพ</span><span class="wg">บริการ</span><span class="wg">รวยขึ้น</span><span class="wg">ทุกวัน</span></div></div>
+      <div class="cue" id="cue-33"><div class="ln"><span class="wg">ป้าข้าว</span><span class="wg">แกงขับ</span><span class="wg">ซูเปอร์</span><span class="wg">คาร์</span></div></div>
+      <div class="cue" id="cue-34"><div class="ln"><span class="wg">ส่วนพนักงาน</span><span class="wg">ออฟฟิศ…</span></div></div>
+      <div class="cue" id="cue-35"><div class="ln"><span class="wg">ลาออก</span><span class="wg">ไปสมัคร</span><span class="wg">เป็น</span><br><span class="wg">เด็กเสิร์ฟ</span><span class="wg">ร้านป้า</span></div></div>
+      <div class="cue" id="cue-36"><div class="ln"><span class="wg">เลิกงาน</span><span class="wg">กลับถึง</span><span class="wg">บ้าน</span></div></div>
+      <div class="cue" id="cue-37"><div class="ln"><span class="wg">ได้ทิป</span><span class="wg">มาไม่</span><span class="wg">กี่เหรียญ</span></div></div>
+      <div class="cue" id="cue-38"><div class="ln"><span class="wg">หยอด</span><span class="wg">ลงกระปุก</span></div></div>
+      <div class="cue" id="cue-39"><div class="ln"><span class="wg">แล้วก</span><span class="wg">ระปุก</span><span class="wg">ก็ถาม</span><span class="wg">ว่า…</span></div></div>
+      <div class="cue" id="cue-40"><div class="ln"><span class="wg">…ทิปไหม</span><span class="wg">คะ?</span></div></div>
+    </div>
+  </div>
+  <script>
+  (() => {
+    const tl = gsap.timeline({ paused: true });
+    const $$ = (s) => Array.from(document.querySelectorAll(s));
+    tl.set("#cue-0", { opacity: 1 }, 0.000);
+    tl.fromTo("#cue-0 .ln", { y: 14, scale: .96 }, { y: 0, scale: 1, duration: .18, ease: "power2.out" }, 0.000);
+    tl.fromTo($$("#cue-0 .wg")[0], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 0.010);
+    tl.fromTo($$("#cue-0 .wg")[0], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 0.170);
+    tl.fromTo($$("#cue-0 .wg")[1], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 0.424);
+    tl.fromTo($$("#cue-0 .wg")[1], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 0.584);
+    tl.fromTo($$("#cue-0 .wg")[2], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 0.735);
+    tl.fromTo($$("#cue-0 .wg")[2], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 0.895);
+    tl.fromTo($$("#cue-0 .wg")[3], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 1.461);
+    tl.fromTo($$("#cue-0 .wg")[3], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 1.621);
+    tl.fromTo($$("#cue-0 .wg")[4], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 2.082);
+    tl.fromTo($$("#cue-0 .wg")[4], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 2.242);
+    tl.fromTo($$("#cue-0 .wg")[5], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 2.600);
+    tl.fromTo($$("#cue-0 .wg")[5], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 2.760);
+    tl.set("#cue-0", { opacity: 0 }, 3.710);
+    tl.set("#cue-1", { opacity: 1 }, 3.700);
+    tl.fromTo("#cue-1 .ln", { y: 14, scale: .96 }, { y: 0, scale: 1, duration: .18, ease: "power2.out" }, 3.700);
+    tl.fromTo($$("#cue-1 .wg")[0], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 3.710);
+    tl.fromTo($$("#cue-1 .wg")[0], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 3.870);
+    tl.fromTo($$("#cue-1 .wg")[1], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 4.215);
+    tl.fromTo($$("#cue-1 .wg")[1], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 4.375);
+    tl.fromTo($$("#cue-1 .wg")[2], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 4.647);
+    tl.fromTo($$("#cue-1 .wg")[2], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 4.807);
+    tl.fromTo($$("#cue-1 .wg")[3], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 4.936);
+    tl.fromTo($$("#cue-1 .wg")[3], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 5.096);
+    tl.fromTo($$("#cue-1 .wg")[4], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 5.224);
+    tl.fromTo($$("#cue-1 .wg")[4], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 5.384);
+    tl.set("#cue-1", { opacity: 0 }, 5.880);
+    tl.set("#cue-2", { opacity: 1 }, 5.860);
+    tl.fromTo("#cue-2 .ln", { y: 14, scale: .96 }, { y: 0, scale: 1, duration: .18, ease: "power2.out" }, 5.860);
+    tl.fromTo($$("#cue-2 .wg")[0], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 5.870);
+    tl.fromTo($$("#cue-2 .wg")[0], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 6.030);
+    tl.fromTo($$("#cue-2 .wg")[1], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 6.328);
+    tl.fromTo($$("#cue-2 .wg")[1], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 6.488);
+    tl.fromTo($$("#cue-2 .wg")[2], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 6.785);
+    tl.fromTo($$("#cue-2 .wg")[2], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 6.945);
+    tl.set("#cue-2", { opacity: 0 }, 8.590);
+    tl.set("#cue-3", { opacity: 1 }, 8.680);
+    tl.fromTo("#cue-3 .ln", { y: 14, scale: .96 }, { y: 0, scale: 1, duration: .18, ease: "power2.out" }, 8.680);
+    tl.fromTo($$("#cue-3 .wg")[0], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 8.690);
+    tl.fromTo($$("#cue-3 .wg")[0], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 8.850);
+    tl.fromTo($$("#cue-3 .wg")[1], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 8.986);
+    tl.fromTo($$("#cue-3 .wg")[1], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 9.146);
+    tl.set("#cue-3", { opacity: 0 }, 9.650);
+    tl.set("#cue-4", { opacity: 1 }, 9.640);
+    tl.fromTo("#cue-4 .ln", { y: 14, scale: .96 }, { y: 0, scale: 1, duration: .18, ease: "power2.out" }, 9.640);
+    tl.fromTo($$("#cue-4 .wg")[0], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 9.650);
+    tl.fromTo($$("#cue-4 .wg")[0], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 9.810);
+    tl.fromTo($$("#cue-4 .wg")[1], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 9.981);
+    tl.fromTo($$("#cue-4 .wg")[1], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 10.141);
+    tl.fromTo($$("#cue-4 .wg")[2], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 10.477);
+    tl.fromTo($$("#cue-4 .wg")[2], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 10.637);
+    tl.set("#cue-4", { opacity: 0 }, 11.260);
+    tl.set("#cue-5", { opacity: 1 }, 11.250);
+    tl.fromTo("#cue-5 .ln", { y: 14, scale: .96 }, { y: 0, scale: 1, duration: .18, ease: "power2.out" }, 11.250);
+    tl.fromTo($$("#cue-5 .wg")[0], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 11.260);
+    tl.fromTo($$("#cue-5 .wg")[0], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 11.420);
+    tl.fromTo($$("#cue-5 .wg")[1], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 11.849);
+    tl.fromTo($$("#cue-5 .wg")[1], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 12.009);
+    tl.fromTo($$("#cue-5 .wg")[2], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 12.045);
+    tl.fromTo($$("#cue-5 .wg")[2], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 12.205);
+    tl.fromTo($$("#cue-5 .wg")[3], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 12.242);
+    tl.fromTo($$("#cue-5 .wg")[3], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 12.402);
+    tl.set("#cue-5", { opacity: 0 }, 12.860);
+    tl.set("#cue-6", { opacity: 1 }, 12.850);
+    tl.fromTo("#cue-6 .ln", { y: 14, scale: .96 }, { y: 0, scale: 1, duration: .18, ease: "power2.out" }, 12.850);
+    tl.fromTo($$("#cue-6 .wg")[0], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 12.860);
+    tl.fromTo($$("#cue-6 .wg")[0], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 13.020);
+    tl.fromTo($$("#cue-6 .wg")[1], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 13.335);
+    tl.fromTo($$("#cue-6 .wg")[1], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 13.495);
+    tl.fromTo($$("#cue-6 .wg")[2], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 13.652);
+    tl.fromTo($$("#cue-6 .wg")[2], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 13.812);
+    tl.fromTo($$("#cue-6 .wg")[3], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 13.969);
+    tl.fromTo($$("#cue-6 .wg")[3], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 14.129);
+    tl.set("#cue-6", { opacity: 0 }, 14.830);
+    tl.set("#cue-7", { opacity: 1 }, 14.820);
+    tl.fromTo("#cue-7 .ln", { y: 14, scale: .96 }, { y: 0, scale: 1, duration: .18, ease: "power2.out" }, 14.820);
+    tl.fromTo($$("#cue-7 .wg")[0], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 14.830);
+    tl.fromTo($$("#cue-7 .wg")[0], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 14.990);
+    tl.fromTo($$("#cue-7 .wg")[1], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 15.169);
+    tl.fromTo($$("#cue-7 .wg")[1], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 15.329);
+    tl.fromTo($$("#cue-7 .wg")[2], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 15.577);
+    tl.fromTo($$("#cue-7 .wg")[2], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 15.737);
+    tl.set("#cue-7", { opacity: 0 }, 16.110);
+    tl.set("#cue-8", { opacity: 1 }, 16.100);
+    tl.fromTo("#cue-8 .ln", { y: 14, scale: .96 }, { y: 0, scale: 1, duration: .18, ease: "power2.out" }, 16.100);
+    tl.fromTo($$("#cue-8 .wg")[0], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 16.110);
+    tl.fromTo($$("#cue-8 .wg")[0], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 16.270);
+    tl.fromTo($$("#cue-8 .wg")[1], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 16.915);
+    tl.fromTo($$("#cue-8 .wg")[1], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 17.075);
+    tl.fromTo($$("#cue-8 .wg")[2], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 17.237);
+    tl.fromTo($$("#cue-8 .wg")[2], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 17.397);
+    tl.set("#cue-8", { opacity: 0 }, 18.580);
+    tl.set("#cue-9", { opacity: 1 }, 18.770);
+    tl.fromTo("#cue-9 .ln", { y: 14, scale: .96 }, { y: 0, scale: 1, duration: .18, ease: "power2.out" }, 18.770);
+    tl.fromTo($$("#cue-9 .wg")[0], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 18.780);
+    tl.fromTo($$("#cue-9 .wg")[0], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 18.940);
+    tl.fromTo($$("#cue-9 .wg")[1], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 19.202);
+    tl.fromTo($$("#cue-9 .wg")[1], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 19.362);
+    tl.set("#cue-9", { opacity: 0 }, 20.070);
+    tl.set("#cue-10", { opacity: 1 }, 20.060);
+    tl.fromTo("#cue-10 .ln", { y: 14, scale: .96 }, { y: 0, scale: 1, duration: .18, ease: "power2.out" }, 20.060);
+    tl.fromTo($$("#cue-10 .wg")[0], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 20.070);
+    tl.fromTo($$("#cue-10 .wg")[0], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 20.230);
+    tl.fromTo($$("#cue-10 .wg")[1], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 20.660);
+    tl.fromTo($$("#cue-10 .wg")[1], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 20.820);
+    tl.set("#cue-10", { opacity: 0 }, 21.460);
+    tl.set("#cue-11", { opacity: 1 }, 21.450);
+    tl.fromTo("#cue-11 .ln", { y: 14, scale: .96 }, { y: 0, scale: 1, duration: .18, ease: "power2.out" }, 21.450);
+    tl.fromTo($$("#cue-11 .wg")[0], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 21.460);
+    tl.fromTo($$("#cue-11 .wg")[0], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 21.620);
+    tl.fromTo($$("#cue-11 .wg")[1], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 22.047);
+    tl.fromTo($$("#cue-11 .wg")[1], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 22.207);
+    tl.fromTo($$("#cue-11 .wg")[2], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 22.340);
+    tl.fromTo($$("#cue-11 .wg")[2], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 22.500);
+    tl.set("#cue-11", { opacity: 0 }, 23.460);
+    tl.set("#cue-12", { opacity: 1 }, 23.450);
+    tl.fromTo("#cue-12 .ln", { y: 14, scale: .96 }, { y: 0, scale: 1, duration: .18, ease: "power2.out" }, 23.450);
+    tl.fromTo($$("#cue-12 .wg")[0], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 23.460);
+    tl.fromTo($$("#cue-12 .wg")[0], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 23.620);
+    tl.fromTo($$("#cue-12 .wg")[1], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 23.742);
+    tl.fromTo($$("#cue-12 .wg")[1], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 23.902);
+    tl.fromTo($$("#cue-12 .wg")[2], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 24.094);
+    tl.fromTo($$("#cue-12 .wg")[2], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 24.254);
+    tl.fromTo($$("#cue-12 .wg")[3], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 24.446);
+    tl.fromTo($$("#cue-12 .wg")[3], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 24.606);
+    tl.set("#cue-12", { opacity: 0 }, 24.830);
+    tl.set("#cue-13", { opacity: 1 }, 24.820);
+    tl.fromTo("#cue-13 .ln", { y: 14, scale: .96 }, { y: 0, scale: 1, duration: .18, ease: "power2.out" }, 24.820);
+    tl.fromTo($$("#cue-13 .wg")[0], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 24.830);
+    tl.fromTo($$("#cue-13 .wg")[0], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 24.990);
+    tl.fromTo($$("#cue-13 .wg")[1], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 25.489);
+    tl.fromTo($$("#cue-13 .wg")[1], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 25.649);
+    tl.fromTo($$("#cue-13 .wg")[2], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 26.038);
+    tl.fromTo($$("#cue-13 .wg")[2], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 26.198);
+    tl.fromTo($$("#cue-13 .wg")[3], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 26.587);
+    tl.fromTo($$("#cue-13 .wg")[3], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 26.747);
+    tl.set("#cue-13", { opacity: 0 }, 28.090);
+    tl.set("#cue-14", { opacity: 1 }, 28.230);
+    tl.fromTo("#cue-14 .ln", { y: 14, scale: .96 }, { y: 0, scale: 1, duration: .18, ease: "power2.out" }, 28.230);
+    tl.fromTo($$("#cue-14 .wg")[0], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 28.240);
+    tl.fromTo($$("#cue-14 .wg")[0], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 28.400);
+    tl.fromTo($$("#cue-14 .wg")[1], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 28.492);
+    tl.fromTo($$("#cue-14 .wg")[1], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 28.652);
+    tl.fromTo($$("#cue-14 .wg")[2], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 28.871);
+    tl.fromTo($$("#cue-14 .wg")[2], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 29.031);
+    tl.fromTo($$("#cue-14 .wg")[3], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 29.880);
+    tl.fromTo($$("#cue-14 .wg")[3], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 30.040);
+    tl.set("#cue-14", { opacity: 0 }, 30.860);
+    tl.set("#cue-15", { opacity: 1 }, 30.800);
+    tl.fromTo("#cue-15 .ln", { y: 14, scale: .96 }, { y: 0, scale: 1, duration: .18, ease: "power2.out" }, 30.800);
+    tl.fromTo($$("#cue-15 .wg")[0], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 30.810);
+    tl.fromTo($$("#cue-15 .wg")[0], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 30.970);
+    tl.fromTo($$("#cue-15 .wg")[1], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 31.356);
+    tl.fromTo($$("#cue-15 .wg")[1], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 31.516);
+    tl.fromTo($$("#cue-15 .wg")[2], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 31.719);
+    tl.fromTo($$("#cue-15 .wg")[2], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 31.879);
+    tl.fromTo($$("#cue-15 .wg")[3], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 31.901);
+    tl.fromTo($$("#cue-15 .wg")[3], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 32.061);
+    tl.set("#cue-15", { opacity: 0 }, 32.460);
+    tl.set("#cue-16", { opacity: 1 }, 32.450);
+    tl.fromTo("#cue-16 .ln", { y: 14, scale: .96 }, { y: 0, scale: 1, duration: .18, ease: "power2.out" }, 32.450);
+    tl.fromTo($$("#cue-16 .wg")[0], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 32.460);
+    tl.fromTo($$("#cue-16 .wg")[0], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 32.620);
+    tl.fromTo($$("#cue-16 .wg")[1], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 32.900);
+    tl.fromTo($$("#cue-16 .wg")[1], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 33.060);
+    tl.fromTo($$("#cue-16 .wg")[2], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 33.164);
+    tl.fromTo($$("#cue-16 .wg")[2], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 33.324);
+    tl.fromTo($$("#cue-16 .wg")[3], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 33.428);
+    tl.fromTo($$("#cue-16 .wg")[3], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 33.588);
+    tl.fromTo($$("#cue-16 .wg")[4], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 33.604);
+    tl.fromTo($$("#cue-16 .wg")[4], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 33.764);
+    tl.set("#cue-16", { opacity: 0 }, 34.110);
+    tl.set("#cue-17", { opacity: 1 }, 34.100);
+    tl.fromTo("#cue-17 .ln", { y: 14, scale: .96 }, { y: 0, scale: 1, duration: .18, ease: "power2.out" }, 34.100);
+    tl.fromTo($$("#cue-17 .wg")[0], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 34.110);
+    tl.fromTo($$("#cue-17 .wg")[0], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 34.270);
+    tl.fromTo($$("#cue-17 .wg")[1], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 34.656);
+    tl.fromTo($$("#cue-17 .wg")[1], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 34.816);
+    tl.fromTo($$("#cue-17 .wg")[2], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 35.201);
+    tl.fromTo($$("#cue-17 .wg")[2], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 35.361);
+    tl.set("#cue-17", { opacity: 0 }, 35.960);
+    tl.set("#cue-18", { opacity: 1 }, 35.950);
+    tl.fromTo("#cue-18 .ln", { y: 14, scale: .96 }, { y: 0, scale: 1, duration: .18, ease: "power2.out" }, 35.950);
+    tl.fromTo($$("#cue-18 .wg")[0], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 35.960);
+    tl.fromTo($$("#cue-18 .wg")[0], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 36.120);
+    tl.fromTo($$("#cue-18 .wg")[1], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 36.327);
+    tl.fromTo($$("#cue-18 .wg")[1], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 36.487);
+    tl.fromTo($$("#cue-18 .wg")[2], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 36.571);
+    tl.fromTo($$("#cue-18 .wg")[2], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 36.731);
+    tl.fromTo($$("#cue-18 .wg")[3], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 36.877);
+    tl.fromTo($$("#cue-18 .wg")[3], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 37.037);
+    tl.set("#cue-18", { opacity: 0 }, 37.360);
+    tl.set("#cue-19", { opacity: 1 }, 37.350);
+    tl.fromTo("#cue-19 .ln", { y: 14, scale: .96 }, { y: 0, scale: 1, duration: .18, ease: "power2.out" }, 37.350);
+    tl.fromTo($$("#cue-19 .wg")[0], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 37.360);
+    tl.fromTo($$("#cue-19 .wg")[0], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 37.520);
+    tl.fromTo($$("#cue-19 .wg")[1], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 37.925);
+    tl.fromTo($$("#cue-19 .wg")[1], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 38.085);
+    tl.set("#cue-19", { opacity: 0 }, 38.770);
+    tl.set("#cue-20", { opacity: 1 }, 39.150);
+    tl.fromTo("#cue-20 .ln", { y: 14, scale: .96 }, { y: 0, scale: 1, duration: .18, ease: "power2.out" }, 39.150);
+    tl.fromTo($$("#cue-20 .wg")[0], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 39.160);
+    tl.fromTo($$("#cue-20 .wg")[0], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 39.320);
+    tl.fromTo($$("#cue-20 .wg")[1], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 39.395);
+    tl.fromTo($$("#cue-20 .wg")[1], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 39.555);
+    tl.fromTo($$("#cue-20 .wg")[2], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 39.747);
+    tl.fromTo($$("#cue-20 .wg")[2], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 39.907);
+    tl.fromTo($$("#cue-20 .wg")[3], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 40.451);
+    tl.fromTo($$("#cue-20 .wg")[3], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 40.611);
+    tl.fromTo($$("#cue-20 .wg")[4], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 41.272);
+    tl.fromTo($$("#cue-20 .wg")[4], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 41.432);
+    tl.set("#cue-20", { opacity: 0 }, 42.460);
+    tl.set("#cue-21", { opacity: 1 }, 42.450);
+    tl.fromTo("#cue-21 .ln", { y: 14, scale: .96 }, { y: 0, scale: 1, duration: .18, ease: "power2.out" }, 42.450);
+    tl.fromTo($$("#cue-21 .wg")[0], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 42.460);
+    tl.fromTo($$("#cue-21 .wg")[0], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 42.620);
+    tl.fromTo($$("#cue-21 .wg")[1], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 42.683);
+    tl.fromTo($$("#cue-21 .wg")[1], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 42.843);
+    tl.fromTo($$("#cue-21 .wg")[2], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 42.906);
+    tl.fromTo($$("#cue-21 .wg")[2], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 43.066);
+    tl.fromTo($$("#cue-21 .wg")[3], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 43.240);
+    tl.fromTo($$("#cue-21 .wg")[3], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 43.400);
+    tl.fromTo($$("#cue-21 .wg")[4], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 43.686);
+    tl.fromTo($$("#cue-21 .wg")[4], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 43.846);
+    tl.fromTo($$("#cue-21 .wg")[5], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 43.798);
+    tl.fromTo($$("#cue-21 .wg")[5], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 43.958);
+    tl.set("#cue-21", { opacity: 0 }, 44.510);
+    tl.set("#cue-22", { opacity: 1 }, 44.500);
+    tl.fromTo("#cue-22 .ln", { y: 14, scale: .96 }, { y: 0, scale: 1, duration: .18, ease: "power2.out" }, 44.500);
+    tl.fromTo($$("#cue-22 .wg")[0], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 44.510);
+    tl.fromTo($$("#cue-22 .wg")[0], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 44.670);
+    tl.fromTo($$("#cue-22 .wg")[1], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 45.095);
+    tl.fromTo($$("#cue-22 .wg")[1], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 45.255);
+    tl.set("#cue-22", { opacity: 0 }, 46.210);
+    tl.set("#cue-23", { opacity: 1 }, 46.200);
+    tl.fromTo("#cue-23 .ln", { y: 14, scale: .96 }, { y: 0, scale: 1, duration: .18, ease: "power2.out" }, 46.200);
+    tl.fromTo($$("#cue-23 .wg")[0], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 46.210);
+    tl.fromTo($$("#cue-23 .wg")[0], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 46.370);
+    tl.fromTo($$("#cue-23 .wg")[1], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 46.901);
+    tl.fromTo($$("#cue-23 .wg")[1], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 47.061);
+    tl.set("#cue-23", { opacity: 0 }, 47.950);
+    tl.set("#cue-24", { opacity: 1 }, 48.310);
+    tl.fromTo("#cue-24 .ln", { y: 14, scale: .96 }, { y: 0, scale: 1, duration: .18, ease: "power2.out" }, 48.310);
+    tl.fromTo($$("#cue-24 .wg")[0], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 48.320);
+    tl.fromTo($$("#cue-24 .wg")[0], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 48.480);
+    tl.fromTo($$("#cue-24 .wg")[1], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 48.749);
+    tl.fromTo($$("#cue-24 .wg")[1], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 48.909);
+    tl.set("#cue-24", { opacity: 0 }, 49.580);
+    tl.set("#cue-25", { opacity: 1 }, 49.550);
+    tl.fromTo("#cue-25 .ln", { y: 14, scale: .96 }, { y: 0, scale: 1, duration: .18, ease: "power2.out" }, 49.550);
+    tl.fromTo($$("#cue-25 .wg")[0], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 49.560);
+    tl.fromTo($$("#cue-25 .wg")[0], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 49.720);
+    tl.fromTo($$("#cue-25 .wg")[1], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 50.484);
+    tl.fromTo($$("#cue-25 .wg")[1], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 50.644);
+    tl.set("#cue-25", { opacity: 0 }, 51.410);
+    tl.set("#cue-26", { opacity: 1 }, 51.400);
+    tl.fromTo("#cue-26 .ln", { y: 14, scale: .96 }, { y: 0, scale: 1, duration: .18, ease: "power2.out" }, 51.400);
+    tl.fromTo($$("#cue-26 .wg")[0], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 51.410);
+    tl.fromTo($$("#cue-26 .wg")[0], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 51.570);
+    tl.fromTo($$("#cue-26 .wg")[1], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 51.925);
+    tl.fromTo($$("#cue-26 .wg")[1], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 52.085);
+    tl.fromTo($$("#cue-26 .wg")[2], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 52.440);
+    tl.fromTo($$("#cue-26 .wg")[2], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 52.600);
+    tl.fromTo($$("#cue-26 .wg")[3], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 52.783);
+    tl.fromTo($$("#cue-26 .wg")[3], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 52.943);
+    tl.set("#cue-26", { opacity: 0 }, 53.410);
+    tl.set("#cue-27", { opacity: 1 }, 53.400);
+    tl.fromTo("#cue-27 .ln", { y: 14, scale: .96 }, { y: 0, scale: 1, duration: .18, ease: "power2.out" }, 53.400);
+    tl.fromTo($$("#cue-27 .wg")[0], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 53.410);
+    tl.fromTo($$("#cue-27 .wg")[0], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 53.570);
+    tl.fromTo($$("#cue-27 .wg")[1], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 53.987);
+    tl.fromTo($$("#cue-27 .wg")[1], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 54.147);
+    tl.fromTo($$("#cue-27 .wg")[2], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 54.449);
+    tl.fromTo($$("#cue-27 .wg")[2], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 54.609);
+    tl.fromTo($$("#cue-27 .wg")[3], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 54.795);
+    tl.fromTo($$("#cue-27 .wg")[3], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 54.955);
+    tl.set("#cue-27", { opacity: 0 }, 55.680);
+    tl.set("#cue-28", { opacity: 1 }, 55.650);
+    tl.fromTo("#cue-28 .ln", { y: 14, scale: .96 }, { y: 0, scale: 1, duration: .18, ease: "power2.out" }, 55.650);
+    tl.fromTo($$("#cue-28 .wg")[0], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 55.660);
+    tl.fromTo($$("#cue-28 .wg")[0], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 55.820);
+    tl.fromTo($$("#cue-28 .wg")[1], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 56.138);
+    tl.fromTo($$("#cue-28 .wg")[1], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 56.298);
+    tl.fromTo($$("#cue-28 .wg")[2], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 56.615);
+    tl.fromTo($$("#cue-28 .wg")[2], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 56.775);
+    tl.set("#cue-28", { opacity: 0 }, 57.220);
+    tl.set("#cue-29", { opacity: 1 }, 57.200);
+    tl.fromTo("#cue-29 .ln", { y: 14, scale: .96 }, { y: 0, scale: 1, duration: .18, ease: "power2.out" }, 57.200);
+    tl.fromTo($$("#cue-29 .wg")[0], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 57.210);
+    tl.fromTo($$("#cue-29 .wg")[0], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 57.370);
+    tl.fromTo($$("#cue-29 .wg")[1], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 57.521);
+    tl.fromTo($$("#cue-29 .wg")[1], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 57.681);
+    tl.fromTo($$("#cue-29 .wg")[2], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 57.832);
+    tl.fromTo($$("#cue-29 .wg")[2], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 57.992);
+    tl.set("#cue-29", { opacity: 0 }, 58.910);
+    tl.set("#cue-30", { opacity: 1 }, 59.060);
+    tl.fromTo("#cue-30 .ln", { y: 14, scale: .96 }, { y: 0, scale: 1, duration: .18, ease: "power2.out" }, 59.060);
+    tl.fromTo($$("#cue-30 .wg")[0], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 59.070);
+    tl.fromTo($$("#cue-30 .wg")[0], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 59.230);
+    tl.fromTo($$("#cue-30 .wg")[1], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 59.591);
+    tl.fromTo($$("#cue-30 .wg")[1], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 59.751);
+    tl.set("#cue-30", { opacity: 0 }, 60.960);
+    tl.set("#cue-31", { opacity: 1 }, 60.950);
+    tl.fromTo("#cue-31 .ln", { y: 14, scale: .96 }, { y: 0, scale: 1, duration: .18, ease: "power2.out" }, 60.950);
+    tl.fromTo($$("#cue-31 .wg")[0], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 60.960);
+    tl.fromTo($$("#cue-31 .wg")[0], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 61.120);
+    tl.set("#cue-31", { opacity: 0 }, 62.360);
+    tl.set("#cue-32", { opacity: 1 }, 62.350);
+    tl.fromTo("#cue-32 .ln", { y: 14, scale: .96 }, { y: 0, scale: 1, duration: .18, ease: "power2.out" }, 62.350);
+    tl.fromTo($$("#cue-32 .wg")[0], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 62.360);
+    tl.fromTo($$("#cue-32 .wg")[0], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 62.520);
+    tl.fromTo($$("#cue-32 .wg")[1], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 62.827);
+    tl.fromTo($$("#cue-32 .wg")[1], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 62.987);
+    tl.fromTo($$("#cue-32 .wg")[2], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 63.412);
+    tl.fromTo($$("#cue-32 .wg")[2], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 63.572);
+    tl.fromTo($$("#cue-32 .wg")[3], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 63.996);
+    tl.fromTo($$("#cue-32 .wg")[3], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 64.156);
+    tl.set("#cue-32", { opacity: 0 }, 64.930);
+    tl.set("#cue-33", { opacity: 1 }, 64.920);
+    tl.fromTo("#cue-33 .ln", { y: 14, scale: .96 }, { y: 0, scale: 1, duration: .18, ease: "power2.out" }, 64.920);
+    tl.fromTo($$("#cue-33 .wg")[0], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 64.930);
+    tl.fromTo($$("#cue-33 .wg")[0], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 65.090);
+    tl.fromTo($$("#cue-33 .wg")[1], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 65.419);
+    tl.fromTo($$("#cue-33 .wg")[1], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 65.579);
+    tl.fromTo($$("#cue-33 .wg")[2], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 65.908);
+    tl.fromTo($$("#cue-33 .wg")[2], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 66.068);
+    tl.fromTo($$("#cue-33 .wg")[3], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 66.397);
+    tl.fromTo($$("#cue-33 .wg")[3], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 66.557);
+    tl.set("#cue-33", { opacity: 0 }, 67.330);
+    tl.set("#cue-34", { opacity: 1 }, 67.320);
+    tl.fromTo("#cue-34 .ln", { y: 14, scale: .96 }, { y: 0, scale: 1, duration: .18, ease: "power2.out" }, 67.320);
+    tl.fromTo($$("#cue-34 .wg")[0], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 67.330);
+    tl.fromTo($$("#cue-34 .wg")[0], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 67.490);
+    tl.fromTo($$("#cue-34 .wg")[1], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 67.900);
+    tl.fromTo($$("#cue-34 .wg")[1], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 68.060);
+    tl.set("#cue-34", { opacity: 0 }, 68.560);
+    tl.set("#cue-35", { opacity: 1 }, 68.550);
+    tl.fromTo("#cue-35 .ln", { y: 14, scale: .96 }, { y: 0, scale: 1, duration: .18, ease: "power2.out" }, 68.550);
+    tl.fromTo($$("#cue-35 .wg")[0], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 68.560);
+    tl.fromTo($$("#cue-35 .wg")[0], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 68.720);
+    tl.fromTo($$("#cue-35 .wg")[1], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 69.010);
+    tl.fromTo($$("#cue-35 .wg")[1], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 69.170);
+    tl.fromTo($$("#cue-35 .wg")[2], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 69.550);
+    tl.fromTo($$("#cue-35 .wg")[2], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 69.710);
+    tl.fromTo($$("#cue-35 .wg")[3], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 69.820);
+    tl.fromTo($$("#cue-35 .wg")[3], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 69.980);
+    tl.fromTo($$("#cue-35 .wg")[4], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 70.451);
+    tl.fromTo($$("#cue-35 .wg")[4], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 70.611);
+    tl.set("#cue-35", { opacity: 0 }, 71.550);
+    tl.set("#cue-36", { opacity: 1 }, 71.540);
+    tl.fromTo("#cue-36 .ln", { y: 14, scale: .96 }, { y: 0, scale: 1, duration: .18, ease: "power2.out" }, 71.540);
+    tl.fromTo($$("#cue-36 .wg")[0], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 71.550);
+    tl.fromTo($$("#cue-36 .wg")[0], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 71.710);
+    tl.fromTo($$("#cue-36 .wg")[1], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 72.244);
+    tl.fromTo($$("#cue-36 .wg")[1], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 72.404);
+    tl.fromTo($$("#cue-36 .wg")[2], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 72.822);
+    tl.fromTo($$("#cue-36 .wg")[2], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 72.982);
+    tl.set("#cue-36", { opacity: 0 }, 73.500);
+    tl.set("#cue-37", { opacity: 1 }, 73.490);
+    tl.fromTo("#cue-37 .ln", { y: 14, scale: .96 }, { y: 0, scale: 1, duration: .18, ease: "power2.out" }, 73.490);
+    tl.fromTo($$("#cue-37 .wg")[0], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 73.500);
+    tl.fromTo($$("#cue-37 .wg")[0], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 73.660);
+    tl.fromTo($$("#cue-37 .wg")[1], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 73.862);
+    tl.fromTo($$("#cue-37 .wg")[1], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 74.022);
+    tl.fromTo($$("#cue-37 .wg")[2], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 74.224);
+    tl.fromTo($$("#cue-37 .wg")[2], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 74.384);
+    tl.set("#cue-37", { opacity: 0 }, 75.340);
+    tl.set("#cue-38", { opacity: 1 }, 75.330);
+    tl.fromTo("#cue-38 .ln", { y: 14, scale: .96 }, { y: 0, scale: 1, duration: .18, ease: "power2.out" }, 75.330);
+    tl.fromTo($$("#cue-38 .wg")[0], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 75.340);
+    tl.fromTo($$("#cue-38 .wg")[0], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 75.500);
+    tl.fromTo($$("#cue-38 .wg")[1], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 75.615);
+    tl.fromTo($$("#cue-38 .wg")[1], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 75.775);
+    tl.set("#cue-38", { opacity: 0 }, 76.290);
+    tl.set("#cue-39", { opacity: 1 }, 76.280);
+    tl.fromTo("#cue-39 .ln", { y: 14, scale: .96 }, { y: 0, scale: 1, duration: .18, ease: "power2.out" }, 76.280);
+    tl.fromTo($$("#cue-39 .wg")[0], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 76.290);
+    tl.fromTo($$("#cue-39 .wg")[0], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 76.450);
+    tl.fromTo($$("#cue-39 .wg")[1], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 76.712);
+    tl.fromTo($$("#cue-39 .wg")[1], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 76.872);
+    tl.fromTo($$("#cue-39 .wg")[2], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 77.135);
+    tl.fromTo($$("#cue-39 .wg")[2], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 77.295);
+    tl.fromTo($$("#cue-39 .wg")[3], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 77.557);
+    tl.fromTo($$("#cue-39 .wg")[3], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 77.717);
+    tl.set("#cue-39", { opacity: 0 }, 78.430);
+    tl.set("#cue-40", { opacity: 1 }, 78.420);
+    tl.fromTo("#cue-40 .ln", { y: 14, scale: .96 }, { y: 0, scale: 1, duration: .18, ease: "power2.out" }, 78.420);
+    tl.fromTo($$("#cue-40 .wg")[0], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 78.430);
+    tl.fromTo($$("#cue-40 .wg")[0], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 78.590);
+    tl.fromTo($$("#cue-40 .wg")[1], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .14, ease: "power2.out" }, 78.852);
+    tl.fromTo($$("#cue-40 .wg")[1], { color: "#ffd84a" }, { color: "#ffffff", duration: .5, ease: "power1.in", immediateRender: false }, 79.012);
+    tl.set("#cue-40", { opacity: 0 }, 80.390);
+    window.__timelines = window.__timelines || {};
+    window.__timelines["subs"] = tl;
+  })();
+  </script>
+</template>

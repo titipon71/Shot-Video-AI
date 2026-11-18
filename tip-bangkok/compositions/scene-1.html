@@ -1,0 +1,577 @@
+<template>
+  <style>
+    @font-face { font-family: Kanit; font-weight: 600; font-display: block; src: url("assets/fonts/Kanit-SemiBold.ttf") format("truetype"); }
+@font-face { font-family: Kanit; font-weight: 700; font-display: block; src: url("assets/fonts/Kanit-Bold.ttf") format("truetype"); }
+@font-face { font-family: Kanit; font-weight: 800; font-display: block; src: url("assets/fonts/Kanit-ExtraBold.ttf") format("truetype"); }
+@font-face { font-family: Kanit; font-weight: 900; font-display: block; src: url("assets/fonts/Kanit-Black.ttf") format("truetype"); }
+    #root { position: absolute; inset: 0; overflow: hidden; background: #0c0806; font-family: Kanit, sans-serif; }
+    .clip, .io, .cam, .shk { position: absolute; inset: 0; }
+    .io, .cam { transform-origin: 50% 50%; }
+    svg.scene { position: absolute; inset: 0; width: 1080px; height: 1920px; overflow: hidden; }
+  </style>
+  <div data-hf-id="hf-scene-1" id="root" data-composition-id="scene-1" data-width="1080" data-height="1920" data-layout-allow-overflow data-layout-allow-overlap>
+    <div data-hf-id="hf-scene-1-clip" class="clip" data-start="0" data-duration="10.1" data-track-index="1" data-hold>
+      <div class="io" id="s1-io"><div class="cam" id="s1-cam"><div class="shk" id="s1-shk">
+        <svg class="scene" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1920" width="1080" height="1920">
+          <defs>
+  <filter id="tbShadow" x="-20%" y="-30%" width="140%" height="160%"><feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#000" flood-opacity=".35"/></filter>
+  <radialGradient id="spot"><stop offset="0" stop-color="#fff6c8" stop-opacity=".75"/><stop offset="1" stop-color="#fff6c8" stop-opacity="0"/></radialGradient>
+</defs>
+          <defs><radialGradient id="s1-vig" cx="50%" cy="45%" r="72%"><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".35"/></radialGradient></defs>
+          
+    <rect width="1080" height="1920" fill="#f1dfc6"/>
+    <rect y="0" width="1080" height="120" fill="#4a2f22"/>
+    <g transform="translate(140 120)"><path d="M0 0 L0 70" stroke="#2a1b17" stroke-width="4"/><path d="M-36 70 L36 70 L22 104 L-22 104 Z" fill="#f0c14a"/><circle cy="110" r="10" fill="#fff4c8"/></g><g transform="translate(340 120)"><path d="M0 0 L0 70" stroke="#2a1b17" stroke-width="4"/><path d="M-36 70 L36 70 L22 104 L-22 104 Z" fill="#f0c14a"/><circle cy="110" r="10" fill="#fff4c8"/></g><g transform="translate(540 120)"><path d="M0 0 L0 70" stroke="#2a1b17" stroke-width="4"/><path d="M-36 70 L36 70 L22 104 L-22 104 Z" fill="#f0c14a"/><circle cy="110" r="10" fill="#fff4c8"/></g><g transform="translate(740 120)"><path d="M0 0 L0 70" stroke="#2a1b17" stroke-width="4"/><path d="M-36 70 L36 70 L22 104 L-22 104 Z" fill="#f0c14a"/><circle cy="110" r="10" fill="#fff4c8"/></g><g transform="translate(940 120)"><path d="M0 0 L0 70" stroke="#2a1b17" stroke-width="4"/><path d="M-36 70 L36 70 L22 104 L-22 104 Z" fill="#f0c14a"/><circle cy="110" r="10" fill="#fff4c8"/></g>
+    <rect x="60" y="400" width="560" height="400" rx="20" fill="#2c3a33" stroke="#8a6a4a" stroke-width="12"/>
+    <text x="340" y="470" text-anchor="middle" font-family="Kanit, sans-serif" font-weight="900" font-size="50" fill="#f7efe2">เมนู</text>
+    <text x="110" y="545" text-anchor="start" font-family="Kanit, sans-serif" font-weight="700" font-size="40" fill="#f7efe2">อเมริกาโน่</text><text x="570" y="545" text-anchor="end" font-family="Kanit, sans-serif" font-weight="700" font-size="40" fill="#ffd166">55</text><text x="110" y="607" text-anchor="start" font-family="Kanit, sans-serif" font-weight="700" font-size="40" fill="#f7efe2">ลาเต้</text><text x="570" y="607" text-anchor="end" font-family="Kanit, sans-serif" font-weight="700" font-size="40" fill="#ffd166">65</text><text x="110" y="669" text-anchor="start" font-family="Kanit, sans-serif" font-weight="700" font-size="40" fill="#f7efe2">มอคค่า</text><text x="570" y="669" text-anchor="end" font-family="Kanit, sans-serif" font-weight="700" font-size="40" fill="#ffd166">70</text><text x="110" y="731" text-anchor="start" font-family="Kanit, sans-serif" font-weight="700" font-size="40" fill="#f7efe2">ชาไทย</text><text x="570" y="731" text-anchor="end" font-family="Kanit, sans-serif" font-weight="700" font-size="40" fill="#ffd166">50</text>
+    <g transform="translate(860 700)"><circle r="120" fill="#6a4128"/><circle r="96" fill="#f4e6d0"/><text x="0" y="18" text-anchor="middle" font-family="Kanit, sans-serif" font-weight="900" font-size="40" fill="#6a4128">COFFEE</text></g>
+    <rect x="0" y="1240" width="1080" height="680" fill="#c99b6a"/>
+    <g id="s1b-w"><g id="s1b-b"><g class="fp-placed" data-id="s1b" transform="translate(700.0 1180.0)"><g class="fp-scale" transform="translate(100 520) scale(1.45) translate(-100 -520)"><g id="s1b-root" class="fp-person fp-female fp-front" data-fp-id="s1b" data-gender="female" data-view="front" data-blink="on">
+<ellipse class="fp-shadow" cx="100" cy="523" rx="74" ry="11" fill="#000" opacity=".5"/>
+<g id="s1b-legs" class="fp-legs">
+<rect x="72" y="372" width="26" height="136" rx="12" fill="#3d3a5c"/>
+<rect x="102" y="372" width="26" height="136" rx="12" fill="#2b2940"/>
+<path d="M60 508 Q60 498 74 498 L96 498 Q100 498 100 504 L100 520 L62 520 Q58 520 60 508 Z" fill="#3a2620"/>
+<path d="M140 508 Q140 498 126 498 L104 498 Q100 498 100 504 L100 520 L138 520 Q142 520 140 508 Z" fill="#2c1d18"/>
+</g>
+<g id="s1b-armL" class="fp-arm fp-arm-l" data-pivot="56 238">
+<path d="M56 238 L10.0 317.7" stroke="#5a3a2a" stroke-width="24" stroke-linecap="round" fill="none"/>
+<circle cx="10.0" cy="323.7" r="13.5" fill="#f4c7a1"/>
+<circle cx="13.0" cy="326.7" r="8" fill="#dca07c" opacity=".45"/>
+</g>
+<g id="s1b-armR" class="fp-arm fp-arm-r" data-pivot="144 238">
+<path d="M144 238 L175.5 324.5" stroke="#442c20" stroke-width="24" stroke-linecap="round" fill="none"/>
+<circle cx="175.5" cy="330.5" r="13.5" fill="#f4c7a1"/>
+<circle cx="178.5" cy="333.5" r="8" fill="#dca07c" opacity=".45"/>
+</g>
+<rect class="fp-neck" x="88" y="200" width="24" height="34" rx="8" fill="#dca07c"/>
+<clipPath id="s1b-torso"><rect x="46" y="222" width="108" height="170" rx="24"/></clipPath>
+<g class="fp-torso" clip-path="url(#s1b-torso)">
+<rect x="46" y="222" width="108" height="170" fill="#5a3a2a"/>
+<rect x="124" y="222" width="30" height="170" fill="#442c20" opacity=".9"/>
+<path d="M100 236 L100 392" stroke="#3b261b" stroke-width="2.5"/>
+<circle cx="100" cy="254" r="3.6" fill="#f4efe6" opacity=".9"/>
+<circle cx="100" cy="284" r="3.6" fill="#f4efe6" opacity=".9"/>
+<circle cx="100" cy="314" r="3.6" fill="#f4efe6" opacity=".9"/>
+<circle cx="100" cy="344" r="3.6" fill="#f4efe6" opacity=".9"/>
+<circle cx="100" cy="374" r="3.6" fill="#f4efe6" opacity=".9"/>
+</g>
+<path d="M80 222 L100 248 L92 258 L72 232 Z" fill="#f4efe6"/><path d="M120 222 L100 248 L108 258 L128 232 Z" fill="#f4efe6"/>
+<path d="M86 222 L100 240 L114 222 Z" fill="#dca07c"/>
+<g id="s1b-headGroup" class="fp-head">
+<circle cx="37" cy="156" r="10" fill="#dca07c"/><circle cx="163" cy="156" r="10" fill="#dca07c"/>
+<circle cx="100" cy="148" r="64" fill="#f4c7a1"/>
+<clipPath id="s1b-head"><circle cx="100" cy="148" r="64"/></clipPath>
+<circle cx="192.8" cy="154" r="64" fill="#dca07c" opacity=".38" clip-path="url(#s1b-head)"/>
+<g class="fp-hair" data-hair="pony">
+<path d="M36 156 C30 104 60 80 100 80 C142 80 170 104 164 156 C158 134 150 120 140 112 C118 124 82 124 60 110 C50 122 42 136 36 156 Z" fill="#1b1312"/>
+<path d="M62 94 Q98 78 136 92" stroke="#443d3d" stroke-width="5" fill="none" stroke-linecap="round" opacity=".75"/>
+<path d="M150 100 Q186 120 172 176 Q166 140 146 120 Z" fill="#1b1312"/><circle cx="152" cy="104" r="7" fill="#c8282f"/>
+</g>
+<g class="fp-face">
+<ellipse cx="66" cy="178" rx="11" ry="6.5" fill="#f08f8f" opacity=".6"/><ellipse cx="134" cy="178" rx="11" ry="6.5" fill="#f08f8f" opacity=".6"/>
+<g id="s1b-eyes" class="fp-eyes" data-blink="on"><circle cx="78" cy="160" r="6.5" fill="#2a1b17"/><circle cx="122" cy="160" r="6.5" fill="#2a1b17"/><circle cx="80.2" cy="157.6" r="2.1" fill="#fff"/><circle cx="124.2" cy="157.6" r="2.1" fill="#fff"/></g>
+<g id="s1b-exp-smile" class="s1b-exp fp-exp">
+<path d="M66 137 Q77 132 88 136" stroke="#2a1b17" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+<path d="M112 136 Q123 132 134 137" stroke="#2a1b17" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+<path d="M86 182 Q100 198 114 182" stroke="#7a2a24" stroke-width="4" stroke-linecap="round" fill="none"/>
+</g>
+<g id="s1b-exp-smirk" class="s1b-exp fp-exp" opacity="0">
+<path d="M66 136 L88 134" stroke="#2a1b17" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+<path d="M112 138 L134 140" stroke="#2a1b17" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+<path d="M88 186 Q96 196 112 182" stroke="#7a2a24" stroke-width="4" stroke-linecap="round" fill="none"/>
+</g>
+</g>
+</g>
+</g></g></g></g></g>
+    <rect x="0" y="1320" width="1080" height="600" fill="#6a4128"/><rect x="0" y="1300" width="1080" height="40" fill="#8a5a38"/>
+  <g transform="translate(980 1180)"><rect x="-90" y="0" width="180" height="120" rx="10" fill="#9aa4aa"/><rect x="-70" y="20" width="140" height="40" rx="6" fill="#2a2a30"/><rect x="-40" y="100" width="20" height="26" fill="#2a2a30"/><rect x="20" y="100" width="20" height="26" fill="#2a2a30"/></g>
+  <g transform="translate(120 1250)"><path d="M-30 0 L30 0 L24 50 L-24 50 Z" fill="#fff"/><path d="M30 12 Q52 12 50 30 Q48 44 28 40" fill="none" stroke="#fff" stroke-width="8"/><ellipse cy="2" rx="28" ry="6" fill="#4a2a1a"/></g>
+    <g id="s1-price"><g transform="translate(330 1040) rotate(-4)" filter="url(#tbShadow)"><rect x="-200" y="-50" width="400" height="92" rx="20" fill="#fff8ec" stroke="#1a1208" stroke-width="5"/><text x="0" y="14" text-anchor="middle" font-family="Kanit, sans-serif" font-weight="900" font-size="44" fill="#1a1208">อเมริกาโน่ ฿55</text></g></g>
+    <g id="s1-scr"><g id="s1-scr-k0"><g class="tip-screen" transform="translate(470 1190) rotate(-6) scale(0.82)">
+    <rect x="-214" y="-136" width="428" height="300" rx="30" fill="#000" opacity=".28"/>
+    <rect x="-210" y="-150" width="420" height="300" rx="28" fill="#1c1c22"/>
+    <rect x="-194" y="-134" width="388" height="268" rx="16" fill="#fbf8f2"/>
+    <text x="0" y="-78" text-anchor="middle" font-family="Kanit, sans-serif" font-weight="800" font-size="34" fill="#1c1c22">เพิ่มทิปไหมคะ?</text>
+    
+    <rect x="-182" y="-10" width="112" height="86" rx="16" fill="#ffffff" stroke="#d9d2c8" stroke-width="4"/>
+        <text x="-126" y="48" text-anchor="middle" font-family="Kanit, sans-serif" font-weight="900" font-size="38" fill="#1c1c22">18%</text><rect x="-56" y="-10" width="112" height="86" rx="16" fill="#ffffff" stroke="#d9d2c8" stroke-width="4"/>
+        <text x="0" y="48" text-anchor="middle" font-family="Kanit, sans-serif" font-weight="900" font-size="38" fill="#1c1c22">20%</text><rect x="70" y="-10" width="112" height="86" rx="16" fill="#ffffff" stroke="#d9d2c8" stroke-width="4"/>
+        <text x="126" y="48" text-anchor="middle" font-family="Kanit, sans-serif" font-weight="900" font-size="38" fill="#1c1c22">25%</text>
+    <text x="0" y="110" text-anchor="middle" font-family="Kanit, sans-serif" font-weight="700" font-size="22" fill="#2fa36b">กำหนดเอง</text>
+    <text x="0" y="132" text-anchor="middle" font-family="Kanit, sans-serif" font-weight="500" font-size="13" fill="#c4bdb4">ไม่ทิป</text>
+  </g></g><g id="s1-scr-k1" opacity="0"><g class="tip-screen" transform="translate(470 1190) rotate(-6) scale(0.82)">
+    <rect x="-214" y="-136" width="428" height="300" rx="30" fill="#000" opacity=".28"/>
+    <rect x="-210" y="-150" width="420" height="300" rx="28" fill="#1c1c22"/>
+    <rect x="-194" y="-134" width="388" height="268" rx="16" fill="#fbf8f2"/>
+    <text x="0" y="-78" text-anchor="middle" font-family="Kanit, sans-serif" font-weight="800" font-size="34" fill="#1c1c22">เพิ่มทิปไหมคะ?</text>
+    
+    <rect x="-182" y="-10" width="112" height="86" rx="16" fill="#ffffff" stroke="#d9d2c8" stroke-width="4"/>
+        <text x="-126" y="48" text-anchor="middle" font-family="Kanit, sans-serif" font-weight="900" font-size="38" fill="#1c1c22">18%</text><rect x="-56" y="-10" width="112" height="86" rx="16" fill="#2fa36b" stroke="#2fa36b" stroke-width="4"/>
+        <text x="0" y="48" text-anchor="middle" font-family="Kanit, sans-serif" font-weight="900" font-size="38" fill="#ffffff">20%</text><rect x="70" y="-10" width="112" height="86" rx="16" fill="#ffffff" stroke="#d9d2c8" stroke-width="4"/>
+        <text x="126" y="48" text-anchor="middle" font-family="Kanit, sans-serif" font-weight="900" font-size="38" fill="#1c1c22">25%</text>
+    <text x="0" y="110" text-anchor="middle" font-family="Kanit, sans-serif" font-weight="700" font-size="22" fill="#2fa36b">กำหนดเอง</text>
+    <text x="0" y="132" text-anchor="middle" font-family="Kanit, sans-serif" font-weight="500" font-size="13" fill="#c4bdb4">ไม่ทิป</text>
+  </g></g></g>
+    <g id="s1q1-w"><g id="s1q1-b"><g class="fp-placed" data-id="s1q1" transform="translate(660.0 1600.0)"><g class="fp-scale" transform="translate(100 520) scale(1.55) translate(-100 -520)"><g id="s1q1-root" class="fp-person fp-female fp-front" data-fp-id="s1q1" data-gender="female" data-view="front" data-blink="on">
+<ellipse class="fp-shadow" cx="100" cy="523" rx="74" ry="11" fill="#000" opacity=".5"/>
+<g id="s1q1-legs" class="fp-legs">
+<rect x="72" y="372" width="26" height="136" rx="12" fill="#3d3a5c"/>
+<rect x="102" y="372" width="26" height="136" rx="12" fill="#2b2940"/>
+<path d="M60 508 Q60 498 74 498 L96 498 Q100 498 100 504 L100 520 L62 520 Q58 520 60 508 Z" fill="#3a2620"/>
+<path d="M140 508 Q140 498 126 498 L104 498 Q100 498 100 504 L100 520 L138 520 Q142 520 140 508 Z" fill="#2c1d18"/>
+</g>
+<g id="s1q1-armL" class="fp-arm fp-arm-l" data-pivot="56 238">
+<path d="M56 238 L43.2 329.1" stroke="#e07a9a" stroke-width="24" stroke-linecap="round" fill="none"/>
+<circle cx="43.2" cy="335.1" r="13.5" fill="#f4c7a1"/>
+<circle cx="46.2" cy="338.1" r="8" fill="#dca07c" opacity=".45"/>
+</g>
+<g id="s1q1-armR" class="fp-arm fp-arm-r" data-pivot="144 238">
+<path d="M144 238 L156.8 329.1" stroke="#a85c74" stroke-width="24" stroke-linecap="round" fill="none"/>
+<circle cx="156.8" cy="335.1" r="13.5" fill="#f4c7a1"/>
+<circle cx="159.8" cy="338.1" r="8" fill="#dca07c" opacity=".45"/>
+</g>
+<rect class="fp-neck" x="88" y="200" width="24" height="34" rx="8" fill="#dca07c"/>
+<clipPath id="s1q1-torso"><rect x="46" y="222" width="108" height="170" rx="24"/></clipPath>
+<g class="fp-torso" clip-path="url(#s1q1-torso)">
+<rect x="46" y="222" width="108" height="170" fill="#e07a9a"/>
+<rect x="124" y="222" width="30" height="170" fill="#a85c74" opacity=".9"/>
+<path d="M100 236 L100 392" stroke="#924f64" stroke-width="2.5"/>
+<circle cx="100" cy="254" r="3.6" fill="#f7efe2" opacity=".9"/>
+<circle cx="100" cy="284" r="3.6" fill="#f7efe2" opacity=".9"/>
+<circle cx="100" cy="314" r="3.6" fill="#f7efe2" opacity=".9"/>
+<circle cx="100" cy="344" r="3.6" fill="#f7efe2" opacity=".9"/>
+<circle cx="100" cy="374" r="3.6" fill="#f7efe2" opacity=".9"/>
+</g>
+<path d="M80 222 L100 248 L92 258 L72 232 Z" fill="#f7efe2"/><path d="M120 222 L100 248 L108 258 L128 232 Z" fill="#f7efe2"/>
+<path d="M86 222 L100 240 L114 222 Z" fill="#dca07c"/>
+<g id="s1q1-headGroup" class="fp-head">
+<circle cx="37" cy="156" r="10" fill="#dca07c"/><circle cx="163" cy="156" r="10" fill="#dca07c"/>
+<circle cx="100" cy="148" r="64" fill="#f4c7a1"/>
+<clipPath id="s1q1-head"><circle cx="100" cy="148" r="64"/></clipPath>
+<circle cx="192.8" cy="154" r="64" fill="#dca07c" opacity=".38" clip-path="url(#s1q1-head)"/>
+<g class="fp-hair" data-hair="long">
+<path d="M28 248 C18 150 50 78 100 78 C150 78 182 150 172 248 L154 250 C160 180 154 130 142 114 C122 136 86 140 58 114 C46 132 40 180 46 250 Z" fill="#1b1312"/>
+<path d="M58 116 C86 140 122 136 142 118 C130 100 116 96 100 96 C80 96 66 102 58 116 Z" fill="#1b1312"/>
+<path d="M60 96 Q96 78 134 92" stroke="#443d3d" stroke-width="5" fill="none" stroke-linecap="round" opacity=".8"/>
+</g>
+<g class="fp-face">
+<ellipse cx="66" cy="178" rx="11" ry="6.5" fill="#f08f8f" opacity=".6"/><ellipse cx="134" cy="178" rx="11" ry="6.5" fill="#f08f8f" opacity=".6"/>
+<g id="s1q1-eyes" class="fp-eyes" data-blink="on"><circle cx="78" cy="160" r="6.5" fill="#2a1b17"/><circle cx="122" cy="160" r="6.5" fill="#2a1b17"/><circle cx="80.2" cy="157.6" r="2.1" fill="#fff"/><circle cx="124.2" cy="157.6" r="2.1" fill="#fff"/></g>
+<g id="s1q1-exp-neutral" class="s1q1-exp fp-exp">
+<path d="M66 138 L88 137" stroke="#2a1b17" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+<path d="M112 137 L134 138" stroke="#2a1b17" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+<path d="M91 186 Q100 191 109 186" stroke="#7a2a24" stroke-width="4" stroke-linecap="round" fill="none"/>
+</g>
+<g id="s1q1-exp-fierce" class="s1q1-exp fp-exp" opacity="0">
+<path d="M66 133 L88 141" stroke="#2a1b17" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+<path d="M112 141 L134 133" stroke="#2a1b17" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+<path d="M89 188 Q101 191 112 183" stroke="#7a2a24" stroke-width="4" stroke-linecap="round" fill="none"/>
+</g>
+</g>
+</g>
+</g></g></g></g></g>
+    <g id="s1q2-w"><g id="s1q2-b"><g class="fp-placed" data-id="s1q2" transform="translate(880.0 1620.0)"><g class="fp-scale" transform="translate(100 520) scale(1.6) translate(-100 -520)"><g id="s1q2-root" class="fp-person fp-male fp-front" data-fp-id="s1q2" data-gender="male" data-view="front" data-blink="on">
+<ellipse class="fp-shadow" cx="100" cy="523" rx="74" ry="11" fill="#000" opacity=".5"/>
+<g id="s1q2-legs" class="fp-legs">
+<rect x="72" y="372" width="26" height="136" rx="12" fill="#2b3142"/>
+<rect x="102" y="372" width="26" height="136" rx="12" fill="#1e222e"/>
+<path d="M60 508 Q60 498 74 498 L96 498 Q100 498 100 504 L100 520 L62 520 Q58 520 60 508 Z" fill="#3a2620"/>
+<path d="M140 508 Q140 498 126 498 L104 498 Q100 498 100 504 L100 520 L138 520 Q142 520 140 508 Z" fill="#2c1d18"/>
+</g>
+<g id="s1q2-armL" class="fp-arm fp-arm-l" data-pivot="56 238">
+<path d="M56 238 L43.2 329.1" stroke="#3d6a45" stroke-width="24" stroke-linecap="round" fill="none"/>
+<circle cx="43.2" cy="335.1" r="13.5" fill="#f4c7a1"/>
+<circle cx="46.2" cy="338.1" r="8" fill="#dca07c" opacity=".45"/>
+</g>
+<g id="s1q2-armR" class="fp-arm fp-arm-r" data-pivot="144 238">
+<path d="M144 238 L156.8 329.1" stroke="#2e5034" stroke-width="24" stroke-linecap="round" fill="none"/>
+<circle cx="156.8" cy="335.1" r="13.5" fill="#f4c7a1"/>
+<circle cx="159.8" cy="338.1" r="8" fill="#dca07c" opacity=".45"/>
+</g>
+<rect class="fp-neck" x="88" y="200" width="24" height="34" rx="8" fill="#dca07c"/>
+<clipPath id="s1q2-torso"><rect x="46" y="222" width="108" height="170" rx="24"/></clipPath>
+<g class="fp-torso" clip-path="url(#s1q2-torso)">
+<rect x="46" y="222" width="108" height="170" fill="#3d6a45"/>
+<rect x="124" y="222" width="30" height="170" fill="#2e5034" opacity=".9"/>
+<path d="M100 236 L100 392" stroke="#28452d" stroke-width="2.5"/>
+<circle cx="100" cy="254" r="3.6" fill="#f7efe2" opacity=".9"/>
+<circle cx="100" cy="284" r="3.6" fill="#f7efe2" opacity=".9"/>
+<circle cx="100" cy="314" r="3.6" fill="#f7efe2" opacity=".9"/>
+<circle cx="100" cy="344" r="3.6" fill="#f7efe2" opacity=".9"/>
+<circle cx="100" cy="374" r="3.6" fill="#f7efe2" opacity=".9"/>
+</g>
+<path d="M80 222 L100 248 L92 258 L72 232 Z" fill="#f7efe2"/><path d="M120 222 L100 248 L108 258 L128 232 Z" fill="#f7efe2"/>
+<path d="M86 222 L100 240 L114 222 Z" fill="#dca07c"/>
+<g id="s1q2-headGroup" class="fp-head">
+<circle cx="37" cy="156" r="10" fill="#dca07c"/><circle cx="163" cy="156" r="10" fill="#dca07c"/>
+<circle cx="100" cy="148" r="64" fill="#f4c7a1"/>
+<clipPath id="s1q2-head"><circle cx="100" cy="148" r="64"/></clipPath>
+<circle cx="192.8" cy="154" r="64" fill="#dca07c" opacity=".38" clip-path="url(#s1q2-head)"/>
+<g class="fp-hair" data-hair="short">
+<path d="M36 156 C30 104 60 80 100 80 C142 80 170 104 164 156 C158 134 150 120 140 112 C118 124 82 124 60 110 C50 122 42 136 36 156 Z" fill="#1b1312"/>
+<path d="M62 94 Q98 78 136 92" stroke="#443d3d" stroke-width="5" fill="none" stroke-linecap="round" opacity=".75"/>
+</g>
+<g class="fp-face">
+<ellipse cx="66" cy="178" rx="11" ry="6.5" fill="#f08f8f" opacity=".6"/><ellipse cx="134" cy="178" rx="11" ry="6.5" fill="#f08f8f" opacity=".6"/>
+<g id="s1q2-eyes" class="fp-eyes" data-blink="on"><circle cx="78" cy="160" r="6.5" fill="#2a1b17"/><circle cx="122" cy="160" r="6.5" fill="#2a1b17"/><circle cx="80.2" cy="157.6" r="2.1" fill="#fff"/><circle cx="124.2" cy="157.6" r="2.1" fill="#fff"/></g>
+<g id="s1q2-exp-neutral" class="s1q2-exp fp-exp">
+<path d="M66 138 L88 137" stroke="#2a1b17" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+<path d="M112 137 L134 138" stroke="#2a1b17" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+<path d="M91 186 Q100 191 109 186" stroke="#7a2a24" stroke-width="4" stroke-linecap="round" fill="none"/>
+</g>
+<g id="s1q2-exp-angry" class="s1q2-exp fp-exp" opacity="0">
+<path d="M68 132 L90 142" stroke="#2a1b17" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+<path d="M110 142 L132 132" stroke="#2a1b17" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+<path d="M90 189 L110 189" stroke="#7a2a24" stroke-width="4" stroke-linecap="round" fill="none"/>
+</g>
+</g>
+</g>
+</g></g></g></g></g>
+    <g id="s1y-w"><g id="s1y-b"><g class="fp-placed" data-id="s1y" transform="translate(120.0 1540.0)"><g class="fp-scale" transform="translate(100 520) scale(1.6) translate(-100 -520)"><g id="s1y-root" class="fp-person fp-male fp-front" data-fp-id="s1y" data-gender="male" data-view="front" data-blink="on">
+<ellipse class="fp-shadow" cx="100" cy="523" rx="74" ry="11" fill="#000" opacity=".5"/>
+<g id="s1y-legs" class="fp-legs">
+<rect x="72" y="372" width="26" height="136" rx="12" fill="#1c2433"/>
+<rect x="102" y="372" width="26" height="136" rx="12" fill="#141924"/>
+<path d="M60 508 Q60 498 74 498 L96 498 Q100 498 100 504 L100 520 L62 520 Q58 520 60 508 Z" fill="#1a1410"/>
+<path d="M140 508 Q140 498 126 498 L104 498 Q100 498 100 504 L100 520 L138 520 Q142 520 140 508 Z" fill="#140f0c"/>
+</g>
+<g id="s1y-armL" class="fp-arm fp-arm-l" data-pivot="56 238">
+<path d="M56 238 L40.0 328.6" stroke="#2b3a55" stroke-width="24" stroke-linecap="round" fill="none"/>
+<circle cx="40.0" cy="334.6" r="13.5" fill="#f4c7a1"/>
+<circle cx="43.0" cy="337.6" r="8" fill="#dca07c" opacity=".45"/>
+</g>
+<g id="s1y-armR" class="fp-arm fp-arm-r" data-pivot="144 238">
+<path d="M144 238 L175.5 324.5" stroke="#202c40" stroke-width="24" stroke-linecap="round" fill="none"/>
+<circle cx="175.5" cy="330.5" r="13.5" fill="#f4c7a1"/>
+<circle cx="178.5" cy="333.5" r="8" fill="#dca07c" opacity=".45"/>
+</g>
+<rect class="fp-neck" x="88" y="200" width="24" height="34" rx="8" fill="#dca07c"/>
+<clipPath id="s1y-torso"><rect x="46" y="222" width="108" height="170" rx="24"/></clipPath>
+<g class="fp-torso" clip-path="url(#s1y-torso)">
+<rect x="46" y="222" width="108" height="170" fill="#2b3a55"/>
+<rect x="124" y="222" width="30" height="170" fill="#202c40" opacity=".9"/>
+<rect x="88" y="226" width="24" height="166" fill="#f4efe6"/>
+<path d="M46 222 L88 222 L100 268 L88 392 L46 392 Z" fill="#2b3a55"/>
+<path d="M154 222 L112 222 L100 268 L112 392 L154 392 Z" fill="#202c40"/>
+<path d="M88 222 L100 262 L80 236 Z" fill="#222e44"/>
+<path d="M112 222 L100 262 L120 236 Z" fill="#445269"/>
+</g>
+<path class="fp-necktie" d="M96 248 L104 248 L107 262 L100 268 L93 262 Z" fill="#8e1d24"/>
+<path class="fp-necktie" d="M94 266 L106 266 L110 352 L100 368 L90 352 Z" fill="#8e1d24"/>
+<path d="M96 268 L104 268 L106 352 L100 360 L94 352 Z" fill="#6b161b" opacity=".5"/>
+<path class="fp-lanyard" d="M86 228 Q74 300 92 328" fill="none" stroke="#c8282f" stroke-width="4" stroke-linecap="round"/>
+<path class="fp-lanyard" d="M114 228 Q126 300 108 328" fill="none" stroke="#c8282f" stroke-width="4" stroke-linecap="round"/>
+<rect x="86" y="326" width="28" height="36" rx="3" fill="#f4efe6" stroke="#2a1b17" stroke-width="1.5"/>
+<rect x="90" y="330" width="20" height="14" rx="2" fill="#9ec7e8"/>
+<rect x="90" y="347" width="20" height="3" rx="1" fill="#c8b8a8"/>
+<rect x="90" y="353" width="14" height="3" rx="1" fill="#c8b8a8"/>
+<g id="s1y-headGroup" class="fp-head">
+<circle cx="37" cy="156" r="10" fill="#dca07c"/><circle cx="163" cy="156" r="10" fill="#dca07c"/>
+<circle cx="100" cy="148" r="64" fill="#f4c7a1"/>
+<clipPath id="s1y-head"><circle cx="100" cy="148" r="64"/></clipPath>
+<circle cx="192.8" cy="154" r="64" fill="#dca07c" opacity=".38" clip-path="url(#s1y-head)"/>
+<g class="fp-hair" data-hair="short">
+<path d="M36 156 C30 104 60 80 100 80 C142 80 170 104 164 156 C158 134 150 120 140 112 C118 124 82 124 60 110 C50 122 42 136 36 156 Z" fill="#1b1312"/>
+<path d="M62 94 Q98 78 136 92" stroke="#443d3d" stroke-width="5" fill="none" stroke-linecap="round" opacity=".75"/>
+</g>
+<g class="fp-face">
+<ellipse cx="66" cy="178" rx="11" ry="6.5" fill="#f08f8f" opacity=".6"/><ellipse cx="134" cy="178" rx="11" ry="6.5" fill="#f08f8f" opacity=".6"/>
+<g id="s1y-eyes" class="fp-eyes" data-blink="on"><circle cx="78" cy="160" r="6.5" fill="#2a1b17"/><circle cx="122" cy="160" r="6.5" fill="#2a1b17"/><circle cx="80.2" cy="157.6" r="2.1" fill="#fff"/><circle cx="124.2" cy="157.6" r="2.1" fill="#fff"/></g>
+<g id="s1y-exp-worried" class="s1y-exp fp-exp">
+<path d="M66 141 L88 133" stroke="#2a1b17" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+<path d="M112 133 L134 141" stroke="#2a1b17" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+<path d="M90 190 Q95 184 100 188 Q105 192 110 186" stroke="#7a2a24" stroke-width="4" stroke-linecap="round" fill="none"/>
+</g>
+<g id="s1y-exp-shocked" class="s1y-exp fp-exp" opacity="0">
+<path d="M66 130 Q77 122 88 128" stroke="#2a1b17" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+<path d="M112 128 Q123 122 134 130" stroke="#2a1b17" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+<ellipse cx="100" cy="190" rx="7" ry="9" fill="#6b2420"/>
+</g>
+<g id="s1y-exp-smile" class="s1y-exp fp-exp" opacity="0">
+<path d="M66 137 Q77 132 88 136" stroke="#2a1b17" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+<path d="M112 136 Q123 132 134 137" stroke="#2a1b17" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+<path d="M86 182 Q100 198 114 182" stroke="#7a2a24" stroke-width="4" stroke-linecap="round" fill="none"/>
+</g>
+<g id="s1y-exp-neutral" class="s1y-exp fp-exp" opacity="0">
+<path d="M66 138 L88 137" stroke="#2a1b17" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+<path d="M112 137 L134 138" stroke="#2a1b17" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+<path d="M91 186 Q100 191 109 186" stroke="#7a2a24" stroke-width="4" stroke-linecap="round" fill="none"/>
+</g>
+</g>
+</g>
+</g></g></g></g></g>
+    <g id="s1-sweat" opacity="0"><g transform="translate(340 1300) scale(1.4)" fill="#7ec8ff" stroke="#1a1208" stroke-width="3"><path d="M0 -26 Q16 0 0 12 Q-16 0 0 -26 Z"/></g></g>
+    <g id="s1-stare"><g stroke="#c8282f" stroke-width="7" stroke-linecap="round" opacity=".85"><path class="st" d="M640 1440 l-70 40"/><path class="st" d="M650 1470 l-80 30"/><path class="st" d="M646 1410 l-60 20"/></g></g>
+    <g id="s1-jong"><g transform="translate(860 1290) rotate(6)"><text x="0" y="0" text-anchor="middle" font-family="Kanit, sans-serif" font-weight="900" font-size="84" fill="#ffffff" stroke="#1a1208" stroke-width="12.923076923076923" paint-order="stroke" stroke-linejoin="round">จ้อง…</text></g></g>
+    <g id="s1-ting"><g transform="translate(560 1000) rotate(-8)"><text x="0" y="0" text-anchor="middle" font-family="Kanit, sans-serif" font-weight="900" font-size="80" fill="#7ef0c0" stroke="#1a1208" stroke-width="12.307692307692308" paint-order="stroke" stroke-linejoin="round">ติ๊ด!</text></g></g>
+    <g id="s1-ct"><g transform="translate(880 410)" filter="url(#tbShadow)">
+    <rect x="-150" y="-50" width="300" height="100" rx="22" fill="#fff8ec" stroke="#1a1208" stroke-width="5"/>
+    <text x="0" y="-12" text-anchor="middle" font-family="Kanit, sans-serif" font-weight="700" font-size="26" fill="#7a5a3a">ค่าทิปวันนี้</text>
+    <text id="s1-ct-v" x="0" y="34" text-anchor="middle" font-family="Kanit, sans-serif" font-weight="900" font-size="46" fill="#c8282f">฿0</text></g></g>
+    <g id="s1-tb"><g class="tip-badge" transform="translate(540 210)" filter="url(#tbShadow)">
+    <rect x="-300" y="-92" width="600" height="184" rx="34" fill="#1a1208" stroke="#d8a64a" stroke-width="6"/>
+    <rect x="-286" y="-80" width="572" height="10" rx="4" fill="#d8a64a" opacity=".4"/>
+    <text x="0" y="14" text-anchor="middle" font-family="Kanit, sans-serif" font-weight="900" font-size="104" fill="#ffd166">ทิป 10%</text>
+    <text x="0" y="66" text-anchor="middle" font-family="Kanit, sans-serif" font-weight="700" font-size="38" fill="#f7efe2">กาแฟแก้วแรก</text>
+  </g></g>
+  
+          <rect x="0" y="0" width="1080" height="1920" fill="url(#s1-vig)" pointer-events="none"/>
+        </svg>
+      </div></div></div>
+    </div>
+  </div>
+  <script>
+  (() => {
+    const SCENE_DUR = 10.1;
+    // Runtime helpers injected into every bang-dubai video composition.
+// Expects: const SCENE_DUR, and gsap loaded. Defines tl and helpers.
+const tl = gsap.timeline({ paused: true });
+const SVGNS = "http://www.w3.org/2000/svg";
+const rng = (s) => () => { s |= 0; s = s + 0x6D2B79F5 | 0; let t = Math.imul(s ^ s >>> 15, 1 | s); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+const mk = (tag, attrs, parent) => { const e = document.createElementNS(SVGNS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; };
+const $ = (s) => document.querySelector(s);
+const $$ = (s) => Array.from(document.querySelectorAll(s));
+const clamp01 = (v) => Math.max(0, Math.min(1, v));
+const smooth = (v) => { v = clamp01(v); return v * v * (3 - 2 * v); };
+const lerp = (a, b, t) => a + (b - a) * t;
+
+// pop an SVG group in from scale 0 around a scene point
+const pop = (sel, at, ox, oy, o = {}) => tl.fromTo(sel,
+  { scale: o.from ?? 0, opacity: o.op0 ?? 1, rotation: o.rot ?? 0, svgOrigin: `${ox} ${oy}` },
+  { scale: 1, opacity: 1, rotation: 0, svgOrigin: `${ox} ${oy}`, duration: o.d ?? 0.45, ease: o.e ?? "back.out(2.2)" }, at);
+const popOut = (sel, at, ox, oy, o = {}) => tl.to(sel, { scale: 0, opacity: o.fade ? 0 : 1, svgOrigin: `${ox} ${oy}`, duration: o.d ?? 0.3, ease: o.e ?? "back.in(2)" }, at);
+// slide in from an offset
+const slide = (sel, at, dx, dy, o = {}) => tl.fromTo(sel, { x: dx, y: dy, opacity: o.op0 ?? 1 },
+  { x: 0, y: 0, opacity: 1, duration: o.d ?? 0.6, ease: o.e ?? "power3.out" }, at);
+const slideOut = (sel, at, dx, dy, o = {}) => tl.to(sel, { x: dx, y: dy, duration: o.d ?? 0.4, ease: o.e ?? "power2.in" }, at);
+const fadeIn = (sel, at, d = 0.4) => tl.fromTo(sel, { opacity: 0 }, { opacity: 1, duration: d, ease: "power1.out" }, at);
+const fadeOut = (sel, at, d = 0.3) => tl.to(sel, { opacity: 0, duration: d, ease: "power1.in" }, at);
+// idle bob (y), finite repeats so the timeline stays seekable
+const bob = (sel, t0, t1, amp = 6, per = 0.6) => {
+  const n = Math.max(1, Math.floor((t1 - t0) / per));
+  tl.fromTo(sel, { y: 0 }, { y: -amp, duration: per / 2, yoyo: true, repeat: n * 2 - 1, ease: "sine.inOut", immediateRender: false }, t0);
+};
+const sway = (sel, t0, t1, deg = 4, per = 1.2, ox = 0, oy = 0) => {
+  const n = Math.max(1, Math.floor((t1 - t0) / per));
+  tl.fromTo(sel, { rotation: -deg, svgOrigin: `${ox} ${oy}` }, { rotation: deg, svgOrigin: `${ox} ${oy}`, duration: per / 2, yoyo: true, repeat: n * 2 - 1, ease: "sine.inOut", immediateRender: false }, t0);
+};
+const jump = (sel, at, h = 40, d = 0.4) => tl.to(sel, { keyframes: [{ y: -h, duration: d * 0.45, ease: "power2.out" }, { y: 0, duration: d * 0.55, ease: "bounce.out" }] }, at);
+const shake = (sel, at, amp = 12, dur = 0.5) => {
+  const n = Math.max(3, Math.round(dur / 0.045)); const r = rng(Math.round(at * 1000));
+  const kf = []; for (let i = 0; i < n; i++) { const k = 1 - i / n; kf.push({ x: (r() - .5) * 2 * amp * k, y: (r() - .5) * 2 * amp * k * 0.7, duration: dur / (n + 1), ease: "none" }); }
+  kf.push({ x: 0, y: 0, duration: dur / (n + 1) });
+  tl.to(sel, { keyframes: kf }, at);
+};
+const draw = (sel, at, d = 0.6, len = 1200) => tl.fromTo(sel, { strokeDasharray: len, strokeDashoffset: len }, { strokeDashoffset: 0, duration: d, ease: "power2.inOut" }, at);
+const blink = (sel, at) => tl.fromTo(sel, { scaleY: 1 }, { scaleY: 0.12, transformOrigin: "50% 50%", duration: 0.06, yoyo: true, repeat: 1, ease: "power1.inOut", immediateRender: false }, at);
+const blinkAll = (ids, seed = 1) => { const r = rng(seed); ids.forEach((id) => { let t = 0.4 + r() * 1.6; while (t < SCENE_DUR - 0.2) { if (document.getElementById(id + "-eyes")) blink("#" + id + "-eyes", t); t += 2.2 + r() * 2.2; } }); };
+const face = (pre, name, at) => { tl.set(`.${pre}-exp`, { opacity: 0 }, at); tl.set(`#${pre}-exp-${name}`, { opacity: 1 }, at); };
+// arm rotate around its pivot
+const arm = (id, side, at, deg, d = 0.3, o = {}) => {
+  const el = document.getElementById(`${id}-arm${side}`); if (!el) return;
+  const pv = (el.getAttribute("data-pivot") || "100 238");
+  tl.to(el, { rotation: deg, svgOrigin: pv, duration: d, ease: o.e ?? "power2.out" }, at);
+};
+const wave = (id, side, t0, t1, a = 20, b = -10, per = 0.5) => {
+  const el = document.getElementById(`${id}-arm${side}`); if (!el) return;
+  const pv = (el.getAttribute("data-pivot") || "100 238"); const n = Math.max(1, Math.floor((t1 - t0) / per));
+  tl.fromTo(el, { rotation: a, svgOrigin: pv }, { rotation: b, svgOrigin: pv, duration: per / 2, yoyo: true, repeat: n * 2 - 1, ease: "sine.inOut", immediateRender: false }, t0);
+};
+// a getter/setter proxy so procedural drawing follows timeline seeks (no callbacks needed)
+const driver = (fn, t0 = 0, t1 = SCENE_DUR) => {
+  const p = { _v: -1, t(v) { if (v === undefined) return this._v; this._v = v; fn(v); } };
+  tl.fromTo(p, { t: t0 }, { t: t1, duration: t1 - t0, ease: "none" }, t0);
+  fn(t0);
+};
+// counter text
+const counter = (el, at, d, from, to, fmt) => driver((t) => { const k = clamp01((t - at) / d); el.textContent = fmt(lerp(from, to, 1 - Math.pow(1 - k, 3))); }, 0, SCENE_DUR);
+
+// smooth closed/open path through points (quadratic midpoints)
+const smoothPath = (pts, close = false) => {
+  if (pts.length < 2) return "";
+  let d = `M${pts[0][0].toFixed(1)} ${pts[0][1].toFixed(1)}`;
+  for (let i = 1; i < pts.length - 1; i++) {
+    const [x1, y1] = pts[i], [x2, y2] = pts[i + 1];
+    d += ` Q${x1.toFixed(1)} ${y1.toFixed(1)} ${((x1 + x2) / 2).toFixed(1)} ${((y1 + y2) / 2).toFixed(1)}`;
+  }
+  const l = pts[pts.length - 1]; d += ` L${l[0].toFixed(1)} ${l[1].toFixed(1)}`;
+  return close ? d + " Z" : d;
+};
+
+/**
+ * Procedural crude-oil gusher: undulating column, glossy highlight, crown,
+ * rising/falling droplets, base splashes, top spray, spreading puddle.
+ * o: { id, x, y, H, W, t0, rise, seed, sc, puddle:[rx0,rx1,ry0,ry1,pt0,pt1], drops, intensity }
+ */
+function gusher(g, o) {
+  const r = rng(o.seed || 7), sc = o.sc ?? 1, W = o.W ?? 60, H = o.H ?? 700, x = o.x, y = o.y;
+  const t0 = o.t0 ?? 0, rise = o.rise ?? 0.9;
+  const pd = o.puddle || [180, 260, 50, 70, 0, SCENE_DUR];
+  const puddle = mk("path", { fill: `url(#${o.id}-pool)` }, g);
+  const pSheen = mk("path", { fill: "#6a7aa8", opacity: .22 }, g);
+  const pRing = mk("path", { fill: "none", stroke: "#000", "stroke-width": 3 * sc, opacity: .45 }, g);
+  const back = mk("g", {}, g);
+  const col = mk("path", { fill: `url(#${o.id}-col)` }, g);
+  const hl = mk("path", { fill: "none", stroke: "#c8d0e0", "stroke-width": 9 * sc, "stroke-linecap": "round", opacity: .42 }, g);
+  const hl2 = mk("path", { fill: "none", stroke: "#ffffff", "stroke-width": 3.5 * sc, "stroke-linecap": "round", opacity: .55, "stroke-dasharray": `${60 * sc} ${34 * sc}` }, g);
+  const flow = mk("path", { fill: "none", stroke: "#8890a8", "stroke-width": 5 * sc, "stroke-linecap": "round", opacity: .35, "stroke-dasharray": `${26 * sc} ${70 * sc}` }, g);
+  const rimR = mk("path", { fill: "none", stroke: "#5a4a7a", "stroke-width": 5 * sc, "stroke-linecap": "round", opacity: .35 }, g);
+  const crownG = mk("g", {}, g);
+  const crown = []; const CN = 11;
+  for (let i = 0; i < CN; i++) crown.push({ e: mk("ellipse", { fill: i % 4 === 0 ? "#1c1c26" : "#08080b" }, crownG), a: (i / CN) * Math.PI * 2, ph: r() * 6, k: 0.55 + r() * 0.5 });
+  const crownHl = mk("ellipse", { fill: "#9aa4bc", opacity: .35 }, crownG);
+  const front = mk("g", {}, g);
+  const drops = [];
+  const ND = o.drops ?? 46;
+  for (let i = 0; i < ND; i++) {
+    const kind = i < ND * 0.55 ? "top" : (i < ND * 0.8 ? "side" : "base");
+    const e = mk("ellipse", { fill: "#08080b" }, r() < 0.5 ? back : front);
+    const s = kind === "base" ? 0.6 : 1;
+    drops.push({ e, h: mk("ellipse", { fill: "#aab4cc", opacity: .45 }, front), kind,
+      per: kind === "base" ? 0.55 + r() * 0.5 : 0.9 + r() * 0.9, ph: r() * 3,
+      vx: (r() - 0.5) * (kind === "top" ? 520 : kind === "side" ? 380 : 360) * sc,
+      vy: -(kind === "top" ? 220 + r() * 420 : kind === "side" ? 80 + r() * 260 : 160 + r() * 260) * sc,
+      sy: kind === "side" ? 0.25 + r() * 0.6 : 0, rad: (4 + r() * 11) * sc * s, off: (r() - 0.5) });
+  }
+  const spray = [];
+  for (let i = 0; i < 26; i++) spray.push({ e: mk("circle", { fill: "#2a2630", opacity: 0 }, front), per: 0.6 + r() * 0.7, ph: r() * 2, vx: (r() - .5) * 700 * sc, vy: -(120 + r() * 260) * sc, rad: (1.5 + r() * 3.5) * sc });
+  const mist = [];
+  for (let i = 0; i < 5; i++) mist.push({ e: mk("ellipse", { fill: "#1a1612", opacity: 0 }, front), ph: r() * 6, dx: (r() - .5) * 2 });
+  const GR = 1500 * sc;
+  function edge(s, t, side) {
+    const ph = side < 0 ? 0 : 2.1;
+    return Math.sin(s * 10 - t * 9 + ph) * W * 0.2 + Math.sin(s * 23 - t * 15 + ph * 1.7) * W * 0.09 + Math.sin(s * 4.5 - t * 4 + ph) * W * 0.12;
+  }
+  function draw(t) {
+    const k = smooth((t - t0) / rise);
+    const pulse = 1 + 0.06 * Math.sin(t * 5.3) + 0.04 * Math.sin(t * 8.9 + 1);
+    const h = H * (k < 1 ? (1 - Math.pow(1 - k, 3)) : pulse) * (o.intensity ?? 1);
+    // puddle
+    const pk = smooth((t - pd[4]) / (pd[5] - pd[4]));
+    const prx = lerp(pd[0], pd[1], pk), pry = lerp(pd[2], pd[3], pk);
+    if (t < t0 - 0.05) { puddle.setAttribute("d", ""); pSheen.setAttribute("d", ""); pRing.setAttribute("d", ""); }
+    else {
+      const pp = [], N = 26; const gk = smooth((t - t0 + 0.2) / 0.6);
+      for (let i = 0; i <= N; i++) { const a = (i / N) * Math.PI * 2; const w = 1 + 0.05 * Math.sin(a * 5 + t * 2.2) + 0.03 * Math.sin(a * 9 - t * 3);
+        pp.push([x + Math.cos(a) * prx * w * gk, y + 10 * sc + Math.sin(a) * pry * w * gk]); }
+      const dP = smoothPath(pp, true); puddle.setAttribute("d", dP); pRing.setAttribute("d", dP);
+      const sp = []; for (let i = 0; i <= 14; i++) { const a = (i / 14) * Math.PI * 2; sp.push([x - prx * 0.18 + Math.cos(a) * prx * 0.45 * gk, y + Math.sin(a) * pry * 0.35 * gk]); }
+      pSheen.setAttribute("d", smoothPath(sp, true));
+    }
+    if (h < 4) {
+      col.setAttribute("d", ""); hl.setAttribute("d", ""); hl2.setAttribute("d", ""); flow.setAttribute("d", ""); rimR.setAttribute("d", "");
+      crown.forEach((c) => c.e.setAttribute("rx", 0)); crownHl.setAttribute("rx", 0);
+      drops.forEach((d) => { d.e.setAttribute("rx", 0); d.h.setAttribute("rx", 0); });
+      spray.forEach((s) => s.e.setAttribute("opacity", 0)); mist.forEach((m) => m.e.setAttribute("opacity", 0));
+      return;
+    }
+    const N = 28, L = [], R = [], top = y - h;
+    const cxAt = (s) => x + Math.sin(s * 3.2 - t * 2.3) * W * 0.3 * s;
+    for (let i = 0; i <= N; i++) {
+      const s = i / N, yy = y - s * h;
+      const base = W * (1.15 - 0.35 * s) + W * 0.9 * smooth((s - 0.82) / 0.18) + W * 0.5 * smooth((0.08 - s) / 0.08);
+      const c = cxAt(s);
+      L.push([c - base - edge(s, t, -1), yy]); R.push([c + base + edge(s, t, 1), yy]);
+    }
+    const ctop = cxAt(1);
+    const capW = W * 1.5;
+    const pts = [...L, [ctop - capW * 0.6, top - W * 0.55], [ctop, top - W * 0.8], [ctop + capW * 0.6, top - W * 0.55], ...R.reverse()];
+    col.setAttribute("d", smoothPath(pts, true));
+    const hp = [], hp2 = [], rp = [];
+    for (let i = 2; i <= N - 4; i++) { const s = i / N, yy = y - s * h, base = W * (1.15 - 0.35 * s); const c = cxAt(s);
+      hp.push([c - base * 0.55 - edge(s, t, -1) * 0.6, yy]);
+      if (i > 4 && i < N - 8) hp2.push([c - base * 0.42 - edge(s, t, -1) * 0.5 + Math.sin(s * 30 - t * 18) * 2 * sc, yy]);
+      rp.push([c + base * 0.7 + edge(s, t, 1) * 0.7, yy]); }
+    hl.setAttribute("d", smoothPath(hp)); hl2.setAttribute("d", smoothPath(hp2)); rimR.setAttribute("d", smoothPath(rp));
+    const fp = []; for (let i = 1; i <= N - 3; i++) { const s = i / N, yy = y - s * h, base = W * (1.15 - 0.35 * s); fp.push([cxAt(s) + base * 0.15 + edge(s, t, 1) * 0.3, yy]); }
+    flow.setAttribute("d", smoothPath(fp)); flow.setAttribute("stroke-dashoffset", (t * 520 * sc).toFixed(1)); hl2.setAttribute("stroke-dashoffset", (t * 380 * sc).toFixed(1));
+    crown.forEach((c, i) => {
+      const a = c.a + t * 0.8; const rr = W * (0.95 + 0.35 * Math.sin(t * 6 + c.ph)) * c.k;
+      c.e.setAttribute("cx", ctop + Math.cos(a) * W * 1.1); c.e.setAttribute("cy", top - W * 0.25 + Math.sin(a) * W * 0.45);
+      c.e.setAttribute("rx", rr); c.e.setAttribute("ry", rr * 0.8);
+    });
+    crownHl.setAttribute("cx", ctop - W * 0.5); crownHl.setAttribute("cy", top - W * 0.55); crownHl.setAttribute("rx", W * 0.55); crownHl.setAttribute("ry", W * 0.2);
+    const active = t >= t0 + 0.15;
+    drops.forEach((d) => {
+      if (!active) { d.e.setAttribute("rx", 0); d.h.setAttribute("rx", 0); return; }
+      const a = ((t - t0 + d.ph) % d.per + d.per) % d.per;
+      let x0, y0;
+      if (d.kind === "top") { x0 = ctop + d.off * W * 1.6; y0 = top - W * 0.3; }
+      else if (d.kind === "side") { const s = d.sy; x0 = cxAt(s) + Math.sign(d.vx) * W * (1.1 - 0.3 * s); y0 = y - s * h; }
+      else { x0 = x + d.off * W * 2.4; y0 = y; }
+      const px = x0 + d.vx * a, vy = d.vy + GR * a, py = y0 + d.vy * a + 0.5 * GR * a * a;
+      const life = a / d.per; const fade = life > 0.85 ? (1 - life) / 0.15 : 1;
+      const sp = Math.min(2.2, 1 + Math.abs(vy) / (900 * sc));
+      const ang = Math.atan2(vy, d.vx) * 180 / Math.PI - 90;
+      if (d.kind === "base" && py > y + 30 * sc) { d.e.setAttribute("rx", 0); d.h.setAttribute("rx", 0); return; }
+      d.e.setAttribute("cx", px); d.e.setAttribute("cy", py); d.e.setAttribute("rx", d.rad * fade); d.e.setAttribute("ry", d.rad * sp * fade);
+      d.e.setAttribute("transform", `rotate(${ang.toFixed(1)} ${px.toFixed(1)} ${py.toFixed(1)})`);
+      d.h.setAttribute("cx", px - d.rad * 0.3); d.h.setAttribute("cy", py - d.rad * 0.35); d.h.setAttribute("rx", d.rad * 0.28 * fade); d.h.setAttribute("ry", d.rad * 0.4 * fade);
+    });
+    spray.forEach((s) => {
+      if (!active) { s.e.setAttribute("opacity", 0); return; }
+      const a = ((t - t0 + s.ph) % s.per + s.per) % s.per, life = a / s.per;
+      s.e.setAttribute("cx", ctop + s.vx * a); s.e.setAttribute("cy", top - W * 0.6 + s.vy * a + 0.5 * GR * 0.6 * a * a);
+      s.e.setAttribute("r", s.rad); s.e.setAttribute("opacity", (0.7 * (1 - life)).toFixed(2));
+    });
+    mist.forEach((m, i) => {
+      const a = (t * 0.25 + m.ph) % 1;
+      m.e.setAttribute("cx", ctop + m.dx * W * 2 + Math.sin(t + i) * 20); m.e.setAttribute("cy", top - W * 0.4 - a * 120 * sc);
+      m.e.setAttribute("rx", W * (1.6 + a * 2)); m.e.setAttribute("ry", W * (0.7 + a)); m.e.setAttribute("opacity", (active ? 0.22 * (1 - a) : 0).toFixed(2));
+    });
+  }
+  driver(draw);
+}
+
+// zoom-through transitions (no fade to black)
+const sceneIO = (sel, o = {}) => {
+  if (o.in !== false) tl.fromTo(sel, { scale: o.inScale ?? 1.22, filter: "blur(10px)" }, { scale: 1, filter: "blur(0px)", duration: 0.38, ease: "power3.out" }, 0);
+  if (o.out !== false) tl.to(sel, { scale: 1.2, filter: "blur(9px)", duration: 0.28, ease: "power2.in" }, SCENE_DUR - 0.28);
+};
+// camera move on an HTML container: keyframes [{t, s, x, y, d, e}]
+const cam = (sel, moves) => { moves.forEach((m) => { const s = Math.max(1, m.s ?? 1), bx = (s - 1) * 540, by = (s - 1) * 960;
+  const x = Math.max(-bx, Math.min(bx, m.x ?? 0)), y = Math.max(-by, Math.min(by, m.y ?? 0));
+  tl.to(sel, { scale: s, x, y, duration: m.d ?? 1, ease: m.e ?? "power2.inOut" }, m.t); }); };
+
+    
+const stepCounter = (el, from, steps, fmt) => driver((t) => { let v = from; for (const [at, d, to] of steps) { if (t >= at) { const k = clamp01((t - at) / d); v = lerp(v, to, 1 - Math.pow(1 - k, 3)); } } el.textContent = fmt(v); });
+const baht = (v) => "฿" + Math.round(v).toLocaleString("en-US");
+const pick = (id, i, n, at, ox, oy) => { for (let j = 0; j < n; j++) tl.set("#" + id + "-k" + j, { opacity: j === i ? 1 : 0 }, at);
+  tl.fromTo("#" + id, { scale: 1.08, svgOrigin: ox + " " + oy }, { scale: 1, svgOrigin: ox + " " + oy, duration: .3, ease: "back.out(3)", immediateRender: false }, at); };
+const badgeIn = (sel, at) => { pop(sel, at, 540, 210, { d: .5 }); tl.fromTo(sel, { rotation: -6, svgOrigin: "540 210" }, { rotation: 0, svgOrigin: "540 210", duration: .5, ease: "back.out(3)", immediateRender: false }, at); };
+
+    
+    badgeIn("#s1-tb", 0.25); pop("#s1-ct", 0.7, 880, 410, { d: .4 });
+    slide("#s1y-w", 0.1, -360, 0, { d: .9 }); bob("#s1y-b", 0.1, 1.0, 9, .36);
+    slide("#s1q1-w", 0.3, 420, 0, { d: 1.0 }); slide("#s1q2-w", 0.4, 420, 0, { d: 1.0 });
+    bob("#s1b-b", 0, 4.50, 4, 1.1);
+    pop("#s1-price", 2.90, 330, 1040, { d: .45 });
+    // barista turns the screen around
+    arm("s1b", "R", 4.40, 70, .3);
+    tl.fromTo("#s1-scr", { scale: 0.2, rotation: 80, opacity: 0, svgOrigin: "560 1300" }, { scale: 1, rotation: 0, opacity: 1, svgOrigin: "560 1300", duration: .55, ease: "back.out(1.8)" }, 4.50);
+    face("s1b", "smirk", 4.80); face("s1y", "worried", 4.50);
+    popOut("#s1-price", 4.60, 330, 1040, { d: .25 });
+    // the queue stares
+    face("s1q1", "fierce", 6.47); face("s1q2", "angry", 6.57);
+    $$("#s1-stare .st").forEach((p, i) => draw(p, 6.47 + i * 0.08, .3, 100));
+    pop("#s1-jong", 6.72, 860, 1290, { d: .4 });
+    fadeIn("#s1-sweat", 6.87, .2); tl.fromTo("#s1-sweat", { y: -20 }, { y: 30, duration: 1.4, ease: "power1.in" }, 6.87);
+    shake("#s1q1-b", 6.67, 6, .4); shake("#s1q2-b", 6.77, 6, .4);
+    cam("#s1-cam", [{ t: 0, s: 1.0, d: .01 }, { t: 6.37, s: 1.14, x: 200, y: -170, d: .7, e: "power3.out" }, { t: 7.85, s: 1.0, x: 0, y: 0, d: .6 }]);
+    // "สุดท้าย กด 20%"
+    arm("s1y", "R", 7.75, 140, .4);
+    pick("s1-scr", 1, 2, 8.70, 470, 1190);
+    pop("#s1-ting", 8.70, 560, 1000, { d: .3 }); fadeOut("#s1-ting", 9.40, .3);
+    stepCounter($("#s1-ct-v"), 0, [[8.80, .7, 11]], baht);
+    face("s1q1", "neutral", 9.00); face("s1q2", "neutral", 9.05); face("s1b", "smile", 8.90);
+    fadeOut("#s1-jong", 8.90, .25); fadeOut("#s1-stare", 8.90, .25);
+  
+    blinkAll(["s1b","s1q1","s1q2","s1y"], 18);
+    sceneIO("#s1-io", { in: true, out: true });
+    window.__timelines = window.__timelines || {};
+    window.__timelines["scene-1"] = tl;
+  })();
+  </script>
+</template>

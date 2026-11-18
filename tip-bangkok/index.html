@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #0c0806; }
+    </style>
+  </head>
+  <body>
+    <div data-hf-id="hf-main" id="root" data-composition-id="main" data-start="0" data-duration="81" data-width="1080" data-height="1920">
+      <div data-hf-id="hf-clip-scene-0" id="scene-0" data-composition-id="scene-0" data-composition-src="compositions/scene-0.html" data-start="0" data-duration="8.4" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920"></div>
+      <div data-hf-id="hf-clip-scene-1" id="scene-1" data-composition-id="scene-1" data-composition-src="compositions/scene-1.html" data-start="8.4" data-duration="10.1" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920"></div>
+      <div data-hf-id="hf-clip-scene-2" id="scene-2" data-composition-id="scene-2" data-composition-src="compositions/scene-2.html" data-start="18.5" data-duration="9.45" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920"></div>
+      <div data-hf-id="hf-clip-scene-3" id="scene-3" data-composition-id="scene-3" data-composition-src="compositions/scene-3.html" data-start="27.95" data-duration="10.95" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920"></div>
+      <div data-hf-id="hf-clip-scene-4" id="scene-4" data-composition-id="scene-4" data-composition-src="compositions/scene-4.html" data-start="38.9" data-duration="9.2" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920"></div>
+      <div data-hf-id="hf-clip-scene-5" id="scene-5" data-composition-id="scene-5" data-composition-src="compositions/scene-5.html" data-start="48.1" data-duration="10.6" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920"></div>
+      <div data-hf-id="hf-clip-scene-6" id="scene-6" data-composition-id="scene-6" data-composition-src="compositions/scene-6.html" data-start="58.7" data-duration="12.7" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920"></div>
+      <div data-hf-id="hf-clip-scene-7" id="scene-7" data-composition-id="scene-7" data-composition-src="compositions/scene-7.html" data-start="71.4" data-duration="9.6" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920"></div>
+      <div data-hf-id="hf-clip-fx" id="fx" data-composition-id="fx" data-composition-src="compositions/fx.html" data-start="0" data-duration="81" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920"></div>
+      <div data-hf-id="hf-clip-subs" id="subs" data-composition-id="subs" data-composition-src="compositions/subs.html" data-start="0" data-duration="81" data-track-index="3" data-track-kind="captions" data-width="1080" data-height="1920"></div>
+      <audio data-hf-id="hf-clip-mix" id="mix" class="clip" src="assets/audio/mix.wav" data-start="0" data-duration="81" data-track-index="4"></audio>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+    </script>
+  </body>
+</html>
